@@ -1,0 +1,38 @@
+.btn {
+  border-radius: 0px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all ease-in-out 0.2s;
+}
+
+.btn.btn-primary:hover {
+  background-image: none;
+  background-color: rgb(227, 63, 63);
+}
+
+.btn:hover {
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.or-container {
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  margin: 25px 0;
+}
+
+.line-separator {
+  background-color: #ccc;
+  flex-grow: 5;
+  height: 1px;
+}
+
+.or-label {
+  flex-grow: 1;
+  margin: 0 15px;
+  text-align: center;
+}
+
+.google-icon {
+  width: 25px;
+}

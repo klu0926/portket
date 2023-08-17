@@ -9,12 +9,12 @@ router.post('/login', (req, res)=>{
 })
 
 // 建立帳號
-router.get('/signup', (req, res)=>{
-  res.render('signup')
-})
-router.post('/signup', (req, res)=>{
-  res.send('signup')
-})
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+router.post("/register", (req, res) => {
+  res.send("register");
+});
 
 // 登出
 router.post('logout', (req, res)=> {

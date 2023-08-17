@@ -1,0 +1,48 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <h1 class="fw-bold text-primary text-center mb-4">Login</h1>
+    {{!-- {{> message}} --}}
+
+    <form action="/users/login" method="post">
+      <!-- Email input -->
+      <div class="form-floating mb-4">
+        <input type="email" name="email" id="email" class="form-control" placeholder="email" />
+        <label class="form-label" for="email">Email address</label>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-floating mb-4">
+        <input type="password" id="password" name="password" class="form-control" placeholder="password" />
+        <label class="form-label" for="password">Password</label>
+      </div>
+
+      <!-- Submit button -->
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="w-100 btn btn-primary mb-4">Login</button>
+      </div>
+
+      <!--or login with Google-->
+      <div class="or-container">
+        <div class="line-separator"></div>
+        <div class="or-label">or</div>
+        <div class="line-separator"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <a class="w-100 btn btn-lg text-uppercase btn-light" href="/auth/google">
+            <div>
+              <img class="google-icon" src="https://img.icons8.com/color/google-logo" />
+              <span class="h6">Login Using Google</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </form>
+
+    <!--register-->
+    <div class="text-center">
+      <p>Not a member? <a href="#!">Register</a></p>
+    </div>
+  </div>
+</div>
