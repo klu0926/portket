@@ -5,8 +5,8 @@ const methodOverride = require('method-override')
 const routes = require("./routes")
 
 // view engine
-const handlebars = require("express-handlebars")
-app.engine('hbs', handlebars({defaultLayout: 'main', extends: '.hbs'}))
+const { engine } = require("express-handlebars")
+app.engine("hbs", engine({ defaultLayout: "main", extends: ".hbs" }))
 app.set('view engine', 'hbs')
 
 // use
