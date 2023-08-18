@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
 const { authenticator } = require('../../middleware/auth')
-
+const userController = require('../../controls/user-controller')
 
 // 登入
 router.get('/login', (req, res) => {
@@ -19,9 +19,7 @@ router.post(
 router.get('/register', (req, res) => {
   res.render('register')
 })
-router.post('/register', (req, res) => {
-  res.send('register')
-})
+router.post('/register', userController.register)
 
 // 登出
 router.get('/logout', (req, res) => {

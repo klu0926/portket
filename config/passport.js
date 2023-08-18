@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const { User } = require('../models/')
+const bcryptjs = require('bcryptjs')
 
 module.exports = (app) => {
   // init passport
@@ -15,8 +16,14 @@ module.exports = (app) => {
           where: { email },
           raw: true,
         })
+        // check if user exist
         if (!user) return done(null, false, { message: 'That email is not registered!' })
-        if (user.password !== password) return done(null, false, { message: 'Email or Password incorrect!' })
+
+        // compare password
+        const match = await bcryptjs.compare(password, user.password)
+        if (!match) return done(null, false, { message: 'Email or Password incorrect!' })
+
+        // is authenticated, return user
         return done(null, user)
       } catch (err) {
         done(err, false)
@@ -32,7 +39,7 @@ module.exports = (app) => {
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findOne({
-        where: { email },
+        where: { id },
         raw: true,
       })
       done(null, user)
