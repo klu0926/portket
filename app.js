@@ -3,6 +3,12 @@ const app = express()
 const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
 const routes = require("./routes")
+const session = require('express-session')
+
+// dotenv
+if (process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
 
 // view engine
 const { engine } = require("express-handlebars")
@@ -13,6 +19,18 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 10, // 10 mins
+    },
+  })
+);
 
 // routes
 app.use(routes)
@@ -20,3 +38,5 @@ app.use(routes)
 app.listen(port, () => {
   console.info(`Server running on port ${port}`)
 })
+
+console.log(process.env.MESSAGE)
