@@ -22,8 +22,15 @@ router.post('/register', (req, res) => {
 })
 
 // 登出
-router.post('logout', (req, res) => {
-  res.send('logout')
+router.get('/logout', (req, res) => {
+  req.logout(() => {
+    try {
+      res.redirect('/users/login')
+    } catch (err) {
+      console.log('Logout Error')
+      res.end()
+    }
+  })
 })
 
 module.exports = router
