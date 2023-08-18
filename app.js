@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
 const routes = require("./routes")
 const session = require('express-session')
+const usePassport = require('./config/passport')
 
 // dotenv
 if (process.env.NODE_ENV !== 'production'){
@@ -31,6 +32,7 @@ app.use(
     },
   })
 );
+usePassport(app)
 
 // routes
 app.use(routes)
