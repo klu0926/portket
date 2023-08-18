@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
+const { authenticator } = require('../../middleware/auth')
+
 
 // 登入
 router.get('/login', (req, res) => {
