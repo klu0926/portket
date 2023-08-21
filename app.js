@@ -7,6 +7,7 @@ const session = require('express-session')
 const MySQLStore = require('express-mysql-session')(session)
 const usePassport = require('./config/passport')
 const config = require('./config/config.json')
+const flash = require('connect-flash')
 
 // dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -65,10 +66,15 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 usePassport(app)
+app.use(flash())
 // store res.locals
 app.use((req, res, next) => {
+  // passport
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  // flash message
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning')
   next()
 })
 

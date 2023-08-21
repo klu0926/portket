@@ -6,6 +6,8 @@ module.exports = {
       return next()
     }
     console.log('authentication fail')
+    req.flash('warning_msg', 'Please login first!')
+  
     res.redirect('/users/login')
   },
 }
