@@ -10,25 +10,31 @@ module.exports = (app) => {
 
   // local strategy
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
-      try {
-        const user = await User.findOne({
-          where: { email },
-          raw: true,
-        })
-        // check if user exist
-        if (!user) return done(null, false, { message: 'That email is not registered!' })
+    new LocalStrategy(
+      {
+        usernameField: 'email',
+        passReqToCallback: true,
+      },
+      async (req, email, password, done) => {
+        try {
+          const user = await User.findOne({
+            where: { email },
+            raw: true,
+          })
+          // check if user exist
+          if (!user) return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
 
-        // compare password
-        const match = await bcryptjs.compare(password, user.password)
-        if (!match) return done(null, false, { message: 'Email or Password incorrect!' })
+          // compare password
+          const match = await bcryptjs.compare(password, user.password)
+          if (!match) return done(null, false, req.flash('warning_msg', 'Email or password incorrect!'))
 
-        // is authenticated, return user
-        return done(null, user)
-      } catch (err) {
-        done(err, false)
+          // is authenticated, return user
+          return done(null, user, {message: 'Successfully logged in'})
+        } catch (err) {
+          done(err, false)
+        }
       }
-    })
+    )
   )
 
   // serialize and deserialize

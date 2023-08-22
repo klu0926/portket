@@ -72,9 +72,9 @@ app.use((req, res, next) => {
   // passport
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
-  // flash message
+  // flash
   res.locals.success_msg = req.flash('success_msg')
-  res.locals.warning_msg = req.flash('warning')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
