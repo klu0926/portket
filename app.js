@@ -85,4 +85,5 @@ app.listen(port, () => {
   console.info(`Server running on port ${port}`)
 })
 
-console.log(process.env.MESSAGE)
+
+// TESTING - DELETE LATER!!!! //

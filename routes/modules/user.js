@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const userController = require('../../controls/user-controller')
+const passport = require('passport')
 
-// 登入
+// Local 登入
 router.get('/login', (req, res) => {
   res.render('login')
 })
@@ -12,6 +13,17 @@ router.get('/register', (req, res) => {
   res.render('register')
 })
 router.post('/register', userController.register)
+
+// Google 登入
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['email', 'profile']
+}))
+
+// Google callback
+router.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // 登出
 router.get('/logout', (req, res) => {

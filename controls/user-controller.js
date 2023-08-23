@@ -65,7 +65,7 @@ const userController = {
         name,
         email,
         password: bcryptjs.hashSync(password),
-        createAt: new Date(),
+        createdAt: new Date(),
         updatedAt: new Date(),
       })
       res.redirect('/') // home page
