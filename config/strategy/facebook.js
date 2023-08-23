@@ -1,33 +1,32 @@
-const GoogleStrategy = require('passport-google-oauth2').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const { User } = require('../../models')
 const bcryptjs = require('bcryptjs')
 
 module.exports = (passport) => {
   passport.use(
-    new GoogleStrategy(
+    new FacebookStrategy(
       {
-        clientID: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET,
-        callbackURL: '/users' + process.env.GOOGLE_CALLBACK,
+        clientID: process.env.FACEBOOK_ID,
+        clientSecret: process.env.FACEBOOK_SECRET,
+        callbackURL: '/users' + process.env.FACEBOOK_CALLBACK,
+        profileFields: ['email', 'displayName'],
       },
-      async (req, accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, done) => {
         try {
-          const { email, name, picture } = profile._json
+          const { name, email } = profile._json
           // find user
           const user = await User.findOne({ where: { email } })
           if (user) return done(null, user)
 
-          // create user, if not exist
+          // Can't find user, create one
           const randomPassword = Math.random().toString(36).slice(-8)
           const newUser = await User.create({
             name,
             email,
-            avatar: picture,
             password: bcryptjs.hashSync(randomPassword),
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            createdDate: new Date(),
+            updatedDate: new Date(),
           })
-          // return user
           return done(null, newUser)
         } catch (err) {
           done(err, null)

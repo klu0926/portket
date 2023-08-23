@@ -2,6 +2,7 @@ const passport = require('passport')
 const { User } = require('../models/')
 const LocalStrategy = require('./strategy/local')
 const GoogleStrategy = require('./strategy/google')
+const FacebookStrategy = require('./strategy/facebook')
 
 module.exports = (app) => {
   // init passport
@@ -11,6 +12,7 @@ module.exports = (app) => {
   // strategies
   LocalStrategy(passport)
   GoogleStrategy(passport)
+  FacebookStrategy(passport)
 
   // serialize and deserialize
   passport.serializeUser((user, done) => {

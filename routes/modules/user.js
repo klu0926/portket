@@ -25,6 +25,17 @@ router.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/users/login'
 }))
 
+// Facebook 登入
+router.get('/auth/facebook', passport.authenticate('facebook', {
+  scope: ['email', 'public_profile']
+}))
+
+// Facebook callback
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
+
 // 登出
 router.get('/logout', (req, res) => {
   req.logout(() => {
