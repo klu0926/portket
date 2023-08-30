@@ -73,6 +73,16 @@ const userController = {
       console.log(err)
     }
   },
+  getUsers: async (req, res, next) => {
+    // get all the users, and put em in an array, then render page
+    try {
+
+      res.render('index')
+
+    } catch(err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = userController

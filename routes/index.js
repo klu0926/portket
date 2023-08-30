@@ -5,8 +5,9 @@ const {errorHandler} = require('../middleware/error-handler')
 
 router.use('/users', user)
 router.get('/', authenticator, (req, res) => {
-  res.render('index')
+  res.redirect('/users')
 })
 router.use('/', errorHandler)
+router.use(errorHandler)
 
 module.exports = router

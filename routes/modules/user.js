@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const userController = require('../../controls/user-controller')
 const passport = require('passport')
+const { errorHandler } = require('../../middleware/error-handler')
 
 // Local 登入
 router.get('/login', (req, res) => {
@@ -48,5 +49,11 @@ router.get('/logout', (req, res) => {
     }
   })
 })
+
+// 首頁＋展示全部使用者
+router.get('/', userController.getUsers)
+
+// Error handler
+router.use(errorHandler)
 
 module.exports = router
