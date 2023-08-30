@@ -1,8 +1,8 @@
-"use strict"
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,7 +12,7 @@ module.exports = {
       name: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "無名的創造者"
+        defaultValue: '無名的創造者',
       },
       email: {
         allowNull: false,
@@ -25,23 +25,22 @@ module.exports = {
       avatar: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "https://i.imgur.com/PiJ0HXw.png",
+        defaultValue: 'https://i.imgur.com/PiJ0HXw.png',
       },
       cover: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "https://i.imgur.com/xZoHPfC.png",
+        defaultValue: 'https://i.imgur.com/xZoHPfC.png',
       },
       title: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "歡迎來到我的PORTKET空間！",
+        defaultValue: '自由工作者',
       },
       description: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue:
-          "這是我分享創意和靈感的地方。無論你是誰，我都希望你在這裡找到一些啟發和有趣的內容",
+        defaultValue: '我是熱愛學習與成長的個體，喜歡挑戰各種新事物，不斷追求進步',
       },
       country: {
         type: Sequelize.STRING,
@@ -50,19 +49,21 @@ module.exports = {
         type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users")
+    await queryInterface.dropTable('Users')
   },
 }
