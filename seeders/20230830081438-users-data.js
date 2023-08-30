@@ -1,9 +1,10 @@
 'use strict'
 const bcrypt = require('bcryptjs')
 const { faker } = require('@faker-js/faker')
+const descriptionData = require('../data/description.json')
 
 const SEED_PASSWORD = '123'
-const SEED_AMOUNT = 10
+const SEED_AMOUNT = 12
 
 class RandomUserGenerator {
   constructor() {
@@ -19,7 +20,7 @@ class RandomUserGenerator {
       avatar: 'https://i.pravatar.cc/' + this.avatarSize + '?u=' + randomId,
       cover: 'https://i.imgur.com/xZoHPfC.png',
       title: faker.person.jobTitle(),
-      description: faker.person.bio(),
+      description: descriptionData[this.currentNumber % descriptionData.length],
       country: faker.location.country(),
       city: faker.location.city(),
       phone: faker.phone.number(),
@@ -34,7 +35,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const users = []
     const randomUser = new RandomUserGenerator()
-    for (let i = 1; i < SEED_AMOUNT; i++) {
+    for (let i = 0; i < SEED_AMOUNT; i++) {
       users.push(randomUser.create())
     }
     return queryInterface.bulkInsert('Users', users)
