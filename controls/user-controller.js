@@ -76,8 +76,13 @@ const userController = {
   getUsers: async (req, res, next) => {
     // get all the users, and put em in an array, then render page
     try {
-
-      res.render('index')
+      const {count, rows} = await User.findAndCountAll({
+        raw: true
+      })
+      const users = rows
+      console.log('counts:', count)
+      console.log('users:', users)
+      res.render('index', {users})
 
     } catch(err) {
       next(err)

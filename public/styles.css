@@ -1,3 +1,134 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* My Code start*/
 .btn {
   border-radius: 0px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -35,4 +166,98 @@
 
 .google-icon {
   width: 25px;
+}
+
+/* Index Page */
+.banner {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100vw;
+  height: 500px;
+  border-bottom: 1px solid rgb(198, 198, 198);
+}
+.banner-image {
+  background-image: url('/images/cover-women.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: 500px;
+}
+
+.banner-text {
+  padding: 70px 0px 50px 50px;
+}
+
+.banner-text h1 {
+  font-size: 5rem;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.banner-text p {
+  color: black;
+  font-size: 1.6rem;
+  margin: 25px 0px;
+}
+
+.portfolio-display {
+  margin-top: 550px;
+}
+
+/*-Index card-*/
+.card-avatar {
+  width: 77px;
+  position: relative;
+}
+
+.card-avatar img {
+  position: absolute;
+  top: -120px;
+  left: 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card {
+  transition: all 0.2s;
+}
+
+.card:hover .card-img-top {
+  filter: brightness(110%);
+}
+.card:hover {
+  transform: scale(1.02);
+}
+
+@media screen and (max-width: 800px) {
+  /*-index-*/
+  .register-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .register-button a {
+    width: 100%;
+    margin-right: 30px;
+  }
+
+  .banner {
+    height: 350px;
+  }
+  .banner-text {
+    padding: 40px 0px 30px 50px;
+    flex: 0 0 100%; /* This is equivalent to col-12 */
+    max-width: 100%;
+  }
+  .banner-text p {
+    font-size: 1.4rem;
+  }
+  .banner-image {
+    display: none;
+  }
+  .portfolio-display {
+    margin-top: 380px;
+  }
 }
