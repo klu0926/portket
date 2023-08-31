@@ -8,6 +8,7 @@ const MySQLStore = require('express-mysql-session')(session)
 const usePassport = require('./config/passport')
 const config = require('./config/config.json')
 const flash = require('connect-flash')
+const handlebarHelper = require('./handlebar-helper')
 
 // dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +17,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 // view engine
 const { engine } = require('express-handlebars')
-app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine(
+  'hbs',
+  engine({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    helpers: handlebarHelper,
+  })
+)
 app.set('view engine', 'hbs')
 
 // session store
@@ -84,6 +92,5 @@ app.use(routes)
 app.listen(port, () => {
   console.info(`Server running on port ${port}`)
 })
-
 
 // TESTING - DELETE LATER!!!! //
