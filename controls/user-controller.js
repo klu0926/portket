@@ -1,28 +1,28 @@
 const { User } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
+const { Op } = require('sequelize')
 
 const userController = {
   login: (req, res, next) => {
     try {
-    passport.authenticate('local', (err, user, info) => {
-      if (err) {
-        return next(err)
-      }
-      if (!user) {
-        return res.redirect('/users/login')
-      }
-      // login
-      req.login(user, (loginErr) => {
-        if (loginErr) return next(loginErr)
-        req.flash('success_msg', 'Logged in.')
-        return res.redirect('/')
-      })
-    })(req, res, next)
-    } catch (err){
+      passport.authenticate('local', (err, user, info) => {
+        if (err) {
+          return next(err)
+        }
+        if (!user) {
+          return res.redirect('/users/login')
+        }
+        // login
+        req.login(user, (loginErr) => {
+          if (loginErr) return next(loginErr)
+          req.flash('success_msg', 'Logged in.')
+          return res.redirect('/')
+        })
+      })(req, res, next)
+    } catch (err) {
       next(err)
     }
-
   },
   register: async (req, res, next) => {
     try {
@@ -74,20 +74,25 @@ const userController = {
     }
   },
   getUsers: async (req, res, next) => {
-    // get all the users, and put em in an array, then render page
     try {
-      const {count, rows} = await User.findAndCountAll({
-        raw: true
+      let keyword = req.query.keyword ? req.query.keyword : ''
+      console.log('keyword', keyword)
+      // SQL like search for matching substring, % means can be anything
+      const whereCondition = keyword
+        ? {
+            [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
+          }
+        : {}
+      const { count, rows } = await User.findAndCountAll({
+        where: whereCondition,
+        raw: true,
       })
-      const users = rows
-      console.log('counts:', count)
-      console.log('users:', users)
-      res.render('index', {users})
-
-    } catch(err) {
+      res.render('index', { userCount: count, users: rows, keyword })
+    } catch (err) {
+      console.trace()
       next(err)
     }
-  }
+  },
 }
 
 module.exports = userController
