@@ -77,7 +77,7 @@ const userController = {
     try {
       let keyword = req.query.keyword ? req.query.keyword : ''
       console.log('keyword', keyword)
-      // SQL like search for matching substring, % means can be anything
+      // SQL 'like' search for matching substring, % means can be anything
       const whereCondition = keyword
         ? {
             [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
@@ -89,7 +89,19 @@ const userController = {
       })
       res.render('index', { userCount: count, users: rows, keyword })
     } catch (err) {
-      console.trace()
+      next(err)
+    }
+  },
+  getUser: async (req, res, next) => {
+    try {
+      const userId = req.param.userId
+      console.log('userId')
+      const user = await User.findOne({
+        where: { id },
+        raw: true,
+      })
+      res.render('portfolio', { user })
+    } catch (err) {
       next(err)
     }
   },

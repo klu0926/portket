@@ -52,6 +52,8 @@ router.get('/logout', (req, res) => {
 
 // 首頁＋展示全部使用者
 router.get('/', userController.getUsers)
+// 個人Portfolio
+router.get('/:userId', userController.getUser)
 
 // Error handler
 router.use(errorHandler)

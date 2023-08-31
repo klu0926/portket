@@ -182,12 +182,7 @@ table {
 
 /* Index Page */
 .banner {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100vw;
   height: 500px;
-  border-bottom: 1px solid rgb(198, 198, 198);
 }
 .banner-image {
   background-image: url('/images/cover-women.jpg');
@@ -195,10 +190,11 @@ table {
   background-repeat: no-repeat;
   background-position: bottom;
   height: 500px;
+  border-radius: 4px;
 }
 
 .banner-text {
-  padding: 70px 0px 50px 50px;
+  padding-top: 70px;
 }
 
 .banner-text h1 {
@@ -211,12 +207,7 @@ table {
 .banner-text p {
   color: black;
   font-size: 1.6rem;
-  margin: 25px 0px;
-}
-
-/*--search bar-*/
-.search-bar {
-  margin-top: 550px;
+  margin: 14px 0px;
 }
 
 /*portfolio display*/
@@ -265,18 +256,18 @@ table {
     height: 350px;
   }
   .banner-text {
-    padding: 40px 0px 30px 50px;
+    padding: 40px 0px 20px 20px;
     flex: 0 0 100%; /* This is equivalent to col-12 */
     max-width: 100%;
+  }
+  .banner-text h1 {
+    font-size: 4.8rem;
   }
   .banner-text p {
     font-size: 1.4rem;
   }
   .banner-image {
     display: none;
-  }
-  .search-bar {
-    margin-top: 380px;
   }
   .portfolio-display {
     margin-top: 30px;
