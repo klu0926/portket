@@ -145,6 +145,18 @@ table {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+.black {
+  background-color: black;
+  color: white;
+  transition: transform ease-in-out 0.1s;
+}
+
+.black:hover {
+  background-color: rgba(0, 0, 0, 0.868);
+  color: white;
+  transform: translate(5px);
+}
+
 .or-container {
   display: flex;
   align-items: center;
@@ -202,8 +214,14 @@ table {
   margin: 25px 0px;
 }
 
-.portfolio-display {
+/*--search bar-*/
+.search-bar {
   margin-top: 550px;
+}
+
+/*portfolio display*/
+.portfolio-display {
+  margin-top: 30px;
 }
 
 /*-Index card-*/
@@ -242,7 +260,7 @@ table {
     width: 100%;
     margin-right: 30px;
   }
-
+  /*-banner-*/
   .banner {
     height: 350px;
   }
@@ -257,7 +275,13 @@ table {
   .banner-image {
     display: none;
   }
-  .portfolio-display {
+  .search-bar {
     margin-top: 380px;
+  }
+  .portfolio-display {
+    margin-top: 30px;
+  }
+  .black:hover {
+    transform: translate(0px, -4px);
   }
 }

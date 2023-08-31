@@ -6,14 +6,17 @@
         <h1><span class="text-primary">PORT</span>KET</h1>
         <p>Showcase portfolio, forge connections, and ignite your professional journey!</p>
         <div class="register-button mt-3">
-          <a href="/users/register" class="btn btn-info">
-            <span class="h3">Create Your Portfolio</span>
+          <a href="/users/register" class="btn black">
+            <span class="h3">Create Your Portfolio Today!</span>
           </a>
         </div>
       </div>
       <div class="banner-image col-6"></div>
     </div>
   </div>
+  <!--search bar-->
+  <div class="search-bar">{{> search-bar}}</div>
+  <!--portfolio display-->
   <div class="portfolio-display row justify-content-start">
     {{#each users}}
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
