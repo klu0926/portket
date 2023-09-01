@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://bootswatch.com/5/simplex/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
     <title>PORTKET</title>
   </head>
   <body style="height: 100vh">
@@ -27,22 +27,22 @@
       <div class="position-fixed top-0 start-50 translate-middle mt-5 col-md-6 m-auto">{{> message}}</div>
     </div>
 
-    <!--main-->
-    <main>
-      <div class="container mt-3">{{{body}}}</div>
-    </main>
+    <!--main content-->
+    {{{body}}}
 
     <!--colors-->
-    <p class="text-primary">.text-primary</p>
-    <p class="text-secondary">.text-secondary</p>
-    <p class="text-success">.text-success</p>
-    <p class="text-danger">.text-danger</p>
-    <p class="text-warning">.text-warning</p>
-    <p class="text-info">.text-info</p>
-    <p class="text-light bg-dark">.text-light</p>
-    <p class="text-dark">.text-dark</p>
-    <p class="text-muted">.text-muted</p>
-    <p class="text-white bg-dark">.text-white</p>
+    <div>
+      <p class="text-primary">.text-primary</p>
+      <p class="text-secondary">.text-secondary</p>
+      <p class="text-success">.text-success</p>
+      <p class="text-danger">.text-danger</p>
+      <p class="text-warning">.text-warning</p>
+      <p class="text-info">.text-info</p>
+      <p class="text-light bg-dark">.text-light</p>
+      <p class="text-dark">.text-dark</p>
+      <p class="text-muted">.text-muted</p>
+      <p class="text-white bg-dark">.text-white</p>
+    </div>
 
     <!--footer-->
     {{> footer}}

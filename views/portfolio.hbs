@@ -1,23 +1,61 @@
-{{user}}
+<div class="container" style="min-height: 600px">
+  <div class="portfolio-cover"></div>
+  <div class="portfolio-profile row">
+    <!--Bio (left side) -->
+    <div class="portfolio-left col-6">
+      <!--avatar-->
+      <div class="portfolio-avatar-box border">
+        <img src="{{user.avatar}}" alt="avatar" />
+      </div>
+      <!--name-->
+      <div class="border">
+        <h1 class="portfolio-name">{{user.name}}</h1>
+      </div>
+      <!--title-->
+      <div class="border">
+        <p>{{user.title}}</p>
+      </div>
 
-<div class="container">
-  <div class="profile-banner">
-    <h1>profile-banner</h1>
-    <p>name, email, password, avatar, cover, title, social, links</p>
-  </div>
+      <!--social-->
+      <div class="portfolio-skill">
+        <p class="h3">Social</p>
+        <p>skills - skills - skills</p>
+      </div>
+      <!--des-->
+      <div class="border">
+        <p>About:</p>
+        <p class="portfolio-description">{{user.description}}</p>
+      </div>
+      <!--skills-->
+      <div class="portfolio-skill">
+        <p class="h3">Skills</p>
+        <p>skills - skills - skills</p>
+      </div>
+      <!--Contact-->
+      <div class="portfolio-contact">
+        <p class="h3">Contact</p>
+        <p>email, phone, links</p>
+      </div>
+    </div>
+    <!--projects (right side)-->
+    <div class="portfolio-right pt-2 col-6">
+      <p class="fw-bold">Projects</p>
+      <div class="project-container mt-2">
+        <!--project block-->
+        <a class="project-link" href="#">
+          <div class="project-block d-flex">
+            <div class="project-image-holder col-4">
+              <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="project image" />
+            </div>
+            <div class="project-block-info p-2 col-8">
+              <p class="fw-bold mb-2">Project title</p>
+              <p class="text-secondary mb-2">description of this project, there is going to be alot of writing, which will need my handlebar helper function to substring the text</p>
+            </div>
+          </div>
+        </a>
 
-  <div class="profile-skill">
-    <h1>Skills</h1>
-    <p>skills - skills - skills</p>
-  </div>
-
-  <div class="profile-projects">
-    <h1>Projects</h1>
-    <p>project - project - project</p>
-  </div>
-
-  <div class="contact">
-    <h1>Contact</h1>
-    <p>email, phone, links</p>
+        <!--project block end-->
+      </div>
+    </div>
   </div>
 </div>

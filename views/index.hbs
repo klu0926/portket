@@ -6,7 +6,7 @@
         <h1><span class="text-primary">PORT</span>KET</h1>
         <p>Showcase portfolio, forge connections, and ignite your professional journey!</p>
         <div class="register-button mt-3">
-          <a href="/users/register" class="btn black">
+          <a href="/users/register" class="btn black btn-move">
             <span class="h3">Create Your Portfolio Today!</span>
           </a>
         </div>
@@ -17,23 +17,5 @@
   <!--search bar-->
   <div class="mt-3">{{> search-bar}}</div>
   <!--portfolio display-->
-  <div class="portfolio-display row justify-content-start">
-    {{#each users}}
-    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-      <div class="card border">
-        <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" style="height: 150px" />
-        <div class="card-body">
-          <div class="card-avatar">
-            <img src="{{this.avatar}}" alt="avatar" />
-          </div>
-          <h5 class="card-title fw-bold">{{this.name}}</h5>
-          <p class="card-text text-info">{{this.title}}</p>
-          <br />
-          <p class="card-text">{{substring this.description 80}}</p>
-          <a href="/users/{{this.id}}" class="btn btn-primary mt-4 mb-2">Portfolio</a>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-  </div>
+  <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card}} {{/each}}</div>
 </div>

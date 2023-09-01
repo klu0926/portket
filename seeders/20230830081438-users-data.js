@@ -5,11 +5,12 @@ const descriptionData = require('../data/description.json')
 
 const SEED_PASSWORD = '123'
 const SEED_AMOUNT = 12
+const SEED_AVATAR_SIZE = '400'
 
 class RandomUserGenerator {
   constructor() {
     this.currentNumber = 1
-    this.avatarSize = '300'
+    this.avatarSize = SEED_AVATAR_SIZE
   }
   create() {
     const randomId = Math.random().toString(36).slice(-8)

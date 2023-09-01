@@ -94,10 +94,10 @@ const userController = {
   },
   getUser: async (req, res, next) => {
     try {
-      const userId = req.param.userId
+      const userId = req.params.userId
       console.log('userId')
       const user = await User.findOne({
-        where: { id },
+        where: { id: userId },
         raw: true,
       })
       res.render('portfolio', { user })

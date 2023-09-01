@@ -1,0 +1,22 @@
+<div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+  <div class="card border">
+    <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" style="height: 150px" />
+    <div class="card-body">
+      <div class="card-avatar">
+        <img src="{{this.avatar}}" alt="avatar" />
+      </div>
+      <!--text area-->
+      <div class="d-flex flex-column justify-content-between" style="height: 100%">
+        <div>
+          <p class="card-title fw-bold">{{this.name}}</p>
+          <p class="card-text text-info">{{this.title}}</p>
+          <br />
+          <p class="card-text">{{substring this.description 100}}</p>
+        </div>
+        <div class="d-flex justify-content-start">
+          <a href="/users/{{this.id}}" class="btn btn-primary btn-move">Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

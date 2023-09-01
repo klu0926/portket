@@ -1,8 +1,9 @@
+@import url('/styles/portfolio.css');
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -87,9 +88,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -129,6 +127,8 @@ table {
 }
 
 /* My Code start*/
+/*Basic color change*/
+
 .btn {
   border-radius: 0px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -146,14 +146,20 @@ table {
 }
 
 .black {
-  background-color: black;
+  background-color: rgb(29, 29, 29);
   color: white;
-  transition: transform ease-in-out 0.1s;
 }
 
 .black:hover {
-  background-color: rgba(0, 0, 0, 0.868);
+  background-color: rgba(42, 42, 42, 0.868);
   color: white;
+}
+
+.btn-move {
+  transition: transform ease-in-out 0.1s;
+}
+
+.btn-move:hover {
   transform: translate(5px);
 }
 
@@ -195,10 +201,11 @@ table {
 
 .banner-text {
   padding-top: 70px;
+  padding-right: 20px;
 }
 
 .banner-text h1 {
-  font-size: 5rem;
+  font-size: 4.5rem;
   color: black;
   font-weight: bold;
   margin-bottom: 4px;
@@ -206,7 +213,7 @@ table {
 
 .banner-text p {
   color: black;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin: 14px 0px;
 }
 
@@ -231,6 +238,7 @@ table {
 
 .card {
   transition: all 0.2s;
+  height: 360px;
 }
 
 .card:hover .card-img-top {
@@ -238,6 +246,20 @@ table {
 }
 .card:hover {
   transform: scale(1.02);
+}
+
+/*--Portfolio Page---*/
+.portfolio-profile {
+  height: 400px;
+}
+
+.portfolio-avatar-box {
+  height: 200px;
+  margin: 10px 0px;
+}
+
+.portfolio-avatar-box img {
+  height: 100%;
 }
 
 @media screen and (max-width: 800px) {
@@ -261,10 +283,10 @@ table {
     max-width: 100%;
   }
   .banner-text h1 {
-    font-size: 4.8rem;
+    font-size: 4.5rem;
   }
   .banner-text p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   .banner-image {
     display: none;
@@ -272,7 +294,7 @@ table {
   .portfolio-display {
     margin-top: 30px;
   }
-  .black:hover {
+  .btn-move:hover {
     transform: translate(0px, -4px);
   }
 }

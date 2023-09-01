@@ -35,12 +35,12 @@ module.exports = {
       title: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: '自由工作者',
+        defaultValue: 'New Portket User',
       },
       description: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: '我是熱愛學習與成長的個體，喜歡挑戰各種新事物，不斷追求進步',
+        defaultValue: "Experienced professional with a diverse background. Skilled in various areas. Committed to excellence and growth. Enjoys learning and exploring new opportunities. Let's connect and discuss potential collaborations.",
       },
       country: {
         type: Sequelize.STRING,
