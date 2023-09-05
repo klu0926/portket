@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Project } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -95,12 +95,20 @@ const userController = {
   getUser: async (req, res, next) => {
     try {
       const userId = req.params.userId
-      console.log('userId')
       const user = await User.findOne({
         where: { id: userId },
-        raw: true,
+        include: [
+          {
+            model: Project,
+            as: 'projects',
+          },
+        ],
+        nest: true,
       })
-      res.render('portfolio', { user })
+      const data = user.toJSON()
+      console.log(data)
+
+      res.render('portfolio', { user: data })
     } catch (err) {
       next(err)
     }
