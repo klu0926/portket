@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       title: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -17,16 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      image: {
+      cover: {
         allowNull: false,
         type: Sequelize.STRING,
         defaultValue: 'https://placehold.co/600x400',
-      },
-      website: {
-        type: Sequelize.STRING,
-      },
-      github: {
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
