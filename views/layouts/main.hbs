@@ -13,7 +13,7 @@
       <header>
         <nav class="navbar bg-light justify-content-between py-2 px-4">
           <a class="navbar-brand fw-bold" href="/">
-            {{#if isAuthenticated}}{{user.name}}'s{{/if}}
+            {{#if isAuthenticated}}{{currentUser.name}}'s{{/if}}
             <span class="text-primary">PORT</span><span>KET</span>
           </a>
           {{#if isAuthenticated}}
