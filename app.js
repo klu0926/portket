@@ -57,6 +57,7 @@ if (process.env.NODE_ENV !== 'production') {
 const sessionStore = new MySQLStore(storeOption)
 
 // middleware
+const COOKIE_TIME_MINS = 30
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -66,7 +67,7 @@ app.use(
     cookie: {
       secure: false,
       httpOnly: true,
-      maxAge: 1000 * 60 * 10, // 10 mins
+      maxAge: 1000 * 60 * COOKIE_TIME_MINS,
     },
   })
 )
