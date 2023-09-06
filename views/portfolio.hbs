@@ -1,46 +1,69 @@
 <div class="container" style="min-height: 600px">
-  <div class="portfolio-cover"></div>
+  <div class="portfolio-cover portfolio-cover-placement"></div>
   <div class="portfolio-container row">
     <!--Bio (left side) -->
     <div class="portfolio-left col-12 col-lg-6">
-      <!--avatar-->
-      <div class="portfolio-avatar-box border">
-        <img src="{{user.avatar}}" alt="avatar" />
-      </div>
-      <!--name-->
-      <div class="my-2">
-        <h1 class="h4 fw-bold">{{user.name}}</h1>
-      </div>
-      <!--title-->
-      <div class="my-2">
-        <p class="text-info">{{user.title}}</p>
-      </div>
-      <!--social-->
-      <div class="my-2">
-        <p class="h4 fw-bold">Social</p>
-        <p>social social social...</p>
+      <!--avatar + info -->
+      <div class="portfolio-top-container row">
+        <!--avatar-->
+        <div class="portfolio-avatar-container col-5 col-md-4 col-lg-4">
+          <img src="{{user.avatar}}" alt="avatar" />
+        </div>
+        <!--info-->
+        <div class="col-7 col-md-8 col-lg-8">
+          <!--name-->
+          <div class="mb-2">
+            <h1 class="h4 fw-bold">{{user.name}}</h1>
+          </div>
+          <!--title-->
+          <div class="mb-3">
+            <p class="text-info">{{user.title}}</p>
+          </div>
+          <!--contact-->
+          <div class="my-2">
+            <!--contact-location-->
+            {{#ifOr user.country user.city}}
+            <p class="mb-2">
+              <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+              {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span> {{#if user.city}}<span>{{user.city}}</span>{{/if}}
+            </p>
+            {{/ifOr}}
+            <!--contact-email-->
+            {{#if user.email}}
+            <p class="mb-2">
+              <i class="fa-regular fa-envelope" style="width: 20px"></i>
+              {{user.email}}
+            </p>
+            {{/if}}
+            <!--contact-phone-->
+            {{#if user.phone}}
+            <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+            {{/if}}
+            <!--social links-->
+            <p>social social social...</p>
+          </div>
+        </div>
       </div>
       <!--des-->
-      <div class="my-2">
-        <p class="h4 fw-bold">About:</p>
+      <div class="my-4">
+        <p class="fw-bold mb-2 text-info">Profile:</p>
         <p class="portfolio-description">{{user.description}}</p>
       </div>
       <!--skills-->
-      <div class="my-2">
-        <p class="h4 fw-bold">Skills</p>
-        <p>skills - skills - skills...</p>
-      </div>
-      <!--Contact-->
-      <div class="my-2">
-        <p class="h4 fw-bold">Contact</p>
-        <p>email, phone, links...</p>
+      <div class="my-4">
+        <p class="fw-bold mb-2 text-info">Skills:</p>
+        <p class="portfolio-skill">skill skill skill..</p>
       </div>
     </div>
     <!--projects (right side)-->
-    <div class="portfolio-right col-12 col-lg-6 mt-3">
-      <p class="h4 fw-bold">Projects</p>
+    <div class="portfolio-right col-12 col-lg-6">
       <div class="project-container mt-2">
         <!--project block-->
+        <div class="position-relative d-flex justify-content-center mb-3">
+          <p class="fw-bold text-info px-2" style="text-align: center; background: white">Projects</p>
+          <!--line-->
+          <div class="position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+        </div>
         {{#if user.projects}} {{#each user.projects}}
         <div class="mb-3">
           <a class="project-link" href="#">
