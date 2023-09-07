@@ -6,8 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasOne(models.Theme)
       User.hasMany(models.Project, { foreignKey: 'userId', as: 'projects' })
-      User.hasMany(models.User_Social)
-      User.hasMany(models.User_Skill)
+      User.belongsToMany(models.Social, { 
+        through: models.User_Social,
+        foreignKey: "userId"
+      })
     }
   }
   User.init(
