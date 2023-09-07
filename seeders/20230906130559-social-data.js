@@ -4,11 +4,11 @@ const socialData = require('../data/social.json')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const socialsData = Object.keys(socialData).map((key) => ({
+    const socials = Object.keys(socialData).map((key) => ({
       name: key,
       icon: socialData[key],
     }))
-    return queryInterface.bulkInsert('Socials', socialsData)
+    return queryInterface.bulkInsert('Socials', socials)
   },
   async down(queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Socials', null, {})
