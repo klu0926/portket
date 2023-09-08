@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       Social.belongsToMany(models.User, {
         through: models.User_Social,
         foreignKey: 'socialId',
+        as: 'users',
       })
     }
   }

@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Project, { foreignKey: 'userId', as: 'projects' })
       User.belongsToMany(models.Social, { 
         through: models.User_Social,
-        foreignKey: "userId"
+        foreignKey: "userId",
+        as: 'socials'
       })
     }
   }

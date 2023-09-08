@@ -1,13 +1,13 @@
 {
-  "github": "/images/social_icons/github",
-  "linkedin": "/images/social_icons/linkedin",
-  "medium": "/images/social_icons/medium",
-  "dribbble": "/images/social_icons/dribbble",
-  "instagram": "/images/social_icons/instagram",
-  "twitter": "/images/social_icons/twitter",
-  "youtube": "/images/social_icons/youtube",
-  "facebook": "/images/social_icons/facebook",
-  "wordpress": "/images/social_icons/wordpress",
-  "website": "/images/social_icons/website",
-  "blog":"/images/social_icons/blog"
+  "github": "/images/social_icons/github.png",
+  "linkedin": "/images/social_icons/linkedin.png",
+  "medium": "/images/social_icons/medium.png",
+  "dribbble": "/images/social_icons/dribbble.png",
+  "instagram": "/images/social_icons/instagram.png",
+  "twitter": "/images/social_icons/twitter.png",
+  "youtube": "/images/social_icons/youtube.png",
+  "facebook": "/images/social_icons/facebook.png",
+  "wordpress": "/images/social_icons/wordpress.png",
+  "website": "/images/social_icons/website.png",
+  "blog":"/images/social_icons/blog.png"
 }

@@ -40,7 +40,17 @@
             <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
             {{/if}}
             <!--social links-->
-            <p>social social social...</p>
+            {{#if user.socials}}
+            <div class="social-container d-flex justify-content-start align-items-center mt-3">
+              {{#each user.socials}}
+              <div class="social-icon">
+                <a href="{{this.link}}" target="_blank">
+                  <img src="{{this.icon}}" alt="{{this.name}}" />
+                </a>
+              </div>
+              {{/each}}
+            </div>
+            {{/if}}
           </div>
         </div>
       </div>

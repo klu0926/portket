@@ -1,4 +1,4 @@
-const { User, Project } = require('../models')
+const { User, Project, Social } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -95,20 +95,42 @@ const userController = {
   getUser: async (req, res, next) => {
     try {
       const userId = req.params.userId
-      const user = await User.findOne({
+      const userData = await User.findOne({
         where: { id: userId },
+        attributes: {
+          exclude: ['createdAt', 'updatedAt'],
+        },
         include: [
           {
             model: Project,
             as: 'projects',
+            attributes: {
+              exclude: ['createdAt', 'updatedAt'],
+            },
+          },
+          {
+            model: Social,
+            attributes: ['id', 'name', 'icon'],
+            as: 'socials', // Make sure this matches the alias defined in the association
           },
         ],
         nest: true,
       })
-      const data = user.toJSON()
-      console.log(data)
 
-      res.render('portfolio', { user: data })
+      const user = userData.toJSON()
+      // try to get the User_Social's 'link' attributes from User.Socials
+      if (user.socials) {
+        user.socials = user.socials.map((social) => {
+          return {
+            id: social.id,
+            name: social.name,
+            icon: social.icon,
+            link: social.User_Social.link,
+          }
+        })
+      }
+      console.info(user)
+      res.render('portfolio', { user: user })
     } catch (err) {
       next(err)
     }

@@ -41,6 +41,25 @@
   color: inherit;
 }
 
+/* social */
+.social-container {
+  margin-left: -7px;
+}
+
+.social-icon {
+  width: 40px;
+  margin-right: 5px;
+  transition: all ease-in-out 0.2s;
+}
+
+.social-icon img {
+  width: 100%;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
 /* project */
 .project-block {
   border: 1px solid rgb(233, 233, 233);
