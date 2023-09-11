@@ -33,7 +33,7 @@ module.exports = {
       cover: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: 'https://i.imgur.com/xZoHPfC.png',
+        defaultValue: '/images/covers/default.jpeg',
       },
       title: {
         allowNull: false,
@@ -42,7 +42,7 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         defaultValue: "Experienced professional with a diverse background. Skilled in various areas. Committed to excellence and growth. Enjoys learning and exploring new opportunities. Let's connect and discuss potential collaborations.",
       },
       country: {

@@ -1,4 +1,4 @@
-const { User, Project, Social } = require('../models')
+const { User, Project, Social, Skill } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -85,6 +85,7 @@ const userController = {
         : {}
       const { count, rows } = await User.findAndCountAll({
         where: whereCondition,
+        attributes: ['id', 'name', 'title', 'avatar', 'cover', 'description'],
         raw: true,
       })
       res.render('index', { userCount: count, users: rows, keyword })
@@ -111,14 +112,19 @@ const userController = {
           {
             model: Social,
             attributes: ['id', 'name', 'icon'],
-            as: 'socials', // Make sure this matches the alias defined in the association
+            as: 'socials', // defined in the association
+          },
+          {
+            model: Skill,
+            attributes: ['id', 'name', 'description', 'icon'],
+            as: 'skills',
           },
         ],
         nest: true,
       })
 
       const user = userData.toJSON()
-      // try to get the User_Social's 'link' attributes from User.Socials
+      // socials: try to get the User_Social's 'link' attributes from User.Socials
       if (user.socials) {
         user.socials = user.socials.map((social) => {
           return {
@@ -129,6 +135,13 @@ const userController = {
           }
         })
       }
+      // skills
+      if (user.skills) {
+        user.skills.forEach((skill) => {
+          delete skill.User_Skill
+        })
+      }
+
       console.info(user)
       res.render('portfolio', { user: user })
     } catch (err) {

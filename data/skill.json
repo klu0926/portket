@@ -1,82 +1,82 @@
 [
   {
-    "name": "web_design",
-    "description": "Web design involves creating and designing visually appealing and user-friendly websites.",
-    "icon": "/image/skill_icons/web_design.png"
+    "name": "Web Design",
+    "description": "Creating user-friendly websites.",
+    "icon": "/images/skill_icons/web_design.png"
   },
   {
-    "name": "graphic_design",
-    "description": "Graphic design is the art of creating visual content to communicate messages effectively through various media.",
-    "icon": "/image/skill_icons/graphic_design.png"
+    "name": "Graphic Design",
+    "description": "Crafting visual content for effective communication.",
+    "icon": "/images/skill_icons/graphic_design.png"
   },
   {
-    "name": "database",
-    "description": "Database management involves organizing and maintaining data efficiently for easy retrieval and analysis.",
-    "icon": "/image/skill_icons/database.png"
+    "name": "Database",
+    "description": "Efficiently organizing and managing data.",
+    "icon": "/images/skill_icons/database.png"
   },
   {
-    "name": "content_writing",
-    "description": "Content writing involves creating high-quality written content for websites, blogs, and other digital platforms.",
-    "icon": "/image/skill_icons/content_writing.png"
+    "name": "Content Writing",
+    "description": "Producing high-quality written content.",
+    "icon": "/images/skill_icons/content_writing.png"
   },
   {
-    "name": "marketing",
-    "description": "Marketing is the practice of promoting products or services to reach and engage with potential customers.",
-    "icon": "/image/skill_icons/marketing.png"
+    "name": "Marketing",
+    "description": "Strategically promoting products and services.",
+    "icon": "/images/skill_icons/marketing.png"
   },
   {
-    "name": "mobile_app_development",
-    "description": "Mobile app development is the process of creating applications for smartphones and tablets.",
-    "icon": "/image/skill_icons/mobile_app_development.png"
+    "name": "Mobile Dev",
+    "description": "Developing mobile applications.",
+    "icon": "/images/skill_icons/mobile_app_development.png"
   },
   {
-    "name": "ui_ux",
-    "description": "UI/UX design focuses on improving the user experience and interface of digital products and websites.",
-    "icon": "/image/skill_icons/ui_ux.png"
+    "name": "UI/UX",
+    "description": "Enhancing digital product user experience.",
+    "icon": "/images/skill_icons/ui_ux.png"
   },
   {
-    "name": "project_management",
-    "description": "Project management involves planning, executing, and overseeing projects to achieve specific goals and objectives.",
-    "icon": "/image/skill_icons/project_management.png"
+    "name": "Project Management",
+    "description": "Leading goal-driven projects.",
+    "icon": "/images/skill_icons/project_management.png"
   },
   {
-    "name": "data_analysis",
-    "description": "Data analysis is the process of examining and interpreting data to gain insights and make informed decisions.",
-    "icon": "/image/skill_icons/data_analysis.png"
+    "name": "Data Analysis",
+    "description": "Analyzing data for actionable insights.",
+    "icon": "/images/skill_icons/data_analysis.png"
   },
   {
-    "name": "photography",
-    "description": "Photography is the art of capturing images and moments using cameras to convey emotions or messages.",
-    "icon": "/image/skill_icons/photography.png"
+    "name": "Photography",
+    "description": "Capturing moments with precision.",
+    "icon": "/images/skill_icons/photography.png"
   },
   {
-    "name": "video_editing",
-    "description": "Video editing involves manipulating and enhancing video footage to create engaging and professional videos.",
-    "icon": "/image/skill_icons/video_editing.png"
+    "name": "Video Editing",
+    "description": "Editing and enhancing video content.",
+    "icon": "/images/skill_icons/video_editing.png"
   },
   {
-    "name": "social_media",
-    "description": "Social media management includes creating and managing content on social platforms to build brand awareness and engagement.",
-    "icon": "/image/skill_icons/social_media.png"
+    "name": "Social Media",
+    "description": "Managing content for social engagement.",
+    "icon": "/images/skill_icons/social_media_management.png"
   },
   {
     "name": "SEO",
-    "description": "Search Engine Optimization (SEO) is the practice of optimizing websites to improve their visibility on search engines.",
-    "icon": "/image/skill_icons/SEO.png"
+    "description": "Optimizing websites for search visibility.",
+    "icon": "/images/skill_icons/SEO.png"
   },
   {
-    "name": "e_commerce",
-    "description": "E-commerce involves buying and selling goods and services online through digital platforms and websites.",
-    "icon": "/image/skill_icons/e_commerce.png"
+    "name": "E-commerce",
+    "description": "Conducting online business through digital platforms.",
+    "icon": "/images/skill_icons/e_commerce.png"
   },
   {
-    "name": "cybersecurity",
-    "description": "Cybersecurity focuses on protecting computer systems, networks, and data from security threats and attacks.",
-    "icon": "/image/skill_icons/cybersecurity.png"
+    "name": "Cybersecurity",
+    "description": "Securing computer systems and data.",
+    "icon": "/images/skill_icons/cybersecurity.png"
   },
   {
-    "name": "machine_learning",
-    "description": "Machine learning is a subset of artificial intelligence that enables computers to learn from data and make predictions or decisions.",
-    "icon": "/image/skill_icons/machine_learning.png"
+    "name": "Machine Learning",
+    "description": "Enabling data-driven predictions with machine learning.",
+    "icon": "/images/skill_icons/machine_learning.png"
   }
 ]

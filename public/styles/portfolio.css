@@ -1,83 +1,125 @@
 @import url('/styles/color.css');
-
+@import url('/styles/animation.css');
 /*project-----------------------------------*/
-@keyframes projectBlockFadeIn {
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(0.99);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
 .portfolio-cover {
-  height: 100px;
+  position: absolute;
+  z-index: -100;
+  top: 50px;
+  left: 0;
+  height: 300px;
+  width: 100vw;
+}
+
+.portfolio-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-cover-placement {
+  background-image: url('/images/covers/default.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
+.portfolio-container {
+  margin-top: 100px;
+}
+
+.portfolio-left {
+  padding-right: 15px;
+}
+
+/* avatar */
+.portfolio-avatar-container {
+  width: 230px;
+  border: 7px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
 .portfolio-avatar-container img {
   width: 100%;
-}
-
-.portfolio-cover-placement {
-  background-image: url('https://i.imgur.com/xZoHPfC.png');
-  border: 1px solid red;
-}
-
-.project-link {
-  text-decoration: none;
-  color: inherit;
+  object-fit: cover;
 }
 
 /* social */
 .social-container {
   margin-left: -7px;
 }
+.project-link {
+  text-decoration: none;
+  color: inherit;
+}
 
 .social-icon {
-  width: 40px;
+  width: 35px;
   margin-right: 5px;
   transition: all ease-in-out 0.2s;
+  /*animation*/
+  animation: popAndFadeIn 0.5s ease-in-out forwards;
+  transform: scale(0);
+  opacity: 0;
 }
 
 .social-icon img {
   width: 100%;
 }
 
-.social-icon:hover {
-  transform: scale(1.1);
+/* skills */
+.skill-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  height: 76px;
+}
+
+.skill-icon {
+  margin-right: 10px;
+  height: 24px;
+  width: 30px;
+}
+
+.skill-icon img {
+  width: 100%;
+}
+
+.skill-name {
+  font-weight: bold;
+  color: rgb(107, 107, 107);
+}
+
+.skill-description {
+  color: rgb(163, 163, 163);
 }
 
 /* project */
+.project-container {
+  margin: 0px;
+  padding-top: 200px;
+}
+
 .project-block {
+  background-color: white;
   border: 1px solid rgb(233, 233, 233);
   border-radius: 4px;
   transition: all ease-in-out 0.2s;
   transform: scale(0);
   opacity: 0;
   animation-delay: infinite; /* use js to control*/
-  animation: projectBlockFadeIn 0.5s ease-in-out forwards;
+  animation: popAndFadeIn 0.5s ease-in-out forwards;
   /*forward means stay in the end condition when done*/
   overflow: hidden;
   height: 150px;
 }
 
 .project-block:hover {
-  border: 1px solid var(--my-red);
-  background-color: whitesmoke;
-
+  border: 1px solid black;
   transform: scale(1.01);
 }
 
@@ -124,8 +166,21 @@
 }
 
 .project-block:hover .project-title {
-  color: var(--my-red);
+  color: black;
+}
+
+.project-line {
+  display: none;
 }
 
 @media screen and (max-width: 991px) {
+  .portfolio-right {
+    padding: 0;
+  }
+  .project-container {
+    padding-top: 0px;
+  }
+  .project-line {
+    display: block;
+  }
 }

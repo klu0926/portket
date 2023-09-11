@@ -3,9 +3,7 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User_Skill extends Model {
     static associate(models) {
-      // define association here
-      User_Skill.belongsTo(models.User)
-      User_Skill.hasOne(models.Skill)
+      // this is a join model for User and Skill
     }
   }
   User_Skill.init(

@@ -127,6 +127,10 @@ table {
   border-spacing: 0;
 }
 
+p {
+  line-height: 135%;
+}
+
 /* My Code start*/
 /*Basic color change*/
 
@@ -235,6 +239,7 @@ table {
   left: 0px;
   width: 100%;
   border-radius: 5px;
+  border: 3px solid white;
 }
 
 .card {

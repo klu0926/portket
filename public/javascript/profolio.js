@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   // project-block fade in
-  const elements = document.querySelectorAll('.project-block')
+  const blocks = document.querySelectorAll('.project-block')
+  const socials = document.querySelectorAll('.social-icon')
 
-  elements.forEach((element, index) => {
+  blocks.forEach((element, index) => {
+    element.style.animationDelay = `${index * 0.2}s`
+  })
+  console.log(socials)
+  socials.forEach((element, index) => {
     element.style.animationDelay = `${index * 0.2}s`
   })
 })

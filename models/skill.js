@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
   class Skill extends Model {
     static associate(models) {
       // define association here
-      Skill.belongsToMany(models.User, { through: models.User_Skill })
+      Skill.belongsToMany(models.User, {
+        through: models.User_Skill,
+        foreignKey: 'skillId',
+        as: 'users',
+      })
     }
   }
   Skill.init(

@@ -2,6 +2,7 @@
 const bcrypt = require('bcryptjs')
 const { faker } = require('@faker-js/faker')
 const descriptionData = require('../data/description.json')
+const randomImage = require('../helper/randomPublicImage')
 
 const SEED_PASSWORD = '123'
 const SEED_AMOUNT = 12
@@ -12,19 +13,19 @@ class RandomUserGenerator {
     this.currentNumber = 1
     this.avatarSize = SEED_AVATAR_SIZE
   }
-  create() {
+  create () {
     const randomId = Math.random().toString(36).slice(-8)
     const newUser = {
       name: faker.person.fullName(),
       email: `user${this.currentNumber}@example.com`,
       password: bcrypt.hashSync(SEED_PASSWORD),
       avatar: 'https://i.pravatar.cc/' + this.avatarSize + '?u=' + randomId,
-      cover: 'https://i.imgur.com/xZoHPfC.png',
+      cover:  randomImage('images', 'covers'),
       title: faker.person.jobTitle(),
       description: descriptionData[this.currentNumber % descriptionData.length],
       country: faker.location.country(),
       city: faker.location.city(),
-      phone: faker.phone.number(),
+      phone: faker.phone.number('###-###-###'),
     }
     this.currentNumber++
     return newUser

@@ -21,15 +21,15 @@ module.exports = {
       const usersSocialData = []
 
       usersData.forEach((user) => {
-        const socialIdSet = new Set()
-        while (socialIdSet.size !== SOCIAL_COUNT) {
-          socialIdSet.add(Math.floor(Math.random() * socialsData.length))
+        const socialIndexSet = new Set()
+        while (socialIndexSet.size !== SOCIAL_COUNT) {
+          socialIndexSet.add(Math.floor(Math.random() * socialsData.length))
         }
-        socialIdSet.forEach((socialId) => {
+        socialIndexSet.forEach((index) => {
           usersSocialData.push({
             link: DUMMY_LINK,
             userId: user.id,
-            socialId,
+            socialId: socialsData[index].id,
           })
         })
       })

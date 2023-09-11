@@ -1,102 +1,130 @@
 <div class="container" style="min-height: 600px">
-  <div class="portfolio-cover portfolio-cover-placement"></div>
-  <div class="portfolio-container row">
-    <!--Bio (left side) -->
-    <div class="portfolio-left col-12 col-lg-6">
-      <!--avatar + info -->
-      <div class="portfolio-top-container row">
-        <!--avatar-->
-        <div class="portfolio-avatar-container col-5 col-md-4 col-lg-4">
-          <img src="{{user.avatar}}" alt="avatar" />
-        </div>
-        <!--info-->
-        <div class="col-7 col-md-8 col-lg-8">
-          <!--name-->
-          <div class="mb-2">
-            <h1 class="h4 fw-bold">{{user.name}}</h1>
+  <!--cover-->
+  {{#if user.cover}}
+  <div class="portfolio-cover">
+    <img src="{{user.cover}}" alt="cover" />
+  </div>
+  {{else}}
+  <div class="portfolio-cover portfolio-cover-placement">
+    {{/if}}
+    <div class="portfolio-container row">
+      <!--Bio (left side) -->
+      <div class="portfolio-left col-12 col-lg-6">
+        <!--avatar + info -->
+        <div class="portfolio-top-container">
+          <!--avatar-->
+          <div class="portfolio-avatar-container">
+            <img src="{{user.avatar}}" alt="avatar" />
           </div>
-          <!--title-->
-          <div class="mb-3">
-            <p class="text-info">{{user.title}}</p>
-          </div>
-          <!--contact-->
-          <div class="my-2">
-            <!--contact-location-->
-            {{#ifOr user.country user.city}}
-            <p class="mb-2">
-              <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-              {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span> {{#if user.city}}<span>{{user.city}}</span>{{/if}}
-            </p>
-            {{/ifOr}}
-            <!--contact-email-->
-            {{#if user.email}}
-            <p class="mb-2">
-              <i class="fa-regular fa-envelope" style="width: 20px"></i>
-              {{user.email}}
-            </p>
-            {{/if}}
-            <!--contact-phone-->
-            {{#if user.phone}}
-            <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-            {{/if}}
-            <!--social links-->
-            {{#if user.socials}}
-            <div class="social-container d-flex justify-content-start align-items-center mt-3">
-              {{#each user.socials}}
-              <div class="social-icon">
-                <a href="{{this.link}}" target="_blank">
-                  <img src="{{this.icon}}" alt="{{this.name}}" />
-                </a>
-              </div>
-              {{/each}}
+          <!--info-->
+          <div class="">
+            <!--name-->
+            <div class="mb-2">
+              <h1 class="h3 fw-bold">{{user.name}}</h1>
             </div>
-            {{/if}}
-          </div>
-        </div>
-      </div>
-      <!--des-->
-      <div class="my-4">
-        <p class="fw-bold mb-2 text-info">Profile:</p>
-        <p class="portfolio-description">{{user.description}}</p>
-      </div>
-      <!--skills-->
-      <div class="my-4">
-        <p class="fw-bold mb-2 text-info">Skills:</p>
-        <p class="portfolio-skill">skill skill skill..</p>
-      </div>
-    </div>
-    <!--projects (right side)-->
-    <div class="portfolio-right col-12 col-lg-6">
-      <div class="project-container mt-2">
-        <!--project block-->
-        <div class="position-relative d-flex justify-content-center mb-3">
-          <p class="fw-bold text-info px-2" style="text-align: center; background: white">Projects</p>
-          <!--line-->
-          <div class="position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
-        </div>
-        {{#if user.projects}} {{#each user.projects}}
-        <div class="mb-3">
-          <a class="project-link" href="#">
-            <div class="project-block d-flex">
-              <div class="project-image-holder col-4">
-                <img src="{{this.cover}}" alt="project image" />
-              </div>
-              <div class="project-block-info p-2 col-8">
-                <p class="project-title fw-bold mb-2">{{this.title}}</p>
-                <p class="text-secondary mb-2">{{substring this.description 100}}</p>
+            <!--title-->
+            <div class="mb-3">
+              <p class="text-info">{{user.title}}</p>
+            </div>
+            <!--BIO-->
+            <div class="my-4">
+              <p class="fw-bold mb-2 text-info">BIO</p>
+              <div class="p-2">
+                <p class="portfolio-description">{{user.description}}</p>
               </div>
             </div>
-          </a>
+            <!--contact-->
+            <div class="my-2">
+              <p class="fw-bold mb-2 text-info">SOCIAL</p>
+              <div class="p-2">
+                <!--contact-location-->
+                {{#ifOr user.country user.city}}
+                <p class="mb-2">
+                  <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                  {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+                </p>
+                {{/ifOr}}
+                <!--contact-email-->
+                {{#if user.email}}
+                <p class="mb-2">
+                  <i class="fa-regular fa-envelope" style="width: 20px"></i>
+                  {{user.email}}
+                </p>
+                {{/if}}
+                <!--contact-phone-->
+                {{#if user.phone}}
+                <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+                {{/if}}
+                <!--social links-->
+                {{#if user.socials}}
+                <div class="social-container d-flex justify-content-start align-items-center mt-3">
+                  {{#each user.socials}}
+                  <div class="social-icon">
+                    <a href="{{this.link}}" target="_blank">
+                      <img src="{{this.icon}}" alt="{{this.name}}" />
+                    </a>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </div>
         </div>
-
-        {{/each}} {{else}}
-        <!--no project-->
-        <a class="project-link" href="#">
-          <div class="project-block-empty">Add your project Here +</div>
-        </a>
+        <!--skills-->
+        {{#if user.skills}}
+        <div class="my-4">
+          <p class="fw-bold mb-2 text-info">SKILL</p>
+          <div class="px-2">
+            {{#each user.skills}}
+            <div class="skill-block">
+              <div class="skill-block-top d-flex mb-1">
+                <div class="d-flex align-items-center">
+                  <p class="skill-name">{{this.name}}</p>
+                </div>
+              </div>
+              <div class="skill-block-bottom">
+                <p class="skill-description">{{this.description}}</p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
         {{/if}}
+      </div>
+      <!--projects (right side)-->
+      <div class="portfolio-right col-12 col-lg-6">
+        <div class="project-container">
+          <!--project block-->
+          <div class="position-relative d-flex justify-content-center mb-3">
+            <p class="fw-bold text-info px-2" style="text-align: center; background: white">PROJECT</p>
+            <!--project line-->
+            <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+          </div>
+          {{#if user.projects}} {{#each user.projects}}
+          <div class="mb-3">
+            <a class="project-link" href="#">
+              <div class="project-block d-flex">
+                <div class="project-image-holder col-4">
+                  <img src="{{this.cover}}" alt="project image" />
+                </div>
+                <div class="project-block-info p-2 col-8">
+                  <p class="project-title fw-bold mb-2">{{this.title}}</p>
+                  <p class="text-secondary mb-2">{{substring this.description 100}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
 
-        <!--project block end-->
+          {{/each}} {{else}}
+          <!--no project-->
+          <a class="project-link" href="#">
+            <div class="project-block-empty">Add your project Here +</div>
+          </a>
+          {{/if}}
+
+          <!--project block end-->
+        </div>
       </div>
     </div>
   </div>
