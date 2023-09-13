@@ -1,5 +1,6 @@
 @import url('/styles/color.css');
 @import url('/styles/portfolio.css');
+@import url('/styles/project.css');
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -244,7 +245,11 @@ p {
 
 .card {
   transition: all 0.2s;
-  height: 360px;
+  height: 355px;
+}
+
+.card-img-top {
+  object-fit: cover;
 }
 
 .card:hover .card-img-top {

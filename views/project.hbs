@@ -1,0 +1,47 @@
+<div class="container" style="min-height: 600px">
+  <!--cover-->
+  <div class="project-page-cover">
+    <img src="{{project.cover}}" alt="project cover" />
+  </div>
+
+  <div class="project-page-container">
+    <!--project info-->
+    <div class="project-page-info">
+      <!--title-->
+      <div class="mb-3">
+        <p class="h1 fw-bold">{{project.title}}</p>
+      </div>
+      <!--description-->
+      <div class="mb-2">
+        <p>{{project.description}}</p>
+      </div>
+      <!--skills-->
+      <div class="mb-2">
+        <p>skill...skill...skill</p>
+      </div>
+      <!--User & date-->
+      <div class="mb-3">
+        <p>
+          <span class="text-secondary">by</span>
+          <a class="project-page-a" href="/users/{{project.user.id}}">
+            <span class="fw-bold">{{project.user.name}}</span>
+          </a>
+          <span class="text-secondary">{{simpleDate project.date}}</span>
+        </p>
+      </div>
+      <!--links-->
+      <div mb-2>
+        <p class="text-primary">Links</p>
+        <div class="p-2">
+          <p class="project-page-links">links...</p>
+        </div>
+      </div>
+
+      <!--project info end-->
+    </div>
+    <!--project images-->
+    <div class="project-page-images">
+      <p>images...</p>
+    </div>
+  </div>
+</div>

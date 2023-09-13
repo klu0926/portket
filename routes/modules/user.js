@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const userController = require('../../controls/user-controller')
 const passport = require('passport')
-const { errorHandler } = require('../../middleware/error-handler')
 
 // Local 登入
 router.get('/login', (req, res) => {
@@ -16,26 +15,38 @@ router.get('/register', (req, res) => {
 router.post('/register', userController.register)
 
 // Google 登入
-router.get('/auth/google', passport.authenticate('google', {
-  scope: ['email', 'profile']
-}))
+router.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['email', 'profile'],
+  })
+)
 
 // Google callback
-router.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+  })
+)
 
 // Facebook 登入
-router.get('/auth/facebook', passport.authenticate('facebook', {
-  scope: ['email', 'public_profile']
-}))
+router.get(
+  '/auth/facebook',
+  passport.authenticate('facebook', {
+    scope: ['email', 'public_profile'],
+  })
+)
 
 // Facebook callback
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+router.get(
+  '/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+  })
+)
 
 // 登出
 router.get('/logout', (req, res) => {
@@ -54,8 +65,5 @@ router.get('/logout', (req, res) => {
 router.get('/', userController.getUsers)
 // 個人Portfolio
 router.get('/:userId', userController.getUser)
-
-// Error handler
-router.use(errorHandler)
 
 module.exports = router

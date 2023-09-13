@@ -13,6 +13,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      date: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
       title: {
         allowNull: false,
         type: Sequelize.STRING,

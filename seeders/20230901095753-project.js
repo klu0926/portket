@@ -1,6 +1,8 @@
 'use strict'
 const { User } = require('../models')
 const { faker } = require('@faker-js/faker')
+const randomPublicImage = require('../helper/randomPublicImage')
+
 
 const SEED_AMOUNT = 5
 class RandomProjectGenerator {
@@ -10,7 +12,7 @@ class RandomProjectGenerator {
       userId,
       title: 'Simple Project Title',
       description: faker.lorem.paragraph(),
-      cover: 'https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      cover: randomPublicImage('projects'),
     }
     return newProject
   }

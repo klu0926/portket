@@ -23,19 +23,34 @@
               <h1 class="h3 fw-bold">{{user.name}}</h1>
             </div>
             <!--title-->
-            <div class="mb-3">
-              <p class="text-info">{{user.title}}</p>
+            <div class="mb-2">
+              <p class="text-secondary fw-bold">{{user.title}}</p>
             </div>
+            <!--social links-->
+            {{#if user.socials}}
+            <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
+              {{#each user.socials}}
+              <div class="social-icon">
+                <a href="{{this.link}}" target="_blank">
+                  <img src="{{this.icon}}" alt="{{this.name}}" />
+                </a>
+                <div class="social-icon-pop">
+                  <p class="text-primary">{{this.name}}</p>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            {{/if}}
             <!--BIO-->
             <div class="my-4">
-              <p class="fw-bold mb-2 text-info">BIO</p>
+              <p class="fw-bold mb-2 text-primary">BIO</p>
               <div class="p-2">
                 <p class="portfolio-description">{{user.description}}</p>
               </div>
             </div>
             <!--contact-->
             <div class="my-2">
-              <p class="fw-bold mb-2 text-info">SOCIAL</p>
+              <p class="fw-bold mb-2 text-primary">CONTACT</p>
               <div class="p-2">
                 <!--contact-location-->
                 {{#ifOr user.country user.city}}
@@ -55,26 +70,14 @@
                 {{#if user.phone}}
                 <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
                 {{/if}}
-                <!--social links-->
-                {{#if user.socials}}
-                <div class="social-container d-flex justify-content-start align-items-center mt-3">
-                  {{#each user.socials}}
-                  <div class="social-icon">
-                    <a href="{{this.link}}" target="_blank">
-                      <img src="{{this.icon}}" alt="{{this.name}}" />
-                    </a>
-                  </div>
-                  {{/each}}
-                </div>
               </div>
-              {{/if}}
             </div>
           </div>
         </div>
         <!--skills-->
         {{#if user.skills}}
         <div class="my-4">
-          <p class="fw-bold mb-2 text-info">SKILL</p>
+          <p class="fw-bold mb-2 text-primary">SKILL</p>
           <div class="px-2">
             {{#each user.skills}}
             <div class="skill-block">
@@ -97,20 +100,21 @@
         <div class="project-container">
           <!--project block-->
           <div class="position-relative d-flex justify-content-center mb-3">
-            <p class="fw-bold text-info px-2" style="text-align: center; background: white">PROJECT</p>
+            <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
             <!--project line-->
             <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
           </div>
           {{#if user.projects}} {{#each user.projects}}
-          <div class="mb-3">
-            <a class="project-link" href="#">
+          <div class="project-outer-block mb-3">
+            <a class="project-link" href="/projects/{{this.id}}">
               <div class="project-block d-flex">
                 <div class="project-image-holder col-4">
                   <img src="{{this.cover}}" alt="project image" />
                 </div>
                 <div class="project-block-info p-2 col-8">
-                  <p class="project-title fw-bold mb-2">{{this.title}}</p>
-                  <p class="text-secondary mb-2">{{substring this.description 100}}</p>
+                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
+                  <p class="project-date mb-1">{{simpleDate this.date}}</p>
+                  <p class="project-description">{{substring this.description 100}}</p>
                 </div>
               </div>
             </a>

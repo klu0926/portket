@@ -2,6 +2,7 @@ const { User, Project, Social, Skill } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
+const randomPublicImage = require('../helper/randomPublicImage')
 
 const userController = {
   login: (req, res, next) => {
@@ -60,11 +61,15 @@ const userController = {
           confirmPassword,
         })
       }
+      // random Cover
+      const randomCover = randomPublicImage('covers')
+
       // create account
       const newUser = await User.create({
         name,
         email,
         password: bcryptjs.hashSync(password),
+        cover: randomCover,
         createdAt: new Date(),
         updatedAt: new Date(),
       })
@@ -143,7 +148,7 @@ const userController = {
       }
 
       console.info(user)
-      res.render('portfolio', { user: user })
+      res.render('portfolio', { user })
     } catch (err) {
       next(err)
     }

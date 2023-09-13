@@ -7,11 +7,12 @@
       </div>
       <!--text area-->
       <div class="d-flex flex-column justify-content-between" style="height: 100%">
-        <div>
-          <p class="card-title fw-bold">{{this.name}}</p>
-          <p class="card-text text-info">{{this.title}}</p>
-          <br />
-          <p class="card-text">{{substring this.description 100}}</p>
+        <div class="card-text">
+          <div class="mb-2">
+            <p class="h5 fw-bold mb-0">{{this.name}}</p>
+            <p class="text-primary fw-border">{{this.title}}</p>
+          </div>
+          <p>{{substring this.description 100}}</p>
         </div>
         <div class="d-flex justify-content-start">
           <a href="/users/{{this.id}}" class="btn btn-primary btn-move">Portfolio</a>

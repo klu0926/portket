@@ -1,3 +1,5 @@
+const dayjs = require('dayjs')
+
 module.exports = {
   substring: function (text, value) {
     let end = ''
@@ -11,5 +13,9 @@ module.exports = {
     } else {
       return option.inverse(this)
     }
+  },
+  simpleDate: function (date) {
+    if (!date) return
+    return dayjs(date).format('YYYY-MM-DD')
   },
 }

@@ -1,17 +1,34 @@
 const path = require('path')
 const fs = require('fs')
 
-module.exports = (...dir) => {
-  const filePath = path.join('public', ...dir)
+/**
+ * @param  {string} dir folder directories (many)
+ * @return {string} directory of a public image, eg:/image/dir/dir/image.jps
+ *
+ * Return a directory of public image's path, without '/public/images' in the front
+ * @example
+ * randomPublicImage('covers')
+ * Get files in path: /public/images/covers, Pick a random file and return one file path
+ * return '/images/covers/default.jpeg'
+ */
+function randomPublicImage(...dir) {
+  if (!dir) new Error('RandomPublicImage require ...dir inputs!')
+
+  const filePath = path.join('public', 'images', ...dir)
   try {
-    const files = fs.readdirSync(filePath)
+    let files = fs.readdirSync(filePath)
     if (!files.length) {
       console.log(`Can not find files in ${filePath}`)
       return
     }
+    // filter out hidden file
+    files = files.filter((f) => f[0] !== '.')
+
     const fileName = files[Math.floor(Math.random() * files.length)]
-    return '/' + path.join(...dir) + '/' + fileName
+    return '/images/' + path.join(...dir) + '/' + fileName
   } catch (err) {
     console.log(`Error reading directory ${filePath}`, err)
   }
 }
+
+module.exports = randomPublicImage

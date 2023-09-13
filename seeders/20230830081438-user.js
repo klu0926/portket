@@ -20,7 +20,7 @@ class RandomUserGenerator {
       email: `user${this.currentNumber}@example.com`,
       password: bcrypt.hashSync(SEED_PASSWORD),
       avatar: 'https://i.pravatar.cc/' + this.avatarSize + '?u=' + randomId,
-      cover:  randomImage('images', 'covers'),
+      cover:  randomImage('covers'),
       title: faker.person.jobTitle(),
       description: descriptionData[this.currentNumber % descriptionData.length],
       country: faker.location.country(),

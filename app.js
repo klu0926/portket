@@ -29,7 +29,7 @@ app.set('view engine', 'hbs')
 
 // session store
 let storeOption = {
-  expiration: 1000 * 60 * 60, // 1 hours
+  expiration: 1000 * 60 * 120, // 2 hours
   createDatabaseTable: true,
   schema: {
     tableName: 'Sessions',

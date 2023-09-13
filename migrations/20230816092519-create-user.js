@@ -1,6 +1,6 @@
 'use strict'
-
 const { sequelize } = require('../models')
+const randomPublicImage = require('../helper/randomPublicImage')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
       name: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: '無名的創造者',
+        defaultValue: 'New Portket User',
       },
       email: {
         allowNull: false,
@@ -33,7 +33,7 @@ module.exports = {
       cover: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: '/images/covers/default.jpeg',
+        defaultValue: randomPublicImage('covers'),
       },
       title: {
         allowNull: false,
