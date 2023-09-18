@@ -23,19 +23,21 @@
               <h1 class="h3 fw-bold">{{user.name}}</h1>
             </div>
             <!--title-->
-            <div class="mb-2">
-              <p class="text-secondary fw-bold">{{user.title}}</p>
+            <div class="portfolio-title my-3">
+              <p>{{user.title}}</p>
             </div>
             <!--social links-->
             {{#if user.socials}}
             <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
               {{#each user.socials}}
-              <div class="social-icon">
-                <a href="{{this.link}}" target="_blank">
-                  <img src="{{this.icon}}" alt="{{this.name}}" />
-                </a>
-                <div class="social-icon-pop">
-                  <p class="text-primary">{{this.name}}</p>
+              <div class="social-box">
+                <div class="social-icon">
+                  <a href="{{this.link}}" target="_blank">
+                    <img src="{{this.icon}}" alt="{{this.name}}" />
+                  </a>
+                </div>
+                <div class="social-icon-pop border">
+                  <p class="text-primary">{{this.link}}</p>
                 </div>
               </div>
               {{/each}}

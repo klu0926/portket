@@ -46,15 +46,25 @@
   object-fit: cover;
 }
 
+/* title */
+.portfolio-title p {
+  background-color: var(--my-red);
+  color: white;
+  font-weight: bold;
+  width: auto;
+  display: inline;
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+
 /* social */
 .project-link {
   text-decoration: none;
   color: inherit;
 }
 
-.social-icon {
+.social-box {
   position: relative;
-  width: 28px;
   margin-right: 10px;
   transition: all ease-in-out 0.2s;
   /*animation*/
@@ -63,28 +73,34 @@
   opacity: 0;
 }
 
-.social-icon-pop {
-  position: absolute;
-  display: none;
-  left: 15;
-  top: 32px;
-  transform: translateX(-50%);
-  background-color: white;
-  color: var(--my-red);
-  font-size: 1rem;
-  line-height: 0;
+.social-icon {
+  width: 28px;
 }
 
 .social-icon img {
   width: 100%;
 }
 
-.social-icon:hover img {
+.social-icon-pop {
+  position: absolute;
+  display: none;
+  left: 15;
+  top: 32px;
+  transform: translateX(-10%);
+  background-color: white;
+  color: var(--my-red);
+  font-size: 1rem;
+  line-height: 0;
+  white-space: nowrap;
+  padding: 2px 4px;
+}
+
+.social-box:hover img {
   filter: invert(27%) sepia(60%) saturate(2832%) hue-rotate(335deg) brightness(91%) contrast(89%);
 }
 
-.social-icon:hover .social-icon-pop {
-  display: block;
+.social-box:hover .social-icon-pop {
+  display: inline-block;
 }
 
 /* skills */

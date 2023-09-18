@@ -3,7 +3,6 @@ const { User } = require('../models')
 const { faker } = require('@faker-js/faker')
 const randomPublicImage = require('../helper/randomPublicImage')
 
-
 const SEED_AMOUNT = 5
 class RandomProjectGenerator {
   constructor() {}
@@ -11,7 +10,7 @@ class RandomProjectGenerator {
     const newProject = {
       userId,
       title: 'Simple Project Title',
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.paragraphs(10),
       cover: randomPublicImage('projects'),
     }
     return newProject
