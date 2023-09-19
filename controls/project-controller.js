@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill } = require('../models')
+const { User, Project, Social, Skill, Project_Image, Project_Link } = require('../models')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 
@@ -16,8 +16,26 @@ const projectController = {
         include: [
           {
             model: User,
-            attributes: ['id', 'name'],
+            attributes: ['id', 'name', 'avatar'],
             as: 'user',
+          },
+          {
+            model: Project_Image,
+            attributes: ['id', 'name', 'image', 'description'],
+            as: 'images',
+          },
+          {
+            model: Project_Link,
+            attributes: ['id', 'name', 'link'],
+            as: 'links',
+          },
+          {
+            model: Skill,
+            attributes: ['id', 'name', 'icon'],
+            as: 'skills',
+            through: {
+              attributes: [],
+            },
           },
         ],
       })

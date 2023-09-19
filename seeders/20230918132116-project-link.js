@@ -4,6 +4,7 @@ const errorHandler = require('../helper/errorHandler')
 
 const LINK_COUNT = 2
 const DUMMY_LINK = '/html/dummy-page.html'
+const NAMES = ['Website', 'Github']
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
         while (count !== LINK_COUNT) {
           projectLinks.push({
             projectId: project.id,
-            name: 'website',
+            name: NAMES[count],
             link: DUMMY_LINK,
           })
           count++

@@ -1,4 +1,2 @@
-const randomImage = require('./helper/randomPublicImage')
-
-const file = randomImage('images', 'covers')
-console.log(file)
+const result = 1 % 6
+console.log(result)

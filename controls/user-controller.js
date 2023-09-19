@@ -81,7 +81,6 @@ const userController = {
   getUsers: async (req, res, next) => {
     try {
       let keyword = req.query.keyword ? req.query.keyword : ''
-      console.log('keyword', keyword)
       // SQL 'like' search for matching substring, % means can be anything
       const whereCondition = keyword
         ? {
@@ -117,36 +116,23 @@ const userController = {
           {
             model: Social,
             attributes: ['id', 'name', 'icon'],
-            as: 'socials', // defined in the association
+            as: 'socials',
+            through: {
+              as: 'projectSocial',
+              attributes: ['link'],
+            },
           },
           {
             model: Skill,
             attributes: ['id', 'name', 'description', 'icon'],
             as: 'skills',
+            through: {
+              attributes: [],
+            },
           },
         ],
-        nest: true,
       })
-
       const user = userData.toJSON()
-      // socials: try to get the User_Social's 'link' attributes from User.Socials
-      if (user.socials) {
-        user.socials = user.socials.map((social) => {
-          return {
-            id: social.id,
-            name: social.name,
-            icon: social.icon,
-            link: social.User_Social.link,
-          }
-        })
-      }
-      // skills
-      if (user.skills) {
-        user.skills.forEach((skill) => {
-          delete skill.User_Skill
-        })
-      }
-
       console.info(user)
       res.render('portfolio', { user })
     } catch (err) {
