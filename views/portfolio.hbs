@@ -79,17 +79,22 @@
         <!--skills-->
         {{#if user.skills}}
         <div class="my-4">
-          <p class="fw-bold mb-2 text-primary">SKILL</p>
+          <p class="fw-bold my-2 text-primary">SKILLS</p>
           <div class="px-2">
             {{#each user.skills}}
             <div class="skill-block">
-              <div class="skill-block-top d-flex mb-1">
-                <div class="d-flex align-items-center">
-                  <p class="skill-name">{{this.name}}</p>
-                </div>
+              <div class="skill-icon">
+                <img src="{{this.icon}}" alt="skill icon" />
               </div>
-              <div class="skill-block-bottom">
-                <p class="skill-description">{{this.description}}</p>
+              <div class="skill-info">
+                <div class="skill-block-top d-flex">
+                  <div class="d-flex align-items-center">
+                    <p class="skill-name">{{this.name}}</p>
+                  </div>
+                </div>
+                <div class="skill-block-bottom">
+                  <p class="skill-description">{{this.description}}</p>
+                </div>
               </div>
             </div>
             {{/each}}
