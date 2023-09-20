@@ -3,6 +3,7 @@
   {{#if user.cover}}
   <div class="portfolio-cover">
     <img src="{{user.cover}}" alt="cover" />
+    <div class="my-portfolio-cover"></div>
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement">
@@ -129,7 +130,7 @@
 
           {{/each}} {{else}}
           <!--no project-->
-          <div class="project-block-empty">No project listed</div>
+          <div class="my-project-block-empty">Add your project Here +</div>
           {{/if}}
 
           <!--project block end-->
@@ -138,3 +139,6 @@
     </div>
   </div>
 </div>
+
+<!--form-->
+{{> form-add-project}}

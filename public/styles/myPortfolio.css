@@ -1,0 +1,103 @@
+@import url('/styles/color.css');
+@import url('/styles/animation.css');
+/* my portfolio ----------------------------------*/
+
+.my-project-block-empty {
+  height: 200px;
+  background-color: rgb(239, 239, 239);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  color: var(--my-grey-light);
+  cursor: pointer;
+}
+
+.my-project-block-empty:hover {
+  transform: scale(1.02);
+  color: var(--my-red);
+  border: 4px dotted var(--my-red);
+}
+
+/* form */
+/* project*/
+.my-project-form-box {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border: 1px solid var(--my-grey-light);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 0fr 4fr 2fr;
+}
+
+.my-project-form {
+  padding: 20px;
+}
+
+.my-project-form-img {
+  width: 100%;
+  height: 100%;
+  background-color: var(--my-grey-light);
+}
+.my-project-form-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.form-box-title {
+  color: var(--my-grey-light);
+}
+
+.form-div {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 700;
+}
+
+.form-close-holder {
+  position: relative;
+}
+
+.form-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  border: 0px solid var(--my-grey);
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--my-grey-light);
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.form-close-btn:hover {
+  color: var(--my-red);
+}
+
+.my-project-form-img {
+  background-color: white;
+  border-radius: 0 40px 0 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 991px) {
+  .my-project-form-box {
+    display: block;
+  }
+  .my-project-form-img {
+    display: none;
+    position: relative;
+  }
+}

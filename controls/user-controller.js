@@ -133,8 +133,22 @@ const userController = {
         ],
       })
       const user = userData.toJSON()
-      console.info(user)
-      res.render('portfolio', { user })
+      // social links
+      if (user.socials) {
+        user.socials.forEach((social) => {
+          social.link = social.projectSocial.link
+          delete social.projectSocial
+        })
+      }
+      console.log(req.user)
+      // check if user is current user
+      if (req.user?.id === user.id) {
+        console.log('my portfolio')
+        res.render('myPortfolio', { user })
+      } else {
+        console.log('portfolio')
+        res.render('portfolio', { user })
+      }
     } catch (err) {
       next(err)
     }

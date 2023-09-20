@@ -10,7 +10,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     try {
       const projects = await Project.findAll({ raw: true })
-      const skills = await Project.findAll({ raw: true })
+      const skills = await Skill.findAll({ raw: true })
 
       if (!projects || !skills) throw new Error('Can not find project or skill data')
 
@@ -18,7 +18,7 @@ module.exports = {
       projects.forEach((project) => {
         const skillIndexSet = new Set()
         while (skillIndexSet.size !== SKILL_COUNT) {
-          skillIndexSet.add(randomIndex(projects))
+          skillIndexSet.add(randomIndex(skills))
         }
         skillIndexSet.forEach((index) => {
           projectSkills.push({
