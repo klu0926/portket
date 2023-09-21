@@ -12,10 +12,10 @@ const fs = require('fs')
  * return '/images/covers/default.jpeg'
  */
 function randomPublicImage(...dir) {
-  if (!dir) new Error('RandomPublicImage require ...dir inputs!')
-
-  const filePath = path.join('public', 'images', ...dir)
   try {
+    if (!dir) new Error('RandomPublicImage require ...dir inputs!')
+    
+    const filePath = path.join('public', 'images', ...dir)
     let files = fs.readdirSync(filePath)
     if (!files.length) {
       console.log(`Can not find files in ${filePath}`)

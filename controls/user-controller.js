@@ -100,6 +100,10 @@ const userController = {
   getUser: async (req, res, next) => {
     try {
       const userId = req.params.userId
+      const allSkills = await Skill.findAll({
+        attributes: ['id', 'name', 'description', 'icon'],
+        raw: true,
+      })
       const userData = await User.findOne({
         where: { id: userId },
         attributes: {
@@ -141,10 +145,11 @@ const userController = {
         })
       }
       console.log(req.user)
+      console.log(allSkills)
       // check if user is current user
       if (req.user?.id === user.id) {
         console.log('my portfolio')
-        res.render('myPortfolio', { user })
+        res.render('myPortfolio', { user, allSkills })
       } else {
         console.log('portfolio')
         res.render('portfolio', { user })

@@ -130,7 +130,7 @@
 
           {{/each}} {{else}}
           <!--no project-->
-          <div class="my-project-block-empty">Add your project Here +</div>
+          <div id="add-project-btn" class="add-project-btn">Add your project Here +</div>
           {{/if}}
 
           <!--project block end-->
@@ -141,4 +141,7 @@
 </div>
 
 <!--form-->
-{{> form-add-project}}
+{{> form-project}}
+
+<!--script-->
+<script src="/javascript/myPortfolio.js"></script>

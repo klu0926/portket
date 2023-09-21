@@ -43,6 +43,14 @@
 }
 
 /* skills */
+.project-page-skill-window {
+  height: 200px;
+  border: 1px solid var(--my-light);
+  border-radius: 5px;
+  overflow: auto;
+  padding: 10px;
+}
+
 .skill-tag {
   display: inline-block;
   background-color: var(--my-red);
@@ -83,3 +91,4 @@
 .project-page-image-des {
   color: var(--my-grey);
 }
+

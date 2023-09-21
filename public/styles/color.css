@@ -2,4 +2,6 @@
   --my-red: rgb(220, 53, 69); /*bootstrap danger*/
   --my-grey: rgb(129, 129, 129);
   --my-grey-light: rgb(183, 183, 183);
+  --my-border: rgb(211, 211, 211);
+  --my-light: rgb(242, 242, 242);
 }

@@ -1,0 +1,122 @@
+/* form */
+/* project*/
+.form-display-container {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.form-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border: 1px solid var(--my-grey-light);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.form {
+  padding: 0px;
+}
+
+.form-cover-img {
+  width: 100%;
+  height: 300px;
+  background-color: var(--my-light);
+  margin-bottom: 10px;
+}
+.form-cover-img img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.form-box-title {
+  color: var(--my-grey-light);
+}
+
+.form-div {
+  margin-bottom: 20px;
+}
+
+.form-close-holder {
+  position: relative;
+}
+
+.form-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  border: 0px solid var(--my-grey);
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--my-grey);
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.form-close-btn:hover {
+  color: var(--my-red);
+}
+
+.form-cover {
+  height: 200px;
+  background-color: var(--my-light);
+  overflow: hidden;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.form-cover::after {
+  content: 'Upload Cover';
+  color: var(--my-grey-light);
+  display: block;
+  text-align: center;
+  position: absolute;
+  font-weight: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-cover:hover {
+  border: 1px solid var(--my-red);
+}
+
+.form-cover:hover::after {
+  color: var(--my-red);
+}
+
+.form-cover img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: none;
+}
+
+.form-page-skill-window {
+  height: 120px;
+  overflow: auto;
+  border: 1px solid var(--my-border);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .form-box {
+    width: 100%;
+    max-width: none;
+  }
+}
