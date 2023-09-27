@@ -7,10 +7,12 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
+    <!--form title banner-->
+    <div class="form-title-banner">
+      <p class="h2 mb-3 form-box-title">Add Project</p>
+    </div>
     <!--form-->
     <form id="project-form" class="form" action="#" method="post" enctype="multipart/form-data">
-      <!--form title-->
-      <p class="h1 fw-bold mb-3 form-box-title">Add Project</p>
       <!--title-->
       <div class="form-div">
         <label class="form-label" for="project-title">Title</label>
@@ -52,13 +54,39 @@
       </div>
       <!--links-->
       <div class="form-div">
-        <label class="form-label" for="project-link-name">Links</label>
-        <div class="row g-1">
-          <div class="col-3">
-            <input type="text" id="project-link-name" class="form-control" placeholder="name" required />
+        <label class="form-label">Links</label>
+        <div class="link-row-container">
+          <!--link row-->
+          <div class="link-row">
+            <div class="row g-2">
+              <div class="col-3">
+                <input type="text" class="form-control" placeholder="name" required />
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" placeholder="url" required />
+              </div>
+              <div class="link-remove-btn-div col-1">
+                <button class="link-remove-btn" type="button" data-link-index="1">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="col-9">
-            <input type="text" id="project-link-url" class="form-control" placeholder="url" required />
+        </div>
+        <div>
+          <!--Add row-->
+          <div class="link-row">
+            <div class="row g-2">
+              <div class="col-3">
+                <input type="text" class="form-control" placeholder="name" disabled />
+              </div>
+              <div class="col-8">
+                <input type="text" class="form-control" placeholder="url" disabled />
+              </div>
+              <div class="link-add-btn-div col-1">
+                <button type="button" class="link-add-btn">+</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

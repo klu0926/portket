@@ -136,6 +136,16 @@ p {
 
 /* My Code start*/
 /*Basic color change*/
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.body-container {
+  flex-grow: 1;
+}
 
 .btn {
   border-radius: 0px;

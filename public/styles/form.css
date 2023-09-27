@@ -4,7 +4,7 @@
   display: block;
   position: absolute;
   width: 100%;
-  top: 30%;
+  top: 100px;
   left: 50%;
   transform: translate(-50%, 0%);
 }
@@ -17,13 +17,15 @@
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  border: 1px solid var(--my-grey-light);
-  border-radius: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
   background-color: white;
 }
 
 .form {
+  position: relative;
   padding: 0px;
+  margin-top: 55px;
 }
 
 .form-cover-img {
@@ -37,8 +39,20 @@
   object-position: center;
 }
 
+.form-title-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  border: 1px solid black;
+  padding: 5px 20px;
+}
+
 .form-box-title {
-  color: var(--my-grey-light);
+  color: white;
+  font-weight: bold;
 }
 
 .form-div {
@@ -51,17 +65,18 @@
 
 .form-close-btn {
   position: absolute;
-  top: 5px;
-  right: 0px;
-  border: 0px solid var(--my-grey);
+  top: 9px;
+  right: 3px;
+  border: none;
   background-color: rgba(255, 255, 255, 0);
-  color: var(--my-grey);
+  color: white;
   width: 35px;
   height: 35px;
   text-align: center;
   display: flex;
   justify-content: center;
   font-size: 1.8rem;
+  z-index: 100;
 }
 
 .form-close-btn:hover {
@@ -112,6 +127,67 @@
   border: 1px solid var(--my-border);
   border-radius: 4px;
   padding: 10px;
+}
+
+/* links */
+.link-row {
+  margin-bottom: 7px;
+}
+
+/* links --remove */
+.link-remove-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.link-remove-btn-div button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  border: none;
+  padding: 0px;
+  background-color: var(--my-red);
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-remove-btn-div button:hover {
+  background-color: var(--my-red-dark);
+  border-radius: 3px;
+}
+/* links --add */
+.link-add-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.link-add-btn-div button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  padding: 0px;
+  background-color: var(--my-light);
+  border: 1px solid var(--my-grey);
+  color: var(--my-grey);
+  font-size: 1.4rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-add-btn-div button:hover {
+  background-color: var(--my-grey);
+  border: none;
+  color: white;
+  border-radius: 3px;
 }
 
 @media screen and (max-width: 991px) {

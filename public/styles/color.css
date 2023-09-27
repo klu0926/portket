@@ -1,5 +1,7 @@
 :root {
   --my-red: rgb(220, 53, 69); /*bootstrap danger*/
+  --my-red-light: rgb(216, 83, 96);
+  --my-red-dark: rgb(184, 22, 38);
   --my-grey: rgb(129, 129, 129);
   --my-grey-light: rgb(183, 183, 183);
   --my-border: rgb(211, 211, 211);

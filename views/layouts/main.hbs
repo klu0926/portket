@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/styles/main.css" />
     <title>PORTKET</title>
   </head>
-  <body style="height: 100vh">
-    <div class="row position-relative">
+  <body>
+    <div class="body-container row position-relative">
       <!--nav bar-->
       <header>
         <nav class="navbar bg-light justify-content-between py-2 px-4">
@@ -28,10 +28,10 @@
     </div>
 
     <!--main content-->
-    {{{body}}}
+    <div>{{{body}}}</div>
 
     <!--footer-->
-    {{> footer}}
+    <div class="footer">{{> footer}}</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="/javascript/index.js"></script>
