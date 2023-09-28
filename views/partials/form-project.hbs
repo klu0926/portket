@@ -1,9 +1,9 @@
 <!--add project--->
-<div id="form-project" class="form-display-container">
+<div id="form-project-container" class="form-display-container">
   <div class="form-box">
     <!--from close button-->
     <div class="form-close">
-      <button id="form-project-close" type="button" class="form-close-btn">
+      <button id="form-project-container-close" type="button" class="form-close-btn">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -11,32 +11,38 @@
     <div class="form-title-banner">
       <p class="h2 mb-3 form-box-title">Add Project</p>
     </div>
+
     <!--form-->
-    <form id="project-form" class="form" action="#" method="post" enctype="multipart/form-data">
+    <form id="form-project" class="form needs-validation" action="/projects" method="POST" enctype="multipart/form-data" novalidate>
       <!--title-->
       <div class="form-div">
         <label class="form-label" for="project-title">Title</label>
-        <input name="title" type="text" class="form-control" id="project-title" required />
+        <input name="title" type="text" class="form-control" id="project-title" required minlength="5" />
+        <div class="invalid-feedback">Title require at least 5 characters.</div>
       </div>
       <!--date-->
       <div class="form-div">
         <label class="form-label" for="project-date">Date</label>
         <input name="date" type="date" class="form-control" id="project-date" lang="en" required />
+        <div class="invalid-feedback">Date is required.</div>
       </div>
       <!--cover-->
       <div class="form-div">
         <label class="form-label" for="project-cover" style="width: 100%">
           <p class="mb-2">Cover</p>
           <div class="form-cover">
-            <img src="" alt="project cover" />
+            <img id="coverDisplay" src="" alt="project cover" />
+            <div class="form-cover-text">Add Cover</div>
           </div>
         </label>
-        <input name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" required />
+        <input id="coverInput" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" onchange="previewCover()" required />
+        <div class="invalid-feedback">Cover image is required.</div>
       </div>
       <!--description-->
       <div class="form-div">
         <label class="form-label" for="project-description">Description</label>
-        <textarea name="description" class="form-control" id="project-description" rows="3" required></textarea>
+        <textarea name="description" class="form-control" id="project-description" rows="3" required minlength="20"></textarea>
+        <div class="invalid-feedback">Description require at least 20 characters.</div>
         <div class="form-text mt-2">Tell us more about the project, what is the project for, what is the goal, and what is the result. Be as detail as possible.</div>
       </div>
       <!--skills-->
@@ -45,7 +51,7 @@
         <div class="form-page-skill-window">
           {{#each allSkills}}
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="{{this.id}}" id="skill{{this.id}}" />
+            <input name="skill" class="form-check-input" type="checkbox" value="{{this.id}}" id="skill{{this.id}}" />
             <label class="form-check-label" for="skill{{this.id}}"> {{this.name}} </label>
           </div>
           {{/each}}
@@ -60,13 +66,15 @@
           <div class="link-row">
             <div class="row g-2">
               <div class="col-3">
-                <input type="text" class="form-control" placeholder="name" required />
+                <input name="linkName" type="text" class="form-control" placeholder="name" required />
+                <div class="invalid-feedback">Link's name is required.</div>
               </div>
               <div class="col-8">
-                <input type="text" class="form-control" placeholder="url" required />
+                <input name="linkUrl" type="text" class="form-control" placeholder="url" required />
+                <div class="invalid-feedback">Link's url is required.</div>
               </div>
               <div class="link-remove-btn-div col-1">
-                <button class="link-remove-btn" type="button" data-link-index="1">
+                <button class="link-remove-btn" type="button">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
@@ -95,8 +103,14 @@
 
       <!--submit-->
       <button type="submit" class="w-100 btn btn-primary mt-2">Submit</button>
+      <div class="d-flex justify-content-center">
+        <span type="button" id="projectFormReset" class="reset-button my-2">Reset Form</span>
+      </div>
     </form>
     <!--close box-->
   </div>
   <!--close container-->
 </div>
+
+<!--script-->
+<script src="/javascript/add-project-form.js"></script>

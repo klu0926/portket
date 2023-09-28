@@ -47,6 +47,20 @@ const projectController = {
       next(err)
     }
   },
+  createProject: async (req, res, next) => {
+    try {
+      const currentUser = req.user
+      if (!currentUser) throw new Error('Can not get current user')
+      console.log(req)
+      res.json({
+        message: 'this is working',
+        body: req.body,
+        file: req.files,
+      })
+    } catch (err) {
+      next(err)
+    }
+  },
 }
 
 module.exports = projectController
