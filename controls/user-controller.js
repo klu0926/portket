@@ -144,8 +144,6 @@ const userController = {
           delete social.projectSocial
         })
       }
-      console.log(req.user)
-      console.log(allSkills)
       // check if user is current user
       if (req.user?.id === user.id) {
         console.log('my portfolio')

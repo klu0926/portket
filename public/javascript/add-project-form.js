@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const addLinkBtn = document.querySelector('.link-add-btn')
   const projectFormResetBtn = document.querySelector('#projectFormReset')
 
+  //project cover
+  const coverInput = document.querySelector('#coverInput')
+
   if (!addProjectBtn) {
     console.error('Can not find add project btn')
     return
@@ -63,14 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
     projectForm.classList.add('was-validated')
   })
 
-  // Reset
+  // Reset form
   projectFormResetBtn.addEventListener('click', () => {
     projectForm.reset()
     projectForm.classList.remove('was-validated')
 
     previewCover() // reset preview cover
   })
+
+  // cover input preview on change
+  coverInput.addEventListener('change', (event) => {
+    previewCover()
+  })
 })
+
+
+
+// Helper functions
 
 // preview image (function)
 function previewCover() {

@@ -112,6 +112,9 @@
             <!--project line-->
             <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
           </div>
+          <!--Add project btn-->
+          <div id="add-project-btn" class="add-project-btn mb-3">Add Project+</div>
+          <!--projects-->
           {{#if user.projects}} {{#each user.projects}}
           <div class="project-outer-block mb-3">
             <a class="project-link" href="/projects/{{this.id}}">
@@ -127,12 +130,7 @@
               </div>
             </a>
           </div>
-
-          {{/each}} {{else}}
-          <!--no project-->
-          <div id="add-project-btn" class="add-project-btn">Add your project Here +</div>
-          {{/if}}
-
+          {{/each}} {{/if}}
           <!--project block end-->
         </div>
       </div>
@@ -144,3 +142,4 @@
 {{> form-project}}
 
 <!--script-->
+<script src="/javascript/portfolio.js"></script>

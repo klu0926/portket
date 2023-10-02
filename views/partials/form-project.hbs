@@ -35,7 +35,7 @@
             <div class="form-cover-text">Add Cover</div>
           </div>
         </label>
-        <input id="coverInput" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" onchange="previewCover()" required />
+        <input id="coverInput" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" required />
         <div class="invalid-feedback">Cover image is required.</div>
       </div>
       <!--description-->
@@ -51,7 +51,7 @@
         <div class="form-page-skill-window">
           {{#each allSkills}}
           <div class="form-check">
-            <input name="skill" class="form-check-input" type="checkbox" value="{{this.id}}" id="skill{{this.id}}" />
+            <input name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" i/>
             <label class="form-check-label" for="skill{{this.id}}"> {{this.name}} </label>
           </div>
           {{/each}}
