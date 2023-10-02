@@ -2,6 +2,7 @@ const { User, Project, Social, Skill, Project_Image, Project_Link, Project_Skill
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const imgurImageHandler = require('../helper/imgur')
+const addHttp = require('../helper/addHttp')
 
 const projectController = {
   getProject: async (req, res, next) => {
@@ -59,7 +60,7 @@ const projectController = {
       const { title, date, description, skills, linkName, linkUrl } = req.body
       const { files } = req
 
-      console.log('files', files)
+      console.log('body', req.body)
 
       if (!title || !date || !description || !linkName || !linkUrl || !files) {
         const array = []
@@ -88,11 +89,19 @@ const projectController = {
 
       // create project link
       const projectLinks = []
-      if (linkName.length > 0) {
+      // deal with single input or multiple input
+      if (typeof linkName === 'string') {
+        projectLinks.push({
+          projectId: project.id,
+          name: linkName,
+          link: addHttp(linkUrl),
+        })
+      } else if (typeof linkName === 'object') {
         for (let i = 0; i < linkName.length; i++) {
           projectLinks[i] = {
+            projectId: project.id,
             name: linkName[i],
-            link: linkUrl[i],
+            link: addHttp(linkUrl[i]),
           }
         }
       }
@@ -100,15 +109,21 @@ const projectController = {
 
       // create project skill
       const projectSkills = []
-      if (skills && skills.length > 0) {
+      // deal with single input or multiple input
+      if (typeof skills === 'string') {
+        projectSkills.push({
+          projectId: project.id,
+          skillId: skills,
+        })
+      } else if (typeof skills === 'object') {
         skills.forEach((skillId) =>
           projectSkills.push({
             projectId: project.id,
-            skillId: Number(skillId),
+            skillId: skillId,
           })
         )
-        await Project_Skill.bulkCreate(projectSkills)
       }
+      if (projectSkills.length > 0) await Project_Skill.bulkCreate(projectSkills)
 
       res.redirect(`/users/${currentUser.id}`)
     } catch (err) {

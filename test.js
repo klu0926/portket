@@ -1,2 +1,8 @@
-const result = 1 % 6
-console.log(result)
+const skills = '1'
+const array = []
+
+skills.forEach((skill) => {
+  array.push(skill)
+})
+
+console.log(skills)
