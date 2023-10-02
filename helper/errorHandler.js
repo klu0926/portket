@@ -1,4 +1,9 @@
-module.exports = (error, title) => {
+/**
+ * Handle error and can provide a title, this also show the origin of the error
+ * @param {error} error
+ * @param {string} title - The title for the error message
+ */
+function errorHandler(error, title) {
   console.log('-------------------------')
   console.group('Sever Error')
   console.error('Error Message', title, error.message)
@@ -11,3 +16,5 @@ module.exports = (error, title) => {
   console.groupEnd()
   console.log('-------------------------')
 }
+
+module.exports = errorHandler

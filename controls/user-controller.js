@@ -3,6 +3,7 @@ const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
+const sequelize = require('sequelize')
 
 const userController = {
   login: (req, res, next) => {
@@ -114,8 +115,18 @@ const userController = {
             model: Project,
             as: 'projects',
             attributes: {
-              exclude: ['createdAt', 'updatedAt'],
+              exclude: ['updatedAt'],
             },
+            include: [
+              {
+                model: Skill,
+                attributes: ['id', 'name', 'description', 'icon'],
+                as: 'skills',
+                through: {
+                  attributes: [],
+                },
+              },
+            ],
           },
           {
             model: Social,
@@ -135,6 +146,7 @@ const userController = {
             },
           },
         ],
+        order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']], // sort projects
       })
       const user = userData.toJSON()
       // social links
@@ -144,6 +156,9 @@ const userController = {
           delete social.projectSocial
         })
       }
+
+      console.log(user)
+
       // check if user is current user
       if (req.user?.id === user.id) {
         console.log('my portfolio')

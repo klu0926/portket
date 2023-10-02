@@ -122,11 +122,15 @@
                   <p class="project-title fw-bold mb-1">{{this.title}}</p>
                   <p class="project-date mb-1">{{simpleDate this.date}}</p>
                   <p class="project-description">{{substring this.description 100}}</p>
+                  <div class="project-block-skills mt-2">
+                    {{#if this.skills}} {{#each this.skills}}
+                    <span class="skill-pill">{{this.name}}</span>
+                    {{/each}} {{/if}}
+                  </div>
                 </div>
               </div>
             </a>
           </div>
-
           {{/each}} {{else}}
           <!--no project-->
           <div class="project-block-empty">No project listed</div>

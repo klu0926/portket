@@ -51,17 +51,21 @@ const projectController = {
   createProject: async (req, res, next) => {
     try {
       const currentUser = req.user
-      if (!currentUser) throw new Error('Can not get current user')
+      if (!currentUser) {
+        res.redirect('/users/login')
+        return
+      }
 
       const { title, date, description, skills, linkName, linkUrl } = req.body
       const { files } = req
 
-      if (!title || !date || !description || !skills || !linkName || !linkUrl || !files) {
+      console.log('files', files)
+
+      if (!title || !date || !description || !linkName || !linkUrl || !files) {
         const array = []
         if (!title) array.push('title')
         if (!date) array.push('date')
         if (!description) array.push('description')
-        if (!skills) array.push('skills')
         if (!linkName) array.push('linkName')
         if (!linkUrl) array.push('linkUrl')
         if (!files) array.push('files')
@@ -96,13 +100,15 @@ const projectController = {
 
       // create project skill
       const projectSkills = []
-      skills.forEach((skillId) =>
-        projectSkills.push({
-          projectId: project.id,
-          skillId: Number(skillId),
-        })
-      )
-      if (projectSkills.length > 0) await Project_Skill.bulkCreate(projectSkills)
+      if (skills && skills.length > 0) {
+        skills.forEach((skillId) =>
+          projectSkills.push({
+            projectId: project.id,
+            skillId: Number(skillId),
+          })
+        )
+        await Project_Skill.bulkCreate(projectSkills)
+      }
 
       res.redirect(`/users/${currentUser.id}`)
     } catch (err) {

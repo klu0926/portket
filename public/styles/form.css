@@ -1,7 +1,7 @@
 /* form */
 /* project*/
 .form-display-container {
-  display: none;
+  display: block;
   position: absolute;
   width: 100%;
   top: 100px;
@@ -184,6 +184,35 @@
 
 .reset-button:hover {
   color: var(--my-red);
+}
+
+/* loading */
+.loading-indicator {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.loading-ring::after {
+  content: ' ';
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: loading-ring 1.2s linear infinite;
+}
+
+@keyframes loading-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 991px) {

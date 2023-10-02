@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   //project cover
   const coverInput = document.querySelector('#coverInput')
 
+  //loading-indicator
+  const projectLoadingDisplay = document.querySelector('#project-loading-indicator')
+  const projectSubmitText = document.querySelector('#project-submit-text')
+
   if (!addProjectBtn) {
     console.error('Can not find add project btn')
     return
@@ -62,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!projectForm.checkValidity()) {
       event.preventDefault()
       event.stopPropagation()
+    } else {
+      // show loading icon
+      projectSubmitText.style.display = 'none'
+      projectLoadingDisplay.style.display = 'flex'
     }
     projectForm.classList.add('was-validated')
   })
@@ -79,8 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     previewCover()
   })
 })
-
-
 
 // Helper functions
 
