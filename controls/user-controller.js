@@ -88,12 +88,31 @@ const userController = {
             [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
           }
         : {}
-      const { count, rows } = await User.findAndCountAll({
+
+      const usersData = await User.findAndCountAll({
         where: whereCondition,
         attributes: ['id', 'name', 'title', 'avatar', 'cover', 'description'],
-        raw: true,
+        include: [
+          {
+            model: Project,
+            attributes: ['id'],
+            as: 'projects',
+          },
+        ],
+        order: [['id', 'DESC']],
       })
-      res.render('index', { userCount: count, users: rows, keyword })
+      usersData.rows = usersData.rows.map((user) => user.toJSON())
+
+      // current user to the top
+      const currentUser = req.user
+      if (currentUser) {
+        const userIndex = usersData.rows.findIndex((user) => user.id === currentUser.id)
+        if (userIndex !== -1) {
+          usersData.rows.unshift(usersData.rows.splice(userIndex, 1)[0])
+        }
+      }
+
+      res.render('index', { users: usersData.rows, count: usersData.count, keyword })
     } catch (err) {
       next(err)
     }
@@ -146,7 +165,7 @@ const userController = {
             },
           },
         ],
-        order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']], // sort projects
+        order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],
       })
       const user = userData.toJSON()
       // social links
@@ -156,8 +175,6 @@ const userController = {
           delete social.projectSocial
         })
       }
-
-      console.log(user)
 
       // check if user is current user
       if (req.user?.id === user.id) {

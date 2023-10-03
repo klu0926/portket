@@ -271,6 +271,43 @@ body {
   transform: scale(1.02);
 }
 
+.card-project-count {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  min-width: 38px;
+  width: auto;
+  color: var(--my-grey);
+  padding: 0px 7px;
+  cursor: pointer;
+}
+
+.card-project-count:hover {
+  color: var(--my-grey);
+}
+
+.card-project-count:hover::after {
+  content: 'Projects';
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  white-space: nowrap;
+  background-color: var(--my-grey);
+  color: white;
+  padding: 0px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.card-project-count i {
+  margin-right: 4px;
+}
+
 /*--Portfolio Page---*/
 .portfolio-profile {
   height: 400px;

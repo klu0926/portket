@@ -7,6 +7,8 @@ const randomImage = require('../helper/randomPublicImage')
 const SEED_PASSWORD = '123'
 const SEED_AMOUNT = 12
 const SEED_AVATAR_SIZE = '400'
+// eg: email: user1@example.com \ pass : 123
+// eg; email: user7@example.com \ pass : 123
 
 class RandomUserGenerator {
   constructor() {
