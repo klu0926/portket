@@ -281,7 +281,6 @@ body {
   width: auto;
   color: var(--my-grey);
   padding: 0px 7px;
-  cursor: pointer;
 }
 
 .card-project-count:hover {
@@ -306,6 +305,11 @@ body {
 
 .card-project-count i {
   margin-right: 4px;
+  cursor: default;
+}
+
+.card-project-count span {
+  cursor: default;
 }
 
 /*--Portfolio Page---*/
@@ -319,6 +323,15 @@ body {
 }
 
 .portfolio-avatar-box img {
+  height: 100%;
+}
+
+/*--Search bar--*/
+.home-search-bar {
+  height: 50px;
+}
+
+.home-search-bar button {
   height: 100%;
 }
 
