@@ -5,16 +5,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasOne(models.Theme)
-      User.hasMany(models.Project, { foreignKey: 'userId', as: 'projects' })
+      User.hasMany(models.Project, {
+        foreignKey: 'userId',
+        as: 'projects',
+        onDelete: 'CASCADE',
+      })
       User.belongsToMany(models.Social, {
         through: models.User_Social,
         foreignKey: 'userId',
         as: 'socials',
+        onDelete: 'CASCADE',
       })
       User.belongsToMany(models.Skill, {
         through: models.User_Skill,
         foreignKey: 'userId',
         as: 'skills',
+        onDelete: 'CASCADE',
       })
     }
   }

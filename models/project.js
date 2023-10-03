@@ -4,13 +4,25 @@ module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     static associate(models) {
       // define association here
-      Project.belongsTo(models.User, { as: 'user' })
-      Project.hasMany(models.Project_Image, { foreignKey: 'projectId', as: 'images' })
-      Project.hasMany(models.Project_Link, { foreignKey: 'projectId', as: 'links' })
+      Project.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user',
+      })
+      Project.hasMany(models.Project_Image, {
+        foreignKey: 'projectId',
+        as: 'images',
+        onDelete: 'CASCADE',
+      })
+      Project.hasMany(models.Project_Link, {
+        foreignKey: 'projectId',
+        as: 'links',
+        onDelete: 'CASCADE',
+      })
       Project.belongsToMany(models.Skill, {
         through: models.Project_Skill,
         foreignKey: 'projectId',
         as: 'skills',
+        onDelete: 'CASCADE',
       })
     }
   }

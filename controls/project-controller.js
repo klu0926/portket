@@ -60,8 +60,6 @@ const projectController = {
       const { title, date, description, skills, linkName, linkUrl } = req.body
       const { files } = req
 
-      console.log('body', req.body)
-
       if (!title || !date || !description || !linkName || !linkUrl || !files) {
         const array = []
         if (!title) array.push('title')
@@ -125,6 +123,29 @@ const projectController = {
       }
       if (projectSkills.length > 0) await Project_Skill.bulkCreate(projectSkills)
 
+      res.redirect(`/users/${currentUser.id}`)
+    } catch (err) {
+      next(err)
+    }
+  },
+  deleteProject: async (req, res, next) => {
+    try {
+      const currentUser = req.user
+      const projectId = req.params.projectId
+
+      if (!currentUser) {
+        res.redirect('/users/login')
+        return
+      }
+
+      const project = await Project.findOne({
+        where: { id: projectId },
+      })
+      if (!project) {
+        req.flash('warning_msg', `Can not find project ${projectId}`)
+      }
+      // delete
+      await project.destroy()
       res.redirect(`/users/${currentUser.id}`)
     } catch (err) {
       next(err)

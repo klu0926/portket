@@ -4,5 +4,6 @@ const { multiUpload } = require('../../middleware/multer')
 
 router.get('/:projectId', projectController.getProject)
 router.post('/', multiUpload, projectController.createProject)
+router.delete('/:projectId', projectController.deleteProject)
 
 module.exports = router

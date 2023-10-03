@@ -10,7 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       projectId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: 'Projects', key: 'id' },
+        onDelete: 'CASCADE',
       },
       skillId: {
         type: Sequelize.INTEGER,

@@ -1,5 +1,12 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // project-block fade in animation
+  portfolioLoaded()
+
+  // delete button
+})
+
+// project-block fade in animation
 const portfolioLoaded = () => {
-  // project-block fade in
   const projects = document.querySelectorAll('.project-block')
   const socials = document.querySelectorAll('.social-box')
   if (!projects || !socials) return

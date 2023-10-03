@@ -136,6 +136,12 @@
                 </div>
               </div>
             </a>
+            <!--delete project btn-->
+            <div class="project-delete-btn-div">
+              <form action="/projects/{{this.id}}?_method=DELETE" method="post">
+                <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
+              </form>
+            </div>
           </div>
           {{/each}} {{/if}}
           <!--project block end-->
