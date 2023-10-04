@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const sequelize = require('sequelize')
+const imgurFileHandler = require('../helper/imgur')
 
 const userController = {
   login: (req, res, next) => {
@@ -185,6 +186,63 @@ const userController = {
         console.log('portfolio')
         res.render('portfolio', { user })
       }
+    } catch (err) {
+      next(err)
+    }
+  },
+  putUser: async (req, res, next) => {
+    try {
+      const userId = req.params.userId
+      const currentUserId = req.user.id.toString()
+      if (userId !== currentUserId) {
+        req.flash('warning_msg', 'Something went wrong, please try logout and login again.')
+        return res.redirect(`/users/${userId}`)
+      }
+
+      const body = req.body
+      const files = req.files
+
+      const newName = body.name ? body.name.trim() : ''
+      const newTitle = body.title ? body.title.trim() : ''
+      const newEmail = body.email ? body.email.trim() : ''
+      const newPhone = body.phone ? body.phone.trim() : ''
+      const newDescription = body.description ? body.description.trim() : ''
+      const newCity = body.city ? body.city.trim() : ''
+      const newCountry = body.country ? body.country.trim() : ''
+      const newThemeId = body.themeId ? body.themeId.trim() : ''
+      let newAvatar = ''
+      let newCover = ''
+
+      // get User
+      const userModel = await User.findOne({ where: { id: userId } })
+      if (!userModel) throw new Error(`Can not find user ${userId}`)
+      const user = userModel.toJSON()
+
+      // body
+
+      // files
+      if (files?.avatar) {
+        newAvatar = await imgurFileHandler(files.avatar[0])
+      }
+      if (files?.cover) {
+        newCover = await imgurFileHandler(files.cover[0])
+      }
+
+      // update
+      await userModel.update({
+        name: newName || user.name,
+        email: newEmail || user.email,
+        avatar: newAvatar || user.avatar,
+        cover: newCover || user.cover,
+        title: newTitle || user.title,
+        description: newDescription || user.description,
+        country: newCountry || user.country,
+        city: newCity || user.city,
+        phone: Number(newPhone) || Number(user.phone),
+        themeId: Number(newThemeId) || Number(user.themeId),
+        // password
+      })
+      res.redirect(`/users/${userId}`)
     } catch (err) {
       next(err)
     }

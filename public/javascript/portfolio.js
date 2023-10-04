@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // project-block fade in animation
   portfolioLoaded()
-
-  // delete button
 })
 
 // project-block fade in animation

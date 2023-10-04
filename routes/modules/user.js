@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const userController = require('../../controls/user-controller')
 const passport = require('passport')
+const { multiUpload } = require('../../middleware/multer')
 
 // Local 登入
 router.get('/login', (req, res) => {
@@ -61,9 +62,12 @@ router.get('/logout', (req, res) => {
   })
 })
 
-// 首頁＋展示全部使用者
+// Get ALL user
 router.get('/', userController.getUsers)
-// 個人Portfolio
+// Get 1 user
 router.get('/:userId', userController.getUser)
+
+// Edit Portfolio
+router.put('/:userId', multiUpload, userController.putUser)
 
 module.exports = router

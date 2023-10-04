@@ -12,6 +12,7 @@ module.exports = {
     console.groupEnd()
     console.log('-------------------------')
 
+    // response
     res.status(500).send('Something went wrong!')
   },
 }

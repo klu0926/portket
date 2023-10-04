@@ -58,3 +58,35 @@
   padding: 0px 5px;
   font-weight: 100;
 }
+
+/* avatar */
+.avatar-edit-container:hover {
+  border: 4px solid var(--my-red);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.avatar-fade {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(256, 256, 256, 0);
+}
+
+.avatar-fade:hover {
+  background-color: rgb(256, 256, 256, 0.5);
+}
+
+.avatar-fade:hover::after {
+  content: '+';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--my-red);
+  font-size: 2rem;
+  font-weight: bold;
+}

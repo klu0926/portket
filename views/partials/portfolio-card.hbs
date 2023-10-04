@@ -1,10 +1,10 @@
 <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
   <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
     <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" style="height: 150px" />
+    <div class="card-avatar">
+      <img src="{{this.avatar}}" alt="avatar" />
+    </div>
     <div class="card-body">
-      <div class="card-avatar">
-        <img src="{{this.avatar}}" alt="avatar" />
-      </div>
       <!--text area-->
       <div class="d-flex flex-column justify-content-between" style="height: 100%">
         <div class="card-text">

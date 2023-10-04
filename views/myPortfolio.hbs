@@ -14,11 +14,16 @@
         <!--avatar + info -->
         <div class="portfolio-top-container">
           <!--avatar-->
-          <div class="portfolio-avatar-container">
+          <div id="avatar-container" class="portfolio-avatar-container avatar-edit-container">
+            <div class="avatar-fade"></div>
             <img src="{{user.avatar}}" alt="avatar" />
           </div>
+          <!--avatar form hidden-->
+          <form id="avatar-form" action="/users/{{user.id}}?_method=PUT" method="POST" enctype="multipart/form-data" style="display: none">
+            <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" />
+          </form>
           <!--info-->
-          <div class="">
+          <div>
             <!--name-->
             <div class="mb-2">
               <h1 class="h3 fw-bold">{{user.name}}</h1>
@@ -163,3 +168,4 @@
 
 <!--script-->
 <script src="/javascript/portfolio.js"></script>
+<script src="/javascript/myPortfolio.js"></script>
