@@ -28,22 +28,27 @@
               <p>{{user.title}}</p>
             </div>
             <!--social links-->
-            {{#if user.socials}}
-            <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
-              {{#each user.socials}}
-              <div class="social-box">
-                <div class="social-icon">
-                  <a href="{{this.link}}" target="_blank">
-                    <img src="{{this.icon}}" alt="{{this.name}}" />
-                  </a>
+            <div class="my-4">
+              <p class="fw-bold my-2 text-primary">SOCIAL</p>
+              {{#if user.socials}}
+              <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
+                {{#each user.socials}}
+                <div class="social-box">
+                  <div class="social-icon">
+                    <a href="{{this.link}}" target="_blank">
+                      <img src="{{this.icon}}" alt="{{this.name}}" />
+                    </a>
+                  </div>
+                  <div class="social-icon-pop">
+                    <p class="text-primary">{{this.link}}</p>
+                  </div>
                 </div>
-                <div class="social-icon-pop border">
-                  <p class="text-primary">{{this.link}}</p>
-                </div>
+                {{/each}}
               </div>
-              {{/each}}
+              {{else}}
+              <p class="ps-2">No social listed</p>
+              {{/if}}
             </div>
-            {{/if}}
             <!--BIO-->
             <div class="my-4">
               <p class="fw-bold mb-2 text-primary">BIO</p>
@@ -56,12 +61,12 @@
               <p class="fw-bold mb-2 text-primary">CONTACT</p>
               <div class="p-2">
                 <!--contact-location-->
-                {{#ifOr user.country user.city}}
+                {{#if (ifOr user.country user.city)}}
                 <p class="mb-2">
                   <i class="fa-solid fa-location-dot" style="width: 20px"></i>
                   {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
                 </p>
-                {{/ifOr}}
+                {{/if}}
                 <!--contact-email-->
                 {{#if user.email}}
                 <p class="mb-2">
@@ -78,9 +83,9 @@
           </div>
         </div>
         <!--skills-->
-        {{#if user.skills}}
         <div class="my-4">
           <p class="fw-bold my-2 text-primary">SKILLS</p>
+          {{#if user.skills}}
           <div class="px-2">
             {{#each user.skills}}
             <div class="skill-block">
@@ -100,8 +105,10 @@
             </div>
             {{/each}}
           </div>
+          {{else}}
+          <p>No skills listed</p>
+          {{/if}}
         </div>
-        {{/if}}
       </div>
       <!--projects (right side)-->
       <div class="portfolio-right col-12 col-lg-6">

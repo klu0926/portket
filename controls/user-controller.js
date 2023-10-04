@@ -127,7 +127,7 @@ const userController = {
       const userData = await User.findOne({
         where: { id: userId },
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ['createdAt', 'updatedAt', 'password'],
         },
         include: [
           {
@@ -168,6 +168,7 @@ const userController = {
         order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],
       })
       const user = userData.toJSON()
+      console.log(user)
       // social links
       if (user.socials) {
         user.socials.forEach((social) => {

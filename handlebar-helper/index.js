@@ -8,18 +8,21 @@ module.exports = {
       return text.substring(0, value) + end
     }
   },
+  // if return option.fn(this), will cause the inner block can't get data like {{user.city}}
+  // use #if with this helper : {{#if (ifOr item1 item2)}} ... {{/if}}
   ifOr: (a, b, option) => {
     if (a || b) {
-      return option.fn(this)
+      return true
     } else {
-      return option.inverse(this)
+      return false
     }
   },
+  // same as ifOr
   ifAnd: (a, b, option) => {
     if (a && b) {
-      return option.fn(this)
+      return true
     } else {
-      return option.inverse(this)
+      return false
     }
   },
   simpleDate: (date) => {

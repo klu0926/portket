@@ -97,6 +97,8 @@
   line-height: 0;
   white-space: nowrap;
   padding: 2px 4px;
+  border: 1px solid red;
+  border-radius: 5px;
 }
 
 .social-box:hover img {

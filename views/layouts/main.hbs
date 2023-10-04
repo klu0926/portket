@@ -17,10 +17,18 @@
             <span class="text-primary">PORT</span><span>KET</span>
           </a>
           {{#if isAuthenticated}}
-          <a class="btn btn-outline-primary" href="/users/logout">Logout</a>
-          {{else}}
-          <a class="btn btn-primary" href="/users/login">Login</a>
-          {{/if}}
+          <div class="navbar-right">
+            <!--my portfolio-->
+              <a class="my-portfolio-icon" href="/users/{{currentUser.id}}">
+                <i class="fa-solid fa-user"></i>
+              </button>
+            <!--logout-->
+            <a class="btn btn-outline-primary" href="/users/logout">Logout</a>
+            {{else}}
+            <!--login-->
+            <a class="btn btn-primary" href="/users/login">Login</a>
+            {{/if}}
+          </div>
         </nav>
       </header>
       <!--warning-->
