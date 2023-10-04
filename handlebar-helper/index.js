@@ -13,17 +13,21 @@ module.exports = {
   ifOr: (a, b, option) => {
     if (a || b) {
       return true
-    } else {
-      return false
     }
+    return false
   },
   // same as ifOr
   ifAnd: (a, b, option) => {
     if (a && b) {
       return true
-    } else {
-      return false
     }
+    return false
+  },
+  isSame: (a, b) => {
+    if (a === b) {
+      return true
+    }
+    return false
   },
   simpleDate: (date) => {
     if (!date) return

@@ -1,5 +1,5 @@
 <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-  <div class="card border">
+  <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
     <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" style="height: 150px" />
     <div class="card-body">
       <div class="card-avatar">
@@ -15,7 +15,7 @@
           <p>{{substring this.description 110}}</p>
         </div>
         <div class="d-flex justify-content-between align-items-end">
-          <a href="/users/{{this.id}}" class="btn btn-primary btn-move">Portfolio</a>
+          <a href="/users/{{this.id}}" class="btn btn-move {{#if (isSame currentUser.id this.id)}}black{{else}}btn-primary{{/if}} "> {{#if (isSame currentUser.id this.id)}}My Portfolio{{else}}Portfolio{{/if}} </a>
           <div class="card-project-count">
             <i class="fa-regular fa-file"></i>
             <span>{{this.projects.length}}</span>

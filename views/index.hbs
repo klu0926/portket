@@ -19,5 +19,5 @@
   <!--search bar-->
   <div class="mt-3">{{> search-bar}}</div>
   <!--portfolio display-->
-  <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card}} {{/each}}</div>
+  <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card currentUser=../currentUser}} {{/each}}</div>
 </div>
