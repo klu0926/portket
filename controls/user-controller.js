@@ -77,7 +77,7 @@ const userController = {
       })
       res.redirect('/') // home page
     } catch (err) {
-      console.log(err)
+      next(err)
     }
   },
   getUsers: async (req, res, next) => {
@@ -238,7 +238,7 @@ const userController = {
         description: newDescription || user.description,
         country: newCountry || user.country,
         city: newCity || user.city,
-        phone: Number(newPhone) || Number(user.phone),
+        phone: newPhone || user.phone,
         themeId: Number(newThemeId) || Number(user.themeId),
         // password
       })

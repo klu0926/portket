@@ -395,6 +395,7 @@ body {
   height: 5px;
   background-color: white;
   z-index: 1000;
+  opacity: 0%;
 }
 
 .loader-bar {

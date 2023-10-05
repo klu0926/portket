@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const loaderContainer = document.querySelector('.loader-container')
   const loaderBar = document.querySelector('.loader-bar')
   let loaderPercent = 0
   let loaderInterval = null
-  const loaderAmount = 0.3
+  const loaderAmount = 0.5
   const loaderTime = 10
 
   // Reset loader on DOM loaded
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loaderStart() {
     if (loaderInterval === null) {
+      loaderContainer.style.opacity = '1'
       loaderInterval = setInterval(() => {
         if (loaderPercent >= 87) {
           clearInterval(loaderInterval)
