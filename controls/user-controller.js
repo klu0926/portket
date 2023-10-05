@@ -242,6 +242,7 @@ const userController = {
         themeId: Number(newThemeId) || Number(user.themeId),
         // password
       })
+
       res.redirect(`/users/${userId}`)
     } catch (err) {
       next(err)
