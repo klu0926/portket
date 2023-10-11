@@ -26,16 +26,48 @@
           <div>
             <!--name-->
             <div class="mb-2">
-              <h1 class="h3 fw-bold">{{user.name}}</h1>
+              <div id="name-display" class="editable">
+                <h1 class="h3 fw-bold">{{user.name}}</h1>
+              </div>
+              <div id="name-input-div">
+                <form id="name-form" class="inline-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+                  <div class="row">
+                    <div class="col-6">
+                      <input class="form-control" name="name" type="text" value="{{user.name}}" minlength="6" required />
+                      <div class="invalid-feedback">Require at least 6 characters.</div>
+                    </div>
+                    <div class="col ps-0">
+                      <button class="btn btn-primary" type="submit">Edit</button>
+                      <button id="name-cancel" class="btn btn-primary" type="button">x</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!--title-->
-            <div class="portfolio-title my-3">
-              <p>{{user.title}}</p>
+            <div class="my-3">
+              <p class="fw-bold my-2 text-primary">TITLE</p>
+              <div id="title-display" class="editable">
+                <p class="ps-2">{{user.title}}</p>
+              </div>
+              <div id="title-input-div">
+                <form id="title-form" class="inline-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+                  <div class="row">
+                    <div class="col-6">
+                      <input class="form-control" name="title" type="text" value="{{user.title}}" minlength="6" required />
+                      <div class="invalid-feedback">Require at least 6 characters.</div>
+                    </div>
+                    <div class="col ps-0">
+                      <button class="btn btn-primary" type="submit">Edit</button>
+                      <button id="title-cancel" class="btn btn-primary" type="button">x</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!--social links-->
             <div class="my-4">
               <p class="fw-bold my-2 text-primary">SOCIAL</p>
-              {{#if user.socials}}
               <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
                 {{#each user.socials}}
                 <div class="social-box">
@@ -49,10 +81,35 @@
                   </div>
                 </div>
                 {{/each}}
+                <!--add social-->
+                <div class="social-box">
+                  <div class="social-add editable"></div>
+                </div>
               </div>
-              {{else}}
-              <p class="ps-2">No social listed</p>
-              {{/if}}
+            </div>
+            <!--social form-->
+            <div class="social-input-div">
+              <form id="social-add-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+                <div class="row">
+                  <div class="col-5">
+                    <select id="socials-network" class="form-select w-100" name="socials" required>
+                      <option value="" selected>Select a Social Network</option>
+                      {{#each allSocials}}
+                      <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                    <div class="invalid-feedback">Pick a social network.</div>
+                  </div>
+                  <div class="col-4 ps-0">
+                    <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" required />
+                    <div class="invalid-feedback">http://www.example.com.</div>
+                  </div>
+                  <div class="col ps-0">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                    <button id="social-add-cancel" class="btn btn-primary" type="button">x</button>
+                  </div>
+                </div>
+              </form>
             </div>
             <!--BIO-->
             <div class="my-4">

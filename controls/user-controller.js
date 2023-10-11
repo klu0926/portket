@@ -125,6 +125,10 @@ const userController = {
         attributes: ['id', 'name', 'description', 'icon'],
         raw: true,
       })
+      const allSocials = await Social.findAll({
+        attributes: ['id', 'name', 'icon'],
+        raw: true,
+      })
       const userData = await User.findOne({
         where: { id: userId },
         attributes: {
@@ -153,7 +157,6 @@ const userController = {
             attributes: ['id', 'name', 'icon'],
             as: 'socials',
             through: {
-              as: 'projectSocial',
               attributes: ['link'],
             },
           },
@@ -169,21 +172,18 @@ const userController = {
         order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],
       })
       const user = userData.toJSON()
-      console.log(user)
-      // social links
       if (user.socials) {
         user.socials.forEach((social) => {
-          social.link = social.projectSocial.link
-          delete social.projectSocial
+          social.link = social.User_Social.link
+          delete social.User_Social
         })
       }
 
+      console.log(user)
       // check if user is current user
       if (req.user?.id === user.id) {
-        console.log('my portfolio')
-        res.render('myPortfolio', { user, allSkills })
+        res.render('myPortfolio', { user, allSkills, allSocials })
       } else {
-        console.log('portfolio')
         res.render('portfolio', { user })
       }
     } catch (err) {
@@ -192,6 +192,7 @@ const userController = {
   },
   putUser: async (req, res, next) => {
     try {
+      console.log('putUser')
       const userId = req.params.userId
       const currentUserId = req.user.id.toString()
       if (userId !== currentUserId) {
@@ -210,8 +211,21 @@ const userController = {
       const newCity = body.city ? body.city.trim() : ''
       const newCountry = body.country ? body.country.trim() : ''
       const newThemeId = body.themeId ? body.themeId.trim() : ''
+
+      let newSocials = []
+      let newSocialsLinks = []
+      if (body.socials && typeof body.socials === 'string') {
+        newSocials = [body.socials]
+      }
+      if (body.socialsLinks && typeof body.socialsLinks === 'string') {
+        newSocialsLinks = [body.socialsLinks]
+      }
+      console.log(newSocials, newSocialsLinks)
+
       let newAvatar = ''
       let newCover = ''
+
+      console.log('body', body)
 
       // get User
       const userModel = await User.findOne({ where: { id: userId } })

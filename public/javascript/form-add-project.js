@@ -18,18 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectLoadingDisplay = document.querySelector('#project-loading-indicator')
   const projectSubmitText = document.querySelector('#project-submit-text')
 
-  if (!addProjectBtn) {
-    console.error('Can not find add project btn')
-    return
-  }
-  if (!projectFormContainer) {
-    console.error('Can not find project form container')
-    return
-  }
-  if (!projectFormCloseBtn) {
-    console.error('Can not find project form close btn')
-    return
-  }
   // open from
   addProjectBtn.addEventListener('click', () => {
     projectFormContainer.style.display = 'block'

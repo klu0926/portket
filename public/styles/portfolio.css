@@ -68,7 +68,7 @@
 }
 
 /* title */
-.portfolio-title p {
+.portfolio-title {
   background-color: var(--my-red);
   color: white;
   font-weight: bold;
