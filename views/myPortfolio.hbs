@@ -14,157 +14,141 @@
         <!--avatar + info -->
         <div class="portfolio-top-container">
           <!--avatar-->
-          <div id="avatar-container" class="portfolio-avatar-container avatar-edit-container">
-            <div class="avatar-fade"></div>
-            <img src="{{user.avatar}}" alt="avatar" />
+          <div id="avatar-container" class="portfolio-avatar-container">
+            <div id="avatar-input-div"></div>
+            <img id="avatar-img" src="{{user.avatar}}" alt="avatar" />
           </div>
-          <!--avatar form hidden-->
-          <form id="avatar-form" action="/users/{{user.id}}?_method=PUT" method="POST" enctype="multipart/form-data" style="display: none">
-            <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" />
-          </form>
+          <!--avatar input-->
+          <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" style="display: none" />
           <!--info-->
           <div class="info">
-            <!--name-->
-            <div class="mb-2">
-              <div id="name-display">
-                <h1 class="h3 fw-bold">{{user.name}}</h1>
-              </div>
-              <div id="name-input-div">
-                <form id="name-form" class="inline-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
-                  <div class="row">
-                    <div class="col-6">
-                      <input class="form-control" name="name" type="text" value="{{user.name}}" minlength="6" required />
-                      <div class="invalid-feedback">Require at least 6 characters.</div>
-                    </div>
-                    <div class="col ps-0">
-                      <button class="btn btn-primary" type="submit">Edit</button>
-                      <button id="name-cancel" class="btn btn-primary" type="button">x</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!--title-->
-            <div class="my-3">
-              <p class="fw-bold my-2 text-primary">TITLE</p>
-              <div id="title-display">
-                <p class="ps-2">{{user.title}}</p>
-              </div>
-              <div id="title-input-div">
-                <form id="title-form" class="inline-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
-                  <div class="row">
-                    <div class="col-6">
-                      <input class="form-control" name="title" type="text" value="{{user.title}}" minlength="6" required />
-                      <div class="invalid-feedback">Require at least 6 characters.</div>
-                    </div>
-                    <div class="col ps-0">
-                      <button class="btn btn-primary" type="submit">Edit</button>
-                      <button id="title-cancel" class="btn btn-primary" type="button">x</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!--social links-->
-            <div class="my-4">
-              <p class="fw-bold my-2 text-primary">SOCIAL</p>
-              <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
-                {{#each user.socials}}
-                <div class="social-box">
-                  <div class="social-icon">
-                    <a href="{{this.link}}" target="_blank">
-                      <img src="{{this.icon}}" alt="{{this.name}}" />
-                    </a>
-                  </div>
-                  <div class="social-icon-pop">
-                    <p class="text-primary">{{this.link}}</p>
+            <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+              <!--name-->
+              <div class="mb-2">
+                <div id="name-display">
+                  <h1 class="h3 fw-bold">{{user.name}}</h1>
+                </div>
+                <div id="name-input-div">
+                  <div class="fw-bold my-2 text-primary">Name</div>
+                  <div>
+                    <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" required />
+                    <div class="invalid-feedback">Require at least 6 characters.</div>
                   </div>
                 </div>
-                {{/each}}
               </div>
-            </div>
-            <!--social form-->
-            <div class="social-input-div">
-              <form id="social-add-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
-                <div class="row">
-                  <div class="col-5">
+              <!--title-->
+              <div class="my-3">
+                <p class="fw-bold my-2 text-primary">TITLE</p>
+                <div id="title-display">
+                  <p class="ps-2">{{user.title}}</p>
+                </div>
+                <div id="title-input-div">
+                  <div>
+                    <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" required />
+                  </div>
+                </div>
+              </div>
+              <!--social links-->
+              <div class="my-2">
+                <p class="fw-bold my-2 text-primary">SOCIAL</p>
+                <div id="social-display">
+                  <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
+                    {{#each user.socials}}
+                    <div class="social-box">
+                      <div class="social-icon">
+                        <a href="{{this.link}}" target="_blank">
+                          <img src="{{this.icon}}" alt="{{this.name}}" />
+                        </a>
+                      </div>
+                      <div class="social-icon-pop">
+                        <p class="text-primary">{{this.link}}</p>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+              <!--social form-->
+              <div id="social-input-div">
+                <div class="social-input-flex">
+                  <div class="col social-select">
                     <select id="socials-network" class="form-select w-100" name="socials" required>
-                      <option value="" selected>Select a Social Network</option>
+                      <option value="" selected>Select</option>
                       {{#each allSocials}}
                       <option value="{{this.id}}">{{this.name}}</option>
                       {{/each}}
                     </select>
                     <div class="invalid-feedback">Pick a social network.</div>
                   </div>
-                  <div class="col-4 ps-0">
+                  <div class="social-link ps-0">
                     <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" required />
                     <div class="invalid-feedback">http://www.example.com.</div>
                   </div>
-                  <div class="col ps-0">
+                  <div class="ps-0">
                     <button class="btn btn-primary" type="submit">Add</button>
                     <button id="social-add-cancel" class="btn btn-primary" type="button">x</button>
                   </div>
                 </div>
-              </form>
-            </div>
-            <!--BIO-->
-            <div class="my-4">
-              <p class="fw-bold mb-2 text-primary">BIO</p>
-              <div class="p-2">
-                <p class="portfolio-description">{{user.description}}</p>
               </div>
-            </div>
-            <!--contact-->
-            <div class="my-2">
-              <p class="fw-bold mb-2 text-primary">CONTACT</p>
-              <div class="p-2">
-                <!--contact-location-->
-                {{#if (ifOr user.country user.city)}}
-                <p class="mb-2">
-                  <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                  {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                </p>
-                {{/if}}
-                <!--contact-email-->
-                {{#if user.email}}
-                <p class="mb-2">
-                  <i class="fa-regular fa-envelope" style="width: 20px"></i>
-                  {{user.email}}
-                </p>
-                {{/if}}
-                <!--contact-phone-->
-                {{#if user.phone}}
-                <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-                {{/if}}
+              <!--BIO-->
+              <div class="my-2">
+                <p class="fw-bold mb-2 text-primary">BIO</p>
+                <div class="p-2">
+                  <p class="portfolio-description">{{user.description}}</p>
+                </div>
               </div>
-            </div>
-            <!--skills-->
-            <div class="my-4">
-              <p class="fw-bold my-2 text-primary">SKILLS</p>
-              {{#if user.skills}}
-              <div class="px-2">
-                {{#each user.skills}}
-                <div class="skill-block">
-                  <div class="skill-icon">
-                    <img src="{{this.icon}}" alt="skill icon" />
-                  </div>
-                  <div class="skill-info">
-                    <div class="skill-block-top d-flex">
-                      <div class="d-flex align-items-center">
-                        <p class="skill-name">{{this.name}}</p>
+              <!--contact-->
+              <div class="my-2">
+                <p class="fw-bold mb-2 text-primary">CONTACT</p>
+                <div class="p-2">
+                  <!--contact-location-->
+                  {{#if (ifOr user.country user.city)}}
+                  <p class="mb-2">
+                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+                  </p>
+                  {{/if}}
+                  <!--contact-email-->
+                  {{#if user.email}}
+                  <p class="mb-2">
+                    <i class="fa-regular fa-envelope" style="width: 20px"></i>
+                    {{user.email}}
+                  </p>
+                  {{/if}}
+                  <!--contact-phone-->
+                  {{#if user.phone}}
+                  <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+                  {{/if}}
+                </div>
+              </div>
+              <!--skills-->
+              <div class="my-4">
+                <p class="fw-bold my-2 text-primary">SKILLS</p>
+                {{#if user.skills}}
+                <div class="px-2">
+                  {{#each user.skills}}
+                  <div class="skill-block">
+                    <div class="skill-icon">
+                      <img src="{{this.icon}}" alt="skill icon" />
+                    </div>
+                    <div class="skill-info">
+                      <div class="skill-block-top d-flex">
+                        <div class="d-flex align-items-center">
+                          <p class="skill-name">{{this.name}}</p>
+                        </div>
+                      </div>
+                      <div class="skill-block-bottom">
+                        <p class="skill-description">{{this.description}}</p>
                       </div>
                     </div>
-                    <div class="skill-block-bottom">
-                      <p class="skill-description">{{this.description}}</p>
-                    </div>
                   </div>
+                  {{/each}}
                 </div>
-                {{/each}}
+                {{else}}
+                <p>No skills listed</p>
+                {{/if}}
               </div>
-              {{else}}
-              <p>No skills listed</p>
-              {{/if}}
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -179,7 +163,16 @@
             <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
           </div>
           <!--Add project btn-->
-          <div id="add-project-btn" class="add-project-btn mb-3">Add Project+</div>
+          <div id="add-project-btn-container">
+            <div id="project-blocker">
+              <div class="project-blocker-inner">
+                <i class="fa-solid fa-ban me-2"></i>
+                Exit edit mode to add project.
+              </div>
+            </div>
+            <div id="add-project-btn"></div>
+          </div>
+
           <!--projects-->
           {{#if user.projects}} {{#each user.projects}}
           <div class="project-outer-block mb-3">

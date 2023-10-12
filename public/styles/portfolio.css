@@ -33,6 +33,7 @@
 }
 
 .portfolio-right {
+  position: relative;
   border: none;
 }
 

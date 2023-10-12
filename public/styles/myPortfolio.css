@@ -38,17 +38,26 @@
 
 #edit-mode-display {
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   color: white;
   height: 20px;
-  width: 100%;
+  width: 0%;
   left: 0;
   top: 100%;
   background-color: var(--my-red);
-  animation: edit-mode-display-show 0.6s ease-in-out forwards;
   animation-play-state: paused;
+}
+
+#edit-mode-display.show-animation {
+  animation: edit-mode-display-show 0.6s ease-in-out forwards;
+  display: flex;
+}
+
+#edit-mode-display.hide-animation {
+  animation: edit-mode-display-hide 0.4s ease-in-out forwards;
+  display: flex;
 }
 
 @keyframes edit-mode-display-show {
@@ -62,11 +71,18 @@
   }
 }
 
-/* name */
-#name-display {
-  display: inline-block;
+@keyframes edit-mode-display-hide {
+  from {
+    width: 100%;
+    color: rgb(256, 256, 256, 1);
+  }
+  to {
+    width: 0%;
+    color: rgb(256, 256, 256, 0);
+  }
 }
 
+/* name */
 #name-input-div {
   display: none;
 }
@@ -81,9 +97,26 @@
 }
 
 /* social*/
-.social-input-div {
+#social-input-div {
   display: none;
 }
+.social-input-flex {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.social-select {
+  flex-shrink: 1;
+  min-width: 90px;
+  padding-right: 6px;
+}
+
+.social-link {
+  flex-grow: 1;
+  padding-right: 6px;
+}
+
 .form-social-window {
   height: 100px;
   width: 160px;
@@ -94,21 +127,53 @@
 }
 
 /* Project */
-.add-project-btn {
+#add-project-btn-container {
+  position: relative;
   height: 200px;
+}
+
+#project-blocker {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid var(--my-border);
+}
+
+.project-blocker-inner {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: var(--my-grey);
+}
+
+#add-project-btn {
+  position: relative;
+  display: block;
+  height: 100%;
   background-color: white;
   border: 1px solid var(--my-border);
   border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.1em;
   color: var(--my-grey-light);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
 
-.add-project-btn:hover {
+#add-project-btn::after {
+  content: 'Add Project +';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#add-project-btn:hover {
   transform: translateY(-4px);
   color: var(--my-red);
   border-color: var(--my-red);
@@ -156,26 +221,18 @@
 }
 
 /* avatar */
-.avatar-edit-container:hover {
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-}
-
-.avatar-fade {
+#avatar-input-div {
+  display: none;
   position: absolute;
-  display: block;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(256, 256, 256, 0);
-  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.4);
 }
 
-.avatar-fade:hover {
-  background-color: var(--my-red-light2);
-  transform: translateY(-2px);
-}
-
-.avatar-fade:hover::after {
+#avatar-input-div::after {
   content: '+';
   width: 100%;
   height: 100%;
@@ -186,4 +243,8 @@
   color: white;
   font-size: 2rem;
   font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+#avatar-input-div:hover::after {
+  font-size: 3rem;
 }
