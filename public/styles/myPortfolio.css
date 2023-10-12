@@ -2,6 +2,66 @@
 @import url('/styles/animation.css');
 /* my portfolio ----------------------------------*/
 
+/* edit button in nav (html in main.hbs) */
+.edit-buttons-container {
+  margin-right: 10px;
+  display: flex;
+}
+
+.edit-btn {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.edit-portfolio-icon {
+  margin-right: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+#edit-portfolio-btn {
+  display: flex;
+}
+
+#edit-portfolio-btn:hover .edit-portfolio-icon {
+  transform: rotate(-15deg);
+}
+
+#save-portfolio-btn {
+  display: none;
+}
+
+#cancel-portfolio-btn {
+  display: none;
+}
+
+#edit-mode-display {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 20px;
+  width: 100%;
+  left: 0;
+  top: 100%;
+  background-color: var(--my-red);
+  animation: edit-mode-display-show 0.6s ease-in-out forwards;
+  animation-play-state: paused;
+}
+
+@keyframes edit-mode-display-show {
+  from {
+    width: 0%;
+    color: rgb(256, 256, 256, 0);
+  }
+  to {
+    width: 100%;
+    color: rgb(256, 256, 256, 1);
+  }
+}
+
 /* name */
 #name-display {
   display: inline-block;
@@ -21,31 +81,9 @@
 }
 
 /* social*/
-.social-add {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  background-color: white;
-  border: 1px solid var(--my-grey);
-  border-radius: 5px;
-  cursor: pointer;
+.social-input-div {
+  display: none;
 }
-
-.social-add::before {
-  content: '+';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  font-size: 1.1rem;
-}
-
-.social-add:hover {
-  color: var(--my-red);
-  border-color: var(--my-red);
-}
-
 .form-social-window {
   height: 100px;
   width: 160px;
@@ -148,19 +186,4 @@
   color: white;
   font-size: 2rem;
   font-weight: bold;
-}
-
-/* editable items*/
-.editable {
-  position: relative;
-  cursor: pointer;
-  border-radius: 4px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  transition: all 0.15s ease-in-out;
-}
-
-.editable:hover {
-  transform: translateY(-2px);
-  background-color: var(--my-red-light2);
 }

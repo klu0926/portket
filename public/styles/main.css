@@ -204,10 +204,102 @@ body {
   width: 25px;
 }
 
-/* home Page */
+/* header */
+.header {
+  position: fixed;
+  height: 65px;
+  width: 100%;
+  background-color: white;
+  margin: 0;
+  box-shadow: 0px 5px 10px 1px rgb(0, 0, 0, 0.2);
+  z-index: 100;
+  border: none;
+}
+
+/* loader */
+.loader-container {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 5px;
+  background-color: white;
+  z-index: 1000;
+  opacity: 0%;
+}
+
+.loader-bar {
+  content: ' ';
+  display: block;
+  width: 10%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  background-color: red;
+}
+
+/* navbar */
+.navbar {
+  border: none;
+  height: 100%;
+  margin: 0;
+  padding: 0 5px;
+}
+
+/* navbar right (my portfolio , login/out)*/
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+}
+
+/* login/out */
+.login-btn {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 0.9rem;
+}
+
+/* my portfolio icon */
+.my-portfolio-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid var(--my-red);
+  background-color: white;
+  color: var(--my-red);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1);
+}
+
+.my-portfolio-icon:hover {
+  border: none;
+  background-color: var(--my-red);
+  border-radius: 6px;
+  color: white;
+}
+
+/*portfolio display*/
+.portfolio-display {
+  margin-top: 30px;
+}
+
+/* body */
+
 .banner {
   height: 500px;
 }
+
+.body {
+  margin-top: 80px;
+}
+
 .banner-image {
   background-image: url('/images/cover-women.jpg');
   background-size: cover;
@@ -233,46 +325,6 @@ body {
   color: black;
   font-size: 1.4rem;
   margin: 14px 0px;
-}
-
-/* navbar */
-.navbar {
-  border: none;
-}
-
-/* navbar right (my portfolio , login/out)*/
-.navbar-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-}
-
-/* my portfolio icon */
-.my-portfolio-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
-  border: 1px solid var(--my-red);
-  background-color: white;
-  color: var(--my-red);
-  transition: all 0.2s ease-in-out;
-  box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1);
-}
-
-.my-portfolio-icon:hover {
-  border: none;
-  background-color: var(--my-red);
-  border-radius: 6px;
-  color: white;
-}
-
-/*portfolio display*/
-.portfolio-display {
-  margin-top: 30px;
 }
 
 /*-Index card-*/
@@ -384,28 +436,6 @@ body {
 
 .home-search-bar button {
   height: 100%;
-}
-
-/* loader */
-.loader-container {
-  display: flex;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 5px;
-  background-color: white;
-  z-index: 1000;
-  opacity: 0%;
-}
-
-.loader-bar {
-  content: ' ';
-  display: block;
-  width: 10%;
-  height: 100%;
-  position: absolute;
-  z-index: 10;
-  background-color: red;
 }
 
 @media screen and (max-width: 800px) {

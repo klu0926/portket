@@ -8,43 +8,55 @@
     <title>PORTKET</title>
   </head>
   <body>
-    <div class="body-container row position-relative">
-      <!--message-->
-        {{> message}}
-      <!--nav bar-->
-      <header>
-        <!--loader-->
-        <div class="loader-container">
-          <div class="loader-bar"></div>
-        </div>
-        <nav class="navbar bg-light justify-content-between py-2 px-4">
-          <a class="navbar-brand fw-bold" href="/">
-            {{#if isAuthenticated}}{{currentUser.name}}'s{{/if}}
-            <span class="text-primary">PORT</span><span>KET</span>
-          </a>
-          {{#if isAuthenticated}}
-          <div class="navbar-right">
-            <!--my portfolio-->
-              <a class="my-portfolio-icon" href="/users/{{currentUser.id}}">
-                <i class="fa-solid fa-user"></i>
-              </button>
-            <!--logout-->
-            <a class="btn btn-outline-primary" href="/users/logout">Logout</a>
-            {{else}}
-            <!--login-->
-            <a class="btn btn-primary" href="/users/login">Login</a>
-            {{/if}}
+    <!--message-->
+    {{> message}}
+    <!--top-->
+    <header class="header">
+      <!--loader-->
+      <div class="loader-container">
+        <div class="loader-bar"></div>
+      </div>
+      <!--nab bar-->
+      <nav class="navbar py-2 px-4">
+        <a class="navbar-brand fw-bold" href="/users">
+          {{#if isAuthenticated}}{{currentUser.name}}'s{{/if}}
+          <span class="text-primary">PORT</span><span>KET</span>
+        </a>
+        {{#if isAuthenticated}}
+        <div class="navbar-right">
+          <!-- edit mode buttons for my portfolio-->
+          {{#if (isSame page 'myPortfolio')}}
+          <div class="edit-buttons-container">
+            <button id="edit-portfolio-btn" class="btn btn-primary edit-btn">
+              <i class="fa-solid fa-pencil edit-portfolio-icon"></i>
+              Edit Mode
+            </button>
+            <button id="save-portfolio-btn" class="btn btn-primary edit-btn">Save</button>
+            <button id="cancel-portfolio-btn" class="btn btn-primary edit-btn">X</button>
           </div>
-        </nav>
-      </header>
-    </div>
+          {{else}}
+          <!--my portfolio-->
+          <a class="my-portfolio-icon" href="/users/{{currentUser.id}}">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          {{/if}}
+          <!--logout-->
+          <a class="login-btn btn btn-outline-primary" href="/users/logout">Logout</a>
+          {{else}}
+          <!--login-->
+          <a class="login-btn btn btn-primary" href="/users/login">Login</a>
+          {{/if}}
+        </div>
+        <!--edit mode display tip-->
+        <div id="edit-mode-display">Edit Mode</div>
+      </nav>
+    </header>
 
     <!--main content-->
-    <div>{{{body}}}</div>
+    <div class="body">{{{body}}}</div>
 
     <!--footer-->
     <div class="footer">{{> footer}}</div>
-
 
     <!--script-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>

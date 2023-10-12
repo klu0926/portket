@@ -23,10 +23,10 @@
             <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" />
           </form>
           <!--info-->
-          <div>
+          <div class="info">
             <!--name-->
             <div class="mb-2">
-              <div id="name-display" class="editable">
+              <div id="name-display">
                 <h1 class="h3 fw-bold">{{user.name}}</h1>
               </div>
               <div id="name-input-div">
@@ -47,7 +47,7 @@
             <!--title-->
             <div class="my-3">
               <p class="fw-bold my-2 text-primary">TITLE</p>
-              <div id="title-display" class="editable">
+              <div id="title-display">
                 <p class="ps-2">{{user.title}}</p>
               </div>
               <div id="title-input-div">
@@ -81,10 +81,6 @@
                   </div>
                 </div>
                 {{/each}}
-                <!--add social-->
-                <div class="social-box">
-                  <div class="social-add editable"></div>
-                </div>
               </div>
             </div>
             <!--social form-->
@@ -142,36 +138,37 @@
                 {{/if}}
               </div>
             </div>
-          </div>
-        </div>
-        <!--skills-->
-        <div class="my-4">
-          <p class="fw-bold my-2 text-primary">SKILLS</p>
-          {{#if user.skills}}
-          <div class="px-2">
-            {{#each user.skills}}
-            <div class="skill-block">
-              <div class="skill-icon">
-                <img src="{{this.icon}}" alt="skill icon" />
-              </div>
-              <div class="skill-info">
-                <div class="skill-block-top d-flex">
-                  <div class="d-flex align-items-center">
-                    <p class="skill-name">{{this.name}}</p>
+            <!--skills-->
+            <div class="my-4">
+              <p class="fw-bold my-2 text-primary">SKILLS</p>
+              {{#if user.skills}}
+              <div class="px-2">
+                {{#each user.skills}}
+                <div class="skill-block">
+                  <div class="skill-icon">
+                    <img src="{{this.icon}}" alt="skill icon" />
+                  </div>
+                  <div class="skill-info">
+                    <div class="skill-block-top d-flex">
+                      <div class="d-flex align-items-center">
+                        <p class="skill-name">{{this.name}}</p>
+                      </div>
+                    </div>
+                    <div class="skill-block-bottom">
+                      <p class="skill-description">{{this.description}}</p>
+                    </div>
                   </div>
                 </div>
-                <div class="skill-block-bottom">
-                  <p class="skill-description">{{this.description}}</p>
-                </div>
+                {{/each}}
               </div>
+              {{else}}
+              <p>No skills listed</p>
+              {{/if}}
             </div>
-            {{/each}}
           </div>
-          {{else}}
-          <p>No skills listed</p>
-          {{/if}}
         </div>
       </div>
+
       <!--projects (right side)-->
       <div class="portfolio-right col-12 col-lg-6">
         <div class="project-container">

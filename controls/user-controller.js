@@ -182,7 +182,7 @@ const userController = {
       console.log(user)
       // check if user is current user
       if (req.user?.id === user.id) {
-        res.render('myPortfolio', { user, allSkills, allSocials })
+        res.render('myPortfolio', { user, allSkills, allSocials, page: 'myPortfolio' })
       } else {
         res.render('portfolio', { user })
       }

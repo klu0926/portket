@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   editUserAvatar()
-  editName()
-  editTitle()
-  addSocial()
+  editMode()
 })
 
 function editUserAvatar() {
@@ -18,63 +16,31 @@ function editUserAvatar() {
   })
 }
 
-function editName() {
-  const nameDisplay = document.querySelector('#name-display')
-  const nameInputDiv = document.querySelector('#name-input-div')
-  const nameInputCancel = document.querySelector('#name-cancel')
-  const nameForm = document.querySelector('#name-form')
+function editMode() {
+  const editPortfolioBtn = document.querySelector('#edit-portfolio-btn')
+  const savePortfolioBtn = document.querySelector('#save-portfolio-btn')
+  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  const editModeDisplay = document.querySelector('#edit-mode-display')
 
-  nameDisplay.addEventListener('click', () => {
-    nameInputDiv.style.display = 'block'
-    nameDisplay.style.display = 'none'
+  editPortfolioBtn.addEventListener('click', () => {
+    // show
+    savePortfolioBtn.style.display = 'flex'
+    cancelPortfolioBtn.style.display = 'flex'
+    // hide
+    editPortfolioBtn.style.display = 'none'
+    // play edit mode animation
+    editModeDisplay.style.display = 'flex'
+    editModeDisplay.style.animationPlayState = 'running'
   })
 
-  nameInputCancel.addEventListener('click', () => {
-    nameInputDiv.style.display = 'none'
-    nameDisplay.style.display = 'inline-block'
-  })
-
-  nameForm.addEventListener('submit', (event) => {
-    if (!nameForm.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    nameForm.classList.add('was-validated')
-  })
-}
-
-function editTitle() {
-  const titleDisplay = document.querySelector('#title-display')
-  const titleInputDiv = document.querySelector('#title-input-div')
-  const titleInputCancel = document.querySelector('#title-cancel')
-  const titleForm = document.querySelector('#title-form')
-
-  titleDisplay.addEventListener('click', () => {
-    titleInputDiv.style.display = 'block'
-    titleDisplay.style.display = 'none'
-  })
-
-  titleInputCancel.addEventListener('click', () => {
-    titleInputDiv.style.display = 'none'
-    titleDisplay.style.display = 'inline-block'
-  })
-
-  titleForm.addEventListener('submit', (event) => {
-    if (!titleForm.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    titleForm.classList.add('was-validated')
-  })
-}
-
-function addSocial() {
-  const socialAddForm = document.querySelector('#social-add-form')
-  socialAddForm.addEventListener('submit', (event) => {
-    if (!socialAddForm.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    socialAddForm.classList.add('was-validated')
+  cancelPortfolioBtn.addEventListener('click', () => {
+    // show
+    editPortfolioBtn.style.display = 'flex'
+    // hide
+    savePortfolioBtn.style.display = 'none'
+    cancelPortfolioBtn.style.display = 'none'
+    // reset edit mode animation
+    editModeDisplay.style.display = 'none'
+    editModeDisplay.style.animationPlayState = 'paused'
   })
 }
