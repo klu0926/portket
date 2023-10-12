@@ -22,6 +22,9 @@ function previewAvatar() {
 }
 
 function editMode() {
+  // info form
+  const infoFormSubmit = document.querySelector('#info-submit-btn')
+  const infoForm = document.querySelector('#info-form')
   // edit nav bar
   const editPortfolioBtn = document.querySelector('#edit-portfolio-btn')
   const savePortfolioBtn = document.querySelector('#save-portfolio-btn')
@@ -80,5 +83,17 @@ function editMode() {
     editModeDisplay.classList.remove('show-animation')
     editModeDisplay.classList.add('hide-animation')
     editModeDisplay.style.animationPlayState = 'running'
+  })
+
+  savePortfolioBtn.addEventListener('click', () => {
+    infoFormSubmit.click()
+  })
+
+  infoForm.addEventListener('submit', (event) => {
+    if (!infoForm.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    infoForm.classList.add('was-validated')
   })
 }

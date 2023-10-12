@@ -22,7 +22,9 @@
           <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" style="display: none" />
           <!--info-->
           <div class="info">
+            <!--info from-->
             <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+              <button id="info-submit-btn" style="display: none" type="submit"></button>
               <!--name-->
               <div class="mb-2">
                 <div id="name-display">

@@ -20,11 +20,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-#edit-portfolio-btn {
-  display: flex;
-}
-
-#edit-portfolio-btn:hover .edit-portfolio-icon {
+.edit-btn:hover .edit-portfolio-icon {
   transform: rotate(-15deg);
 }
 
