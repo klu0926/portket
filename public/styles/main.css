@@ -135,7 +135,31 @@ p {
 }
 
 /* My Code start*/
-/*Basic color change*/
+/* general */
+.red {
+  color: var(--my-red) !important;
+}
+
+.my-icon {
+  display: inline;
+  width: 20px;
+  margin-right: 3px;
+}
+
+.bracket-text {
+  color: var(--my-grey);
+  font-size: 0.8rem;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.bracket-text::before {
+  content: '( ';
+}
+.bracket-text::after {
+  content: ' )';
+}
+
 body {
   display: flex;
   height: 100vh;

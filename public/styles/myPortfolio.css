@@ -3,13 +3,7 @@
 /* my portfolio ----------------------------------*/
 
 /* general */
-.my-icon {
-  display: inline;
-  width: 20px;
-  margin-right: 3px;
-}
-
-.add-button {
+.small-text- .add-button {
   width: 30px;
   height: 30px;
   display: flex;

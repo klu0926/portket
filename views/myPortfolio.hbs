@@ -165,7 +165,7 @@
                     <p class="mb-1">
                       <i class="fa-regular fa-envelope my-icon"></i>
                       <span>Email</span>
-                      <span class="text-primary ms-1" style="font-size: 0.8rem">&lpar; Email can not be changed &rpar;</span>
+                      <span class="bracket-text red">Email can not be changed</span>
                     </p>
                     <input name="email" class="form-control" type="text" value="{{user.email}}" disabled />
                   </div>
@@ -174,30 +174,30 @@
                     <p class="mb-1">
                       <i class="fa-solid fa-location-dot my-icon"></i>
                       <span>Location</span>
+                      <span class="bracket-text">optional</span>
                     </p>
                     <div class="location-input-div">
                       <!--country input-->
                       <div>
-                        <input type="text" id="country-input" class="form-control" name="country" list="countries" placeholder="country" {{#if user.country}}value="{{user.country}}" {{/if}}required>
+                        <input type="text" id="country-input" class="form-control" name="country" list="countries" placeholder="country" {{#if user.country}}value="{{user.country}}" {{/if}}>
                         <datalist id="countries">
                           {{#each allLocations}}
                           <option value="{{user.country}}">{{user.country}}</option>
                           {{/each}}
                         </datalist>
-                        <div class="invalid-feedback">Require.</div>
                       </div>
                       <!--city input-->
-                      <div>
-                        <input id="city-input" class="form-control" name="city" placeholder="city" {{#if user.city}}value="{{user.city}}"{{/if}} required />
-                        <div class="invalid-feedback">Require.</div>
-                      </div>
+                      <div><input id="city-input" class="form-control" name="city" placeholder="city" {{#if user.city}}value="{{user.city}}"{{/if}} /></div>
                     </div>
                   </div>
                   <!--phone input-->
                   <div class="contact-div">
-                    <p class="mb-1"><i class="fas fa-mobile-alt my-icon me-2"></i>Phone</p>
-                    <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number" required />
-                    <div class="invalid-feedback">Require.</div>
+                    <p class="mb-1">
+                      <i class="fas fa-mobile-alt my-icon me-2"></i>
+                      <span>Phone</span>
+                      <span class="bracket-text">optional</span>
+                    </p>
+                    <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number"/>
                   </div>
                 </div>
                 <!--contact input div end-->
