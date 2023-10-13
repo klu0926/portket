@@ -8,7 +8,7 @@ router.use('/users', user)
 router.use('/projects', project)
 
 // index
-router.get('/', authenticator, (req, res) => {
+router.get('/', (req, res) => {
   res.redirect('/users')
 })
 router.use(errorHandler)

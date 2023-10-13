@@ -7,9 +7,14 @@ function previewAvatar() {
   const avatarInputDiv = document.querySelector('#avatar-input-div')
   const avatarInput = document.querySelector('#avatar-input')
   const avatarImg = document.querySelector('#avatar-img')
+  const originalAvatar = avatarImg.src
+  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+
+  // add
   avatarInputDiv.addEventListener('click', (event) => {
     avatarInput.click()
   })
+  // change
   avatarInput.addEventListener('change', () => {
     if (avatarInput.files && avatarInput.files[0]) {
       const reader = new FileReader()
@@ -18,6 +23,10 @@ function previewAvatar() {
       }
       reader.readAsDataURL(avatarInput.files[0])
     }
+  })
+  // cancel
+  cancelPortfolioBtn.addEventListener('click', () => {
+    avatarImg.src = originalAvatar
   })
 }
 
@@ -85,10 +94,12 @@ function editMode() {
     editModeDisplay.style.animationPlayState = 'running'
   })
 
+  // save
   savePortfolioBtn.addEventListener('click', () => {
     infoFormSubmit.click()
   })
 
+  // form submit
   infoForm.addEventListener('submit', (event) => {
     if (!infoForm.checkValidity()) {
       event.preventDefault()

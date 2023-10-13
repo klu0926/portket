@@ -42,7 +42,7 @@
               <div class="my-3">
                 <p class="fw-bold my-2 text-primary">TITLE</p>
                 <div id="title-display">
-                  <p class="ps-2">{{user.title}}</p>
+                  <p class="portfolio-title ps-2">{{user.title}}</p>
                 </div>
                 <div id="title-input-div">
                   <div>
@@ -53,6 +53,7 @@
               <!--social links-->
               <div class="my-2">
                 <p class="fw-bold my-2 text-primary">SOCIAL</p>
+                {{#if user.socials}}
                 <div id="social-display">
                   <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
                     {{#each user.socials}}
@@ -69,6 +70,9 @@
                     {{/each}}
                   </div>
                 </div>
+                {{else}}
+                <p class="ps-2">No social listed</p>
+                {{/if}}
               </div>
               <!--social form-->
               <div id="social-input-div">
