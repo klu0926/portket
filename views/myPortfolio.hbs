@@ -53,8 +53,8 @@
               <!--social links-->
               <div class="my-2">
                 <p class="fw-bold my-2 text-primary">SOCIAL</p>
-                {{#if user.socials}}
                 <div id="social-display">
+                  {{#if user.socials}}
                   <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
                     {{#each user.socials}}
                     <div class="social-box">
@@ -69,32 +69,57 @@
                     </div>
                     {{/each}}
                   </div>
+                  {{else}}
+                  <p class="ps-2">No social listed</p>
                 </div>
-                {{else}}
-                <p class="ps-2">No social listed</p>
                 {{/if}}
               </div>
               <!--social form-->
               <div id="social-input-div">
+                <!--social input container-->
+                <div id="social-input-container"></div>
+                <!--social input add-->
                 <div class="social-input-flex">
                   <div class="col social-select">
-                    <select id="socials-network" class="form-select w-100" name="socials" required>
+                    <select id="socials-network" class="form-select w-100" name="socials" required disabled>
                       <option value="" selected>Select</option>
                       {{#each allSocials}}
                       <option value="{{this.id}}">{{this.name}}</option>
                       {{/each}}
                     </select>
-                    <div class="invalid-feedback">Pick a social network.</div>
                   </div>
                   <div class="social-link ps-0">
-                    <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" required />
-                    <div class="invalid-feedback">http://www.example.com.</div>
+                    <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
                   </div>
-                  <div class="ps-0">
-                    <button class="btn btn-primary" type="submit">Add</button>
-                    <button id="social-add-cancel" class="btn btn-primary" type="button">x</button>
+                  <div class="ps-0 d-flex align-items-center">
+                    <button id="add-social" class="add-button" type="button">+</button>
                   </div>
                 </div>
+
+                <!--social input example-->
+                <div class="social-input-sample" style="display: none">
+                  <div class="social-input-flex">
+                    <div class="col social-select">
+                      <select id="socials-network" class="form-select w-100" name="socials" required disabled>
+                        <option value="" selected>Select</option>
+                        {{#each allSocials}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                      <div class="invalid-feedback">Require.</div>
+                    </div>
+                    <div class="social-link ps-0">
+                      <div>
+                        <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" required disabled />
+                        <div class="invalid-feedback">Require url.</div>
+                      </div>
+                    </div>
+                    <div class="ps-0 d-flex align-items-center">
+                      <button class="remove-button remove-social" type="button">-</button>
+                    </div>
+                  </div>
+                </div>
+                <!---->
               </div>
               <!--BIO-->
               <div class="my-2">

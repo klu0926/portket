@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   previewAvatar()
   editMode()
+  socials()
 })
 
 function previewAvatar() {
@@ -56,18 +57,18 @@ function editMode() {
   const editModeItems = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker]
   const viewModeItems = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn]
 
+  // Enter edit mode
   editPortfolioBtn.addEventListener('click', () => {
     // show
     savePortfolioBtn.style.display = 'flex'
     cancelPortfolioBtn.style.display = 'flex'
     editModeItems.forEach((e) => {
-      e.style.display = 'block'
+      if (e && e.style) e.style.display = 'block'
     })
     // hide
     editPortfolioBtn.style.display = 'none'
-    viewModeItems.forEach((e) => (e.style.display = 'none'))
     viewModeItems.forEach((e) => {
-      e.style.display = 'none'
+      if (e && e.style) e.style.display = 'none'
     })
     // show edit mode animation
     editModeDisplay.style.display = 'flex'
@@ -76,7 +77,11 @@ function editMode() {
     editModeDisplay.style.animationPlayState = 'running'
   })
 
+  // Exit edit mode
   cancelPortfolioBtn.addEventListener('click', () => {
+    // reset form
+    infoForm.reset()
+    infoForm.classList.remove('was-validated')
     // show
     editPortfolioBtn.style.display = 'flex'
     viewModeItems.forEach((e) => {
@@ -92,6 +97,10 @@ function editMode() {
     editModeDisplay.classList.remove('show-animation')
     editModeDisplay.classList.add('hide-animation')
     editModeDisplay.style.animationPlayState = 'running'
+
+    // remove new social input
+    const newSocialInputs = document.querySelectorAll('.new-social-input')
+    newSocialInputs.forEach((e) => e.remove())
   })
 
   // save
@@ -106,5 +115,28 @@ function editMode() {
       event.stopPropagation()
     }
     infoForm.classList.add('was-validated')
+  })
+}
+
+function socials() {
+  const addSocialBtn = document.querySelector('#add-social')
+  const socialInputContainer = document.querySelector('#social-input-container')
+
+  // add social input
+  addSocialBtn.addEventListener('click', () => {
+    const newSocialInput = document.createElement('div')
+    newSocialInput.innerHTML = document.querySelector('.social-input-sample').innerHTML
+    newSocialInput.classList.add('new-social-input')
+    newSocialInput.querySelector('.form-select').removeAttribute('disabled')
+    newSocialInput.querySelector('#socials-link').removeAttribute('disabled')
+    socialInputContainer.append(newSocialInput)
+
+    // add remove btn event
+    const removeSocialBtn = newSocialInput.querySelector('.remove-social')
+    removeSocialBtn.addEventListener('click', (event) => {
+      console.log('click')
+      const input = event.target.closest('.new-social-input')
+      if (input) input.remove()
+    })
   })
 }
