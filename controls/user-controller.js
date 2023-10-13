@@ -5,6 +5,7 @@ const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const sequelize = require('sequelize')
 const imgurFileHandler = require('../helper/imgur')
+const allLocations = require('../data/location.json')
 
 const userController = {
   login: (req, res, next) => {
@@ -182,7 +183,13 @@ const userController = {
       console.log(user)
       // check if user is current user
       if (req.user?.id === user.id) {
-        res.render('myPortfolio', { user, allSkills, allSocials, page: 'myPortfolio' })
+        res.render('myPortfolio', {
+          user,
+          allSkills,
+          allSocials,
+          allLocations,
+          page: 'myPortfolio',
+        })
       } else {
         res.render('portfolio', { user })
       }
@@ -205,9 +212,9 @@ const userController = {
 
       const newName = body.name ? body.name.trim() : ''
       const newTitle = body.title ? body.title.trim() : ''
+      const newDescription = body.description ? body.description.trim() : ''
       const newEmail = body.email ? body.email.trim() : ''
       const newPhone = body.phone ? body.phone.trim() : ''
-      const newDescription = body.description ? body.description.trim() : ''
       const newCity = body.city ? body.city.trim() : ''
       const newCountry = body.country ? body.country.trim() : ''
       const newThemeId = body.themeId ? body.themeId.trim() : ''

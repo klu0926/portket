@@ -31,8 +31,8 @@
                   <h1 class="h3 fw-bold">{{user.name}}</h1>
                 </div>
                 <div id="name-input-div">
-                  <div class="fw-bold my-2 text-primary">Name</div>
-                  <div>
+                  <p class="fw-bold my-2 text-primary">Name</p>
+                  <div class="ps-2">
                     <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" required />
                     <div class="invalid-feedback">Require at least 6 characters.</div>
                   </div>
@@ -44,7 +44,7 @@
                 <div id="title-display">
                   <p class="portfolio-title ps-2">{{user.title}}</p>
                 </div>
-                <div id="title-input-div">
+                <div id="title-input-div" class="ps-2">
                   <div>
                     <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" required />
                   </div>
@@ -53,7 +53,7 @@
               <!--social links-->
               <div class="my-2">
                 <p class="fw-bold my-2 text-primary">SOCIAL</p>
-                <div id="social-display">
+                <div id="social-display" class="ps-2">
                   {{#if user.socials}}
                   <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
                     {{#each user.socials}}
@@ -70,12 +70,12 @@
                     {{/each}}
                   </div>
                   {{else}}
-                  <p class="ps-2">No social listed</p>
+                  <p>No social listed</p>
                 </div>
                 {{/if}}
               </div>
               <!--social form-->
-              <div id="social-input-div">
+              <div id="social-input-div" class="ps-2">
                 <!--social input container-->
                 <div id="social-input-container"></div>
                 <!--social input add-->
@@ -121,36 +121,86 @@
                 </div>
                 <!---->
               </div>
-              <!--BIO-->
+              <!--Description-->
               <div class="my-2">
                 <p class="fw-bold mb-2 text-primary">BIO</p>
-                <div class="p-2">
+                <div id="description-display" class="p-2">
                   <p class="portfolio-description">{{user.description}}</p>
+                </div>
+                <div id="description-input-div" class="ps-2">
+                  <textarea class="form-control" name="description" rows="4" cols="50" minlength="10" required>{{user.description}}</textarea>
+                  <div class="invalid-feedback">Require at least 10 characters.</div>
                 </div>
               </div>
               <!--contact-->
               <div class="my-2">
                 <p class="fw-bold mb-2 text-primary">CONTACT</p>
-                <div class="p-2">
-                  <!--contact-location-->
-                  {{#if (ifOr user.country user.city)}}
-                  <p class="mb-2">
-                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                  </p>
-                  {{/if}}
-                  <!--contact-email-->
-                  {{#if user.email}}
-                  <p class="mb-2">
-                    <i class="fa-regular fa-envelope" style="width: 20px"></i>
-                    {{user.email}}
-                  </p>
-                  {{/if}}
-                  <!--contact-phone-->
-                  {{#if user.phone}}
-                  <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-                  {{/if}}
+                <!--contact display-->
+                <div id="contact-display">
+                  <div class="ps-2">
+                    <!--contact-email-->
+                    {{#if user.email}}
+                    <p class="mb-2">
+                      <i class="fa-regular fa-envelope" style="width: 20px"></i>
+                      {{user.email}}
+                    </p>
+                    {{/if}}
+                    <!--contact-location-->
+                    {{#if (ifOr user.country user.city)}}
+                    <p class="mb-2">
+                      <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                      {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+                    </p>
+                    {{/if}}
+                    <!--contact-phone-->
+                    {{#if user.phone}}
+                    <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+                    {{/if}}
+                  </div>
                 </div>
+                <!--contact input-->
+                <div id="contact-input-div" class="ps-2">
+                  <!--email input-->
+                  <div class="contact-div">
+                    <p class="mb-1">
+                      <i class="fa-regular fa-envelope my-icon"></i>
+                      <span>Email</span>
+                      <span class="text-primary ms-1" style="font-size: 0.8rem">&lpar; Email can not be changed &rpar;</span>
+                    </p>
+                    <input name="email" class="form-control" type="text" value="{{user.email}}" disabled />
+                  </div>
+                  <!--location input-->
+                  <div class="contact-div">
+                    <p class="mb-1">
+                      <i class="fa-solid fa-location-dot my-icon"></i>
+                      <span>Location</span>
+                    </p>
+                    <div class="location-input-div">
+                      <!--country input-->
+                      <div>
+                        <input type="text" id="country-input" class="form-control" name="country" list="countries" placeholder="country" {{#if user.country}}value="{{user.country}}" {{/if}}required>
+                        <datalist id="countries">
+                          {{#each allLocations}}
+                          <option value="{{user.country}}">{{user.country}}</option>
+                          {{/each}}
+                        </datalist>
+                        <div class="invalid-feedback">Require.</div>
+                      </div>
+                      <!--city input-->
+                      <div>
+                        <input id="city-input" class="form-control" name="city" placeholder="city" {{#if user.city}}value="{{user.city}}"{{/if}} required />
+                        <div class="invalid-feedback">Require.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--phone input-->
+                  <div class="contact-div">
+                    <p class="mb-1"><i class="fas fa-mobile-alt my-icon me-2"></i>Phone</p>
+                    <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number" required />
+                    <div class="invalid-feedback">Require.</div>
+                  </div>
+                </div>
+                <!--contact input div end-->
               </div>
               <!--skills-->
               <div class="my-4">
@@ -176,7 +226,7 @@
                   {{/each}}
                 </div>
                 {{else}}
-                <p>No skills listed</p>
+                <p class="ps-2">No skills listed</p>
                 {{/if}}
               </div>
             </form>

@@ -45,29 +45,43 @@ function editMode() {
   const nameInputDiv = document.querySelector('#name-input-div')
   const titleInputDiv = document.querySelector('#title-input-div')
   const socialInputDiv = document.querySelector('#social-input-div')
+  const descriptionInputDiv = document.querySelector('#description-input-div')
+  const contactInputDiv = document.querySelector('#contact-input-div')
+
   // display
   const nameDisplay = document.querySelector('#name-display')
   const titleDisplay = document.querySelector('#title-display')
   const socialDisplay = document.querySelector('#social-display')
+  const descriptionDisplay = document.querySelector('#description-display')
+  const contactDisplay = document.querySelector('#contact-display')
+
   // project btn
   const addProjectBtn = document.querySelector('#add-project-btn')
   const projectBlocker = document.querySelector('#project-blocker')
 
   // items list
-  const editModeItems = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker]
-  const viewModeItems = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn]
+  const editModeElements = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv]
+  const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay]
+
+  console.log(editModeElements)
+  console.log(viewModeElements)
+
+  // hide all edit mode elements onload
+  editModeElements.forEach((e) => {
+    if (e && e.style) e.style.display = 'none'
+  })
 
   // Enter edit mode
   editPortfolioBtn.addEventListener('click', () => {
     // show
     savePortfolioBtn.style.display = 'flex'
     cancelPortfolioBtn.style.display = 'flex'
-    editModeItems.forEach((e) => {
+    editModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
     // hide
     editPortfolioBtn.style.display = 'none'
-    viewModeItems.forEach((e) => {
+    viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'none'
     })
     // show edit mode animation
@@ -84,14 +98,14 @@ function editMode() {
     infoForm.classList.remove('was-validated')
     // show
     editPortfolioBtn.style.display = 'flex'
-    viewModeItems.forEach((e) => {
-      e.style.display = 'block'
+    viewModeElements.forEach((e) => {
+      if (e && e.style) e.style.display = 'block'
     })
     // hide
     savePortfolioBtn.style.display = 'none'
     cancelPortfolioBtn.style.display = 'none'
-    editModeItems.forEach((e) => {
-      e.style.display = 'none'
+    editModeElements.forEach((e) => {
+      if (e && e.style) e.style.display = 'none'
     })
     // hide edit mode animation
     editModeDisplay.classList.remove('show-animation')

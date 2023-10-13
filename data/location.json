@@ -1,0 +1,122 @@
+[
+  {
+    "country": "Bangladesh",
+    "cities": ["Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi"]
+  },
+  {
+    "country": "Brazil",
+    "cities": ["Brasilia", "Fortaleza", "Rio de Janeiro", "Salvador", "Sao Paulo"]
+  },
+  {
+    "country": "China",
+    "cities": ["Beijing", "Chengdu", "Guangzhou", "Shanghai", "Shenzhen"]
+  },
+  {
+    "country": "Colombia",
+    "cities": ["Bogota", "Medellin"]
+  },
+  {
+    "country": "DR Congo",
+    "cities": ["Bukavu", "Goma", "Kananga", "Kinshasa", "Lubumbashi"]
+  },
+  {
+    "country": "Egypt",
+    "cities": ["Alexandria", "Cairo", "Giza", "Port Said", "Shubra El Kheima"]
+  },
+  {
+    "country": "Ethiopia",
+    "cities": ["Addis Ababa", "Dire Dawa", "Gondar", "Hawassa", "Mekelle"]
+  },
+  {
+    "country": "France",
+    "cities": ["Lyon", "Marseille", "Nice", "Paris", "Toulouse"]
+  },
+  {
+    "country": "Germany",
+    "cities": ["Berlin", "Cologne", "Frankfurt", "Hamburg", "Munich"]
+  },
+  {
+    "country": "India",
+    "cities": ["Bangalore", "Chennai", "Delhi", "Kolkata", "Mumbai"]
+  },
+  {
+    "country": "Indonesia",
+    "cities": ["Bandung", "Jakarta", "Medan", "Semarang", "Surabaya"]
+  },
+  {
+    "country": "Iran",
+    "cities": ["Isfahan", "Karaj", "Mashhad", "Shiraz", "Tehran"]
+  },
+  {
+    "country": "Japan",
+    "cities": ["Nagoya", "Osaka", "Sapporo", "Tokyo", "Yokohama"]
+  },
+  {
+    "country": "Kenya",
+    "cities": ["Eldoret", "Kisumu", "Mombasa", "Nairobi", "Nakuru"]
+  },
+  {
+    "country": "Mexico",
+    "cities": ["Guadalajara", "Mexico City", "Monterrey", "Puebla", "Toluca"]
+  },
+  {
+    "country": "Myanmar (Burma)",
+    "cities": ["Mandalay", "Mawlamyine", "Naypyidaw", "Taunggyi", "Yangon"]
+  },
+  {
+    "country": "Nigeria",
+    "cities": ["Ibadan", "Kaduna", "Kano", "Lagos", "Port Harcourt"]
+  },
+  {
+    "country": "Pakistan",
+    "cities": ["Faisalabad", "Karachi", "Lahore", "Multan", "Rawalpindi"]
+  },
+  {
+    "country": "Philippines",
+    "cities": ["Cebu City", "Davao City", "Manila", "Quezon City"]
+  },
+  {
+    "country": "Russia",
+    "cities": ["Kazan", "Moscow", "Novosibirsk", "Saint Petersburg", "Yekaterinburg"]
+  },
+  {
+    "country": "South Africa",
+    "cities": ["Cape Town", "Durban", "Johannesburg", "Port Elizabeth", "Pretoria"]
+  },
+  {
+    "country": "South Korea",
+    "cities": ["Busan", "Daegu", "Daejeon", "Incheon", "Seoul"]
+  },
+  {
+    "country": "Tanzania",
+    "cities": ["Arusha", "Dar es Salaam", "Dodoma", "Mbeya", "Mwanza"]
+  },
+  {
+    "country": "Thailand",
+    "cities": ["Bangkok", "Chiang Mai", "Nakhon Ratchasima", "Nonthaburi", "Pattaya"]
+  },
+  {
+    "country": "Turkey",
+    "cities": ["Adana", "Ankara", "Bursa", "Istanbul", "Izmir"]
+  },
+  {
+    "country": "Ukraine",
+    "cities": ["Dnipro", "Kharkiv", "Kyiv", "Lviv", "Odesa"]
+  },
+  {
+    "country": "United Kingdom",
+    "cities": ["Liverpool", "Bristol", "Newcastle upon Tyne", "Sheffield", "Nottingham", "Leicester", "Southampton", "Coventry", "Bradford", "Stoke-on-Trent", "Wolverhampton", "Plymouth", "Derby", "Hull", "Northampton", "Luton", "Milton Keynes", "Warrington", "Slough", "Swindon"]
+  },
+  {
+    "country": "United States",
+    "cities": ["Philadelphia, Pennsylvania", "Phoenix, Arizona", "San Antonio, Texas", "San Diego, California", "Dallas, Texas", "San Jose, California", "Austin, Texas", "Jacksonville, Florida", "San Francisco, California", "Fort Worth, Texas", "Columbus, Ohio", "Indianapolis, Indiana", "Seattle, Washington", "Denver, Colorado", "Washington, D.C.", "Boston, Massachusetts", "El Paso, Texas", "Nashville, Tennessee", "Detroit, Michigan", "Memphis, Tennessee"]
+  },
+  {
+    "country": "Vietnam",
+    "cities": ["Can Tho", "Da Nang", "Hai Phong", "Ho Chi Minh City", "Hanoi"]
+  },
+  {
+    "country": "Taiwan",
+    "cities": ["Taipei", "Kaohsiung", "New Taipei", "Taichung", "Tainan", "Taoyuan", "Keelung", "Hsinchu", "Chiayi", "Hualien", "Yilan", "Miaoli", "Nantou", "Pingtung", "Taitung"]
+  }
+]

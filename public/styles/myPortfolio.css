@@ -3,6 +3,12 @@
 /* my portfolio ----------------------------------*/
 
 /* general */
+.my-icon {
+  display: inline;
+  width: 20px;
+  margin-right: 3px;
+}
+
 .add-button {
   width: 30px;
   height: 30px;
@@ -160,13 +166,16 @@
   padding-right: 6px;
 }
 
-.form-social-window {
-  height: 100px;
-  width: 160px;
-  overflow: auto;
-  border: 1px solid var(--my-border);
-  border-radius: 4px;
-  padding: 10px;
+/* contact */
+.contact-div {
+  margin: 15px 0px;
+}
+
+.location-input-div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 /* Project */

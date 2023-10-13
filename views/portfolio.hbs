@@ -62,18 +62,18 @@
               <div class="my-2">
                 <p class="fw-bold mb-2 text-primary">CONTACT</p>
                 <div class="p-2">
-                  <!--contact-location-->
-                  {{#if (ifOr user.country user.city)}}
-                  <p class="mb-2">
-                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                  </p>
-                  {{/if}}
                   <!--contact-email-->
                   {{#if user.email}}
                   <p class="mb-2">
                     <i class="fa-regular fa-envelope" style="width: 20px"></i>
                     {{user.email}}
+                  </p>
+                  {{/if}}
+                  <!--contact-location-->
+                  {{#if (ifOr user.country user.city)}}
+                  <p class="mb-2">
+                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
                   </p>
                   {{/if}}
                   <!--contact-phone-->
