@@ -63,9 +63,6 @@ function editMode() {
   const editModeElements = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv]
   const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay]
 
-  console.log(editModeElements)
-  console.log(viewModeElements)
-
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {
     if (e && e.style) e.style.display = 'none'
@@ -135,6 +132,18 @@ function editMode() {
 function socials() {
   const addSocialBtn = document.querySelector('#add-social')
   const socialInputContainer = document.querySelector('#social-input-container')
+  const removeSocialBtns = document.querySelectorAll('.remove-social')
+
+  // remove button event
+  function addRemoveInputEvent(element) {
+    element.addEventListener('click', (event) => {
+      const input = event.target.closest('.new-social-input')
+      if (input) input.remove()
+    })
+  }
+  removeSocialBtns.forEach((btn) => {
+    addRemoveInputEvent(btn)
+  })
 
   // add social input
   addSocialBtn.addEventListener('click', () => {
@@ -145,12 +154,8 @@ function socials() {
     newSocialInput.querySelector('#socials-link').removeAttribute('disabled')
     socialInputContainer.append(newSocialInput)
 
-    // add remove btn event
+    // add new remove btn event
     const removeSocialBtn = newSocialInput.querySelector('.remove-social')
-    removeSocialBtn.addEventListener('click', (event) => {
-      console.log('click')
-      const input = event.target.closest('.new-social-input')
-      if (input) input.remove()
-    })
+    addRemoveInputEvent(removeSocialBtn)
   })
 }

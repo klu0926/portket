@@ -174,6 +174,8 @@ const userController = {
       user.socials.forEach((social) => {
         social.icon = allSocials[social.socialId - 1].icon
       })
+
+      console.log('user', user)
       // check if user is current user
       if (req.user?.id === user.id) {
         res.render('myPortfolio', {
