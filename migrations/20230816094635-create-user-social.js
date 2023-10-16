@@ -22,6 +22,8 @@ module.exports = {
       socialId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: 'Socials', key: 'id' },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

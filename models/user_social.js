@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // this is a join model for User and Social
+      User_Social.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user',
+      })
     }
   }
   User_Social.init(

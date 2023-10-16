@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill } = require('../models')
+const { User, Project, Social, Skill, User_Social } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -154,12 +154,9 @@ const userController = {
             ],
           },
           {
-            model: Social,
-            attributes: ['id', 'name', 'icon'],
+            model: User_Social,
+            attributes: ['id', 'link', 'socialId'],
             as: 'socials',
-            through: {
-              attributes: ['link'],
-            },
           },
           {
             model: Skill,
@@ -173,14 +170,10 @@ const userController = {
         order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],
       })
       const user = userData.toJSON()
-      if (user.socials) {
-        user.socials.forEach((social) => {
-          social.link = social.User_Social.link
-          delete social.User_Social
-        })
-      }
 
-      console.log(user)
+      user.socials.forEach((social) => {
+        social.icon = allSocials[social.socialId - 1].icon
+      })
       // check if user is current user
       if (req.user?.id === user.id) {
         res.render('myPortfolio', {
@@ -199,10 +192,9 @@ const userController = {
   },
   putUser: async (req, res, next) => {
     try {
-      console.log('putUser')
       const userId = req.params.userId
-      const currentUserId = req.user.id.toString()
-      if (userId !== currentUserId) {
+      const currentUser = req.user
+      if (userId !== currentUser.id.toString()) {
         req.flash('warning_msg', 'Something went wrong, please try logout and login again.')
         return res.redirect(`/users/${userId}`)
       }
@@ -210,6 +202,8 @@ const userController = {
       const body = req.body
       const files = req.files
 
+      let newAvatar = ''
+      let newCover = ''
       const newName = body.name ? body.name.trim() : ''
       const newTitle = body.title ? body.title.trim() : ''
       const newDescription = body.description ? body.description.trim() : ''
@@ -218,28 +212,8 @@ const userController = {
       const newCity = body.city ? body.city.trim() : ''
       const newCountry = body.country ? body.country.trim() : ''
       const newThemeId = body.themeId ? body.themeId.trim() : ''
-
       let newSocials = []
       let newSocialsLinks = []
-      if (body.socials && typeof body.socials === 'string') {
-        newSocials = [body.socials]
-      }
-      if (body.socialsLinks && typeof body.socialsLinks === 'string') {
-        newSocialsLinks = [body.socialsLinks]
-      }
-      console.log(newSocials, newSocialsLinks)
-
-      let newAvatar = ''
-      let newCover = ''
-
-      console.log('body', body)
-
-      // get User
-      const userModel = await User.findOne({ where: { id: userId } })
-      if (!userModel) throw new Error(`Can not find user ${userId}`)
-      const user = userModel.toJSON()
-
-      // body
 
       // files
       if (files?.avatar) {
@@ -248,6 +222,39 @@ const userController = {
       if (files?.cover) {
         newCover = await imgurFileHandler(files.cover[0])
       }
+
+      // user social
+      if (body.socials) {
+        if (body.socials === 'string') {
+          newSocials = [body.socials]
+        } else {
+          newSocials = body.socials
+        }
+      }
+      if (body.socialsLinks) {
+        if (typeof body.socialsLinks === 'string') {
+          newSocialsLinks = [body.socialsLinks]
+        } else {
+          newSocialsLinks = body.socialsLinks
+        }
+      }
+      // destroy all user socials
+      await User_Social.destroy({
+        where: { userId: currentUser.id },
+      })
+      // create new user socials
+      for (let i = 0; i < newSocials.length; i++) {
+        await User_Social.create({
+          link: newSocialsLinks[i],
+          userId: currentUser.id,
+          socialId: Number(newSocials[i]),
+        })
+      }
+
+      // get User
+      const userModel = await User.findOne({ where: { id: userId } })
+      if (!userModel) throw new Error(`Can not find user ${userId}`)
+      const user = userModel.toJSON()
 
       // update
       await userModel.update({

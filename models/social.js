@@ -2,14 +2,7 @@
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Social extends Model {
-    static associate(models) {
-      // define association here
-      Social.belongsToMany(models.User, {
-        through: models.User_Social,
-        foreignKey: 'socialId',
-        as: 'users',
-      })
-    }
+    static associate(models) {}
   }
   Social.init(
     {

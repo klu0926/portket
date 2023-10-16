@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'projects',
         onDelete: 'CASCADE',
       })
-      User.belongsToMany(models.Social, {
-        through: models.User_Social,
+      User.hasMany(models.User_Social, {
         foreignKey: 'userId',
         as: 'socials',
         onDelete: 'CASCADE',

@@ -6,111 +6,95 @@
     <div class="my-portfolio-cover"></div>
   </div>
   {{else}}
-  <div class="portfolio-cover portfolio-cover-placement">
-    {{/if}}
-    <div class="portfolio-container row">
-      <!--Bio (left side) -->
-      <div class="portfolio-left col-12 col-lg-6">
-        <!--avatar + info -->
-        <div class="portfolio-top-container">
-          <!--avatar-->
-          <div id="avatar-container" class="portfolio-avatar-container">
-            <div id="avatar-input-div"></div>
-            <img id="avatar-img" src="{{user.avatar}}" alt="avatar" />
-          </div>
-          <!--avatar input-->
-          <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" style="display: none" />
-          <!--info-->
-          <div class="info">
-            <!--info from-->
-            <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
-              <button id="info-submit-btn" style="display: none" type="submit"></button>
-              <!--name-->
-              <div class="mb-2">
-                <div id="name-display">
-                  <h1 class="h3 fw-bold">{{user.name}}</h1>
-                </div>
-                <div id="name-input-div">
-                  <p class="fw-bold my-2 text-primary">Name</p>
-                  <div class="ps-2">
-                    <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" required />
-                    <div class="invalid-feedback">Require at least 6 characters.</div>
-                  </div>
+  <div class="portfolio-cover portfolio-cover-placement"></div>
+  {{/if}}
+  <div class="portfolio-container row">
+    <!--Bio (left side) -->
+    <div class="portfolio-left col-12 col-lg-6">
+      <!--avatar + info -->
+      <div class="portfolio-top-container">
+        <!--avatar-->
+        <div id="avatar-container" class="portfolio-avatar-container">
+          <div id="avatar-input-div"></div>
+          <img id="avatar-img" src="{{user.avatar}}" alt="avatar" />
+        </div>
+        <!--avatar input-->
+        <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" style="display: none" />
+        <!--info-->
+        <div class="info">
+          <!--info from-->
+          <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+            <button id="info-submit-btn" style="display: none" type="submit"></button>
+            <!--name-->
+            <div class="mb-2">
+              <div id="name-display">
+                <h1 class="h3 fw-bold">{{user.name}}</h1>
+              </div>
+              <div id="name-input-div">
+                <p class="fw-bold my-2 text-primary">Name</p>
+                <div class="ps-2">
+                  <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" required />
+                  <div class="invalid-feedback">Require at least 6 characters.</div>
                 </div>
               </div>
-              <!--title-->
-              <div class="my-3">
-                <p class="fw-bold my-2 text-primary">TITLE</p>
-                <div id="title-display">
-                  <p class="portfolio-title ps-2">{{user.title}}</p>
-                </div>
-                <div id="title-input-div" class="ps-2">
-                  <div>
-                    <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" required />
-                  </div>
+            </div>
+            <!--title-->
+            <div class="my-3">
+              <p class="fw-bold my-2 text-primary">TITLE</p>
+              <div id="title-display">
+                <p class="portfolio-title ps-2">{{user.title}}</p>
+              </div>
+              <div id="title-input-div" class="ps-2">
+                <div>
+                  <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" required />
                 </div>
               </div>
-              <!--social links-->
-              <div class="my-2">
-                <p class="fw-bold my-2 text-primary">SOCIAL</p>
-                <div id="social-display" class="ps-2">
-                  {{#if user.socials}}
-                  <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
-                    {{#each user.socials}}
-                    <div class="social-box">
-                      <div class="social-icon">
-                        <a href="{{this.link}}" target="_blank">
-                          <img src="{{this.icon}}" alt="{{this.name}}" />
-                        </a>
-                      </div>
-                      <div class="social-icon-pop">
-                        <p class="text-primary">{{this.link}}</p>
-                      </div>
+            </div>
+            <!--social links-->
+            <div class="my-2">
+              <p class="fw-bold my-2 text-primary">SOCIAL</p>
+              <div id="social-display" class="ps-2">
+                {{#if user.socials}}
+                <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
+                  {{#each user.socials}}
+                  <div class="social-box">
+                    <div class="social-icon">
+                      <a href="{{this.link}}" target="_blank">
+                        <img src="{{this.icon}}" alt="{{this.name}}" />
+                      </a>
                     </div>
-                    {{/each}}
+                    <div class="social-icon-pop">
+                      <p class="text-primary">{{this.link}}</p>
+                    </div>
                   </div>
-                  {{else}}
-                  <p>No social listed</p>
+                  {{/each}}
                 </div>
-                {{/if}}
+                {{else}}
+                <p>No social listed</p>
               </div>
-              <!--social form-->
-              <div id="social-input-div" class="ps-2">
-                <!--social input container-->
-                <div id="social-input-container"></div>
-                <!--social input add-->
-                <div class="social-input-flex">
-                  <div class="col social-select">
-                    <select id="socials-network" class="form-select w-100" name="socials" required disabled>
-                      <option value="" selected>Select</option>
-                      {{#each allSocials}}
-                      <option value="{{this.id}}">{{this.name}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                  <div class="social-link ps-0">
-                    <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
-                  </div>
-                  <div class="ps-0 d-flex align-items-center">
-                    <button id="add-social" class="add-button" type="button">+</button>
-                  </div>
-                </div>
-
-                <!--social input example-->
-                <div class="social-input-sample" style="display: none">
+              {{/if}}
+            </div>
+            <!--social form-->
+            <div id="social-input-div" class="ps-2">
+              <!--social input container-->
+              <div id="social-input-container">
+                {{#if user.socials}} {{#each user.socials as |currentSocial|}}
+                <!-- current user socials -->
+                <div>
                   <div class="social-input-flex">
                     <div class="col social-select">
-                      <select id="socials-network" class="form-select w-100" name="socials" required disabled>
-                        <option value="" selected>Select</option>
-                        {{#each allSocials}}
+                      <select id="socials-network" class="form-select w-100" name="socials" required>
+                        {{#each ../allSocials}} {{#if (isSame this.id currentSocial.socialId)}}
+                        <option value="{{this.id}}" selected>{{this.name}}</option>
+                        {{else}}
                         <option value="{{this.id}}">{{this.name}}</option>
-                        {{/each}}
+                        {{/if}} {{/each}}
                       </select>
                       <div class="invalid-feedback">Require.</div>
                     </div>
                     <div class="social-link ps-0">
                       <div>
-                        <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" required disabled />
+                        <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="{{currentSocial.link}}" required />
                         <div class="invalid-feedback">Require url.</div>
                       </div>
                     </div>
@@ -119,181 +103,223 @@
                     </div>
                   </div>
                 </div>
-                <!---->
+                {{/each}} {{/if}}
               </div>
-              <!--Description-->
-              <div class="my-2">
-                <p class="fw-bold mb-2 text-primary">BIO</p>
-                <div id="description-display" class="p-2">
-                  <p class="portfolio-description">{{user.description}}</p>
+              <!--social input add-->
+              <div class="social-input-flex">
+                <div class="col social-select">
+                  <select id="socials-network" class="form-select w-100" name="socials" required disabled>
+                    <option value="" selected>Select</option>
+                    {{#each ../allSocials}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                  </select>
                 </div>
-                <div id="description-input-div" class="ps-2">
-                  <textarea class="form-control" name="description" rows="4" cols="50" minlength="10" required>{{user.description}}</textarea>
-                  <div class="invalid-feedback">Require at least 10 characters.</div>
+                <div class="social-link ps-0">
+                  <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
+                </div>
+                <div class="ps-0 d-flex align-items-center">
+                  <button id="add-social" class="add-button" type="button">+</button>
                 </div>
               </div>
-              <!--contact-->
-              <div class="my-2">
-                <p class="fw-bold mb-2 text-primary">CONTACT</p>
-                <!--contact display-->
-                <div id="contact-display">
-                  <div class="ps-2">
-                    <!--contact-email-->
-                    {{#if user.email}}
-                    <p class="mb-2">
-                      <i class="fa-regular fa-envelope" style="width: 20px"></i>
-                      {{user.email}}
-                    </p>
-                    {{/if}}
-                    <!--contact-location-->
-                    {{#if (ifOr user.country user.city)}}
-                    <p class="mb-2">
-                      <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                      {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                    </p>
-                    {{/if}}
-                    <!--contact-phone-->
-                    {{#if user.phone}}
-                    <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-                    {{/if}}
-                  </div>
-                </div>
-                <!--contact input-->
-                <div id="contact-input-div" class="ps-2">
-                  <!--email input-->
-                  <div class="contact-div">
-                    <p class="mb-1">
-                      <i class="fa-regular fa-envelope my-icon"></i>
-                      <span>Email</span>
-                      <span class="bracket-text red">Email can not be changed</span>
-                    </p>
-                    <input name="email" class="form-control" type="text" value="{{user.email}}" disabled />
-                  </div>
-                  <!--location input-->
-                  <div class="contact-div">
-                    <p class="mb-1">
-                      <i class="fa-solid fa-location-dot my-icon"></i>
-                      <span>Location</span>
-                      <span class="bracket-text">optional</span>
-                    </p>
-                    <div class="location-input-div">
-                      <!--country input-->
-                      <div>
-                        <input type="text" id="country-input" class="form-control" name="country" list="countries" placeholder="country" {{#if user.country}}value="{{user.country}}" {{/if}}>
-                        <datalist id="countries">
-                          {{#each allLocations}}
-                          <option value="{{user.country}}">{{user.country}}</option>
-                          {{/each}}
-                        </datalist>
-                      </div>
-                      <!--city input-->
-                      <div><input id="city-input" class="form-control" name="city" placeholder="city" {{#if user.city}}value="{{user.city}}"{{/if}} /></div>
-                    </div>
-                  </div>
-                  <!--phone input-->
-                  <div class="contact-div">
-                    <p class="mb-1">
-                      <i class="fas fa-mobile-alt my-icon me-2"></i>
-                      <span>Phone</span>
-                      <span class="bracket-text">optional</span>
-                    </p>
-                    <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number"/>
-                  </div>
-                </div>
-                <!--contact input div end-->
-              </div>
-              <!--skills-->
-              <div class="my-4">
-                <p class="fw-bold my-2 text-primary">SKILLS</p>
-                {{#if user.skills}}
-                <div class="px-2">
-                  {{#each user.skills}}
-                  <div class="skill-block">
-                    <div class="skill-icon">
-                      <img src="{{this.icon}}" alt="skill icon" />
-                    </div>
-                    <div class="skill-info">
-                      <div class="skill-block-top d-flex">
-                        <div class="d-flex align-items-center">
-                          <p class="skill-name">{{this.name}}</p>
-                        </div>
-                      </div>
-                      <div class="skill-block-bottom">
-                        <p class="skill-description">{{this.description}}</p>
-                      </div>
-                    </div>
-                  </div>
-                  {{/each}}
-                </div>
-                {{else}}
-                <p class="ps-2">No skills listed</p>
-                {{/if}}
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
 
-      <!--projects (right side)-->
-      <div class="portfolio-right col-12 col-lg-6">
-        <div class="project-container">
-          <!--project block-->
-          <div class="position-relative d-flex justify-content-center mb-3">
-            <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
-            <!--project line-->
-            <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
-          </div>
-          <!--Add project btn-->
-          <div id="add-project-btn-container">
-            <div id="project-blocker">
-              <div class="project-blocker-inner">
-                <i class="fa-solid fa-ban me-2"></i>
-                Exit edit mode to add project.
+              <!--social input example-->
+              <div class="social-input-sample" style="display: none">
+                <div class="social-input-flex">
+                  <div class="col social-select">
+                    <select id="socials-network" class="form-select w-100" name="socials" required disabled>
+                      <option value="" selected>Select</option>
+                      {{#each allSocials}}
+                      <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                    <div class="invalid-feedback">Require.</div>
+                  </div>
+                  <div class="social-link ps-0">
+                    <div>
+                      <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" required disabled />
+                      <div class="invalid-feedback">Require url.</div>
+                    </div>
+                  </div>
+                  <div class="ps-0 d-flex align-items-center">
+                    <button class="remove-button remove-social" type="button">-</button>
+                  </div>
+                </div>
+              </div>
+              <!---->
+            </div>
+            <!--Description-->
+            <div class="my-2">
+              <p class="fw-bold mb-2 text-primary">BIO</p>
+              <div id="description-display" class="p-2">
+                <p class="portfolio-description">{{user.description}}</p>
+              </div>
+              <div id="description-input-div" class="ps-2">
+                <textarea class="form-control" name="description" rows="4" cols="50" minlength="10" required>{{user.description}}</textarea>
+                <div class="invalid-feedback">Require at least 10 characters.</div>
               </div>
             </div>
-            <div id="add-project-btn"></div>
-          </div>
-
-          <!--projects-->
-          {{#if user.projects}} {{#each user.projects}}
-          <div class="project-outer-block mb-3">
-            <a class="project-link" href="/projects/{{this.id}}">
-              <div class="project-block d-flex">
-                <div class="project-image-holder col-4">
-                  <img src="{{this.cover}}" alt="project image" />
-                </div>
-                <div class="project-block-info p-2 col-8">
-                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                  <p class="project-date mb-1">{{simpleDate this.date}}</p>
-                  <div class="project-description-div">
-                    <p class="project-description">{{substring this.description 100}}</p>
-                  </div>
-                  <div class="project-block-skills mt-2">
-                    {{#if this.skills}} {{#each this.skills}}
-                    <span class="skill-pill">{{this.name}}</span>
-                    {{/each}} {{/if}}
-                  </div>
+            <!--contact-->
+            <div class="my-2">
+              <p class="fw-bold mb-2 text-primary">CONTACT</p>
+              <!--contact display-->
+              <div id="contact-display">
+                <div class="ps-2">
+                  <!--contact-email-->
+                  {{#if user.email}}
+                  <p class="mb-2">
+                    <i class="fa-regular fa-envelope" style="width: 20px"></i>
+                    {{user.email}}
+                  </p>
+                  {{/if}}
+                  <!--contact-location-->
+                  {{#if (ifOr user.country user.city)}}
+                  <p class="mb-2">
+                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+                  </p>
+                  {{/if}}
+                  <!--contact-phone-->
+                  {{#if user.phone}}
+                  <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+                  {{/if}}
                 </div>
               </div>
-            </a>
-            <!--delete project btn-->
-            <div class="project-delete-btn-div">
-              <form action="/projects/{{this.id}}?_method=DELETE" method="post">
-                <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
-              </form>
+              <!--contact input-->
+              <div id="contact-input-div" class="ps-2">
+                <!--email input-->
+                <div class="contact-div">
+                  <p class="mb-1">
+                    <i class="fa-regular fa-envelope my-icon"></i>
+                    <span>Email</span>
+                    <span class="bracket-text red">Email can not be changed</span>
+                  </p>
+                  <input name="email" class="form-control" type="text" value="{{user.email}}" disabled />
+                </div>
+                <!--location input-->
+                <div class="contact-div">
+                  <p class="mb-1">
+                    <i class="fa-solid fa-location-dot my-icon"></i>
+                    <span>Location</span>
+                    <span class="bracket-text">optional</span>
+                  </p>
+                  <div class="location-input-div">
+                    <!--country input-->
+                    <div>
+                      <input type="text" id="country-input" class="form-control" name="country" list="countries" placeholder="country" {{#if user.country}}value="{{user.country}}" {{/if}}>
+                      <datalist id="countries">
+                        {{#each allLocations}}
+                        <option value="{{user.country}}">{{user.country}}</option>
+                        {{/each}}
+                      </datalist>
+                    </div>
+                    <!--city input-->
+                    <div><input id="city-input" class="form-control" name="city" placeholder="city" {{#if user.city}}value="{{user.city}}"{{/if}} /></div>
+                  </div>
+                </div>
+                <!--phone input-->
+                <div class="contact-div">
+                  <p class="mb-1">
+                    <i class="fas fa-mobile-alt my-icon me-2"></i>
+                    <span>Phone</span>
+                    <span class="bracket-text">optional</span>
+                  </p>
+                  <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number"/>
+                </div>
+              </div>
+              <!--contact input div end-->
             </div>
-          </div>
-          {{/each}} {{/if}}
-          <!--project block end-->
+            <!--skills-->
+            <div class="my-4">
+              <p class="fw-bold my-2 text-primary">SKILLS</p>
+              {{#if user.skills}}
+              <div class="px-2">
+                {{#each user.skills}}
+                <div class="skill-block">
+                  <div class="skill-icon">
+                    <img src="{{this.icon}}" alt="skill icon" />
+                  </div>
+                  <div class="skill-info">
+                    <div class="skill-block-top d-flex">
+                      <div class="d-flex align-items-center">
+                        <p class="skill-name">{{this.name}}</p>
+                      </div>
+                    </div>
+                    <div class="skill-block-bottom">
+                      <p class="skill-description">{{this.description}}</p>
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+              {{else}}
+              <p class="ps-2">No skills listed</p>
+              {{/if}}
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+
+  <!--projects (right side)-->
+  <div class="portfolio-right col-12 col-lg-6">
+    <div class="project-container">
+      <!--project block-->
+      <div class="position-relative d-flex justify-content-center mb-3">
+        <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
+        <!--project line-->
+        <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+      </div>
+      <!--Add project btn-->
+      <div id="add-project-btn-container">
+        <div id="project-blocker">
+          <div class="project-blocker-inner">
+            <i class="fa-solid fa-ban me-2"></i>
+            Exit edit mode to add project.
+          </div>
+        </div>
+        <div id="add-project-btn"></div>
+      </div>
+
+      <!--projects-->
+      {{#if user.projects}} {{#each user.projects}}
+      <div class="project-outer-block mb-3">
+        <a class="project-link" href="/projects/{{this.id}}">
+          <div class="project-block d-flex">
+            <div class="project-image-holder col-4">
+              <img src="{{this.cover}}" alt="project image" />
+            </div>
+            <div class="project-block-info p-2 col-8">
+              <p class="project-title fw-bold mb-1">{{this.title}}</p>
+              <p class="project-date mb-1">{{simpleDate this.date}}</p>
+              <div class="project-description-div">
+                <p class="project-description">{{substring this.description 100}}</p>
+              </div>
+              <div class="project-block-skills mt-2">
+                {{#if this.skills}} {{#each this.skills}}
+                <span class="skill-pill">{{this.name}}</span>
+                {{/each}} {{/if}}
+              </div>
+            </div>
+          </div>
+        </a>
+        <!--delete project btn-->
+        <div class="project-delete-btn-div">
+          <form action="/projects/{{this.id}}?_method=DELETE" method="post">
+            <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
+          </form>
+        </div>
+      </div>
+      {{/each}} {{/if}}
+      <!--project block end-->
+    </div>
+  </div>
+
+  <!--form-->
+  {{> form-project}}
+
+  <!--script-->
+  <script src="/javascript/portfolio.js"></script>
+  <script src="/javascript/myPortfolio.js"></script>
 </div>
-
-<!--form-->
-{{> form-project}}
-
-<!--script-->
-<script src="/javascript/portfolio.js"></script>
-<script src="/javascript/myPortfolio.js"></script>

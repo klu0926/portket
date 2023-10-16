@@ -11,21 +11,23 @@ module.exports = {
   },
   // if return option.fn(this), will cause the inner block can't get data like {{user.city}}
   // use #if with this helper : {{#if (ifOr item1 item2)}} ... {{/if}}
-  ifOr: (a, b, option) => {
+  ifOr: (a, b) => {
     if (a || b) {
       return true
     }
     return false
   },
   // same as ifOr
-  ifAnd: (a, b, option) => {
+  ifAnd: (a, b) => {
+    if (!a || !b) return
     if (a && b) {
       return true
     }
     return false
   },
   isSame: (a, b) => {
-    if (a === b) {
+    if (!a || !b) return
+    if (a.toString() === b.toString()) {
       return true
     }
     return false
