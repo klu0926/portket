@@ -359,7 +359,7 @@ body {
 
 .card {
   position: relative;
-  height: 400px;
+  height: 360px;
   overflow: hidden;
   transition: all 0.15s ease-in-out;
 }

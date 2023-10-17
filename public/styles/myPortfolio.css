@@ -335,6 +335,7 @@
 
 .skill-tooltip-top {
   display: flex;
+  margin-bottom: 3px;
 }
 
 .skill-input:hover .skill-tooltip {

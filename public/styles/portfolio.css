@@ -162,6 +162,10 @@
 }
 
 /* project */
+.project-display {
+  margin-top: 10px;
+}
+
 .project-container {
   margin: 0px;
   padding-top: 200px;
@@ -195,16 +199,16 @@
 }
 
 .project-image-holder {
+  display: flex;
+  align-items: center;
+  height: 200px;
   overflow: hidden;
-}
-
-.project-image-holder img {
-  object-fit: cover;
 }
 
 .project-image-holder img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: all 0.2s ease-in-out;
 }
 
