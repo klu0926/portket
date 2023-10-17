@@ -50,109 +50,108 @@
               {{else}}
               <p class="ps-2">No social listed</p>
               {{/if}}
-              </div>
-              <!--BIO-->
-              <div class="my-4">
-                <p class="fw-bold mb-2 text-primary">BIO</p>
-                <div class="p-2">
-                  <p class="portfolio-description">{{user.description}}</p>
-                </div>
-              </div>
-              <!--contact-->
-              <div class="my-2">
-                <p class="fw-bold mb-2 text-primary">CONTACT</p>
-                <div class="p-2">
-                  <!--contact-email-->
-                  {{#if user.email}}
-                  <p class="mb-2">
-                    <i class="fa-regular fa-envelope" style="width: 20px"></i>
-                    {{user.email}}
-                  </p>
-                  {{/if}}
-                  <!--contact-location-->
-                  {{#if (ifOr user.country user.city)}}
-                  <p class="mb-2">
-                    <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                    {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                  </p>
-                  {{/if}}
-                  <!--contact-phone-->
-                  {{#if user.phone}}
-                  <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-                  {{/if}}
-                </div>
+            </div>
+            <!--BIO-->
+            <div class="my-4">
+              <p class="fw-bold mb-2 text-primary">BIO</p>
+              <div class="p-2">
+                <p class="portfolio-description">{{user.description}}</p>
               </div>
             </div>
-          </div>
-          <!--skills-->
-          <div class="my-4">
-            <p class="fw-bold my-2 text-primary">SKILLS</p>
-            {{#if user.skills}}
-            <div class="px-2">
-              {{#each user.skills}}
-              <div class="skill-block">
-                <div class="skill-icon">
-                  <img src="{{this.icon}}" alt="skill icon" />
-                </div>
-                <div class="skill-info">
-                  <div class="skill-block-top d-flex">
-                    <div class="d-flex align-items-center">
-                      <p class="skill-name">{{this.name}}</p>
-                    </div>
-                  </div>
-                  <div class="skill-block-bottom">
-                    <p class="skill-description">{{this.description}}</p>
-                  </div>
-                </div>
+            <!--contact-->
+            <div class="my-2">
+              <p class="fw-bold mb-2 text-primary">CONTACT</p>
+              <div class="p-2">
+                <!--contact-email-->
+                {{#if user.email}}
+                <p class="mb-2">
+                  <i class="fa-regular fa-envelope" style="width: 20px"></i>
+                  {{user.email}}
+                </p>
+                {{/if}}
+                <!--contact-location-->
+                {{#if (ifOr user.country user.city)}}
+                <p class="mb-2">
+                  <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+                  {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+                </p>
+                {{/if}}
+                <!--contact-phone-->
+                {{#if user.phone}}
+                <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+                {{/if}}
               </div>
-              {{/each}}
             </div>
-            {{else}}
-            <p class="ps-2">No skills listed</p>
-            {{/if}}
           </div>
         </div>
-        <!--projects (right side)-->
-        <div class="portfolio-right col-12 col-lg-6">
-          <div class="project-container">
-            <!--project block-->
-            <div class="position-relative d-flex justify-content-center mb-3">
-              <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
-              <!--project line-->
-              <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
-            </div>
-            {{#if user.projects}} {{#each user.projects}}
-            <div class="project-outer-block mb-3">
-              <a class="project-link" href="/projects/{{this.id}}">
-                <div class="project-block d-flex">
-                  <div class="project-image-holder col-4">
-                    <img src="{{this.cover}}" alt="project image" />
-                  </div>
-                  <div class="project-block-info p-2 col-8">
-                    <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                    <p class="project-date mb-1">{{simpleDate this.date}}</p>
-                    <p class="project-description">{{substring this.description 100}}</p>
-                    <div class="project-block-skills mt-2">
-                      {{#if this.skills}} {{#each this.skills}}
-                      <span class="skill-pill">{{this.name}}</span>
-                      {{/each}} {{/if}}
-                    </div>
+        <!--skills-->
+        <div class="my-4">
+          <p class="fw-bold my-2 text-primary">SKILLS</p>
+          {{#if user.skills}}
+          <div class="px-2">
+            {{#each user.skills}}
+            <div class="skill-block">
+              <div class="skill-icon">
+                <img src="{{this.icon}}" alt="skill icon" />
+              </div>
+              <div class="skill-info">
+                <div class="skill-block-top d-flex">
+                  <div class="d-flex align-items-center">
+                    <p class="skill-name">{{this.name}}</p>
                   </div>
                 </div>
-              </a>
+                <div class="skill-block-bottom">
+                  <p class="skill-description">{{this.description}}</p>
+                </div>
+              </div>
             </div>
-            {{/each}} {{else}}
-            <!--no project-->
-            <div class="project-block-empty">No project listed</div>
-            {{/if}}
-
-            <!--project block end-->
+            {{/each}}
           </div>
+          {{else}}
+          <p class="ps-2">No skills listed</p>
+          {{/if}}
+        </div>
+      </div>
+      <!--projects (right side)-->
+      <div class="portfolio-right col-12 col-lg-6">
+        <div class="project-container">
+          <!--project block-->
+          <div class="position-relative d-flex justify-content-center mb-3">
+            <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
+            <!--project line-->
+            <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+          </div>
+          {{#if user.projects}} {{#each user.projects}}
+          <div class="project-outer-block mb-3">
+            <a class="project-link" href="/projects/{{this.id}}">
+              <div class="project-block d-flex">
+                <div class="project-image-holder col-4">
+                  <img src="{{this.cover}}" alt="project image" />
+                </div>
+                <div class="project-block-info p-2 col-8">
+                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
+                  <p class="project-date mb-1">{{simpleDate this.date}}</p>
+                  <p class="project-description">{{substring this.description 100}}</p>
+                  <div class="project-block-skills mt-2">
+                    {{#if this.skills}} {{#each this.skills}}
+                    <span class="skill-pill">{{this.name}}</span>
+                    {{/each}} {{/if}}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          {{/each}} {{else}}
+          <!--no project-->
+          <div class="project-block-empty">No project listed</div>
+          {{/if}}
+
+          <!--project block end-->
         </div>
       </div>
     </div>
   </div>
-
-  <!--script-->
-  <script src="/javascript/portfolio.js"></script>
 </div>
+
+<!--script-->
+<script src="/javascript/portfolio.js"></script>

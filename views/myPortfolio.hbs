@@ -1,9 +1,9 @@
 <div class="container" style="min-height: 1100px">
   <!--cover-->
+  <div id="cover-input-div"></div>
   {{#if user.cover}}
   <div class="portfolio-cover">
-    <img src="{{user.cover}}" alt="cover" />
-    <div class="my-portfolio-cover"></div>
+    <img id="cover-img" src="{{user.cover}}" alt="cover" />
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement"></div>
@@ -18,13 +18,15 @@
           <div id="avatar-input-div"></div>
           <img id="avatar-img" src="{{user.avatar}}" alt="avatar" />
         </div>
-        <!--avatar input-->
-        <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" placeholder="avatar" style="display: none" />
         <!--info-->
         <div class="info">
-          <!--info from-->
-          <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" novalidate>
+          <!--edit mode from-->
+          <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
             <button id="info-submit-btn" style="display: none" type="submit"></button>
+            <!--cover input-->
+            <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
+            <!--avatar input-->
+            <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
             <!--name-->
             <div class="mb-2">
               <div id="name-display">
@@ -313,7 +315,7 @@
           <a class="project-link" href="/projects/{{this.id}}">
             <div class="project-block d-flex">
               <div class="project-image-holder col-4">
-                <img src="{{this.cover}}" alt="project image" />
+                <img class="project-image" src="{{this.cover}}" alt="project image" />
               </div>
               <div class="project-block-info p-2 col-8">
                 <p class="project-title fw-bold mb-1">{{this.title}}</p>
@@ -341,11 +343,10 @@
       <!--project block end-->
     </div>
   </div>
-
-  <!--form-->
-  {{> form-project}}
-
-  <!--script-->
-  <script src="/javascript/portfolio.js"></script>
-  <script src="/javascript/myPortfolio.js"></script>
 </div>
+
+<!--script-->
+<script src="/javascript/portfolio.js"></script>
+<script src="/javascript/myPortfolio.js"></script>
+<!--form-->
+{{> form-project}}

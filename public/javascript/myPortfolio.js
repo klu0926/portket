@@ -1,10 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-  previewAvatar()
+  previewPortfolioCover()
+  previewPortfolioAvatar()
   editMode()
   socials()
 })
 
-function previewAvatar() {
+function previewPortfolioCover() {
+  const coverInputDiv = document.querySelector('#cover-input-div')
+  const coverInput = document.querySelector('#cover-input')
+  const coverImg = document.querySelector('#cover-img')
+  const originalCover = coverImg.src
+  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  // add
+  coverInputDiv.addEventListener('click', (event) => {
+    coverInput.click()
+  })
+  // change
+  coverInput.addEventListener('change', () => {
+    if (coverInput.files && coverInput.files[0]) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        coverImg.src = event.target.result
+      }
+      reader.readAsDataURL(coverInput.files[0])
+    }
+  })
+  // cancel
+  cancelPortfolioBtn.addEventListener('click', () => {
+    coverImg.src = originalCover
+  })
+}
+
+function previewPortfolioAvatar() {
   const avatarInputDiv = document.querySelector('#avatar-input-div')
   const avatarInput = document.querySelector('#avatar-input')
   const avatarImg = document.querySelector('#avatar-img')
@@ -41,6 +68,7 @@ function editMode() {
   const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
   const editModeDisplay = document.querySelector('#edit-mode-display')
   // input div
+  const coverInputDiv = document.querySelector('#cover-input-div')
   const avatarInputDiv = document.querySelector('#avatar-input-div')
   const nameInputDiv = document.querySelector('#name-input-div')
   const titleInputDiv = document.querySelector('#title-input-div')
@@ -62,7 +90,7 @@ function editMode() {
   const projectBlocker = document.querySelector('#project-blocker')
 
   // items list
-  const editModeElements = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv, skillInputDiv]
+  const editModeElements = [coverInputDiv, nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv, skillInputDiv]
 
   const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay, skillDisplay]
 

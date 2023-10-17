@@ -6,6 +6,7 @@ const PATH = path.join('temp')
 async function cleanTempFolder() {
   try {
     const files = await fs.readdir(PATH)
+    if (!files) return
     const deleteFiles = files.map(async (file) => {
       const filePath = PATH + '/' + file
       await fs.unlink(filePath)

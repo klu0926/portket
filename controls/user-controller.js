@@ -224,11 +224,11 @@ const userController = {
       let newSkills = []
 
       // files
-      if (files?.avatar) {
-        newAvatar = await imgurFileHandler(files.avatar[0])
-      }
-      if (files?.cover) {
+      if (files?.cover && files.cover !== currentUser.cover) {
         newCover = await imgurFileHandler(files.cover[0])
+      }
+      if (files?.avatar && files.avatar !== currentUser.avatar) {
+        newAvatar = await imgurFileHandler(files.avatar[0])
       }
 
       // user skills
