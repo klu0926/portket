@@ -47,6 +47,7 @@ function editMode() {
   const socialInputDiv = document.querySelector('#social-input-div')
   const descriptionInputDiv = document.querySelector('#description-input-div')
   const contactInputDiv = document.querySelector('#contact-input-div')
+  const skillInputDiv = document.querySelector('#skill-input-div')
 
   // display
   const nameDisplay = document.querySelector('#name-display')
@@ -54,14 +55,16 @@ function editMode() {
   const socialDisplay = document.querySelector('#social-display')
   const descriptionDisplay = document.querySelector('#description-display')
   const contactDisplay = document.querySelector('#contact-display')
+  const skillDisplay = document.querySelector('#skill-display')
 
   // project btn
   const addProjectBtn = document.querySelector('#add-project-btn')
   const projectBlocker = document.querySelector('#project-blocker')
 
   // items list
-  const editModeElements = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv]
-  const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay]
+  const editModeElements = [nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv, skillInputDiv]
+
+  const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay, skillDisplay]
 
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {

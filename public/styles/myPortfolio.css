@@ -294,3 +294,75 @@
 #avatar-input-div:hover::after {
   font-size: 3rem;
 }
+
+/* skill input */
+.skill-input-checkbox-window {
+  position: relative;
+  border: 1px solid var(--my-border);
+  height: 200px;
+  overflow: auto;
+  padding: 4px;
+}
+.skill-input {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid var(--my-grey-light);
+}
+.skill-label {
+  display: inline-block;
+  flex-grow: 1;
+  padding: 4px;
+}
+.skill-checkbox {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: var(--my-red);
+  margin-right: 4px;
+}
+
+.skill-input:hover {
+  background-color: var(--my-light);
+}
+
+/* skill input tooltip*/
+.skill-tooltip {
+  display: none;
+  justify-content: start;
+}
+
+.skill-tooltip-top {
+  display: flex;
+}
+
+.skill-input:hover .skill-tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: var(--my-grey);
+  opacity: 0.9;
+  color: white;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  text-wrap: wrap;
+  border-radius: 4px;
+  z-index: 10;
+}
+.skill-tooltip-name {
+  font-weight: bold;
+}
+
+.skill-tooltip-img {
+  display: inline-block;
+  align-items: center;
+  width: 25px;
+  margin-right: 5px;
+}
+.skill-tooltip-img img {
+  width: 100%;
+  filter: invert(100%); /* Invert the colors to turn black to white */
+}

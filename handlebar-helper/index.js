@@ -32,6 +32,11 @@ module.exports = {
     }
     return false
   },
+  inArray: (array, item) => {
+    if (!array || !item) return
+    if (array.includes(item.toString())) return true
+    return false
+  },
   simpleDate: (date) => {
     if (!date) return
     return dayjs(date).format('YYYY-MM-DD')

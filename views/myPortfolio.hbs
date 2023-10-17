@@ -232,29 +232,53 @@
             <!--skills-->
             <div class="my-4">
               <p class="fw-bold my-2 text-primary">SKILLS</p>
-              {{#if user.skills}}
               <div class="px-2">
-                {{#each user.skills}}
-                <div class="skill-block">
-                  <div class="skill-icon">
-                    <img src="{{this.icon}}" alt="skill icon" />
-                  </div>
-                  <div class="skill-info">
-                    <div class="skill-block-top d-flex">
-                      <div class="d-flex align-items-center">
-                        <p class="skill-name">{{this.name}}</p>
+                <!--skill display-->
+                <div id="skill-display">
+                  {{#if user.skills}} {{#each user.skills}}
+                  <div class="skill-block">
+                    <div class="skill-icon">
+                      <img src="{{this.icon}}" alt="skill icon" />
+                    </div>
+                    <div class="skill-info">
+                      <div class="skill-block-top d-flex">
+                        <div class="d-flex align-items-center">
+                          <p class="skill-name">{{this.name}}</p>
+                        </div>
+                      </div>
+                      <div class="skill-block-bottom">
+                        <p class="skill-description">{{this.description}}</p>
                       </div>
                     </div>
-                    <div class="skill-block-bottom">
-                      <p class="skill-description">{{this.description}}</p>
+                  </div>
+                  {{/each}} {{else}}
+                  <p class="ps-2">No skills listed</p>
+                  {{/if}}
+                </div>
+                <!--skill input-->
+                <div id="skill-input-div">
+                  <div class="skill-input-checkbox-window">
+                    {{#each allSkills}}
+                    <div class="skill-input">
+                      <input class="skill-checkbox" type="checkbox" id="{{this.name}}" name="skills" value="{{this.id}}" {{#if (inArray ../user.skillsList this.id)}} checked {{/if}} />
+                      <label class="skill-label" for="{{this.name}}">{{this.name}}</label>
+                      <!--tool tip-->
+                      <div class="skill-tooltip">
+                        <div class="skill-tooltip-top">
+                          <div class="skill-tooltip-img">
+                            <img src="{{this.icon}}" alt="skill icon" />
+                          </div>
+                          <p class="skill-tooltip-name">{{this.name}}</p>
+                        </div>
+                        <p class="skill-tooltip-description">{{this.description}}</p>
+                      </div>
                     </div>
+                    {{/each}}
+                    <div style="height: 50px"></div>
                   </div>
                 </div>
-                {{/each}}
+                <!--input end-->
               </div>
-              {{else}}
-              <p class="ps-2">No skills listed</p>
-              {{/if}}
             </div>
           </form>
         </div>

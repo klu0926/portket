@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill, User_Social } = require('../models')
+const { User, Project, Social, Skill, User_Social, User_Skill } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -175,6 +175,11 @@ const userController = {
         social.icon = allSocials[social.socialId - 1].icon
       })
 
+      user.skillsList = []
+      user.skills.forEach((skill) => {
+        user.skillsList.push(skill.id.toString())
+      })
+
       console.log('user', user)
       // check if user is current user
       if (req.user?.id === user.id) {
@@ -216,6 +221,7 @@ const userController = {
       const newThemeId = body.themeId ? body.themeId.trim() : ''
       let newSocials = []
       let newSocialsLinks = []
+      let newSkills = []
 
       // files
       if (files?.avatar) {
@@ -225,30 +231,38 @@ const userController = {
         newCover = await imgurFileHandler(files.cover[0])
       }
 
+      // user skills
+      if (body.skills) {
+        newSkills = typeof body.skills === 'string' ? [body.skills] : body.skills
+      }
+
       // user social
       if (body.socials) {
-        if (body.socials === 'string') {
-          newSocials = [body.socials]
-        } else {
-          newSocials = body.socials
-        }
+        newSocials = typeof body.socials === 'string' ? [body.socials] : body.socials
       }
       if (body.socialsLinks) {
-        if (typeof body.socialsLinks === 'string') {
-          newSocialsLinks = [body.socialsLinks]
-        } else {
-          newSocialsLinks = body.socialsLinks
-        }
+        newSocialsLinks = typeof body.socialsLinks === 'string' ? [body.socialsLinks] : body.socialsLinks
       }
-      // destroy all user socials
+
+      // User_Skill
+      await User_Skill.destroy({
+        where: { userId: currentUser.id },
+      })
+      for (let i = 0; i < newSkills.length; i++) {
+        await User_Skill.create({
+          userId: currentUser.id,
+          skillId: Number(newSkills[i]),
+        })
+      }
+
+      // User_Social
       await User_Social.destroy({
         where: { userId: currentUser.id },
       })
-      // create new user socials
       for (let i = 0; i < newSocials.length; i++) {
         await User_Social.create({
-          link: newSocialsLinks[i],
           userId: currentUser.id,
+          link: newSocialsLinks[i],
           socialId: Number(newSocials[i]),
         })
       }
