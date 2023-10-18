@@ -223,6 +223,8 @@ const userController = {
       let newSocialsLinks = []
       let newSkills = []
 
+      console.log('newDescription', newDescription)
+
       // files
       if (files?.cover && files.cover !== currentUser.cover) {
         newCover = await imgurFileHandler(files.cover[0])

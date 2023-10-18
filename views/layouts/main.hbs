@@ -8,7 +8,7 @@
     <title>PORTKET</title>
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
     <link rel="manifest" href="/favicon_io/site.webmanifest" />
   </head>
@@ -24,8 +24,10 @@
       <!--nab bar-->
       <nav class="navbar py-2 px-4">
         <a class="navbar-brand fw-bold" href="/users">
-          {{#if isAuthenticated}}{{currentUser.name}}'s{{/if}}
-          <span class="text-primary">PORT</span><span>KET</span>
+          <div class="navbar-logo">
+            <img src="/favicon_io/apple-touch-icon.png" alt="logo" />
+          </div>
+          <p><span class="text-primary">PORT</span><span>KET</span></p>
         </a>
         {{#if isAuthenticated}}
         <div class="navbar-right">
@@ -44,9 +46,12 @@
           </div>
           {{else}}
           <!--my portfolio-->
-          <a class="my-portfolio-icon" href="/users/{{currentUser.id}}">
-            <i class="fa-solid fa-user"></i>
-          </a>
+          <div class="navbar-avatar-div">
+            <a class="navbar-avatar-a" href="/users/{{currentUser.id}}">
+              <img class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
+            </a>
+          </div>
+
           {{/if}}
           <!--logout-->
           <a class="login-btn btn btn-outline-primary" href="/users/logout">Logout</a>

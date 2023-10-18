@@ -1,3 +1,4 @@
+<div id="top"></div>
 <div class="container" style="min-height: 1100px">
   <!--cover-->
   <div id="cover-input-div"></div>
@@ -35,8 +36,8 @@
               <div id="name-input-div">
                 <p class="fw-bold my-2 text-primary">Name</p>
                 <div class="ps-2">
-                  <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" required />
-                  <div class="invalid-feedback">Require at least 6 characters.</div>
+                  <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" maxlength="30" required />
+                  <div class="invalid-feedback">Require 6 - 30 characters.</div>
                 </div>
               </div>
             </div>
@@ -48,7 +49,8 @@
               </div>
               <div id="title-input-div" class="ps-2">
                 <div>
-                  <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" required />
+                  <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" maxlength="30" required />
+                  <div class="invalid-feedback">Require 2 - 30 characters.</div>
                 </div>
               </div>
             </div>
@@ -226,7 +228,8 @@
                     <span>Phone</span>
                     <span class="bracket-text">optional</span>
                   </p>
-                  <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number"/>
+                  <input name="phone" class="form-control" type="text" {{#if user.phone}}value="{{user.phone}}"{{/if}} placeholder="phone number" minlength="6" maxlength="20"/>
+                  <div class="invalid-feedback">Require 6 - 20 numbers.</div>
                 </div>
               </div>
               <!--contact input div end-->
@@ -305,7 +308,9 @@
             Exit edit mode to add project.
           </div>
         </div>
-        <div id="add-project-btn"></div>
+        <a href="#" style="text-decoration: none">
+          <div id="add-project-btn"></div>
+        </a>
       </div>
 
       <!--projects-->

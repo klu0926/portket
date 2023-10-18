@@ -270,6 +270,22 @@ body {
   padding: 0 5px;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar-logo {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.navbar-logo img {
+  max-width: 100%;
+}
+
 /* navbar right (my portfolio , login/out)*/
 .navbar-right {
   display: flex;
@@ -287,26 +303,53 @@ body {
   font-size: 0.9rem;
 }
 
-/* my portfolio icon */
-.my-portfolio-icon {
+/* navbar-avatar */
+.navbar-avatar-div {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
+  position: relative;
   margin-right: 10px;
-  border: 1px solid var(--my-red);
+}
+.navbar-avatar-a {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background-color: white;
   color: var(--my-red);
   transition: all 0.2s ease-in-out;
-  box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.my-portfolio-icon:hover {
-  border: none;
+.navbar-avatar-img {
+  width: 100%;
+}
+
+.navbar-avatar-a:hover {
   background-color: var(--my-red);
-  border-radius: 6px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-avatar-div::after {
+  content: 'Account';
+  display: block;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
+  background-color: var(--my-red);
+  border-radius: 5px;
+  padding: 0px 6px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: all 0.2s 0.25s ease-in-out;
+  /* 0.2 is speed, 0.4 is delay */
+}
+
+.navbar-avatar-div:hover::after {
+  opacity: 1;
+  top: 130%;
 }
 
 /*portfolio display*/

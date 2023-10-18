@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectFormResetBtn = document.querySelector('#projectFormReset')
 
   //project cover
-  const coverInput = document.querySelector('#coverInput')
+  const coverDisplay = document.querySelector('#form-project-cover-display')
+  const coverInput = document.querySelector('#form-project-cover-input')
 
   //loading-indicator
   const projectLoadingDisplay = document.querySelector('#project-loading-indicator')
@@ -70,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     previewCover() // reset preview cover
   })
 
+  coverDisplay.addEventListener('click', (event) => {
+    coverInput.click()
+  })
+
   // cover input preview on change
   coverInput.addEventListener('change', (event) => {
     previewCover()
@@ -80,23 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // preview image (function)
 function previewCover() {
-  const coverInput = document.querySelector('#coverInput')
-  const coverDisplay = document.querySelector('#coverDisplay')
+  const coverInput = document.querySelector('#form-project-cover-input')
+  const projectFormCover = document.querySelector('#form-project-cover-display')
 
   if (coverInput.files && coverInput.files[0]) {
     const reader = new FileReader()
-
     reader.onload = (event) => {
-      coverDisplay.src = event.target.result
-      coverDisplay.style.display = 'block'
+      projectFormCover.style.backgroundImage = `url(${event.target.result})`
     }
-
-    // readAsDataURL
-    // represent the file as a base65 string, the file is not store in system
-    // using this base65 string as img.src, it can display the image
     reader.readAsDataURL(coverInput.files[0])
-  } else {
-    coverDisplay.src = '#'
-    coverDisplay.style.display = 'none'
   }
 }

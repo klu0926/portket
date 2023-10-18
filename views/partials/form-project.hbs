@@ -17,8 +17,8 @@
       <!--title-->
       <div class="form-div">
         <label class="form-label" for="project-title">Title</label>
-        <input name="title" type="text" class="form-control" id="project-title" required minlength="5" />
-        <div class="invalid-feedback">Title require at least 5 characters.</div>
+        <input name="title" type="text" class="form-control" id="project-title" required minlength="5" maxlength="30" />
+        <div class="invalid-feedback">Title require 5 - 30 characters.</div>
       </div>
       <!--date-->
       <div class="form-div">
@@ -30,18 +30,15 @@
       <div class="form-div">
         <label class="form-label" for="project-cover" style="width: 100%">
           <p class="mb-2">Cover</p>
-          <div class="form-cover">
-            <img id="coverDisplay" src="" alt="project cover" />
-            <div class="form-cover-text">Add Cover</div>
-          </div>
+          <div id="form-project-cover-display" class="form-cover"></div>
         </label>
-        <input id="coverInput" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" required />
+        <input id="form-project-cover-input" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" style="display: none" />
         <div class="invalid-feedback">Cover image is required.</div>
       </div>
       <!--description-->
       <div class="form-div">
         <label class="form-label" for="project-description">Description</label>
-        <textarea name="description" class="form-control" id="project-description" rows="3" required minlength="20"></textarea>
+        <textarea name="description" class="form-control" id="project-description" rows="6" required minlength="20"></textarea>
         <div class="invalid-feedback">Description require at least 20 characters.</div>
         <div class="form-text mt-2">Tell us more about the project, what is the project for, what is the goal, and what is the result. Be as detail as possible.</div>
       </div>
@@ -51,12 +48,11 @@
         <div class="form-page-skill-window">
           {{#each allSkills}}
           <div class="form-check">
-            <input name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" i />
-            <label class="form-check-label" for="skill{{this.id}}"> {{this.name}} </label>
+            <label class="form-check-label" for="skill{{this.id}}"> <input id="skill{{this.id}}" name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" i /> {{this.name}} </label>
           </div>
           {{/each}}
         </div>
-        <div class="form-text mt-4">Select skills you use in your project.</div>
+        <div class="form-text mt-2">Select skills you use in your project.</div>
       </div>
       <!--links-->
       <div class="form-div">

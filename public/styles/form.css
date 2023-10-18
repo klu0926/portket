@@ -73,29 +73,42 @@
 }
 
 .form-cover {
-  height: 200px;
+  height: 300px;
   overflow: hidden;
   margin-bottom: 5px;
   border: 1px solid var(--my-border);
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+  background-image: none;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-.form-cover img {
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: none;
+.form-cover:hover {
+  border: 3px solid var(--my-red);
+  background-color: rgba(255, 0, 0, 0.1);
 }
 
-.form-cover-text {
+.form-cover::before {
+  content: '+';
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 3rem;
   color: var(--my-grey);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-cover:hover::before {
+  font-size: 3.5rem;
+  color: var(--my-red);
 }
 
 .form-page-skill-window {
@@ -104,6 +117,16 @@
   border: 1px solid var(--my-border);
   border-radius: 4px;
   padding: 10px;
+}
+
+/* skills */
+.form-check-label {
+  display: block;
+  cursor: pointer;
+}
+
+.form-check-label:hover {
+  background-color: var(--my-light);
 }
 
 /* links */
