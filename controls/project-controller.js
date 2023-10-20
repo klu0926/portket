@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill, Project_Image, Project_Link, Project_Skill } = require('../models')
+const { User, Project, Social, Skill, Project_Link, Project_Skill, Project_Content } = require('../models')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const imgurImageHandler = require('../helper/imgur')
@@ -7,6 +7,7 @@ const addHttp = require('../helper/addHttp')
 const projectController = {
   getProject: async (req, res, next) => {
     try {
+      const currentUser = req.user
       const projectId = req.params.projectId
       if (!projectId) throw new Error('No projectId')
 
@@ -22,11 +23,6 @@ const projectController = {
             as: 'user',
           },
           {
-            model: Project_Image,
-            attributes: ['id', 'name', 'image', 'description'],
-            as: 'images',
-          },
-          {
             model: Project_Link,
             attributes: ['id', 'name', 'link'],
             as: 'links',
@@ -39,12 +35,24 @@ const projectController = {
               attributes: [],
             },
           },
+          {
+            model: Project_Content,
+            attributes: ['id', 'order', 'type', 'content'],
+            as: 'contents',
+          },
         ],
+        order: [[{ model: Project_Content, as: 'contents' }, 'order', 'ASC']],
       })
       if (!projectData) throw new Error(`Can not find project with id ${projectId}`)
       const project = projectData.toJSON()
       console.log(project)
-      res.render('project', { project })
+
+      // check if current project own my current user
+      if (currentUser?.id === project.userId) {
+        res.render('myProject', { project, page: 'myProject' })
+      } else {
+        res.render('project', { project })
+      }
     } catch (err) {
       next(err)
     }

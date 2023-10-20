@@ -78,5 +78,60 @@
     "name": "Machine Learning",
     "description": "Enabling data-driven predictions with machine learning.",
     "icon": "/images/skill_icons/machine_learning.png"
+  },
+  {
+    "name": "3D Animation",
+    "description": "Creating lifelike movements and visual storytelling in three-dimensional space.",
+    "icon": "/images/skill_icons/3d_animation.png"
+  },
+  {
+    "name": "3D Modeling",
+    "description": "Crafting detailed three-dimensional objects and environments for various applications.",
+    "icon": "/images/skill_icons/3d_modeling.png"
+  },
+  {
+    "name": "2D Animation",
+    "description": "Breathing life into characters and scenes using two-dimensional techniques.",
+    "icon": "/images/skill_icons/2d_animation.png"
+  },
+  {
+    "name": "Particle Effect",
+    "description": "Designing dynamic visual effects through the manipulation of particles in simulations.",
+    "icon": "/images/skill_icons/particle_effect.png"
+  },
+  {
+    "name": "Shader",
+    "description": "Crafting custom shaders for enhanced visual rendering in computer graphics.",
+    "icon": "/images/skill_icons/shader.png"
+  },
+  {
+    "name": "Rigging",
+    "description": "Creating skeletons and controls for character or object movement in 3D animation.",
+    "icon": "/images/skill_icons/rigging.png"
+  },
+  {
+    "name": "Audio",
+    "description": "Creating and implementing audio, including music and sound effects, for games.",
+    "icon": "/images/skill_icons/audio.png"
+  },
+  {
+    "name": "Level Design",
+    "description": "Designing the layout and challenges within game levels or environments.",
+    "icon": "/images/skill_icons/level_design.png"
+  },
+  {
+    "name": "Game Design",
+    "description": "Crafting the gameplay, mechanics, and overall user experience of video games.",
+    "icon": "/images/skill_icons/game_design.png"
+  },
+  {
+    "name": "Game Lighting Design",
+    "description": "Enhancing gaming experiences through visual and atmospheric lighting design in video games.",
+    "icon": "/images/skill_icons/game_lighting_design.png"
+  },
+  {
+    "name": "Concept Art",
+    "description": "Visual artwork that inspires and designs characters, environments, and assets in video games and media.",
+    "icon": "/images/skill_icons/concept_art.png"
   }
 ]

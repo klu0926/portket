@@ -74,26 +74,18 @@
   margin: 15px 0px;
 }
 
-/* images */
-.project-page-image-box {
+/* project content (prev as project-image) */
+.project-page-content-box {
   width: 100%;
   margin-bottom: 25px;
 }
 
-.project-page-image {
+.project-content-image {
   border-radius: 6px;
   overflow: hidden;
 }
 
-.project-page-image img {
+.project-content-image img {
   width: 100%;
   background-size: cover;
-}
-
-.project-page-image-name {
-  font-weight: bold;
-}
-
-.project-page-image-des {
-  color: var(--my-grey);
 }

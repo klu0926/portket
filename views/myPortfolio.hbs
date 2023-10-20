@@ -237,7 +237,7 @@
             <!--skills-->
             <div class="my-4">
               <p class="fw-bold my-2 text-primary">SKILLS</p>
-              <div class="px-2">
+              <div class="skill-container">
                 <!--skill display-->
                 <div id="skill-display">
                   {{#if user.skills}} {{#each user.skills}}
@@ -289,69 +289,69 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!--projects (right side)-->
-  <div class="portfolio-right col-12 col-lg-6">
-    <div class="project-container">
-      <!--project block-->
-      <div class="position-relative d-flex justify-content-center mb-3">
-        <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
-        <!--project line-->
-        <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
-      </div>
-      <!--Add project btn-->
-      <div id="add-project-btn-container">
-        <div id="project-blocker">
-          <div class="project-blocker-inner">
-            <i class="fa-solid fa-ban me-2"></i>
-            Exit edit mode to add project.
-          </div>
+    <!--projects (right side)-->
+    <div class="portfolio-right col-12 col-lg-6">
+      <div class="project-container">
+        <!--project block-->
+        <div class="position-relative d-flex justify-content-center mb-3">
+          <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
+          <!--project line-->
+          <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
         </div>
-        <a href="#" style="text-decoration: none">
-          <div id="add-project-btn"></div>
-        </a>
-      </div>
-
-      <!--projects-->
-      <div class="project-display">
-        {{#if user.projects}} {{#each user.projects}}
-        <div class="project-outer-block mb-3">
-          <a class="project-link" href="/projects/{{this.id}}">
-            <div class="project-block d-flex">
-              <div class="project-image-holder col-4">
-                <img class="project-image" src="{{this.cover}}" alt="project image" />
-              </div>
-              <div class="project-block-info p-2 col-8">
-                <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                <p class="project-date mb-1">{{simpleDate this.date}}</p>
-                <div class="project-description-div">
-                  <p class="project-description">{{substring this.description 100}}</p>
-                </div>
-                <div class="project-block-skills mt-2">
-                  {{#if this.skills}} {{#each this.skills}}
-                  <span class="skill-pill">{{this.name}}</span>
-                  {{/each}} {{/if}}
-                </div>
-              </div>
+        <!--Add project btn-->
+        <div id="add-project-btn-container">
+          <div id="project-blocker">
+            <div class="project-blocker-inner">
+              <i class="fa-solid fa-ban me-2"></i>
+              Exit edit mode to add project.
             </div>
-          </a>
-          <!--delete project btn-->
-          <div class="project-delete-btn-div">
-            <form action="/projects/{{this.id}}?_method=DELETE" method="post">
-              <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
-            </form>
           </div>
+          <a href="#" style="text-decoration: none">
+            <div id="add-project-btn"></div>
+          </a>
         </div>
-        {{/each}} {{/if}}
+
+        <!--projects-->
+        <div class="project-display">
+          {{#if user.projects}} {{#each user.projects}}
+          <div class="project-outer-block mb-3">
+            <a class="project-link" href="/projects/{{this.id}}">
+              <div class="project-block d-flex">
+                <div class="project-image-holder col-4">
+                  <img class="project-image" src="{{this.cover}}" alt="project image" />
+                </div>
+                <div class="project-block-info p-2 col-8">
+                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
+                  <p class="project-date mb-1">{{simpleDate this.date}}</p>
+                  <div class="project-description-div">
+                    <p class="project-description">{{substring this.description 100}}</p>
+                  </div>
+                  <div class="project-block-skills mt-2">
+                    {{#if this.skills}} {{#each this.skills}}
+                    <span class="skill-pill">{{this.name}}</span>
+                    {{/each}} {{/if}}
+                  </div>
+                </div>
+              </div>
+            </a>
+            <!--delete project btn-->
+            <div class="project-delete-btn-div">
+              <form action="/projects/{{this.id}}?_method=DELETE" method="post">
+                <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
+              </form>
+            </div>
+          </div>
+          {{/each}} {{/if}}
+        </div>
+        <!--project block end-->
       </div>
-      <!--project block end-->
     </div>
+
+    <!--script-->
+    <script src="/javascript/portfolio.js"></script>
+    <script src="/javascript/myPortfolio.js"></script>
+    <!--form-->
+    {{> form-project}}
   </div>
 </div>
-
-<!--script-->
-<script src="/javascript/portfolio.js"></script>
-<script src="/javascript/myPortfolio.js"></script>
-<!--form-->
-{{> form-project}}

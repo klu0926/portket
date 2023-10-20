@@ -5,59 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   socials()
 })
 
-function previewPortfolioCover() {
-  const coverInputDiv = document.querySelector('#cover-input-div')
-  const coverInput = document.querySelector('#cover-input')
-  const coverImg = document.querySelector('#cover-img')
-  const originalCover = coverImg.src
-  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
-  // add
-  coverInputDiv.addEventListener('click', (event) => {
-    coverInput.click()
-  })
-  // change
-  coverInput.addEventListener('change', () => {
-    if (coverInput.files && coverInput.files[0]) {
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        coverImg.src = event.target.result
-      }
-      reader.readAsDataURL(coverInput.files[0])
-    }
-  })
-  // cancel
-  cancelPortfolioBtn.addEventListener('click', () => {
-    coverImg.src = originalCover
-  })
-}
-
-function previewPortfolioAvatar() {
-  const avatarInputDiv = document.querySelector('#avatar-input-div')
-  const avatarInput = document.querySelector('#avatar-input')
-  const avatarImg = document.querySelector('#avatar-img')
-  const originalAvatar = avatarImg.src
-  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
-
-  // add
-  avatarInputDiv.addEventListener('click', (event) => {
-    avatarInput.click()
-  })
-  // change
-  avatarInput.addEventListener('change', () => {
-    if (avatarInput.files && avatarInput.files[0]) {
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        avatarImg.src = event.target.result
-      }
-      reader.readAsDataURL(avatarInput.files[0])
-    }
-  })
-  // cancel
-  cancelPortfolioBtn.addEventListener('click', () => {
-    avatarImg.src = originalAvatar
-  })
-}
-
 function editMode() {
   // info form
   const infoFormSubmit = document.querySelector('#info-submit-btn')
@@ -157,6 +104,59 @@ function editMode() {
       event.stopPropagation()
     }
     infoForm.classList.add('was-validated')
+  })
+}
+
+function previewPortfolioCover() {
+  const coverInputDiv = document.querySelector('#cover-input-div')
+  const coverInput = document.querySelector('#cover-input')
+  const coverImg = document.querySelector('#cover-img')
+  const originalCover = coverImg.src
+  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  // add
+  coverInputDiv.addEventListener('click', (event) => {
+    coverInput.click()
+  })
+  // change
+  coverInput.addEventListener('change', () => {
+    if (coverInput.files && coverInput.files[0]) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        coverImg.src = event.target.result
+      }
+      reader.readAsDataURL(coverInput.files[0])
+    }
+  })
+  // cancel
+  cancelPortfolioBtn.addEventListener('click', () => {
+    coverImg.src = originalCover
+  })
+}
+
+function previewPortfolioAvatar() {
+  const avatarInputDiv = document.querySelector('#avatar-input-div')
+  const avatarInput = document.querySelector('#avatar-input')
+  const avatarImg = document.querySelector('#avatar-img')
+  const originalAvatar = avatarImg.src
+  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+
+  // add
+  avatarInputDiv.addEventListener('click', (event) => {
+    avatarInput.click()
+  })
+  // change
+  avatarInput.addEventListener('change', () => {
+    if (avatarInput.files && avatarInput.files[0]) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        avatarImg.src = event.target.result
+      }
+      reader.readAsDataURL(avatarInput.files[0])
+    }
+  })
+  // cancel
+  cancelPortfolioBtn.addEventListener('click', () => {
+    avatarImg.src = originalAvatar
   })
 }
 

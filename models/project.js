@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user',
       })
-      Project.hasMany(models.Project_Image, {
-        foreignKey: 'projectId',
-        as: 'images',
-        onDelete: 'CASCADE',
-      })
       Project.hasMany(models.Project_Link, {
         foreignKey: 'projectId',
         as: 'links',
+        onDelete: 'CASCADE',
+      })
+      Project.hasMany(models.Project_Content, {
+        foreignKey: 'projectId',
+        as: 'contents',
         onDelete: 'CASCADE',
       })
       Project.belongsToMany(models.Skill, {

@@ -1,3 +1,4 @@
+<!--myProject-->
 <!--main container-->
 <div class="container" style="min-height: 600px">
   <!--cover-->
@@ -47,23 +48,22 @@
       </div>
       <!--project info end-->
     </div>
+    <!--project images-->
     <div class="project-page-line"></div>
-
-    <!--project content-->
-    <div class="project-content">
-      {{#each project.contents}}
-      <div class="project-page-content-box">
-        {{#if (isSame this.type 'image')}}
-        <div class="project-content-image">
-          <img src="{{this.content}}" alt="project image" />
+    <div class="project-page-images">
+      {{#each project.images}}
+      <div class="project-page-image-box">
+        <div class="project-page-image">
+          <img src="{{this.image}}" alt="project image" />
         </div>
-        {{/if}} {{#if (isSame this.type 'text')}}
-        <div class="project-content-text">
-          <p>{{this.content}}</p>
+        <div class="mt-2">
+          <p class="project-page-image-name">{{this.name}}</p>
+          <p class="project-page-image-des">{{this.description}}</p>
         </div>
-        {{/if}}
       </div>
       {{/each}}
     </div>
   </div>
 </div>
+
+<script src="/javascript/myProject.js"></script>

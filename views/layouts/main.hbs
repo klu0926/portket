@@ -32,7 +32,7 @@
         {{#if isAuthenticated}}
         <div class="navbar-right">
           <!-- edit mode buttons for my portfolio-->
-          {{#if (isSame page 'myPortfolio')}}
+          {{#if (ifOr (isSame page 'myPortfolio') (isSame page 'myProject'))}}
           <div class="edit-buttons-container">
             <button id="edit-portfolio-btn" class="btn btn-primary edit-btn">
               <i class="fa-solid fa-pencil edit-portfolio-icon"></i>
@@ -44,6 +44,8 @@
             </button>
             <button id="cancel-portfolio-btn" class="btn btn-primary edit-btn">X</button>
           </div>
+          <!--edit mode display tip-->
+          <div id="edit-mode-display">Edit Mode</div>
           {{else}}
           <!--my portfolio-->
           <div class="navbar-avatar-div">
@@ -51,7 +53,6 @@
               <img class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
             </a>
           </div>
-
           {{/if}}
           <!--logout-->
           <a class="login-btn btn btn-outline-primary" href="/users/logout">Logout</a>
@@ -60,8 +61,6 @@
           <a class="login-btn btn btn-primary" href="/users/login">Login</a>
           {{/if}}
         </div>
-        <!--edit mode display tip-->
-        <div id="edit-mode-display">Edit Mode</div>
       </nav>
     </header>
 

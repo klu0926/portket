@@ -138,8 +138,13 @@
 }
 
 /* skills */
+.skill-container {
+  padding-left: 2px;
+}
+
 .skill-block {
   display: flex;
+  justify-content: start;
   border-bottom: 1px solid rgb(230, 230, 230);
   height: 76px;
 }
@@ -148,18 +153,20 @@
   display: flex;
   align-items: center;
   margin-right: 15px;
+  flex: 0 0 30px;
   width: 30px;
 }
 
 .skill-icon img {
   filter: opacity(50%);
-  width: 100%;
+  min-width: 100%;
 }
 
 .skill-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .skill-name {
@@ -211,7 +218,7 @@
 .project-image-holder {
   display: flex;
   align-items: center;
-  height: 150px;
+  height: 200px;
   overflow: hidden;
 }
 
