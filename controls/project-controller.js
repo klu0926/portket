@@ -136,6 +136,43 @@ const projectController = {
       next(err)
     }
   },
+  putProject: async (req, res, next) => {
+    try {
+      const currentUser = req.user
+      const currentProject = await Project.findOne({
+        where: {
+          id: req.params.projectId,
+        },
+      })
+      if (!currentProject) throw new Error('Can not find current project')
+      if (!currentUser) throw new Error('Can not find current user')
+      if (currentUser.id !== currentProject.userId) {
+        req.flash('warning_msg', 'Current user can not edit this project.')
+        return res.redirect('/users/login')
+      }
+
+      const body = req.body
+      const files = req.files
+      let newCover = ''
+
+      // files
+      if (files?.cover && files.cover !== currentProject.cover) {
+        newCover = await imgurImageHandler(files.cover[0])
+      }
+
+      // update
+      await currentProject.update({
+        date: body.date || currentProject.date,
+        title: body.title || currentProject.title,
+        description: body.description || currentProject.description,
+        cover: newCover || currentProject.cover,
+      })
+
+      res.redirect(`/projects/${currentProject.id}`)
+    } catch (err) {
+      next(err)
+    }
+  },
   deleteProject: async (req, res, next) => {
     try {
       const currentUser = req.user

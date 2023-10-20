@@ -8,7 +8,7 @@
     <title>PORTKET</title>
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
     <link rel="manifest" href="/favicon_io/site.webmanifest" />
   </head>
@@ -34,15 +34,15 @@
           <!-- edit mode buttons for my portfolio-->
           {{#if (ifOr (isSame page 'myPortfolio') (isSame page 'myProject'))}}
           <div class="edit-buttons-container">
-            <button id="edit-portfolio-btn" class="btn btn-primary edit-btn">
-              <i class="fa-solid fa-pencil edit-portfolio-icon"></i>
+            <button id="edit-btn" class="btn btn-primary edit-btn">
+              <i class="fa-solid fa-pencil edit-mode-icon"></i>
               Edit Mode
             </button>
-            <button id="save-portfolio-btn" class="btn btn-primary edit-btn">
-              <i class="fa-solid fa-floppy-disk edit-portfolio-icon"></i>
+            <button id="save-edit-btn" class="btn btn-primary edit-btn">
+              <i class="fa-solid fa-floppy-disk edit-mode-icon"></i>
               Save
             </button>
-            <button id="cancel-portfolio-btn" class="btn btn-primary edit-btn">X</button>
+            <button id="cancel-edit-btn" class="btn btn-primary edit-btn">X</button>
           </div>
           <!--edit mode display tip-->
           <div id="edit-mode-display">Edit Mode</div>

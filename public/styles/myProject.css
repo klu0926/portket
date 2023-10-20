@@ -1,0 +1,46 @@
+@import url('/styles/color.css');
+@import url('/styles/animation.css');
+/* my project ----------------------------------*/
+
+/* general */
+input {
+  width: 100%;
+}
+
+/* cover */
+#cover-input-div {
+  display: none;
+  position: absolute;
+  top: 50;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  z-index: 6;
+}
+#cover-input-div:hover {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+#cover-input-div::after {
+  content: '+';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+#cover-input-div:hover::after {
+  font-size: 5rem;
+}
+
+/* title */
+#project-title-input input {
+  font-size: 3rem;
+}

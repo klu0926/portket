@@ -61,20 +61,20 @@
   margin-right: 5px;
 }
 
-.edit-portfolio-icon {
+.edit-mode-icon {
   margin-right: 5px;
   transition: all 0.2s ease-in-out;
 }
 
-.edit-btn:hover .edit-portfolio-icon {
+.edit-btn:hover .edit-mode-icon {
   transform: rotate(-15deg);
 }
 
-#save-portfolio-btn {
+#save-edit-btn {
   display: none;
 }
 
-#cancel-portfolio-btn {
+#cancel-edit-btn {
   display: none;
 }
 

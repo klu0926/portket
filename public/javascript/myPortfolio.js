@@ -10,9 +10,9 @@ function editMode() {
   const infoFormSubmit = document.querySelector('#info-submit-btn')
   const infoForm = document.querySelector('#info-form')
   // edit nav bar
-  const editPortfolioBtn = document.querySelector('#edit-portfolio-btn')
-  const savePortfolioBtn = document.querySelector('#save-portfolio-btn')
-  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  const editBtn = document.querySelector('#edit-btn')
+  const saveEditBtn = document.querySelector('#save-edit-btn')
+  const cancelEditBtn = document.querySelector('#cancel-edit-btn')
   const editModeDisplay = document.querySelector('#edit-mode-display')
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
@@ -47,15 +47,15 @@ function editMode() {
   })
 
   // Enter edit mode
-  editPortfolioBtn.addEventListener('click', () => {
+  editBtn.addEventListener('click', () => {
     // show
-    savePortfolioBtn.style.display = 'flex'
-    cancelPortfolioBtn.style.display = 'flex'
+    saveEditBtn.style.display = 'flex'
+    cancelEditBtn.style.display = 'flex'
     editModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
     // hide
-    editPortfolioBtn.style.display = 'none'
+    editBtn.style.display = 'none'
     viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'none'
     })
@@ -67,18 +67,18 @@ function editMode() {
   })
 
   // Exit edit mode
-  cancelPortfolioBtn.addEventListener('click', () => {
+  cancelEditBtn.addEventListener('click', () => {
     // reset form
     infoForm.reset()
     infoForm.classList.remove('was-validated')
     // show
-    editPortfolioBtn.style.display = 'flex'
+    editBtn.style.display = 'flex'
     viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
     // hide
-    savePortfolioBtn.style.display = 'none'
-    cancelPortfolioBtn.style.display = 'none'
+    saveEditBtn.style.display = 'none'
+    cancelEditBtn.style.display = 'none'
     editModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'none'
     })
@@ -93,7 +93,7 @@ function editMode() {
   })
 
   // save
-  savePortfolioBtn.addEventListener('click', () => {
+  saveEditBtn.addEventListener('click', () => {
     infoFormSubmit.click()
   })
 
@@ -112,7 +112,7 @@ function previewPortfolioCover() {
   const coverInput = document.querySelector('#cover-input')
   const coverImg = document.querySelector('#cover-img')
   const originalCover = coverImg.src
-  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  const cancelEditBtn = document.querySelector('#cancel-edit-btn')
   // add
   coverInputDiv.addEventListener('click', (event) => {
     coverInput.click()
@@ -128,7 +128,7 @@ function previewPortfolioCover() {
     }
   })
   // cancel
-  cancelPortfolioBtn.addEventListener('click', () => {
+  cancelEditBtn.addEventListener('click', () => {
     coverImg.src = originalCover
   })
 }
@@ -138,7 +138,7 @@ function previewPortfolioAvatar() {
   const avatarInput = document.querySelector('#avatar-input')
   const avatarImg = document.querySelector('#avatar-img')
   const originalAvatar = avatarImg.src
-  const cancelPortfolioBtn = document.querySelector('#cancel-portfolio-btn')
+  const cancelEditBtn = document.querySelector('#cancel-edit-btn')
 
   // add
   avatarInputDiv.addEventListener('click', (event) => {
@@ -155,7 +155,7 @@ function previewPortfolioAvatar() {
     }
   })
   // cancel
-  cancelPortfolioBtn.addEventListener('click', () => {
+  cancelEditBtn.addEventListener('click', () => {
     avatarImg.src = originalAvatar
   })
 }
