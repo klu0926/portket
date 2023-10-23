@@ -1,8 +1,8 @@
 <div id="top"></div>
 <div class="container" style="min-height: 1100px">
   <!--cover-->
-  <div id="cover-input-div"></div>
   {{#if user.cover}}
+  <div id="cover-input-div" class="portfolio-cover-input-div"></div>
   <div class="portfolio-cover">
     <img id="cover-img" src="{{user.cover}}" alt="cover" />
   </div>
@@ -34,7 +34,7 @@
                 <h1 class="h3 fw-bold">{{user.name}}</h1>
               </div>
               <div id="name-input-div">
-                <p class="fw-bold my-2 text-primary">Name</p>
+                <p class="fw-bold my-2 text-primary">NAME</p>
                 <div class="ps-2">
                   <input class="form-control" name="name" type="text" value="{{user.name}}" placeholder="name" minlength="6" maxlength="30" required />
                   <div class="invalid-feedback">Require 6 - 30 characters.</div>
@@ -86,8 +86,8 @@
                 <!-- current user socials -->
                 <div class="new-social-input">
                   <div class="social-input-flex">
-                    <div class="col social-select">
-                      <select id="socials-network" class="form-select w-100" name="socials" required>
+                    <div class="social-select">
+                      <select id="socials-network" class="form-select" name="socials" required>
                         {{#each ../allSocials}} {{#if (isSame this.id currentSocial.socialId)}}
                         <option value="{{this.id}}" selected>{{this.name}}</option>
                         {{else}}
@@ -102,8 +102,8 @@
                         <div class="invalid-feedback">Require url.</div>
                       </div>
                     </div>
-                    <div class="ps-0 d-flex align-items-center">
-                      <button class="remove-button remove-social" type="button">-</button>
+                    <div class="button-container">
+                      <button class="remove-button remove-social" type="button"></button>
                     </div>
                   </div>
                 </div>
@@ -111,8 +111,8 @@
               </div>
               <!--social input add-->
               <div class="social-input-flex">
-                <div class="col social-select">
-                  <select id="socials-network" class="form-select w-100" name="socials" required disabled>
+                <div class="social-select">
+                  <select id="socials-network" class="form-select" name="socials" required disabled>
                     <option value="" selected>Select</option>
                     {{#each ../allSocials}}
                     <option value="{{this.id}}">{{this.name}}</option>
@@ -122,16 +122,16 @@
                 <div class="social-link ps-0">
                   <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
                 </div>
-                <div class="ps-0 d-flex align-items-center">
-                  <button id="add-social" class="add-button" type="button">+</button>
+                <div class="button-container">
+                  <button id="add-social" class="add-button" type="button"></button>
                 </div>
               </div>
 
               <!--social input example-->
               <div class="social-input-sample" style="display: none">
                 <div class="social-input-flex">
-                  <div class="col social-select">
-                    <select id="socials-network" class="form-select w-100" name="socials" required disabled>
+                  <div class="social-select">
+                    <select id="socials-network" class="form-select" name="socials" required disabled>
                       <option value="" selected>Select</option>
                       {{#each allSocials}}
                       <option value="{{this.id}}">{{this.name}}</option>
@@ -145,8 +145,8 @@
                       <div class="invalid-feedback">Require url.</div>
                     </div>
                   </div>
-                  <div class="ps-0 d-flex align-items-center">
-                    <button class="remove-button remove-social" type="button">-</button>
+                  <div class="button-container">
+                    <button class="remove-button remove-social" type="button"></button>
                   </div>
                 </div>
               </div>
@@ -288,6 +288,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
 
     <!--projects (right side)-->

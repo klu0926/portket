@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   editMode()
   previewProjectCover()
+  links()
 })
 
 function editMode() {
@@ -13,16 +14,20 @@ function editMode() {
   const cancelEditBtn = document.querySelector('#cancel-edit-btn')
   const editModeDisplay = document.querySelector('#edit-mode-display')
 
-  // input div
-  const coverInputDiv = document.querySelector('#cover-input-div')
-  const titleInput = document.querySelector('#project-title-input')
-
   // display
   const titleDisplay = document.querySelector('#project-title-display')
+  const ussrAndDateDisplay = document.querySelector('#project-user-date-display')
+  const linksDisplay = document.querySelector('#project-links-display')
+
+  // input div
+  const coverInputDiv = document.querySelector('#cover-input-div')
+  const titleInput = document.querySelector('#project-title-input-div')
+  const dateInput = document.querySelector('#project-date-input-div')
+  const linksInput = document.querySelector('#project-links-input-div')
 
   // item list
-  const editModeElements = [coverInputDiv, titleInput]
-  const viewModeElements = [titleDisplay]
+  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay]
+  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput]
 
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {
@@ -70,9 +75,9 @@ function editMode() {
     editModeDisplay.classList.add('hide-animation')
     editModeDisplay.style.animationPlayState = 'running'
 
-    // remove new social input
-    const newSocialInputs = document.querySelectorAll('.new-social-input')
-    newSocialInputs.forEach((e) => e.remove())
+    // remove new link input
+    const newLinkInputs = document.querySelectorAll('.new-link-input')
+    newLinkInputs.forEach((e) => e.remove())
   })
 
   // save
@@ -113,5 +118,40 @@ function previewProjectCover() {
   // cancel
   cancelEditBtn.addEventListener('click', () => {
     coverImg.src = originalCover
+  })
+}
+
+function links() {
+  const addLinksBtn = document.querySelector('#add-link-button')
+  const linksContainer = document.querySelector('#project-links-input-container')
+  const linkSample = document.querySelector('#project-links-input-sample')
+  const removeLinksBtns = document.querySelectorAll('.remove-link-button')
+
+  function removeBtnFunction(btn) {
+    btn.addEventListener('click', (event) => {
+      const input = event.target.closest('.project-links-input-flex')
+      if (input) input.remove()
+    })
+  }
+
+  removeLinksBtns.forEach((btn) => {
+    removeBtnFunction(btn)
+  })
+
+  addLinksBtn.addEventListener('click', (event) => {
+    const newLinkInput = linkSample.cloneNode(true)
+    newLinkInput.classList.add('new-link-input')
+    const inputs = newLinkInput.querySelectorAll('input')
+    inputs.forEach((i) => {
+      i.removeAttribute('disabled')
+      i.setAttribute('required', 'true')
+    })
+    const buttonContainer = newLinkInput.querySelector('.button-container')
+    const button = buttonContainer.querySelector('.add-button')
+    button.removeAttribute('id')
+    button.classList.remove('add-button')
+    button.classList.add('remove-button')
+    removeBtnFunction(button)
+    linksContainer.append(newLinkInput)
   })
 }

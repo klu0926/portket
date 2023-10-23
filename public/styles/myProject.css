@@ -8,7 +8,7 @@ input {
 }
 
 /* cover */
-#cover-input-div {
+.project-cover-input-div {
   display: none;
   position: absolute;
   top: 50;
@@ -20,10 +20,10 @@ input {
   transition: all 0.3s ease-in-out;
   z-index: 6;
 }
-#cover-input-div:hover {
+.project-cover-input-div:hover {
   background-color: rgba(255, 0, 0, 0.4);
 }
-#cover-input-div::after {
+.project-cover-input-div::after {
   content: '+';
   width: 100%;
   height: 100%;
@@ -36,11 +36,34 @@ input {
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
-#cover-input-div:hover::after {
+.project-cover-input-div:hover::after {
   font-size: 5rem;
 }
 
 /* title */
-#project-title-input input {
-  font-size: 3rem;
+.project-title-input {
+  font-size: 1.1rem;
+}
+
+/* date*/
+.project-date-input {
+  font-size: 1.1rem;
+}
+
+/* links */
+.project-links-input-flex {
+  display: flex;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.project-links-name {
+  flex-shrink: 1;
+  min-width: 90px;
+  padding-right: 6px;
+}
+
+.project-links-url {
+  flex-grow: 1;
+  padding-right: 6px;
 }

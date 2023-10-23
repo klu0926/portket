@@ -1,0 +1,61 @@
+@import url('/styles/color.css');
+
+/* general */
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.add-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  box-shadow: none;
+  padding: 0px;
+  background-color: var(--my-light);
+  border: 1px solid var(--my-grey);
+  color: var(--my-grey);
+  font-size: 1.4rem;
+  transition: all 0.2s ease-in-out;
+}
+.add-button::after {
+  content: '+';
+}
+
+.add-button:hover {
+  background-color: var(--my-grey);
+  border: none;
+  color: white;
+  border-radius: 3px;
+}
+
+.remove-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  padding: 0px;
+  background-color: var(--my-light);
+  border: 1px solid var(--my-red);
+  color: var(--my-red);
+  font-size: 1.4rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.remove-button::after {
+  content: '-';
+}
+
+.remove-button:hover {
+  background-color: var(--my-red-light);
+  border: none;
+  color: white;
+  border-radius: 3px;
+}
