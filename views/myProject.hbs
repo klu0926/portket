@@ -104,14 +104,38 @@
 
         <!--description-->
         <div class="mb-2">
-          <p>{{project.description}}</p>
+          <div id="project-description-display">
+            <p class="project-description">{{project.description}}</p>
+          </div>
+          <div id="project-description-input-div">
+            <p class="fw-bold my-2 text-primary">DESCRIPTION</p>
+            <div class="ps-2">
+              <textarea class="form-control" name="description" rows="7" cols="50" minlength="10" required>{{project.description}}</textarea>
+              <div class="invalid-feedback">Require at least 10 characters.</div>
+            </div>
+          </div>
         </div>
         <!--skills-->
-        <div class="project-skills">
-          {{#each project.skills}}
-          <span class="skill-tag">{{this.name}}</span>
-          {{/each}}
+        <div id="project-skills-display">
+          <div class="project-skills">
+            {{#each project.skills}}
+            <span class="skill-tag">{{this.name}}</span>
+            {{/each}}
+          </div>
         </div>
+        <!--skill input--->
+        <div id="project-skills-input-div" class="form-div">
+            <p class="fw-bold my-2 text-primary">SKILLS</p>
+          <div class="project-skills-input-window">
+            {{#each allSkills}}
+            <div class="form-check">
+              <label class="form-check-label" for="skill{{this.id}}"> <input id="skill{{this.id}}" name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" {{#if (inArray ../project.skillsList this.id)}} checked {{/if}} /> {{this.name}} </label>
+            </div>
+            {{/each}}
+          </div>
+          <div class="form-text mt-2">Select skills you use in your project.</div>
+        </div>
+
         <!--project info end-->
       </div>
       <div class="project-page-line"></div>

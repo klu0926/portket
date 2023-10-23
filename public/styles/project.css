@@ -90,3 +90,9 @@
   width: 100%;
   background-size: cover;
 }
+
+/* description */
+.project-description {
+  white-space: pre-wrap;
+  color: black;
+}

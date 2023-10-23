@@ -268,22 +268,22 @@
   flex-grow: 1;
 }
 
-.project-description {
+.project-block-info .project-description {
   color: var(--my-grey-light);
-  transition: all ease-in-out 0.2s;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all ease-in-out 0.2s;
 }
 
-.project-block:hover .project-title {
-  color: black;
+.project-block:hover .project-block-info .project-title {
+  color: var(--my-red);
 }
 
-.project-block:hover .project-date {
+.project-block:hover .project-block-info .project-date {
   color: var(--my-grey);
 }
 
-.project-block:hover .project-description {
+.project-block:hover .project-block-info .project-description {
   color: var(--my-grey);
 }
 

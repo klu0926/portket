@@ -11,6 +11,10 @@ const projectController = {
       const projectId = req.params.projectId
       if (!projectId) throw new Error('No projectId')
 
+      const allSkills = await Skill.findAll({
+        attributes: ['id', 'name', 'description', 'icon'],
+        raw: true,
+      })
       const projectData = await Project.findOne({
         where: { id: projectId },
         attributes: {
@@ -45,11 +49,20 @@ const projectController = {
       })
       if (!projectData) throw new Error(`Can not find project with id ${projectId}`)
       const project = projectData.toJSON()
+
+      // project skills
+      project.skillsList = []
+      if (project.skills) {
+        project.skills.forEach((skill) => {
+          project.skillsList.push(skill.id.toString())
+        })
+      }
+
       console.log(project)
 
       // check if current project own my current user
       if (currentUser?.id === project.userId) {
-        res.render('myProject', { project, page: 'myProject' })
+        res.render('myProject', { project, page: 'myProject', allSkills })
       } else {
         res.render('project', { project })
       }
@@ -160,7 +173,45 @@ const projectController = {
         newCover = await imgurImageHandler(files.cover[0])
       }
 
-      // update
+      // update project_links
+      if (body.linkName) {
+        if (typeof body.linkName === 'string') {
+          body.linkName = [body.linkName]
+        }
+      }
+      if (body.linkUrl) {
+        if (typeof body.linkUrl === 'string') {
+          body.linkUrl = [body.linkUrl]
+        }
+      }
+      await Project_Link.destroy({ where: { projectId: currentProject.id } })
+      if (body.linkName && body.linkUrl) {
+        for (let i = 0; i < body.linkName.length; i++) {
+          await Project_Link.create({
+            projectId: currentProject.id,
+            name: body.linkName[i],
+            link: body.linkUrl[i],
+          })
+        }
+      }
+
+      // update project_skill
+      if (body.skills) {
+        if (typeof body.skills === 'string') {
+          body.skills = [body.skills]
+        }
+      }
+      await Project_Skill.destroy({ where: { projectId: currentProject.id } })
+      if (body.skills) {
+        for (let i = 0; i < body.skills.length; i++) {
+          await Project_Skill.create({
+            projectId: currentProject.id,
+            skillId: Number(body.skills[i]),
+          })
+        }
+      }
+
+      // update project
       await currentProject.update({
         date: body.date || currentProject.date,
         title: body.title || currentProject.title,

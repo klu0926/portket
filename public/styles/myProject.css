@@ -67,3 +67,12 @@ input {
   flex-grow: 1;
   padding-right: 6px;
 }
+
+/*skills */
+.project-skills-input-window {
+  position: relative;
+  border: 1px solid var(--my-border);
+  height: 200px;
+  overflow: auto;
+  padding: 4px;
+}

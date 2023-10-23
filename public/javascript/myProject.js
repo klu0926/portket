@@ -18,16 +18,20 @@ function editMode() {
   const titleDisplay = document.querySelector('#project-title-display')
   const ussrAndDateDisplay = document.querySelector('#project-user-date-display')
   const linksDisplay = document.querySelector('#project-links-display')
+  const descriptionDisplay = document.querySelector('#project-description-display')
+  const skillsDisplay = document.querySelector('#project-skills-display')
 
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
   const titleInput = document.querySelector('#project-title-input-div')
   const dateInput = document.querySelector('#project-date-input-div')
   const linksInput = document.querySelector('#project-links-input-div')
+  const descriptionInput = document.querySelector('#project-description-input-div')
+  const skillsInput = document.querySelector('#project-skills-input-div')
 
   // item list
-  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay]
-  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput]
+  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay]
+  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput]
 
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {
