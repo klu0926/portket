@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   editMode()
   previewProjectCover()
   links()
+  content()
 })
 
 function editMode() {
@@ -20,6 +21,7 @@ function editMode() {
   const linksDisplay = document.querySelector('#project-links-display')
   const descriptionDisplay = document.querySelector('#project-description-display')
   const skillsDisplay = document.querySelector('#project-skills-display')
+  const contentDisplay = document.querySelector('#project-content-display')
 
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
@@ -28,9 +30,10 @@ function editMode() {
   const linksInput = document.querySelector('#project-links-input-div')
   const descriptionInput = document.querySelector('#project-description-input-div')
   const skillsInput = document.querySelector('#project-skills-input-div')
+  const contentInput = document.querySelector('#project-content-input-div')
 
   // item list
-  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay]
+  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay, contentDisplay]
   const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput]
 
   // hide all edit mode elements onload
@@ -157,5 +160,74 @@ function links() {
     button.classList.add('remove-button')
     removeBtnFunction(button)
     linksContainer.append(newLinkInput)
+  })
+}
+
+function content() {
+  const textSampleDiv = document.querySelector('#text-sample-div')
+  const textInputs = document.querySelectorAll('.content-text-input')
+  console.log(textInputs)
+
+  // text input events
+  textInputs.forEach((i) => addTextInputEvent(i))
+
+  function addTextInputEvent(input) {
+    console.log('input')
+    input.addEventListener('input', () => {
+      console.log('change')
+      input.style.height = 'auto'
+      input.style.height = input.scrollHeight + 'px'
+    })
+  }
+  // content insert
+  function insertAfter(newNode, targetNode) {
+    if (targetNode.nextSibling) {
+      targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
+    } else {
+      targetNode.parentNode.appendChild(newNode)
+    }
+  }
+  // textarea click
+  document.addEventListener('click', (event) => {
+    const target = event.target
+    const textInputs = document.querySelectorAll('.content-text-input')
+
+    textInputs.forEach((input) => {
+      if (input !== target) {
+        input.setAttribute('placeholder', '')
+      } else {
+        input.setAttribute('placeholder', ' Enter text here...')
+        if (!input.parentNode.classList.contains('text-hover')) {
+          input.parentNode.classList.add('text-hover')
+        }
+      }
+    })
+  })
+  // key press
+  document.addEventListener('keypress', (event) => {
+    const target = event.target
+    const targetParent = target.parentNode
+    let targetName = ''
+
+    if (target.tagName === 'TEXTAREA') {
+      if (target.classList.contains('content-text-input')) {
+        targetName = 'text'
+      }
+      // next line
+      if (targetName === 'text' && event.key === 'Enter') {
+        event.preventDefault()
+        event.stopPropagation()
+        const newTextInputDiv = textSampleDiv.cloneNode(true)
+        const newInput = newTextInputDiv.querySelector('textarea')
+        addTextInputEvent(newInput)
+        newTextInputDiv.style.display = 'block'
+        newInput.id = ''
+        newInput.removeAttribute('disabled')
+        insertAfter(newTextInputDiv, targetParent)
+        newInput.focus()
+        newInput.click()
+        target.parentNode.classList.remove('text-hover')
+      }
+    }
   })
 }

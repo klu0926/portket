@@ -76,3 +76,59 @@ input {
   overflow: auto;
   padding: 4px;
 }
+
+/* content */
+.project-content-input-container {
+  min-height: 500px;
+  width: 100%;
+  border: 1px solid var(--my-border);
+  border-radius: 5px;
+  cursor: text;
+  padding: 0;
+}
+
+.content-text-input-div {
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  padding: 2px 10px;
+  overflow: visible;
+  text-wrap: wrap;
+}
+
+.content-text-input {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  border: none;
+  overflow-y: hidden;
+  resize: none;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.2s ease-in-out;
+}
+
+.content-text-input:focus {
+  outline: none;
+}
+
+.text-hover::after {
+  content: '+';
+  position: absolute;
+  left: -17px;
+  top: 15px;
+  transform: translate(0%, -50%);
+  color: var(--my-grey);
+  opacity: 0;
+  font-size: 1.56rem;
+  color: var(--my-red);
+  transition: all 0.2s ease-in-out;
+}
+
+.text-hover:hover::after {
+  opacity: 100%;
+}
+
+#text-sample-div {
+  display: none;
+}

@@ -125,7 +125,7 @@
         </div>
         <!--skill input--->
         <div id="project-skills-input-div" class="form-div">
-            <p class="fw-bold my-2 text-primary">SKILLS</p>
+          <p class="fw-bold my-2 text-primary">SKILLS</p>
           <div class="project-skills-input-window">
             {{#each allSkills}}
             <div class="form-check">
@@ -135,29 +135,44 @@
           </div>
           <div class="form-text mt-2">Select skills you use in your project.</div>
         </div>
-
         <!--project info end-->
       </div>
       <div class="project-page-line"></div>
-
       <!--project content-->
-      <div class="project-content">
-        {{#each project.contents}}
-        <div class="project-page-content-box">
-          {{#if (isSame this.type 'image')}}
-          <div class="project-content-image">
-            <img src="{{this.content}}" alt="project image" />
+      <div id="project-content-display">
+        <div class="project-content">
+          {{#each project.contents}}
+          <div class="project-page-content-box">
+            {{#if (isSame this.type 'image')}}
+            <div class="project-content-image">
+              <img src="{{this.content}}" alt="project image" />
+            </div>
+            {{/if}} {{#if (isSame this.type 'text')}}
+            <div class="project-content-text">
+              <p>{{this.content}}</p>
+            </div>
+            {{/if}}
           </div>
-          {{/if}} {{#if (isSame this.type 'text')}}
-          <div class="project-content-text">
-            <p>{{this.content}}</p>
-          </div>
-          {{/if}}
+          {{/each}}
         </div>
-        {{/each}}
+      </div>
+      <!--content input-->
+      <div id="project-content-input-div">
+        <p class="fw-bold my-2 text-primary">CONTENT</p>
+        <div id="project-content-input-container" class="project-content-input-container">
+          <!--content text input--->
+          <div class="content-text-input-div text-hover">
+            <textarea class="content-text-input" type="text" name="contentText" placeholder=" Enter text here..." rows="1"></textarea>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </form>
+
+<!--content sample-->
+<div id="text-sample-div" class="content-text-input-div">
+  <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1" disabled></textarea>
+</div>
 
 <script src="/javascript/myProject.js"></script>

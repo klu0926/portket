@@ -167,6 +167,8 @@ body {
   height: 100vh;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 5px;
+  padding-right: ;
 }
 
 .body-container {
@@ -240,6 +242,8 @@ body {
   box-shadow: 0px 5px 10px 1px rgb(0, 0, 0, 0.2);
   z-index: 100;
   border: none;
+  left: 0;
+  top: 0;
 }
 
 /* loader */
@@ -365,8 +369,10 @@ body {
   height: 500px;
 }
 
-.body {
+.main-body {
   margin-top: 80px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 .banner-image {
@@ -505,6 +511,21 @@ body {
 
 .home-search-bar button {
   height: 100%;
+}
+
+/* footer */
+.footer-container {
+  width: 110%;
+}
+
+.main-footer {
+  width: 100%;
+  background-color: rgb(58, 58, 58);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 800px) {
