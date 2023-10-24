@@ -112,21 +112,36 @@ input {
   outline: none;
 }
 
-.text-hover::after {
-  content: '+';
+.input-div-tool-btn {
   position: absolute;
-  left: -17px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  left: -30px;
   top: 15px;
   transform: translate(0%, -50%);
-  color: var(--my-grey);
-  opacity: 0;
+  background-color: white;
   font-size: 1.56rem;
   color: var(--my-red);
+  width: 25px;
+  height: 25px;
+  border-radius: 5%;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
-.text-hover:hover::after {
-  opacity: 100%;
+.input-div-tool-btn:hover {
+  background-color: var(--my-border);
+}
+
+.input-div-tool-btn::before {
+  display: block;
+  content: '+';
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--my-grey);
+  color: var(--my-red);
+  transition: all 0.2s ease-in-out;
 }
 
 #text-sample-div {

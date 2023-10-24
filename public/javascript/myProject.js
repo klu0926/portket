@@ -85,6 +85,10 @@ function editMode() {
     // remove new link input
     const newLinkInputs = document.querySelectorAll('.new-link-input')
     newLinkInputs.forEach((e) => e.remove())
+
+    // remove new content input
+    const contentInputs = document.querySelectorAll('.new-content-input')
+    contentInputs.forEach((e) => e.remove())
   })
 
   // save
@@ -166,15 +170,12 @@ function links() {
 function content() {
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
-  console.log(textInputs)
 
   // text input events
   textInputs.forEach((i) => addTextInputEvent(i))
-
   function addTextInputEvent(input) {
-    console.log('input')
     input.addEventListener('input', () => {
-      console.log('change')
+      // auto height
       input.style.height = 'auto'
       input.style.height = input.scrollHeight + 'px'
     })
@@ -187,7 +188,7 @@ function content() {
       targetNode.parentNode.appendChild(newNode)
     }
   }
-  // textarea click
+  // input click
   document.addEventListener('click', (event) => {
     const target = event.target
     const textInputs = document.querySelectorAll('.content-text-input')
@@ -195,25 +196,40 @@ function content() {
     textInputs.forEach((input) => {
       if (input !== target) {
         input.setAttribute('placeholder', '')
+        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'none'
       } else {
         input.setAttribute('placeholder', ' Enter text here...')
-        if (!input.parentNode.classList.contains('text-hover')) {
-          input.parentNode.classList.add('text-hover')
-        }
+        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'flex'
       }
     })
   })
+
+  // mouse hover
+  document.addEventListener('mouseover', (event) => {
+    const target = event.target
+    const textInputs = document.querySelectorAll('.content-text-input')
+
+    textInputs.forEach((input) => {
+      if (input !== target) {
+        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'none'
+      } else {
+        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'flex'
+      }
+    })
+  })
+
   // key press
-  document.addEventListener('keypress', (event) => {
+  document.addEventListener('keydown', (event) => {
     const target = event.target
     const targetParent = target.parentNode
     let targetName = ''
+    console.log('keypress', event.key)
 
     if (target.tagName === 'TEXTAREA') {
       if (target.classList.contains('content-text-input')) {
         targetName = 'text'
       }
-      // next line
+      // enter new text input
       if (targetName === 'text' && event.key === 'Enter') {
         event.preventDefault()
         event.stopPropagation()
@@ -226,7 +242,16 @@ function content() {
         insertAfter(newTextInputDiv, targetParent)
         newInput.focus()
         newInput.click()
-        target.parentNode.classList.remove('text-hover')
+      }
+      // delete text input
+      if (targetName === 'text' && event.key === 'Backspace') {
+        const beforeInputDiv = target.parentNode.previousElementSibling
+        // delete current input
+        if (target.value === '' && beforeInputDiv) {
+          target.parentNode.remove()
+          beforeInputDiv.querySelector('textarea').focus()
+          beforeInputDiv.querySelector('.input-div-tool-btn').style.display = 'flex'
+        }
       }
     }
   })

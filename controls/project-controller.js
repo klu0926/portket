@@ -211,6 +211,29 @@ const projectController = {
         }
       }
 
+      // update project_content
+      const contents = []
+      if (body.contentText) {
+        for (let i = 0; i < body.contentText.length; i++) {
+          let text = body.contentText[i]
+          text = text.trim()
+          if (text === '') {
+            body.contentText.splice(i, 1)
+            i--
+          }
+        }
+      }
+      contents.push(...body.contentText)
+      await Project_Content.destroy({ where: { projectId: currentProject.id } })
+      for (let i = 0; i < contents.length; i++) {
+        await Project_Content.create({
+          projectId: currentProject.id,
+          type: 'text',
+          content: contents[i],
+          order: i,
+        })
+      }
+
       // update project
       await currentProject.update({
         date: body.date || currentProject.date,
