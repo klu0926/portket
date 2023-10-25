@@ -167,22 +167,17 @@ function links() {
   })
 }
 
+//-----------Content
 function content() {
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
   const toolButtons = document.querySelectorAll('.input-div-tool-btn')
 
-  // helper : content input insert
-  function insertAfter(newNode, targetNode) {
-    if (targetNode.nextSibling) {
-      targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
-    } else {
-      targetNode.parentNode.appendChild(newNode)
-    }
-  }
-
-  // helper : add text input event
-  function addTextInputEvent(input) {
+  // Setup: Text input
+  function textInputSetup(input) {
+    const baseHeight = 28
+    input.style.height = 'auto'
+    input.style.height = Math.max(baseHeight, input.scrollHeight) + 'px'
     input.addEventListener('input', () => {
       // auto height for input
       input.style.height = 'auto'
@@ -191,56 +186,94 @@ function content() {
       const toolButtons = document.querySelectorAll('.input-div-tool-btn')
       toolButtons.forEach((b) => (b.style.opacity = '0'))
     })
+    input.addEventListener('focus', () => {
+      const inputs = document.querySelectorAll('.content-text-input')
+      console.log('inputs', inputs)
+      inputs.forEach((i) => {
+        if (i === input) {
+          i.setAttribute('placeholder', 'Enter text here...')
+        } else {
+          i.setAttribute('placeholder', '')
+        }
+      })
+      const btn = input.parentElement.querySelector('.input-div-tool-btn')
+      toggleToolButtons(btn)
+    })
   }
 
-  // helper : add tool-btn event
-  function addToolBtnEvent(toolBtn) {
+  // Setup: Tool-btn
+  function toolBtnSetup(toolBtn) {
     toolBtn.addEventListener('click', () => {
       alert('click')
     })
   }
 
-  // START SETUP
-  textInputs.forEach((i) => addTextInputEvent(i))
-  toolButtons.forEach((b) => addToolBtnEvent(b))
-
-  // on click
-  document.addEventListener('click', (event) => {
-    const target = event.target
-    const textInputs = document.querySelectorAll('.content-text-input')
-
-    textInputs.forEach((input) => {
-      if (input !== target) {
-        input.setAttribute('placeholder', '')
+  // Helper: Toggle tool buttons
+  function toggleToolButtons(button) {
+    if (!button) return
+    const buttons = document.querySelectorAll('.input-div-tool-btn')
+    buttons.forEach((b) => {
+      if (b === button) {
+        b.style.opacity = '100'
       } else {
-        input.setAttribute('placeholder', 'Enter text here...')
+        b.style.opacity = '0'
       }
     })
-  })
+  }
+
+  // Helper: Content input insert
+  function insertAfter(newNode, targetNode) {
+    if (targetNode.nextSibling) {
+      targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
+    } else {
+      targetNode.parentNode.appendChild(newNode)
+    }
+  }
+
+  // Helper: Create new Text input
+  function newTextInput() {
+    const newTextInputDiv = textSampleDiv.cloneNode(true)
+    const newInput = newTextInputDiv.querySelector('textarea')
+    textInputSetup(newInput)
+    newTextInputDiv.style.display = 'block'
+    newInput.id = ''
+    newInput.removeAttribute('disabled')
+    return newTextInputDiv
+  }
+
+  // Helper: Focus and select input
+  function focusAndSelect(textArea, range) {
+    if (!textArea) return
+    if (!range) range = textArea.value.length
+    const len = textArea.value.length
+    if (range > len) {
+      textArea.setSelectionRange(len, len)
+    } else {
+      textArea.setSelectionRange(range, range)
+    }
+    textArea.focus()
+  }
+
+  // START SETUP
+  textInputs.forEach((input) => textInputSetup(input))
+  toolButtons.forEach((b) => toolBtnSetup(b))
 
   // on mouse hover
   document.addEventListener('mouseover', (event) => {
     const target = event.target
-
     // show/hide tool-btn
+    // hover tool btn
     if (target.classList.contains('input-div-tool-btn')) {
       const toolButtons = document.querySelectorAll('.input-div-tool-btn')
       toolButtons.forEach((btn) => {
-        if (target !== btn) {
-          btn.style.opacity = '0'
-        } else {
-          btn.style.opacity = '100'
-        }
+        if (target === btn) toggleToolButtons(btn)
       })
-    } else {
-      const textInputs = document.querySelectorAll('.content-text-input')
-      textInputs.forEach((input) => {
-        const toolButton = input.parentNode.querySelector('.input-div-tool-btn')
-        if (target !== input) {
-          toolButton.style.opacity = '0'
-        } else {
-          toolButton.style.opacity = '100'
-        }
+    } else if (target.classList.contains('content-input-div')) {
+      // hover input div
+      const inputDivs = document.querySelectorAll('.content-input-div')
+      inputDivs.forEach((div) => {
+        const toolButton = div.querySelector('.input-div-tool-btn')
+        if (target === div) toggleToolButtons(toolButton)
       })
     }
   })
@@ -254,28 +287,31 @@ function content() {
     if (target.classList.contains('content-text-input')) {
       // Enter : new text input
       if (event.key === 'Enter') {
+        if (target.selectionEnd !== target.value.length) return
         event.preventDefault()
         event.stopPropagation()
-        const newTextInputDiv = textSampleDiv.cloneNode(true)
+        const newTextInputDiv = newTextInput()
         const newInput = newTextInputDiv.querySelector('textarea')
-        addTextInputEvent(newInput)
-        newTextInputDiv.style.display = 'block'
-        newInput.id = ''
-        newInput.removeAttribute('disabled')
         insertAfter(newTextInputDiv, targetParent)
         newInput.focus()
-        newInput.click()
       }
       // Backspace : delete text input
       if (event.key === 'Backspace') {
         const beforeInputDiv = target.parentNode.previousElementSibling
+        if (!beforeInputDiv) return
+        const textArea = beforeInputDiv.querySelector('textarea')
         // delete current input
-        if (target.value === '' && beforeInputDiv) {
+        if (target.value === '') {
           event.preventDefault()
           target.parentNode.remove()
-          const textArea = beforeInputDiv.querySelector('textarea')
-          textArea.focus()
-          textArea.setSelectionRange(textArea.value.length, textArea.value.length)
+          focusAndSelect(textArea)
+          return
+        }
+        // move to previous input
+        if (target.selectionEnd === 0) {
+          event.preventDefault()
+          focusAndSelect(textArea)
+          return
         }
       }
       // Up/Down arrows:
@@ -288,16 +324,10 @@ function content() {
           element = targetParent.nextElementSibling
         }
         if (!element) return
-        const elementInput = element.querySelector('.content-text-input')
-        if (!elementInput) return
-        const currentSelection = target.selectionEnd
-        const inputLen = elementInput.value.length
-        if (currentSelection > inputLen) {
-          elementInput.setSelectionRange(inputLen, inputLen)
-        } else {
-          elementInput.setSelectionRange(currentSelection, currentSelection)
-        }
-        elementInput.focus()
+        const textInput = element.querySelector('.content-text-input')
+        if (!textInput) return
+        const selectionEnd = target.selectionEnd
+        focusAndSelect(textInput, selectionEnd)
       }
     }
   })

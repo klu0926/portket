@@ -164,21 +164,30 @@
         <div id="project-content-input-container" class="project-content-input-container">
           <!--content original--->
           {{#each project.contents}} {{#if (isSame this.type 'image')}}
-          <div class="content-text-input-div">
+          <div class="content-input-div">
             <textarea class="content-text-input" type="text" name="contentImage" placeholder="" rows="1">{{this.content}}</textarea>
             <div class="input-div-tool-btn"></div>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
-          <div class="content-text-input-div">
+          <div class="content-input-div">
             <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1">{{this.content}}</textarea>
             <div class="input-div-tool-btn"></div>
           </div>
           {{/if}} {{/each}}
           <!--content text input--->
-          <div class="content-text-input-div">
+          <div class="content-input-div">
             <textarea class="content-text-input" type="text" name="contentText" placeholder="Enter text here..." rows="1"></textarea>
             <div class="input-div-tool-btn"></div>
           </div>
+          <!--content image input-->
+          <div class="content-input-div">
+            <div class="content-image-input">
+              <i class="fa-regular fa-image"></i>
+              <p class="content-image-text">Add an image</p>
+            </div>
+            <div class="input-div-tool-btn"></div>
+          </div>
+          <!---->
         </div>
       </div>
     </div>
@@ -186,9 +195,11 @@
 </form>
 
 <!--content sample-->
-<div id="text-sample-div" class="content-text-input-div new-content-input">
+<!--textarea-->
+<div id="text-sample-div" class="content-input-div new-content-input none">
   <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1" disabled></textarea>
   <div class="input-div-tool-btn"></div>
 </div>
+<!--textarea-->
 
 <script src="/javascript/myProject.js"></script>
