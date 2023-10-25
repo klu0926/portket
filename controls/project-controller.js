@@ -216,11 +216,6 @@ const projectController = {
       if (body.contentText) {
         for (let i = 0; i < body.contentText.length; i++) {
           let text = body.contentText[i]
-          text = text.trim()
-          if (text === '') {
-            body.contentText.splice(i, 1)
-            i--
-          }
         }
       }
       contents.push(...body.contentText)

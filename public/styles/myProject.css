@@ -97,7 +97,6 @@ input {
 }
 
 .content-text-input {
-  position: relative;
   margin: 0;
   width: 100%;
   border: none;
@@ -125,9 +124,10 @@ input {
   color: var(--my-red);
   width: 25px;
   height: 25px;
-  border-radius: 5%;
+  border-radius: 10%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  opacity: 0;
 }
 
 .input-div-tool-btn:hover {

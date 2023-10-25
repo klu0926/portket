@@ -32,6 +32,14 @@ module.exports = {
     }
     return false
   },
+  isEmptyString: (a) => {
+    console.log('isEmptyString-----------')
+    if (a === '') {
+      console.log(a, 'a is empty string')
+      return true
+    }
+    return false
+  },
   inArray: (array, item) => {
     if (!array || !item) return
     if (array.includes(item.toString())) return true

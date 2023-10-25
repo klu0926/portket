@@ -170,17 +170,9 @@ function links() {
 function content() {
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
+  const toolButtons = document.querySelectorAll('.input-div-tool-btn')
 
-  // text input events
-  textInputs.forEach((i) => addTextInputEvent(i))
-  function addTextInputEvent(input) {
-    input.addEventListener('input', () => {
-      // auto height
-      input.style.height = 'auto'
-      input.style.height = input.scrollHeight + 'px'
-    })
-  }
-  // content insert
+  // helper : content input insert
   function insertAfter(newNode, targetNode) {
     if (targetNode.nextSibling) {
       targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
@@ -188,7 +180,31 @@ function content() {
       targetNode.parentNode.appendChild(newNode)
     }
   }
-  // input click
+
+  // helper : add text input event
+  function addTextInputEvent(input) {
+    input.addEventListener('input', () => {
+      // auto height for input
+      input.style.height = 'auto'
+      input.style.height = input.scrollHeight + 'px'
+      // hide tool button
+      const toolButtons = document.querySelectorAll('.input-div-tool-btn')
+      toolButtons.forEach((b) => (b.style.opacity = '0'))
+    })
+  }
+
+  // helper : add tool-btn event
+  function addToolBtnEvent(toolBtn) {
+    toolBtn.addEventListener('click', () => {
+      alert('click')
+    })
+  }
+
+  // START SETUP
+  textInputs.forEach((i) => addTextInputEvent(i))
+  toolButtons.forEach((b) => addToolBtnEvent(b))
+
+  // on click
   document.addEventListener('click', (event) => {
     const target = event.target
     const textInputs = document.querySelectorAll('.content-text-input')
@@ -196,34 +212,44 @@ function content() {
     textInputs.forEach((input) => {
       if (input !== target) {
         input.setAttribute('placeholder', '')
-        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'none'
       } else {
-        input.setAttribute('placeholder', ' Enter text here...')
-        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'flex'
+        input.setAttribute('placeholder', 'Enter text here...')
       }
     })
   })
 
-  // mouse hover
+  // on mouse hover
   document.addEventListener('mouseover', (event) => {
     const target = event.target
-    const textInputs = document.querySelectorAll('.content-text-input')
 
-    textInputs.forEach((input) => {
-      if (input !== target) {
-        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'none'
-      } else {
-        input.parentNode.querySelector('.input-div-tool-btn').style.display = 'flex'
-      }
-    })
+    // show/hide tool-btn
+    if (target.classList.contains('input-div-tool-btn')) {
+      const toolButtons = document.querySelectorAll('.input-div-tool-btn')
+      toolButtons.forEach((btn) => {
+        if (target !== btn) {
+          btn.style.opacity = '0'
+        } else {
+          btn.style.opacity = '100'
+        }
+      })
+    } else {
+      const textInputs = document.querySelectorAll('.content-text-input')
+      textInputs.forEach((input) => {
+        const toolButton = input.parentNode.querySelector('.input-div-tool-btn')
+        if (target !== input) {
+          toolButton.style.opacity = '0'
+        } else {
+          toolButton.style.opacity = '100'
+        }
+      })
+    }
   })
 
-  // key press
+  // on key press
   document.addEventListener('keydown', (event) => {
     const target = event.target
     const targetParent = target.parentNode
     let targetName = ''
-    console.log('keypress', event.key)
 
     if (target.tagName === 'TEXTAREA') {
       if (target.classList.contains('content-text-input')) {
@@ -248,9 +274,11 @@ function content() {
         const beforeInputDiv = target.parentNode.previousElementSibling
         // delete current input
         if (target.value === '' && beforeInputDiv) {
+          event.preventDefault()
           target.parentNode.remove()
-          beforeInputDiv.querySelector('textarea').focus()
-          beforeInputDiv.querySelector('.input-div-tool-btn').style.display = 'flex'
+          const textArea = beforeInputDiv.querySelector('textarea')
+          textArea.focus()
+          textArea.setSelectionRange(textArea.value.length, textArea.value.length)
         }
       }
     }

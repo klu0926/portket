@@ -146,10 +146,13 @@
           <div class="project-content-image">
             <img src="{{this.content}}" alt="project image" />
           </div>
-          {{/if}} 
-          {{#if (isSame this.type 'text')}}
+          {{/if}} {{#if (isSame this.type 'text')}}
           <div class="project-content-text">
+            {{#if (isEmptyString this.content)}}
+            <br />
+            {{else}}
             <p>{{this.content}}</p>
+            {{/if}}
           </div>
           {{/if}}
         </div>
