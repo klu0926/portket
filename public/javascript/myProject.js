@@ -249,14 +249,11 @@ function content() {
   document.addEventListener('keydown', (event) => {
     const target = event.target
     const targetParent = target.parentNode
-    let targetName = ''
 
-    if (target.tagName === 'TEXTAREA') {
-      if (target.classList.contains('content-text-input')) {
-        targetName = 'text'
-      }
-      // enter new text input
-      if (targetName === 'text' && event.key === 'Enter') {
+    // In textArea
+    if (target.classList.contains('content-text-input')) {
+      // Enter : new text input
+      if (event.key === 'Enter') {
         event.preventDefault()
         event.stopPropagation()
         const newTextInputDiv = textSampleDiv.cloneNode(true)
@@ -269,8 +266,8 @@ function content() {
         newInput.focus()
         newInput.click()
       }
-      // delete text input
-      if (targetName === 'text' && event.key === 'Backspace') {
+      // Backspace : delete text input
+      if (event.key === 'Backspace') {
         const beforeInputDiv = target.parentNode.previousElementSibling
         // delete current input
         if (target.value === '' && beforeInputDiv) {
@@ -280,6 +277,27 @@ function content() {
           textArea.focus()
           textArea.setSelectionRange(textArea.value.length, textArea.value.length)
         }
+      }
+      // Up/Down arrows:
+      if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault() // default Arrow up move to the start
+        let element = null
+        if (event.key === 'ArrowUp') {
+          element = targetParent.previousElementSibling
+        } else if (event.key === 'ArrowDown') {
+          element = targetParent.nextElementSibling
+        }
+        if (!element) return
+        const elementInput = element.querySelector('.content-text-input')
+        if (!elementInput) return
+        const currentSelection = target.selectionEnd
+        const inputLen = elementInput.value.length
+        if (currentSelection > inputLen) {
+          elementInput.setSelectionRange(inputLen, inputLen)
+        } else {
+          elementInput.setSelectionRange(currentSelection, currentSelection)
+        }
+        elementInput.focus()
       }
     }
   })
