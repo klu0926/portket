@@ -201,10 +201,22 @@ function content() {
     })
   }
 
+  // Setup : option container
+  function optionContainerSetup() {}
+
   // Setup: Tool-btn
   function toolBtnSetup(toolBtn) {
-    toolBtn.addEventListener('click', () => {
-      alert('click')
+    toolBtn.addEventListener('click', (event) => {
+      const optionContainer = document.querySelector('#input-option-container')
+      if (!optionContainer) return
+      event.stopPropagation() // prevent clicking to body
+      const buttonRect = toolBtn.getBoundingClientRect()
+      // Adjust for the window's scroll position
+      const x = buttonRect.left + window.scrollX
+      const y = buttonRect.bottom + window.scrollY
+      optionContainer.style.display = 'flex'
+      optionContainer.style.top = y + 'px'
+      optionContainer.style.left = x + 'px'
     })
   }
 
@@ -234,7 +246,9 @@ function content() {
   function newTextInput() {
     const newTextInputDiv = textSampleDiv.cloneNode(true)
     const newInput = newTextInputDiv.querySelector('textarea')
+    const toolBtn = newTextInputDiv.querySelector('.input-div-tool-btn')
     textInputSetup(newInput)
+    toolBtnSetup(toolBtn)
     newTextInputDiv.style.display = 'block'
     newInput.id = ''
     newInput.removeAttribute('disabled')
@@ -257,6 +271,14 @@ function content() {
   // START SETUP
   textInputs.forEach((input) => textInputSetup(input))
   toolButtons.forEach((b) => toolBtnSetup(b))
+
+  // EVENT
+  // on click
+  document.addEventListener('click', (event) => {
+    // hide option container
+    const optionContainer = document.querySelector('#input-option-container')
+    if (optionContainer) optionContainer.style.display = 'none'
+  })
 
   // on mouse hover
   document.addEventListener('mouseover', (event) => {

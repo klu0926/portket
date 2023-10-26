@@ -138,6 +138,10 @@ p {
 
 /* My Code start*/
 /* general */
+.none {
+  display: none;
+}
+
 .red {
   color: var(--my-red) !important;
 }
