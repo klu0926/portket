@@ -2,7 +2,7 @@
 <!--edit mode from-->
 <form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
   <!--cover input-->
-  <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
+  <input id="cover-input" class="none" name="cover" type="file" accept="image/png, image/jpeg" />
   <button id="project-form-submit" style="display: none" type="submit"></button>
   <!--main container-->
   <div class="container" style="min-height: 600px">
@@ -180,12 +180,15 @@
             <div class="input-div-tool-btn"></div>
           </div>
           <!--content image input-->
-          <div class="content-input-div">
+          <div class="content-input-div content-image-input-div">
             <div class="content-image-input">
               <i class="fa-regular fa-image"></i>
               <p class="content-image-text">Add an image</p>
             </div>
             <div class="input-div-tool-btn"></div>
+            <input class="inner-image-input none" name="contentImage" type="file" accept="image/png, image/jpeg" />
+            <img class="content-image-input-display" src="" alt="content-image" />
+            <div class="content-image-delete-btn">x</div>
           </div>
           <!---->
         </div>
@@ -200,6 +203,7 @@
   <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1" disabled></textarea>
   <div class="input-div-tool-btn"></div>
 </div>
+<!--image input-->
 
 <!--input option-->
 {{>input-option}}

@@ -150,6 +150,9 @@ input {
 }
 
 /* image input */
+.content-image-input-div {
+  position: relative;
+}
 .content-image-input {
   display: flex;
   justify-content: start;
@@ -172,6 +175,38 @@ input {
 
 .content-image-input:hover {
   background-color: var(--my-border-light);
+}
+
+.content-image-input-display {
+  display: none;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.content-image-input-display:hover {
+  opacity: 0.8;
+}
+
+.content-image-delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  background-color: var(--my-red);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.content-image-delete-btn:hover {
+  background-color: var(--my-red-light);
 }
 
 /* option container (partials/input-option.hbs) */
@@ -214,7 +249,7 @@ input {
   margin-bottom: 4px;
   border-radius: 2px;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
 }
 
 .input-option:hover {
@@ -225,13 +260,12 @@ input {
   display: flex;
   align-items: center;
   justify-content: start;
-  width: 30px;
-  height: 40px;
-  font-size: 1.4rem;
+  width: 25px;
+  height: 30px;
+  font-size: 1.2rem;
 }
 
 .input-option-name {
   font-size: 1rem;
+  margin-left: 5px;
 }
-
-

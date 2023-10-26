@@ -172,6 +172,7 @@ function content() {
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
   const toolButtons = document.querySelectorAll('.input-div-tool-btn')
+  const imageInputs = document.querySelectorAll('.content-image-input-div')
 
   // Setup: Text input
   function textInputSetup(input) {
@@ -198,6 +199,36 @@ function content() {
       })
       const btn = input.parentElement.querySelector('.input-div-tool-btn')
       toggleToolButtons(btn)
+    })
+  }
+
+  // Setup : image input
+  function imageInputSetup(imageDiv) {
+    const input = imageDiv.querySelector('.inner-image-input')
+    const display = imageDiv.querySelector('.content-image-input-display')
+    const deleteButton = imageDiv.querySelector('.content-image-delete-btn')
+
+    imageDiv.addEventListener('click', (event) => {
+      // add file
+      if (input) input.click()
+      // change
+      input.addEventListener('change', () => {
+        if (input.files && input.files[0]) {
+          const reader = new FileReader()
+          reader.onload = (event) => {
+            display.src = event.target.result
+            display.style.display = 'block'
+            imageDiv.querySelector('.content-image-input').style.display = 'none'
+            deleteButton.style.display = 'flex'
+          }
+          reader.readAsDataURL(input.files[0])
+        }
+      })
+    })
+    // delete image button
+    deleteButton.addEventListener('click', (event) => {
+      event.stopPropagation()
+      if (confirm('Do you want to delete this image?')) imageDiv.remove()
     })
   }
 
@@ -269,8 +300,9 @@ function content() {
   }
 
   // START SETUP
-  textInputs.forEach((input) => textInputSetup(input))
+  textInputs.forEach((i) => textInputSetup(i))
   toolButtons.forEach((b) => toolBtnSetup(b))
+  imageInputs.forEach((i) => imageInputSetup(i))
 
   // EVENT
   // on click
