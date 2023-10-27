@@ -48,7 +48,7 @@
         <div id="project-date-input-div" class="mb-3">
           <p class="fw-bold my-2 text-primary">DATE</p>
           <div class="ps-2">
-            <input class="form-control project-date-input" name="dat" type="date" value="{{simpleDate project.date}}" required />
+            <input class="form-control project-date-input" name="date" type="date" value="{{simpleDate project.date}}" required />
             <div class="invalid-feedback">Require.</div>
           </div>
         </div>
@@ -161,34 +161,30 @@
       <!--content input-->
       <div id="project-content-input-div">
         <p class="fw-bold my-2 text-primary">CONTENT</p>
+        <div class="project-page-line"></div>
         <div id="project-content-input-container" class="project-content-input-container">
           <!--content original--->
           {{#each project.contents}} {{#if (isSame this.type 'image')}}
-          <div class="content-input-div">
-            <textarea class="content-text-input" type="text" name="contentImage" placeholder="" rows="1">{{this.content}}</textarea>
-            <div class="input-div-tool-btn"></div>
-          </div>
-          {{/if}} {{#if (isSame this.type 'text')}}
-          <div class="content-input-div">
-            <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1">{{this.content}}</textarea>
-            <div class="input-div-tool-btn"></div>
-          </div>
-          {{/if}} {{/each}}
-          <!--content text input--->
-          <div class="content-input-div">
-            <textarea class="content-text-input" type="text" name="contentText" placeholder="Enter text here..." rows="1"></textarea>
-            <div class="input-div-tool-btn"></div>
-          </div>
-          <!--content image input-->
-          <div class="content-input-div content-image-input-div">
-            <div class="content-image-input">
+          <div class="content-input-div content-image-input-div new-content-input data-image">
+            <div class="content-image-input none">
               <i class="fa-regular fa-image"></i>
               <p class="content-image-text">Add an image</p>
             </div>
             <div class="input-div-tool-btn"></div>
-            <input class="inner-image-input none" name="contentImage" type="file" accept="image/png, image/jpeg" />
-            <img class="content-image-input-display" src="" alt="content-image" />
+            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" />
+            <img class="content-image-input-display" src="{{this.content}}" alt="content-image" />
             <div class="content-image-delete-btn">x</div>
+          </div>
+          {{/if}} {{#if (isSame this.type 'text')}}
+          <div class="content-input-div data-text">
+            <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1">{{this.content}}</textarea>
+            <div class="input-div-tool-btn"></div>
+          </div>
+          {{/if}} {{/each}}
+          <!--new text input--->
+          <div class="content-input-div data-text">
+            <textarea class="content-text-input" type="text" name="content" placeholder="Enter text here..." rows="1"></textarea>
+            <div class="input-div-tool-btn"></div>
           </div>
           <!---->
         </div>
@@ -199,11 +195,21 @@
 
 <!--content sample-->
 <!--textarea-->
-<div id="text-sample-div" class="content-input-div new-content-input">
-  <textarea class="content-text-input" type="text" name="contentText" placeholder="" rows="1" disabled></textarea>
+<div id="text-sample-div" class="content-input-div new-content-input data-text">
+  <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1" disabled></textarea>
   <div class="input-div-tool-btn"></div>
 </div>
 <!--image input-->
+<div id="image-sample-div" class="content-input-div content-image-input-div new-content-input data-image">
+  <div class="content-image-input">
+    <i class="fa-regular fa-image"></i>
+    <p class="content-image-text">Add an image</p>
+  </div>
+  <div class="input-div-tool-btn"></div>
+  <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" disabled />
+  <img class="content-image-input-display" src="" alt="content-image" />
+  <div class="content-image-delete-btn">x</div>
+</div>
 
 <!--input option-->
 {{>input-option}}

@@ -81,8 +81,6 @@ input {
 .project-content-input-container {
   min-height: 500px;
   width: 100%;
-  border: 1px solid var(--my-border);
-  border-radius: 5px;
   cursor: text;
   padding: 0;
 }
@@ -191,21 +189,24 @@ input {
 
 .content-image-delete-btn {
   position: absolute;
-  top: 10px;
+  top: 13px;
   right: 20px;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 25px;
   height: 25px;
-  background-color: var(--my-red);
   border-radius: 5px;
-  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: var(--my-grey);
   cursor: pointer;
+  font-size: 1.1rem;
   transition: all 0.2s ease-in-out;
 }
 
 .content-image-delete-btn:hover {
+  color: white;
   background-color: var(--my-red-light);
 }
 

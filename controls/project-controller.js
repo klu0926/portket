@@ -213,21 +213,23 @@ const projectController = {
 
       // update project_content
       const contents = []
-      if (body.contentText) {
-        for (let i = 0; i < body.contentText.length; i++) {
-          let text = body.contentText[i]
-        }
+      if (body.content && typeof body.content === 'string') {
+        body.content = [body.content]
       }
-      contents.push(...body.contentText)
-      await Project_Content.destroy({ where: { projectId: currentProject.id } })
-      for (let i = 0; i < contents.length; i++) {
-        await Project_Content.create({
-          projectId: currentProject.id,
-          type: 'text',
-          content: contents[i],
-          order: i,
-        })
-      }
+      console.log('files', files)
+      console.log('body content...', body.content)
+      console.log('body.order', body.order)
+
+      // contents.push(...body.contentText)
+      // await Project_Content.destroy({ where: { projectId: currentProject.id } })
+      // for (let i = 0; i < contents.length; i++) {
+      //   await Project_Content.create({
+      //     projectId: currentProject.id,
+      //     type: 'text',
+      //     content: contents[i],
+      //     order: i,
+      //   })
+      // }
 
       // update project
       await currentProject.update({

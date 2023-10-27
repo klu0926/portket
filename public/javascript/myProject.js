@@ -9,6 +9,7 @@ function editMode() {
   // form
   const projectForm = document.querySelector('#project-form')
   const projectFormSubmit = document.querySelector('#project-form-submit')
+  const orderInput = document.querySelector('#order-input')
   // edit nav bar
   const editBtn = document.querySelector('#edit-btn')
   const saveEditBtn = document.querySelector('#save-edit-btn')
@@ -98,11 +99,30 @@ function editMode() {
 
   // form submit
   projectForm.addEventListener('submit', (event) => {
-    if (!projectForm.checkValidity()) {
+    projectForm.classList.add('was-validated')
+    event.preventDefault()
+    event.stopPropagation()
+    // check form validity
+    if (projectForm.checkValidity()) {
+      // Generate content order list
       event.preventDefault()
       event.stopPropagation()
+      const contents = contentInput.querySelectorAll('.content-input-div')
+      contents.forEach((c) => {
+        const input = document.createElement('input')
+        input.type = 'text'
+        input.name = 'order'
+        input.classList.add('none')
+        if (c.classList.contains('data-text')) {
+          input.value = 'text'
+          console.log('input value text', input.value)
+        } else if (c.classList.contains('data-image')) {
+          input.value = 'image'
+        }
+        projectForm.append(input)
+      })
+      projectForm.submit()
     }
-    projectForm.classList.add('was-validated')
   })
 }
 
@@ -167,12 +187,16 @@ function links() {
   })
 }
 
-//-----------Content
+//-----------Content-------------//
 function content() {
+  const mainContentContainer = document.querySelector('#project-content-input-container')
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
   const toolButtons = document.querySelectorAll('.input-div-tool-btn')
+  const imageSampleDiv = document.querySelector('#image-sample-div')
   const imageInputs = document.querySelectorAll('.content-image-input-div')
+  const inputOptionContainer = document.querySelector('#input-option-container')
+  let currentToolButton = null
 
   // Setup: Text input
   function textInputSetup(input) {
@@ -189,7 +213,6 @@ function content() {
     })
     input.addEventListener('focus', () => {
       const inputs = document.querySelectorAll('.content-text-input')
-      console.log('inputs', inputs)
       inputs.forEach((i) => {
         if (i === input) {
           i.setAttribute('placeholder', 'Enter text here...')
@@ -219,7 +242,6 @@ function content() {
             display.src = event.target.result
             display.style.display = 'block'
             imageDiv.querySelector('.content-image-input').style.display = 'none'
-            deleteButton.style.display = 'flex'
           }
           reader.readAsDataURL(input.files[0])
         }
@@ -233,21 +255,45 @@ function content() {
   }
 
   // Setup : option container
-  function optionContainerSetup() {}
+  function optionContainerSetup(optionContainer) {
+    const inputOptionText = optionContainer.querySelector('#input-option-text')
+    const inputOptionImage = optionContainer.querySelector('#input-option-image')
+    // text button
+    inputOptionText.addEventListener('click', (event) => {
+      insertAfter(newTextInput(), currentToolButton.parentElement)
+    })
+
+    // image button
+    inputOptionImage.addEventListener('click', (event) => {
+      const parent = currentToolButton.parentElement
+      const textarea = parent.querySelector('textarea')
+      if (textarea && textarea.value.length === 0) {
+        const lastElement = parent.previousElementSibling
+        parent.remove()
+        if (lastElement) {
+          insertAfter(newImageInput(), lastElement)
+        } else {
+          mainContentContainer.append(newImageInput())
+        }
+      } else {
+        insertAfter(newImageInput(), parent)
+      }
+    })
+  }
 
   // Setup: Tool-btn
   function toolBtnSetup(toolBtn) {
     toolBtn.addEventListener('click', (event) => {
-      const optionContainer = document.querySelector('#input-option-container')
-      if (!optionContainer) return
+      if (!inputOptionContainer) return
       event.stopPropagation() // prevent clicking to body
+      currentToolButton = toolBtn
       const buttonRect = toolBtn.getBoundingClientRect()
       // Adjust for the window's scroll position
       const x = buttonRect.left + window.scrollX
       const y = buttonRect.bottom + window.scrollY
-      optionContainer.style.display = 'flex'
-      optionContainer.style.top = y + 'px'
-      optionContainer.style.left = x + 'px'
+      inputOptionContainer.style.display = 'flex'
+      inputOptionContainer.style.top = y + 'px'
+      inputOptionContainer.style.left = x + 'px'
     })
   }
 
@@ -271,6 +317,10 @@ function content() {
     } else {
       targetNode.parentNode.appendChild(newNode)
     }
+    const textArea = newNode.querySelector('textarea')
+    if (textArea) textArea.focus()
+    const imageInput = newNode.querySelector('.inner-image-input')
+    if (imageInput) imageInput.click()
   }
 
   // Helper: Create new Text input
@@ -281,7 +331,7 @@ function content() {
     textInputSetup(newInput)
     toolBtnSetup(toolBtn)
     newTextInputDiv.style.display = 'block'
-    newInput.id = ''
+    newTextInputDiv.id = ''
     newInput.removeAttribute('disabled')
     return newTextInputDiv
   }
@@ -299,17 +349,30 @@ function content() {
     textArea.focus()
   }
 
+  // Helper : Create new Image input
+  function newImageInput() {
+    const newImageInputDiv = imageSampleDiv.cloneNode(true)
+    const newInput = newImageInputDiv.querySelector('input')
+    const toolBtn = newImageInputDiv.querySelector('.input-div-tool-btn')
+    imageInputSetup(newImageInputDiv)
+    toolBtnSetup(toolBtn)
+    newImageInputDiv.style.display = 'block'
+    newImageInputDiv.id = ''
+    newInput.removeAttribute('disabled')
+    return newImageInputDiv
+  }
+
   // START SETUP
   textInputs.forEach((i) => textInputSetup(i))
   toolButtons.forEach((b) => toolBtnSetup(b))
   imageInputs.forEach((i) => imageInputSetup(i))
+  optionContainerSetup(inputOptionContainer)
 
   // EVENT
   // on click
   document.addEventListener('click', (event) => {
     // hide option container
-    const optionContainer = document.querySelector('#input-option-container')
-    if (optionContainer) optionContainer.style.display = 'none'
+    if (inputOptionContainer) inputOptionContainer.style.display = 'none'
   })
 
   // on mouse hover
@@ -344,10 +407,8 @@ function content() {
         if (target.selectionEnd !== target.value.length) return
         event.preventDefault()
         event.stopPropagation()
-        const newTextInputDiv = newTextInput()
-        const newInput = newTextInputDiv.querySelector('textarea')
-        insertAfter(newTextInputDiv, targetParent)
-        newInput.focus()
+        const newInput = newTextInput()
+        insertAfter(newInput, targetParent)
       }
       // Backspace : delete text input
       if (event.key === 'Backspace') {
