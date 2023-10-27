@@ -3,6 +3,7 @@ const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const imgurImageHandler = require('../helper/imgur')
 const addHttp = require('../helper/addHttp')
+const cleanTempFolder = require('../helper/cleanTempFolder')
 
 const projectController = {
   getProject: async (req, res, next) => {
@@ -59,6 +60,8 @@ const projectController = {
       }
 
       console.log(project)
+      // clean imgur temp folder
+      await cleanTempFolder()
 
       // check if current project own my current user
       if (currentUser?.id === project.userId) {
@@ -168,6 +171,9 @@ const projectController = {
       const files = req.files
       let newCover = ''
 
+      console.log('body.content', body.content)
+      console.log('files', files)
+
       // files
       if (files?.cover && files.cover !== currentProject.cover) {
         newCover = await imgurImageHandler(files.cover[0])
@@ -211,25 +217,59 @@ const projectController = {
         }
       }
 
-      // update project_content
-      const contents = []
+      // text content
+      let contentText = []
       if (body.content && typeof body.content === 'string') {
         body.content = [body.content]
       }
-      console.log('files', files)
-      console.log('body content...', body.content)
-      console.log('body.order', body.order)
+      contentText = [...body.content]
+      // image content
+      const contentUrl = []
+      if (files.content) {
+        console.log('file loop start')
+        for (const c of files.content) {
+          const url = await imgurImageHandler(c)
+          contentUrl.push(url)
+        }
+      }
+      console.log('contentUrl', contentUrl)
 
-      // contents.push(...body.contentText)
-      // await Project_Content.destroy({ where: { projectId: currentProject.id } })
-      // for (let i = 0; i < contents.length; i++) {
-      //   await Project_Content.create({
-      //     projectId: currentProject.id,
-      //     type: 'text',
-      //     content: contents[i],
-      //     order: i,
-      //   })
-      // }
+      // use order
+      if (body.order && typeof body.order === 'string') {
+        body.order = [body.order]
+      }
+      // arrange content order
+      const order = body.order
+      const contents = []
+      for (let i = 0; i < order.length; i++) {
+        const data = {
+          order: i,
+        }
+        if (order[i] === 'text') {
+          data.type = 'text'
+          data.content = contentText.shift()
+        } else if (order[i] === 'image') {
+          data.type = 'image'
+          data.content = contentUrl.shift()
+        }
+        contents.push(data)
+      }
+      console.log('contents', contents)
+
+      // update project_content
+      await Project_Content.destroy({
+        where: { projectId: currentProject.id },
+      })
+      if (contents.length > 0) {
+        for (let i = 0; i < contents.length; i++) {
+          await Project_Content.create({
+            projectId: currentProject.id,
+            type: contents[i].type,
+            content: contents[i].content,
+            order: contents[i].order,
+          })
+        }
+      }
 
       // update project
       await currentProject.update({

@@ -137,9 +137,9 @@
         </div>
         <!--project info end-->
       </div>
-      <div class="project-page-line"></div>
       <!--project content-->
       <div id="project-content-display">
+        <div class="project-page-line"></div>
         {{#each project.contents}}
         <div class="project-page-content-box">
           {{#if (isSame this.type 'image')}}
@@ -165,13 +165,9 @@
         <div id="project-content-input-container" class="project-content-input-container">
           <!--content original--->
           {{#each project.contents}} {{#if (isSame this.type 'image')}}
-          <div class="content-input-div content-image-input-div new-content-input data-image">
-            <div class="content-image-input none">
-              <i class="fa-regular fa-image"></i>
-              <p class="content-image-text">Add an image</p>
-            </div>
+          <div class="content-input-div content-image-input-div data-image">
             <div class="input-div-tool-btn"></div>
-            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" />
+            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" multiple />
             <img class="content-image-input-display" src="{{this.content}}" alt="content-image" />
             <div class="content-image-delete-btn">x</div>
           </div>
@@ -206,8 +202,8 @@
     <p class="content-image-text">Add an image</p>
   </div>
   <div class="input-div-tool-btn"></div>
-  <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" disabled />
-  <img class="content-image-input-display" src="" alt="content-image" />
+  <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" disabled multiple />
+  <img class="content-image-input-display none" src="" alt="content-image" />
   <div class="content-image-delete-btn">x</div>
 </div>
 

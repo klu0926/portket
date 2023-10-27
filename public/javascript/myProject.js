@@ -35,7 +35,7 @@ function editMode() {
 
   // item list
   const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay, contentDisplay]
-  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput]
+  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput, contentInput]
 
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {
@@ -189,6 +189,12 @@ function links() {
 
 //-----------Content-------------//
 function content() {
+  // edit nav bar
+  const editBtn = document.querySelector('#edit-btn')
+  const saveEditBtn = document.querySelector('#save-edit-btn')
+  const cancelEditBtn = document.querySelector('#cancel-edit-btn')
+  const editModeDisplay = document.querySelector('#edit-mode-display')
+  // content
   const mainContentContainer = document.querySelector('#project-content-input-container')
   const textSampleDiv = document.querySelector('#text-sample-div')
   const textInputs = document.querySelectorAll('.content-text-input')
@@ -240,7 +246,7 @@ function content() {
           const reader = new FileReader()
           reader.onload = (event) => {
             display.src = event.target.result
-            display.style.display = 'block'
+            display.classList.remove('none')
             imageDiv.querySelector('.content-image-input').style.display = 'none'
           }
           reader.readAsDataURL(input.files[0])
@@ -363,10 +369,12 @@ function content() {
   }
 
   // START SETUP
-  textInputs.forEach((i) => textInputSetup(i))
-  toolButtons.forEach((b) => toolBtnSetup(b))
-  imageInputs.forEach((i) => imageInputSetup(i))
-  optionContainerSetup(inputOptionContainer)
+  editBtn.addEventListener('click', () => {
+    textInputs.forEach((i) => textInputSetup(i))
+    toolButtons.forEach((b) => toolBtnSetup(b))
+    imageInputs.forEach((i) => imageInputSetup(i))
+    optionContainerSetup(inputOptionContainer)
+  })
 
   // EVENT
   // on click

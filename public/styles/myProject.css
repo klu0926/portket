@@ -176,7 +176,7 @@ input {
 }
 
 .content-image-input-display {
-  display: none;
+  display: block;
   width: 100%;
   border-radius: 5px;
   cursor: pointer;
