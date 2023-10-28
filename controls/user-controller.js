@@ -6,6 +6,7 @@ const randomPublicImage = require('../helper/randomPublicImage')
 const sequelize = require('sequelize')
 const imgurFileHandler = require('../helper/imgur')
 const allLocations = require('../data/location.json')
+const cleanTempFolder = require('../helper/cleanTempFolder')
 
 const userController = {
   login: (req, res, next) => {
@@ -87,7 +88,12 @@ const userController = {
       // SQL 'like' search for matching substring, % means can be anything
       const whereCondition = keyword
         ? {
-            [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
+            [Op.or]: [
+              { name: { [Op.like]: `%${keyword}%` } },
+              { email: { [Op.like]: `%${keyword}%` } },
+              { title: { [Op.like]: `%${keyword}%` } },
+              { description: { [Op.like]: `%${keyword}%` } },
+            ],
           }
         : {}
 
@@ -181,6 +187,10 @@ const userController = {
       })
 
       console.log('user', user)
+
+      // clean imgur temp folder
+      await cleanTempFolder()
+
       // check if user is current user
       if (req.user?.id === user.id) {
         res.render('myPortfolio', {
@@ -227,10 +237,15 @@ const userController = {
 
       // files
       if (files?.cover && files.cover !== currentUser.cover) {
+        console.log('cover file uploading...')
+        console.log('files.cover[0]', files.cover[0])
         newCover = await imgurFileHandler(files.cover[0])
+        console.log('new cover :', newCover)
       }
       if (files?.avatar && files.avatar !== currentUser.avatar) {
+        console.log('avatar file uploading...')
         newAvatar = await imgurFileHandler(files.avatar[0])
+        console.log('new Avatar :', newAvatar)
       }
 
       // user skills
@@ -243,7 +258,8 @@ const userController = {
         newSocials = typeof body.socials === 'string' ? [body.socials] : body.socials
       }
       if (body.socialsLinks) {
-        newSocialsLinks = typeof body.socialsLinks === 'string' ? [body.socialsLinks] : body.socialsLinks
+        newSocialsLinks =
+          typeof body.socialsLinks === 'string' ? [body.socialsLinks] : body.socialsLinks
       }
 
       // User_Skill
@@ -288,7 +304,6 @@ const userController = {
         themeId: Number(newThemeId) || Number(user.themeId),
         // password
       })
-
       res.redirect(`/users/${userId}`)
     } catch (err) {
       next(err)

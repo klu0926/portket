@@ -120,6 +120,7 @@ function previewPortfolioCover() {
   // change
   coverInput.addEventListener('change', () => {
     if (coverInput.files && coverInput.files[0]) {
+      console.log('coverInput file', coverInput.files)
       const reader = new FileReader()
       reader.onload = (event) => {
         coverImg.src = event.target.result
