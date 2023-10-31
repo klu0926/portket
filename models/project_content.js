@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       content: DataTypes.TEXT,
       order: DataTypes.INTEGER,
+      uuid: DataTypes.STRING, 
     },
     {
       sequelize,

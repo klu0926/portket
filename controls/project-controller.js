@@ -42,7 +42,7 @@ const projectController = {
           },
           {
             model: Project_Content,
-            attributes: ['id', 'order', 'type', 'content'],
+            attributes: ['id', 'order', 'type', 'content', 'uuid'],
             as: 'contents',
           },
         ],
@@ -171,10 +171,7 @@ const projectController = {
       const files = req.files
       let newCover = ''
 
-      console.log('body.content', body.content)
-      console.log('files', files)
-
-      // files
+      // files : cover
       if (files?.cover && files.cover !== currentProject.cover) {
         newCover = await imgurImageHandler(files.cover[0])
       }
@@ -226,50 +223,85 @@ const projectController = {
       // image content
       const contentUrl = []
       if (files.content) {
-        console.log('file loop start')
         for (const c of files.content) {
           const url = await imgurImageHandler(c)
           contentUrl.push(url)
         }
       }
-      console.log('contentUrl', contentUrl)
-
       // use order
       if (body.order && typeof body.order === 'string') {
         body.order = [body.order]
       }
+
+      // use uuid
+      if (body.uuid && typeof body.uuid === 'string') {
+        body.uuid = [body.uuid]
+      }
+
       // arrange content order
       const order = body.order
       const contents = []
       for (let i = 0; i < order.length; i++) {
         const data = {
           order: i,
+          uuid: body.uuid[i],
         }
         if (order[i] === 'text') {
           data.type = 'text'
           data.content = contentText.shift()
         } else if (order[i] === 'image') {
           data.type = 'image'
-          data.content = contentUrl.shift()
+          data.content = ''
         }
         contents.push(data)
       }
-      console.log('contents', contents)
 
-      // update project_content
-      await Project_Content.destroy({
+      // Get Project_Content
+      const originalContentData = await Project_Content.findAll({
         where: { projectId: currentProject.id },
+        attributes: ['id', 'type', 'content', 'uuid'],
+        raw: true,
       })
-      if (contents.length > 0) {
-        for (let i = 0; i < contents.length; i++) {
+
+      // process contents
+      for (let i = 0; i < contents.length; i++) {
+        const original = originalContentData.find((obj) => obj.uuid === contents[i].uuid)
+        // update content
+        if (original) {
+          const model = await Project_Content.findOne({ where: { id: original.id } })
+          if (model && contents[i].type === 'text') {
+            await model.update({
+              content: contents[i].content,
+              order: contents[i].order,
+            })
+          }
+          if (model && contents[i].type === 'image') {
+            await model.update({
+              order: contents[i].order,
+            })
+          }
+        } else {
+          // create content
+          if (contents[i].type === 'image') {
+            contents[i].content = await imgurImageHandler(files.content.shift())
+          }
           await Project_Content.create({
             projectId: currentProject.id,
             type: contents[i].type,
             content: contents[i].content,
             order: contents[i].order,
+            uuid: contents[i].uuid,
           })
         }
       }
+      // delete Project_content
+      const contentDateToDelete = originalContentData.filter((obj) => {
+        return !contents.some((contentsObj) => contentsObj.uuid === obj.uuid)
+      })
+      const deletePromises = contentDateToDelete.map(async (c) => {
+        await Project_Content.destroy({ where: { id: c.id } })
+      })
+      await Promise.all(deletePromises)
 
       // update project
       await currentProject.update({

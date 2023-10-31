@@ -75,7 +75,7 @@
                 <div class="invalid-feedback">Require 6 - 30 characters.</div>
               </div>
               <div class="project-links-url">
-                <input class="form-control" type="url" name="linkUrl" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="{{this.link}}" required />
+                <input class="form-control" type="text" name="linkUrl" placeholder="http://www.example.com" value="{{this.link}}" required />
                 <div class="invalid-feedback">Require.</div>
               </div>
               <div class="button-container">
@@ -92,7 +92,7 @@
                 <div class="invalid-feedback">Require 6 - 30 characters.</div>
               </div>
               <div class="project-links-url">
-                <input class="form-control" type="url" name="linkUrl" type="url" placeholder="http://www.example.com" pattern="https?://.+" disabled />
+                <input class="form-control" type="text" name="linkUrl" placeholder="http://www.example.com" disabled />
                 <div class="invalid-feedback">Require.</div>
               </div>
               <div class="button-container">
@@ -129,7 +129,9 @@
           <div class="project-skills-input-window">
             {{#each allSkills}}
             <div class="form-check">
-              <label class="form-check-label" for="skill{{this.id}}"> <input id="skill{{this.id}}" name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" {{#if (inArray ../project.skillsList this.id)}} checked {{/if}} /> {{this.name}} </label>
+              <label class="form-check-label" for="skill{{this.id}}">
+                <input id="skill{{this.id}}" name="skills" class="form-check-input" type="checkbox" value="{{this.id}}" {{#if (inArray ../project.skillsList this.id)}} checked {{/if}} /> {{this.name}}
+              </label>
             </div>
             {{/each}}
           </div>
@@ -144,41 +146,41 @@
         <div class="project-page-content-box">
           {{#if (isSame this.type 'image')}}
           <div class="project-content-image">
-            <img src="{{this.content}}" alt="project image" />
+            <img src="{{this.content}}" alt="project image" onerror="this.src='/images/placeholder.png'" data-uuid="{{this.uuid}}" />
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
           <div class="project-content-text">
             {{#if (isEmptyString this.content)}}
             <br />
             {{else}}
-            <p>{{this.content}}</p>
+            <p class="project-content-text-p" data-uuid="{{this.uuid}}">{{this.content}}</p>
             {{/if}}
           </div>
           {{/if}}
         </div>
         {{/each}}
       </div>
-      <!--content input-->
+      <!--Edit Mode: content input-->
       <div id="project-content-input-div">
         <p class="fw-bold my-2 text-primary">CONTENT</p>
         <div class="project-page-line"></div>
         <div id="project-content-input-container" class="project-content-input-container">
           <!--content original--->
           {{#each project.contents}} {{#if (isSame this.type 'image')}}
-          <div class="content-input-div content-image-input-div data-image">
+          <div class="content-input-div content-image-input-div data-image" data-uuid="{{this.uuid}}">
             <div class="input-div-tool-btn"></div>
-            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" multiple />
-            <img class="content-image-input-display" src="{{this.content}}" alt="content-image" />
-            <div class="content-image-delete-btn">x</div>
+            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" data-uuid="{{this.uuid}}" multiple />
+            <img class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" />
+            <div class="content-image-delete-btn"></div>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
-          <div class="content-input-div data-text">
+          <div class="content-input-div data-text" data-uuid="{{this.uuid}}">
             <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1">{{this.content}}</textarea>
             <div class="input-div-tool-btn"></div>
           </div>
           {{/if}} {{/each}}
           <!--new text input--->
-          <div class="content-input-div data-text">
+          <div class="content-input-div data-text first-input">
             <textarea class="content-text-input" type="text" name="content" placeholder="Enter text here..." rows="1"></textarea>
             <div class="input-div-tool-btn"></div>
           </div>
@@ -210,4 +212,4 @@
 <!--input option-->
 {{>input-option}}
 
-<script src="/javascript/myProject.js"></script>
+<script type="module" src="/javascript/myProject.js"></script>

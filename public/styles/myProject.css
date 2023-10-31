@@ -113,6 +113,10 @@ input {
   display: none;
 }
 
+.project-content-text-p {
+  white-space: pre-wrap;
+}
+
 /* tool button */
 .input-div-tool-btn {
   position: absolute;
@@ -189,25 +193,30 @@ input {
 
 .content-image-delete-btn {
   position: absolute;
-  top: 13px;
-  right: 20px;
+  top: 2px;
+  right: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 25px;
   height: 25px;
+  border: 2px solid var(--my-red);
   border-radius: 5px;
   margin-top: auto;
   margin-bottom: auto;
-  color: var(--my-grey);
   cursor: pointer;
+  color: var(--my-red);
   font-size: 1.1rem;
   transition: all 0.2s ease-in-out;
+}
+.content-image-delete-btn::after {
+  content: 'x';
 }
 
 .content-image-delete-btn:hover {
   color: white;
-  background-color: var(--my-red-light);
+  background-color: var(--my-red);
+  transform: scale(1.05);
 }
 
 /* option container (partials/input-option.hbs) */

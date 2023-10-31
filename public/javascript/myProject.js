@@ -1,3 +1,5 @@
+import randomId from './helpers/randomId.js'
+
 document.addEventListener('DOMContentLoaded', () => {
   editMode()
   previewProjectCover()
@@ -94,11 +96,15 @@ function editMode() {
 
   // save
   saveEditBtn.addEventListener('click', () => {
+    console.log('click')
+    console.log('submit button', projectFormSubmit)
+    console.log('form', projectForm)
     projectFormSubmit.click()
   })
 
   // form submit
   projectForm.addEventListener('submit', (event) => {
+    console.log('form submit listener')
     projectForm.classList.add('was-validated')
     event.preventDefault()
     event.stopPropagation()
@@ -109,17 +115,23 @@ function editMode() {
       event.stopPropagation()
       const contents = contentInput.querySelectorAll('.content-input-div')
       contents.forEach((c) => {
-        const input = document.createElement('input')
-        input.type = 'text'
-        input.name = 'order'
-        input.classList.add('none')
+        const orderInput = document.createElement('input')
+        const uuidInput = document.createElement('input')
+        orderInput.type = 'text'
+        orderInput.name = 'order'
+        uuidInput.type = 'text'
+        uuidInput.name = 'uuid'
+        orderInput.classList.add('none')
+        uuidInput.classList.add('none')
         if (c.classList.contains('data-text')) {
-          input.value = 'text'
-          console.log('input value text', input.value)
+          orderInput.value = 'text'
+          console.log('input value text', orderInput.value)
         } else if (c.classList.contains('data-image')) {
-          input.value = 'image'
+          orderInput.value = 'image'
         }
-        projectForm.append(input)
+        uuidInput.value = c.dataset.uuid
+        projectForm.append(orderInput)
+        projectForm.append(uuidInput)
       })
       projectForm.submit()
     }
@@ -233,11 +245,13 @@ function content() {
 
   // Setup : image input
   function imageInputSetup(imageDiv) {
+    console.log('imageDiv', imageDiv)
     const input = imageDiv.querySelector('.inner-image-input')
     const display = imageDiv.querySelector('.content-image-input-display')
     const deleteButton = imageDiv.querySelector('.content-image-delete-btn')
 
     imageDiv.addEventListener('click', (event) => {
+      console.log('click', imageDiv)
       // add file
       if (input) input.click()
       // change
@@ -247,7 +261,9 @@ function content() {
           reader.onload = (event) => {
             display.src = event.target.result
             display.classList.remove('none')
-            imageDiv.querySelector('.content-image-input').style.display = 'none'
+            imageDiv.dataset.uuid = randomId(10) // generate new Id
+            const imageInputBox = imageDiv.querySelector('.content-image-input')
+            if (imageInputBox) imageInputBox.style.display = 'none'
           }
           reader.readAsDataURL(input.files[0])
         }
@@ -338,6 +354,7 @@ function content() {
     toolBtnSetup(toolBtn)
     newTextInputDiv.style.display = 'block'
     newTextInputDiv.id = ''
+    newTextInputDiv.dataset.uuid = randomId(10)
     newInput.removeAttribute('disabled')
     return newTextInputDiv
   }
@@ -369,6 +386,8 @@ function content() {
   }
 
   // START SETUP
+  const firstInput = document.querySelector('.first-input')
+  firstInput.dataset.uuid = randomId(10)
   editBtn.addEventListener('click', () => {
     textInputs.forEach((i) => textInputSetup(i))
     toolButtons.forEach((b) => toolBtnSetup(b))

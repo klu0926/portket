@@ -3,6 +3,8 @@ const faker = require('../helper/faker')
 const { Project } = require('../models')
 const { errorHandler } = require('../helper')
 const RandomPublicImage = require('../helper/randomPublicImage')
+const randomId = require('../helper/randomId')
+
 const CONTENT_COUNT = 6
 
 /** @type {import('sequelize-cli').Migration} */
@@ -19,6 +21,7 @@ module.exports = {
         for (let c = 1; c <= CONTENT_COUNT; c++) {
           let type = ''
           let content = ''
+          let uuid = randomId(10)
           if (c % 2 === 1) {
             type = 'image'
             content = RandomPublicImage('project_images')
@@ -31,6 +34,7 @@ module.exports = {
             order: c,
             type,
             content,
+            uuid,
           })
         }
       }

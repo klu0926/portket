@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.portfolio-container')
+  const left = document.querySelector('.portfolio-left')
+  const right = document.querySelector('.portfolio-left')
+  if (container) console.log(container.offsetWidth)
+  if (left) console.log(left.offsetWidth)
+  if (right) console.log(right.offsetWidth)
+
   previewPortfolioCover()
   previewPortfolioAvatar()
   editMode()
