@@ -33,7 +33,6 @@
 }
 
 .portfolio-right {
-  position: relative;
   border: none;
 }
 
@@ -81,6 +80,14 @@
 }
 
 /* social */
+.social-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .project-link {
   text-decoration: none;
   color: inherit;
