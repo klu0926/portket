@@ -58,37 +58,44 @@
       <div class="form-div">
         <label class="form-label">Links</label>
         <div class="link-row-container">
-          <!--link row-->
-          <div class="link-row">
+          <!--Link sample-->
+          <div id="new-link-input-sample" class="link-row none">
             <div class="row g-2">
-              <div class="col-3">
-                <input name="linkName" type="text" class="form-control" placeholder="name" required />
+              <div class="link-input-left col-3">
+                <input name="linkName" type="text" class="link-name-input form-control" placeholder="name" disabled />
                 <div class="invalid-feedback">Link's name is required.</div>
               </div>
-              <div class="col-8">
-                <input name="linkUrl" type="text" class="form-control" placeholder="url" required />
-                <div class="invalid-feedback">Link's url is required.</div>
-              </div>
-              <div class="link-remove-btn-div col-1">
-                <button class="link-remove-btn" type="button">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
+              <div class="link-input-right col-8">
+                <div class="link-input-right-inner">
+                  <input name="linkUrl" type="text" class="link-url-input form-control" placeholder="url" disabled />
+                  <div class="invalid-feedback">Link's url is required.</div>
+                </div>
+                <div class="link-remove-btn-div">
+                  <button class="link-remove-btn" type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <!---->
         </div>
         <div>
-          <!--Add row-->
+          <!--Add link row-->
           <div class="link-row">
             <div class="row g-2">
-              <div class="col-3">
+              <div class="link-input-left col-3">
                 <input type="text" class="form-control" placeholder="name" disabled />
               </div>
-              <div class="col-8">
-                <input type="text" class="form-control" placeholder="url" disabled />
-              </div>
-              <div class="link-add-btn-div col-1">
-                <button type="button" class="link-add-btn">+</button>
+              <div class="link-input-right col-8">
+                <div class="link-input-right-inner">
+                  <input type="text" class="form-control" placeholder="url" disabled />
+                </div>
+                <div class="link-add-btn-div">
+                  <button class="link-add-btn" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -92,14 +92,14 @@
                   </select>
                   <div class="invalid-feedback">Require.</div>
                 </div>
-                <div class="social-link ps-0">
-                  <div>
+                <div class="social-input-right">
+                  <div class="social-input-right-inner">
                     <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="{{currentSocial.link}}" required />
                     <div class="invalid-feedback">Require url.</div>
                   </div>
-                </div>
-                <div class="button-container">
-                  <button class="remove-button remove-social" type="button"></button>
+                  <div class="social-input-button-div">
+                    <button class="remove-button remove-social" type="button"></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,11 +115,13 @@
                 {{/each}}
               </select>
             </div>
-            <div class="social-link ps-0">
-              <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
-            </div>
-            <div class="button-container">
-              <button id="add-social" class="add-button" type="button"></button>
+            <div class="social-input-right">
+              <div class="social-input-right-inner">
+                <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
+              </div>
+              <div class="social-input-button-div">
+                <button id="add-social" class="add-button" type="button"></button>
+              </div>
             </div>
           </div>
 
@@ -135,14 +137,14 @@
                 </select>
                 <div class="invalid-feedback">Require.</div>
               </div>
-              <div class="social-link ps-0">
-                <div>
+              <div class="social-input-right">
+                <div class="social-input-right-inner">
                   <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" required disabled />
                   <div class="invalid-feedback">Require url.</div>
                 </div>
-              </div>
-              <div class="button-container">
-                <button class="remove-button remove-social" type="button"></button>
+                <div class="social-input-button-div">
+                  <button class="remove-button remove-social" type="button"></button>
+                </div>
               </div>
             </div>
           </div>

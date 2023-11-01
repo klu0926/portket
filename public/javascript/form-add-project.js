@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // project form links
   const linksContainer = document.querySelector('.link-row-container')
-  const linkRows = document.querySelectorAll('.link-row')
   const addLinkBtn = document.querySelector('.link-add-btn')
   const projectFormResetBtn = document.querySelector('#projectFormReset')
+  const linkInputSample = document.querySelector('#new-link-input-sample')
 
   //project cover
   const coverDisplay = document.querySelector('#form-project-cover-display')
@@ -31,11 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add link row
   addLinkBtn.addEventListener('click', () => {
-    const newLinkRow = document.createElement('div')
-    newLinkRow.className = 'link-row'
-    newLinkRow.innerHTML = linkRows[0].innerHTML
+    const newLinkRow = linkInputSample.cloneNode(true)
+    newLinkRow.classList.remove('none')
+    const inputs = newLinkRow.querySelectorAll('input')
+    inputs.forEach((i) => {
+      i.removeAttribute('disabled')
+      i.setAttribute('required', 'true')
+    })
     linksContainer.append(newLinkRow)
-
     // add remove link row button listener
     newLinkRow.querySelector('.link-remove-btn').addEventListener('click', () => {
       newLinkRow.remove()

@@ -109,9 +109,21 @@
   padding-right: 6px;
 }
 
-.social-link {
+.social-input-right {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.social-input-right-inner {
   flex-grow: 1;
   padding-right: 6px;
+}
+
+.social-input-button-div {
+  margin-top: 3px;
 }
 
 /* contact */
@@ -359,5 +371,3 @@
   width: 100%;
   filter: invert(100%); /* Invert the colors to turn black to white */
 }
-
-
