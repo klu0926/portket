@@ -220,14 +220,7 @@ const projectController = {
         body.content = [body.content]
       }
       contentText = [...body.content]
-      // image content
-      const contentUrl = []
-      if (files.content) {
-        for (const c of files.content) {
-          const url = await imgurImageHandler(c)
-          contentUrl.push(url)
-        }
-      }
+
       // use order
       if (body.order && typeof body.order === 'string') {
         body.order = [body.order]
@@ -283,7 +276,9 @@ const projectController = {
         } else {
           // create content
           if (contents[i].type === 'image') {
-            contents[i].content = await imgurImageHandler(files.content.shift())
+            if (files.content && files.content.length > 0) {
+              contents[i].content = await imgurImageHandler(files.content.shift())
+            }
           }
           await Project_Content.create({
             projectId: currentProject.id,
