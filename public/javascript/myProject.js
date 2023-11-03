@@ -451,18 +451,24 @@ function content() {
       }
       // Up/Down arrows:
       if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault() // default Arrow up move to the start
-        let element = null
-        if (event.key === 'ArrowUp') {
-          element = targetParent.previousElementSibling
-        } else if (event.key === 'ArrowDown') {
-          element = targetParent.nextElementSibling
+        let selectTarget = null
+        if (!isFinite(target.selectionStart)) return
+        // move to prev input
+        if (target.selectionStart === 0 && event.key === 'ArrowUp') {
+          event.preventDefault()
+          selectTarget = targetParent.previousElementSibling
         }
-        if (!element) return
-        const textInput = element.querySelector('.content-text-input')
-        if (!textInput) return
-        const selectionEnd = target.selectionEnd
-        focusAndSelect(textInput, selectionEnd)
+        // move to next input
+        if (target.selectionStart === target.value.length && event.key === 'ArrowDown') {
+          event.preventDefault()
+          selectTarget = targetParent.nextElementSibling
+        }
+        // focus on new input
+        if (!selectTarget) return
+        const selectTargetInput = selectTarget.querySelector('.content-text-input')
+        if (!selectTargetInput) return
+        const selectionEnd = target.selectionStart
+        focusAndSelect(selectTargetInput, selectionEnd)
       }
     }
   })
