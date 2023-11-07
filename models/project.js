@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       date: DataTypes.DATE,
       cover: DataTypes.STRING,
+      coverPosition: DataTypes.STRING
     },
     {
       sequelize,

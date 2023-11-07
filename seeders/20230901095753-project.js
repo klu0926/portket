@@ -12,6 +12,7 @@ class RandomProjectGenerator {
       title: 'Simple Project Title',
       description: faker.lorem.paragraphs(10),
       cover: randomPublicImage('projects'),
+      coverPosition: '50',
     }
     return newProject
   }

@@ -3,13 +3,18 @@
 <form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
   <!--cover input-->
   <input id="cover-input" class="none" name="cover" type="file" accept="image/png, image/jpeg" />
+  <!--cover buttons-->
+  <div id="cover-buttons-container" class="cover-buttons-container">
+    <button type="button" id="cover-change-btn" class="cover-button">Change Cover</button>
+    <button type="button" id="cover-position" class="cover-button">Reposition</button>
+  </div>
   <button id="project-form-submit" style="display: none" type="submit"></button>
   <!--main container-->
   <div class="container" style="min-height: 600px">
     <!--cover-->
     <div id="cover-input-div" class="project-cover-input-div"></div>
     <div class="project-page-cover">
-      <img id="cover-img" src="{{project.cover}}" alt="project cover" />
+      <img id="cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
     </div>
     <div class="project-page-container">
       <!--project info-->

@@ -8,6 +8,33 @@ input {
 }
 
 /* cover */
+.cover-buttons-container {
+  position: absolute;
+  display: box;
+  justify-content: center;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+}
+
+.cover-button {
+  color: var(--my-red);
+  background-color: white;
+  border: none;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  padding: 2px 8px;
+  margin-left: -5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.cover-button:hover {
+  color: white;
+  background-color: var(--my-red);
+}
+
 .project-cover-input-div {
   display: none;
   position: absolute;
@@ -15,29 +42,9 @@ input {
   left: 0;
   width: 100%;
   height: 400px;
-  cursor: pointer;
   background-color: rgba(255, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
   z-index: 6;
-}
-.project-cover-input-div:hover {
-  background-color: rgba(255, 0, 0, 0.4);
-}
-.project-cover-input-div::after {
-  content: '+';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 4rem;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-}
-.project-cover-input-div:hover::after {
-  font-size: 5rem;
 }
 
 /* title */

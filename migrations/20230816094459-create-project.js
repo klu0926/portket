@@ -33,6 +33,11 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 'https://placehold.co/600x400',
       },
+      coverPosition: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: '50',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

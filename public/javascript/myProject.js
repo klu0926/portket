@@ -28,6 +28,7 @@ function editMode() {
 
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
+  const coverButtonDiv = document.querySelector('#cover-buttons-container')
   const titleInput = document.querySelector('#project-title-input-div')
   const dateInput = document.querySelector('#project-date-input-div')
   const linksInput = document.querySelector('#project-links-input-div')
@@ -37,7 +38,7 @@ function editMode() {
 
   // item list
   const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay, contentDisplay]
-  const editModeElements = [coverInputDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput, contentInput]
+  const editModeElements = [coverInputDiv, coverButtonDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput, contentInput]
 
   // hide all edit mode elements onload
   editModeElements.forEach((e) => {
@@ -111,7 +112,6 @@ function editMode() {
       event.stopPropagation()
       const contents = contentInput.querySelectorAll('.content-input-div')
       // filter out undefined content
-      console.log('contents', contents)
       const filteredContents = []
       contents.forEach((c) => {
         const texarea = c.querySelector('textarea')
@@ -144,13 +144,14 @@ function editMode() {
 }
 
 function previewProjectCover() {
-  const coverInputDiv = document.querySelector('#cover-input-div')
+  const coverChangeButton = document.querySelector('#cover-change-btn')
+  const coverPositionButton = document.querySelector('#cover-position')
   const coverInput = document.querySelector('#cover-input')
   const coverImg = document.querySelector('#cover-img')
   const originalCover = coverImg.src
   const cancelEditBtn = document.querySelector('#cancel-edit-btn')
   // add
-  coverInputDiv.addEventListener('click', (event) => {
+  coverChangeButton.addEventListener('click', (event) => {
     coverInput.click()
   })
   // change
@@ -346,12 +347,10 @@ function content() {
   // Helper: Content input insert
   function insertAfter(newNode, targetNode) {
     if (targetNode.nextSibling) {
-      console.log('insert before')
       targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
     } else {
-      // !!! this doesn't trigger
-      console.log('append child')
-      targetNode.parentNode.appendChild(newNode)
+      console.error('insertAfter: target has no next Sibling')
+      return
     }
     const textArea = newNode.querySelector('textarea')
     if (textArea) textArea.focus()
