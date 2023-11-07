@@ -169,13 +169,13 @@
           {{#each project.contents}} {{#if (isSame this.type 'image')}}
           <div class="content-input-div content-image-input-div data-image" data-uuid="{{this.uuid}}">
             <div class="input-div-tool-btn"></div>
-            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" data-uuid="{{this.uuid}}" multiple />
+            <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" data-uuid="{{this.uuid}}" data-original="true" multiple />
             <img class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" />
             <div class="content-image-delete-btn"></div>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
           <div class="content-input-div data-text" data-uuid="{{this.uuid}}">
-            <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1">{{this.content}}</textarea>
+            <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1" data-original="true">{{this.content}}</textarea>
             <div class="input-div-tool-btn"></div>
           </div>
           {{/if}} {{/each}}

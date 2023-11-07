@@ -221,6 +221,8 @@ const projectController = {
       }
       contentText = [...body.content]
 
+      console.log('body.content', body.content)
+
       // use order
       if (body.order && typeof body.order === 'string') {
         body.order = [body.order]
@@ -290,9 +292,12 @@ const projectController = {
         }
       }
       // delete Project_content
+      console.log('contents', contents)
       const contentDateToDelete = originalContentData.filter((obj) => {
+        console.log('original content data', obj)
         return !contents.some((contentsObj) => contentsObj.uuid === obj.uuid)
       })
+      console.log('content data to delete', contentDateToDelete)
       const deletePromises = contentDateToDelete.map(async (c) => {
         await Project_Content.destroy({ where: { id: c.id } })
       })

@@ -110,7 +110,17 @@ function editMode() {
       event.preventDefault()
       event.stopPropagation()
       const contents = contentInput.querySelectorAll('.content-input-div')
+      // filter out undefined content
+      console.log('contents', contents)
+      const filteredContents = []
       contents.forEach((c) => {
+        const texarea = c.querySelector('textarea')
+        const image = c.querySelector('.inner-image-input')
+        if (texarea && texarea.value === 'undefined') return
+        if (image && image.files.length === 0 && !image.dataset.original) return
+        filteredContents.push(c)
+      })
+      filteredContents.forEach((c) => {
         const orderInput = document.createElement('input')
         const uuidInput = document.createElement('input')
         orderInput.type = 'text'
@@ -265,11 +275,18 @@ function content() {
     // delete image button
     deleteButton.addEventListener('click', (event) => {
       event.stopPropagation()
-      if (confirm('Do you want to delete this image?')) imageDiv.remove()
+      const beforeInputDiv = event.target.parentNode.previousElementSibling
+      if (confirm('Do you want to delete this image?')) {
+        imageDiv.remove()
+        // add text input if none exist
+        if (!beforeInputDiv) {
+          mainContentContainer.append(newTextInput())
+        }
+      }
     })
   }
 
-  // Setup : option container
+  // Setup : insert option container
   function optionContainerSetup(optionContainer) {
     const inputOptionText = optionContainer.querySelector('#input-option-text')
     const inputOptionImage = optionContainer.querySelector('#input-option-image')
@@ -282,14 +299,15 @@ function content() {
     inputOptionImage.addEventListener('click', (event) => {
       const parent = currentToolButton.parentElement
       const textarea = parent.querySelector('textarea')
+      // replace current text input with image input
       if (textarea && textarea.value.length === 0) {
         const lastElement = parent.previousElementSibling
-        parent.remove()
         if (lastElement) {
           insertAfter(newImageInput(), lastElement)
         } else {
-          mainContentContainer.append(newImageInput())
+          insertAfter(newImageInput(), parent)
         }
+        parent.remove()
       } else {
         insertAfter(newImageInput(), parent)
       }
@@ -328,8 +346,11 @@ function content() {
   // Helper: Content input insert
   function insertAfter(newNode, targetNode) {
     if (targetNode.nextSibling) {
+      console.log('insert before')
       targetNode.parentNode.insertBefore(newNode, targetNode.nextSibling)
     } else {
+      // !!! this doesn't trigger
+      console.log('append child')
       targetNode.parentNode.appendChild(newNode)
     }
     const textArea = newNode.querySelector('textarea')
