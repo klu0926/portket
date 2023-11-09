@@ -1,8 +1,9 @@
 import randomId from './helpers/randomId.js'
+let defaultCoverPositionY = getCoverPositionY()
 
 document.addEventListener('DOMContentLoaded', () => {
   editMode()
-  previewProjectCover()
+  coverButtons()
   links()
   content()
 })
@@ -63,6 +64,9 @@ function editMode() {
     editModeDisplay.classList.add('show-animation')
     editModeDisplay.classList.remove('hide-animation')
     editModeDisplay.style.animationPlayState = 'running'
+
+    defaultCoverPositionY = getCoverPositionY()
+    console.log('on enter edit mode:', defaultCoverPositionY)
   })
 
   // Exit edit mode
@@ -93,6 +97,9 @@ function editMode() {
     // remove new content input
     const contentInputs = document.querySelectorAll('.new-content-input')
     contentInputs.forEach((e) => e.remove())
+
+    // remove cover drag
+    cancelCoverDrag()
   })
 
   // save
@@ -143,18 +150,28 @@ function editMode() {
   })
 }
 
-function previewProjectCover() {
+function coverButtons() {
   const coverChangeButton = document.querySelector('#cover-change-btn')
   const coverPositionButton = document.querySelector('#cover-position')
   const coverInput = document.querySelector('#cover-input')
   const coverImg = document.querySelector('#cover-img')
   const originalCover = coverImg.src
   const cancelEditBtn = document.querySelector('#cancel-edit-btn')
-  // add
+  const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
+  const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
+  const coverPositionDone = document.querySelector('#cover-done-position')
+  const coverPositionCancel = document.querySelector('#cover-cancel-position')
+  const coverDrag = document.querySelector('.cover-drag')
+  const positionInput = document.querySelector('#cover-position-input')
+  let defaultCoverPositionY = getCoverPositionY()
+  let isDragging = false
+  let initPositionY
+
+  // Change Cover
   coverChangeButton.addEventListener('click', (event) => {
     coverInput.click()
   })
-  // change
+  // Preview cover on change
   coverInput.addEventListener('change', () => {
     if (coverInput.files && coverInput.files[0]) {
       const reader = new FileReader()
@@ -164,10 +181,67 @@ function previewProjectCover() {
       reader.readAsDataURL(coverInput.files[0])
     }
   })
-  // cancel
+  // cancel cover change
   cancelEditBtn.addEventListener('click', () => {
     coverImg.src = originalCover
   })
+
+  // set cover Position
+  coverPositionButton.addEventListener('click', () => {
+    coverButtonsSetOne.style.display = 'none'
+    coverButtonsSetTwo.style.display = 'flex'
+    coverDrag.style.display = 'flex'
+  })
+
+  // save cover position
+  coverPositionDone.addEventListener('click', () => {
+    coverButtonsSetTwo.style.display = 'none'
+    coverDrag.style.display = 'none'
+    coverButtonsSetOne.style.display = 'flex'
+    // save to form
+    // check if input exist
+    positionInput.value = getCoverPositionY()
+  })
+
+  // cancel position
+  coverPositionCancel.addEventListener('click', () => {
+    coverButtonsSetTwo.style.display = 'none'
+    coverDrag.style.display = 'none'
+    coverButtonsSetOne.style.display = 'flex'
+    coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
+  })
+
+  // reposition cover : mouse down
+  coverDrag.addEventListener('mousedown', (event) => {
+    initPositionY = getMousePositionY(event)
+    isDragging = true
+  })
+
+  // drag
+  document.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+      event.stopPropagation()
+      updateCoverPosition(event)
+    }
+  })
+
+  // mouse up
+  document.addEventListener('mouseup', () => {
+    isDragging = false
+  })
+
+  // update cover css object position
+  function updateCoverPosition(event) {
+    const coverPosition = getCoverPositionY()
+    let deltaY = initPositionY - getMousePositionY(event)
+    const dampingFactor = 0.5
+    let newCoverPosition = coverPosition + deltaY * dampingFactor
+    newCoverPosition = Math.min(100, Math.max(0, newCoverPosition))
+    // set cover position Y
+    coverImg.style.objectPosition = `center ${newCoverPosition}%`
+    // update initial position (This is really important!)
+    initPositionY = getMousePositionY(event)
+  }
 }
 
 function links() {
@@ -492,4 +566,36 @@ function content() {
       }
     }
   })
+}
+
+// -------------------- Helper ------------------------ //
+function cancelCoverDrag() {
+  const coverChangeButton = document.querySelector('#cover-change-btn')
+  //const coverPositionButton = document.querySelector('#cover-position')
+  const coverImg = document.querySelector('#cover-img')
+  const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
+  const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
+  const coverDrag = document.querySelector('.cover-drag')
+  coverButtonsSetTwo.style.display = 'none'
+  coverDrag.style.display = 'none'
+  coverButtonsSetOne.style.display = 'flex'
+  coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
+  console.log('on cancel:', defaultCoverPositionY)
+}
+
+// get mouse Y
+function getMousePositionY(event) {
+  return event.clientY + window.scrollY
+}
+// get cover css object position
+function getCoverPositionY() {
+  const coverImg = document.querySelector('#cover-img')
+  if (!coverImg) {
+    console.error('getCoverPosition: Missing coverImg element')
+    return
+  }
+  const objectPosition = coverImg.style.objectPosition
+  const emptySpace = objectPosition.indexOf(' ')
+  const objectPositionArray = [...objectPosition]
+  return Number(objectPositionArray.slice(emptySpace, -1).join('').trim())
 }

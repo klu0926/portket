@@ -295,12 +295,21 @@ const projectController = {
       })
       await Promise.all(deletePromises)
 
+      console.log('---------body.coverPosition', body.coverPosition)
+
+      // coverPosition
+      let coverPosition = currentProject.coverPosition
+      if (isFinite(body.coverPosition)) {
+        coverPosition = Number(body.coverPosition)
+      }
+
       // update project
       await currentProject.update({
         date: body.date || currentProject.date,
         title: body.title || currentProject.title,
         description: body.description || currentProject.description,
         cover: newCover || currentProject.cover,
+        coverPosition,
       })
 
       res.redirect(`/projects/${currentProject.id}`)

@@ -35,8 +35,8 @@ module.exports = {
       },
       coverPosition: {
         allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: '50',
+        type: Sequelize.FLOAT,
+        defaultValue: 50,
       },
       createdAt: {
         allowNull: false,

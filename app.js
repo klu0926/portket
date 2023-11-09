@@ -27,7 +27,7 @@ app.engine(
 )
 app.set('view engine', 'hbs')
 
-// session store
+// Session store
 const sessionMinutes = 600 // 10hrs
 let storeOption = {
   expiration: 1000 * 60 * sessionMinutes,
@@ -57,7 +57,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const sessionStore = new MySQLStore(storeOption)
 
-// middleware
+// Middleware
 const COOKIE_HOUR = 24
 app.use(
   session({
@@ -96,5 +96,3 @@ app.use(routes)
 app.listen(port, () => {
   console.info(`Server running on port ${port}`)
 })
-
-// TESTING - DELETE LATER!!!! //

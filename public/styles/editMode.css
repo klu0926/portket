@@ -1,6 +1,10 @@
 @import url('/styles/color.css');
 
 /* general */
+.edit-mode-display {
+  user-select: none;
+}
+
 .button-container {
   display: flex;
   align-items: center;

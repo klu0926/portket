@@ -1,20 +1,32 @@
 <!--my project-->
+
 <!--edit mode from-->
-<form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
+<form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" style="width: 100%" novalidate>
+  <div id="cover-buttons-container" class="cover-buttons-container">
+    <div class="cover-buttons-set-one">
+      <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
+      <button type="button" id="cover-position" class="cover-button"><i class="fa-solid fa-arrows-up-down-left-right me-2"></i>Reposition</button>
+    </div>
+    <div class="cover-buttons-set-two">
+      <button type="button" id="cover-done-position" class="cover-button">
+        <i class="fa-solid fa-check me-2"></i>
+        Done
+      </button>
+      <button type="button" id="cover-cancel-position" class="cover-button"><i class="fa-solid fa-xmark me-2"></i>Cancel</button>
+    </div>
+  </div>
+  <!--cover position input-->
+  <input id="cover-position-input" name="coverPosition" type="hidden" value="{{project.coverPosition}}" />
   <!--cover input-->
   <input id="cover-input" class="none" name="cover" type="file" accept="image/png, image/jpeg" />
-  <!--cover buttons-->
-  <div id="cover-buttons-container" class="cover-buttons-container">
-    <button type="button" id="cover-change-btn" class="cover-button">Change Cover</button>
-    <button type="button" id="cover-position" class="cover-button">Reposition</button>
-  </div>
   <button id="project-form-submit" style="display: none" type="submit"></button>
   <!--main container-->
   <div class="container" style="min-height: 600px">
     <!--cover-->
     <div id="cover-input-div" class="project-cover-input-div"></div>
+    <div id="cover-drag" class="cover-drag"></div>
     <div class="project-page-cover">
-      <img id="cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
+      <img id="cover-img" class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
     </div>
     <div class="project-page-container">
       <!--project info-->
