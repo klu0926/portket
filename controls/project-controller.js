@@ -184,7 +184,16 @@ const projectController = {
         if (typeof body.linkUrl === 'string') {
           body.linkUrl = [body.linkUrl]
         }
+        // check for http:// and https://
+        body.linkUrl = body.linkUrl.map((url) => {
+          if (!url.startsWith('http://') && !url.startsWith('http')) {
+            return 'http://' + url
+          } else {
+            return url
+          }
+        })
       }
+
       await Project_Link.destroy({ where: { projectId: currentProject.id } })
       if (body.linkName && body.linkUrl) {
         for (let i = 0; i < body.linkName.length; i++) {

@@ -88,12 +88,7 @@ const userController = {
       // SQL 'like' search for matching substring, % means can be anything
       const whereCondition = keyword
         ? {
-            [Op.or]: [
-              { name: { [Op.like]: `%${keyword}%` } },
-              { email: { [Op.like]: `%${keyword}%` } },
-              { title: { [Op.like]: `%${keyword}%` } },
-              { description: { [Op.like]: `%${keyword}%` } },
-            ],
+            [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
           }
         : {}
 
@@ -258,8 +253,15 @@ const userController = {
         newSocials = typeof body.socials === 'string' ? [body.socials] : body.socials
       }
       if (body.socialsLinks) {
-        newSocialsLinks =
-          typeof body.socialsLinks === 'string' ? [body.socialsLinks] : body.socialsLinks
+        newSocialsLinks = typeof body.socialsLinks === 'string' ? [body.socialsLinks] : body.socialsLinks
+        // check for http:// and https://
+        newSocialsLinks = newSocialsLinks.map((url) => {
+          if (!url.startsWith('http://') && !url.startsWith('http')) {
+            return 'http://' + url
+          } else {
+            return url
+          }
+        })
       }
 
       // User_Skill

@@ -105,14 +105,19 @@ input {
 }
 
 .project-links-name {
-  flex-shrink: 1;
-  min-width: 90px;
+  width: 30%;
+  min-width: 100px;
   padding-right: 6px;
 }
 
 .project-links-url {
   flex-grow: 1;
+  flex-shrink: 1;
   padding-right: 6px;
+}
+
+.project-link-button-container {
+  padding-top: 5px;
 }
 
 /*skills */
