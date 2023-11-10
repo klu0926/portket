@@ -187,7 +187,7 @@
           <div class="content-input-div content-image-input-div data-image" data-uuid="{{this.uuid}}">
             <div class="input-div-tool-btn"></div>
             <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" data-uuid="{{this.uuid}}" data-original="true" multiple />
-            <img class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" />
+            <img loading="lazy" class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" />
             <div class="content-image-delete-btn"></div>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
@@ -197,7 +197,7 @@
           </div>
           {{/if}} {{/each}}
           <!--new text input--->
-          <div class="content-input-div data-text first-input">
+          <div class="content-input-div data-text first-input new-input">
             <textarea class="content-text-input" type="text" name="content" placeholder="Enter text here..." rows="1"></textarea>
             <div class="input-div-tool-btn"></div>
           </div>
@@ -210,7 +210,7 @@
 
 <!--content sample-->
 <!--textarea-->
-<div id="text-sample-div" class="content-input-div new-content-input data-text">
+<div id="text-sample-div" class="content-input-div new-content-input data-text new-input">
   <textarea class="content-text-input" type="text" name="content" placeholder="" rows="1" disabled></textarea>
   <div class="input-div-tool-btn"></div>
 </div>

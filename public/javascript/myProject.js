@@ -64,9 +64,8 @@ function editMode() {
     editModeDisplay.classList.add('show-animation')
     editModeDisplay.classList.remove('hide-animation')
     editModeDisplay.style.animationPlayState = 'running'
-
+    // save default cover position
     defaultCoverPositionY = getCoverPositionY()
-    console.log('on enter edit mode:', defaultCoverPositionY)
   })
 
   // Exit edit mode
@@ -118,11 +117,13 @@ function editMode() {
       event.preventDefault()
       event.stopPropagation()
       const contents = contentInput.querySelectorAll('.content-input-div')
+
       // filter out undefined content
       const filteredContents = []
       contents.forEach((c) => {
         const texarea = c.querySelector('textarea')
         const image = c.querySelector('.inner-image-input')
+        if (c.classList.contains('new-input')) return
         if (texarea && texarea.value === 'undefined') return
         if (image && image.files.length === 0 && !image.dataset.original) return
         filteredContents.push(c)
@@ -198,8 +199,7 @@ function coverButtons() {
     coverButtonsSetTwo.style.display = 'none'
     coverDrag.style.display = 'none'
     coverButtonsSetOne.style.display = 'flex'
-    // save to form
-    // check if input exist
+    // record cover position to input
     positionInput.value = getCoverPositionY()
   })
 
@@ -239,6 +239,8 @@ function coverButtons() {
     newCoverPosition = Math.min(100, Math.max(0, newCoverPosition))
     // set cover position Y
     coverImg.style.objectPosition = `center ${newCoverPosition}%`
+    // record cover position to input
+    positionInput.value = getCoverPositionY()
     // update initial position (This is really important!)
     initPositionY = getMousePositionY(event)
   }
@@ -516,6 +518,10 @@ function content() {
 
     // In textArea
     if (target.classList.contains('content-text-input')) {
+      // Remove 'new-input' after enter a character value (eg: 'a' ';')
+      if (event.key.length === 1) {
+        targetParent.classList.remove('new-input')
+      }
       // Enter : new text input
       if (event.key === 'Enter') {
         if (target.selectionEnd !== target.value.length) return
@@ -580,7 +586,6 @@ function cancelCoverDrag() {
   coverDrag.style.display = 'none'
   coverButtonsSetOne.style.display = 'flex'
   coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
-  console.log('on cancel:', defaultCoverPositionY)
 }
 
 // get mouse Y
