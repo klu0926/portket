@@ -328,4 +328,27 @@
   .project-outer-block:hover {
     transform: translateX(0px);
   }
+  .portfolio-cover {
+    height: 350px;
+  }
+  .portfolio-container {
+    margin-top: 200px;
+  }
+  .portfolio-avatar-container {
+    height: 180px;
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .portfolio-cover {
+    height: 300px;
+  }
+  .portfolio-container {
+    margin-top: 160px;
+  }
+  .portfolio-avatar-container {
+    height: 140px;
+    width: 140px;
+  }
 }

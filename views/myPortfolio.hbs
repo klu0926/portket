@@ -3,7 +3,7 @@
               <!--avatar input-->
         <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
               <!--cover edit buttons-->
-        <div id="cover-buttons-container" class="cover-buttons-container">
+        <div id="portfolio-cover-buttons-container" class="portfolio-cover-buttons-container">
           <div class="cover-buttons-set-one">
             <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
             <button type="button" id="cover-position" class="cover-button"><i class="fa-solid fa-arrows-up-down-left-right me-2"></i>Reposition</button>
@@ -23,7 +23,7 @@
          <!--form submit-->
         <button id="info-submit-btn" style="display: none" type="submit"></button>
  <!--cover-->
-     <div id="cover-drag" class="cover-drag"></div>
+     <div id="portfolio-cover-drag" class="portfolio-cover-drag"></div>
   {{#if user.cover}}
   <div class="portfolio-cover">
     <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" />
@@ -361,11 +361,11 @@
         <!--project block end-->
       </div>
     </div>
-
-    <!--script-->
-    <script src="/javascript/portfolio.js"></script>
-    <script src="/javascript/myPortfolio.js"></script>
     <!--form-->
     {{> form-project}}
   </div>
 </div>
+
+    <!--script-->
+    <script type="module" src="/javascript/portfolio.js"></script>
+    <script type="module" src="/javascript/myPortfolio.js"></script>

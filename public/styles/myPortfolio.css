@@ -233,7 +233,7 @@
 }
 
 /* cover */
-.cover-drag {
+.portfolio-cover-drag {
   position: absolute;
   display: none;
   align-items: center;
@@ -246,10 +246,9 @@
   width: 100%;
   height: 390px;
   cursor: move;
-  transition: all 0.3s ease-in-out;
 }
 
-.cover-drag::after {
+.portfolio-cover-drag::after {
   content: 'Drag image to reposition, and remember to Save Edit';
   position: absolute;
   display: flex;
@@ -267,7 +266,7 @@
   padding: 2px 10px;
 }
 
-.cover-buttons-container {
+.portfolio-cover-buttons-container {
   position: absolute;
   display: block;
   top: 400px;
@@ -407,4 +406,28 @@
 .skill-tooltip-img img {
   width: 100%;
   filter: invert(100%); /* Invert the colors to turn black to white */
+}
+
+#test {
+  color: white;
+}
+
+@media screen and (max-width: 991px) {
+  .portfolio-cover-drag {
+    top: 50px;
+    height: 350px;
+  }
+  .portfolio-cover-buttons-container {
+    top: 350px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .portfolio-cover-drag {
+    top: 50px;
+    height: 300px;
+  }
+  .portfolio-cover-buttons-container {
+    top: 300px;
+  }
 }

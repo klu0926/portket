@@ -19,7 +19,7 @@ function editMode() {
   const editModeDisplay = document.querySelector('#edit-mode-display')
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
-  const coverButtonDiv = document.querySelector('#cover-buttons-container')
+  const coverButtonDiv = document.querySelector('#portfolio-cover-buttons-container')
   const avatarInputDiv = document.querySelector('#avatar-input-div')
   const nameInputDiv = document.querySelector('#name-input-div')
   const titleInputDiv = document.querySelector('#title-input-div')
@@ -203,7 +203,7 @@ function coverButtons() {
   const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
   const coverPositionDone = document.querySelector('#cover-done-position')
   const coverPositionCancel = document.querySelector('#cover-cancel-position')
-  const coverDrag = document.querySelector('.cover-drag')
+  const coverDrag = document.querySelector('#portfolio-cover-drag')
   const positionInput = document.querySelector('#cover-position-input')
   let defaultCoverPositionY = getCoverPositionY()
   let isDragging = false
