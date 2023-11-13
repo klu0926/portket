@@ -330,3 +330,21 @@ input {
   font-size: 1rem;
   margin-left: 5px;
 }
+
+@media screen and (max-width: 991px) {
+  .cover-drag {
+    height: 340px;
+  }
+  .cover-buttons-container {
+    top: 350px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cover-drag {
+    height: 290px;
+  }
+  .cover-buttons-container {
+    top: 300px;
+  }
+}

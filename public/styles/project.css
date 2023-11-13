@@ -25,7 +25,7 @@
 }
 
 .project-page-container {
-  margin-top: 400px;
+  margin-top: 380px;
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
@@ -99,8 +99,26 @@
   color: black;
 }
 
+@media screen and (max-width: 991px) {
+  .project-page-cover {
+    height: 350px;
+  }
+  .project-page-container {
+    margin-top: 330px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .project-page-container {
     width: 95%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .project-page-cover {
+    height: 300px;
+  }
+  .project-page-container {
+    margin-top: 280px;
   }
 }
