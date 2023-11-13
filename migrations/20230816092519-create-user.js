@@ -35,6 +35,11 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: randomPublicImage('covers'),
       },
+      coverPosition: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+        defaultValue: 50,
+      },
       title: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -43,7 +48,8 @@ module.exports = {
       description: {
         allowNull: false,
         type: Sequelize.STRING(1000),
-        defaultValue: "Experienced professional with a diverse background. Skilled in various areas. Committed to excellence and growth. Enjoys learning and exploring new opportunities. Let's connect and discuss potential collaborations.",
+        defaultValue:
+          "Experienced professional with a diverse background. Skilled in various areas. Committed to excellence and growth. Enjoys learning and exploring new opportunities. Let's connect and discuss potential collaborations.",
       },
       country: {
         type: Sequelize.STRING,

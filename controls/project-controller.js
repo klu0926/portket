@@ -240,19 +240,21 @@ const projectController = {
       // arrange content order
       const order = body.order
       const contents = []
-      for (let i = 0; i < order.length; i++) {
-        const data = {
-          order: i,
-          uuid: body.uuid[i],
+      if (order) {
+        for (let i = 0; i < order.length; i++) {
+          const data = {
+            order: i,
+            uuid: body.uuid[i],
+          }
+          if (order[i] === 'text') {
+            data.type = 'text'
+            data.content = contentText.shift()
+          } else if (order[i] === 'image') {
+            data.type = 'image'
+            data.content = ''
+          }
+          contents.push(data)
         }
-        if (order[i] === 'text') {
-          data.type = 'text'
-          data.content = contentText.shift()
-        } else if (order[i] === 'image') {
-          data.type = 'image'
-          data.content = ''
-        }
-        contents.push(data)
       }
 
       // Get Project_Content

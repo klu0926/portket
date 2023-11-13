@@ -23,6 +23,7 @@ class RandomUserGenerator {
       password: bcrypt.hashSync(SEED_PASSWORD),
       avatar: 'https://i.pravatar.cc/' + this.avatarSize + '?u=' + randomId,
       cover:  randomImage('covers'),
+      coverPosition: 50,
       title: faker.person.jobTitle(),
       description: descriptionData[this.currentNumber % descriptionData.length],
       country: faker.location.country(),
