@@ -1,29 +1,47 @@
-<div id="top"></div>
-<div class="container" style="min-height: 1100px">
-  <!--cover-->
+<!--edit mode from-->
+<form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
+              <!--avatar input-->
+        <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
+              <!--cover edit buttons-->
+        <div id="cover-buttons-container" class="cover-buttons-container">
+          <div class="cover-buttons-set-one">
+            <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
+            <button type="button" id="cover-position" class="cover-button"><i class="fa-solid fa-arrows-up-down-left-right me-2"></i>Reposition</button>
+          </div>
+          <div class="cover-buttons-set-two">
+            <button type="button" id="cover-done-position" class="cover-button">
+              <i class="fa-solid fa-check me-2"></i>
+              Done
+            </button>
+            <button type="button" id="cover-cancel-position" class="cover-button"><i class="fa-solid fa-xmark me-2"></i>Cancel</button>
+          </div>
+        </div>
+        <!--cover position input-->
+        <input id="cover-position-input" name="coverPosition" type="hidden" value="{{user.coverPosition}}" />
+        <!--cover input-->
+        <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
+         <!--form submit-->
+        <button id="info-submit-btn" style="display: none" type="submit"></button>
+ <!--cover-->
+     <div id="cover-drag" class="cover-drag"></div>
   {{#if user.cover}}
-  <div id="cover-input-div" class="portfolio-cover-input-div"></div>
   <div class="portfolio-cover">
-    <img id="cover-img" src="{{user.cover}}" alt="cover" />
+    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" />
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement"></div>
   {{/if}}
+<!--main container-->
+<div class="container" style="min-height: 1100px">
+   <!--portfolio container--->
   <div class="portfolio-container row">
     <!--Bio (left side) -->
     <div class="portfolio-left col-12 col-lg-6">
       <!--avatar-->
       <div id="avatar-container" class="portfolio-avatar-container">
         <div id="avatar-input-div"></div>
-        <img id="avatar-img" src="{{user.avatar}}" alt="avatar" />
+        <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" />
       </div>
-      <!--edit mode from : all info-->
-      <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
-        <button id="info-submit-btn" style="display: none" type="submit"></button>
-        <!--cover input-->
-        <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
-        <!--avatar input-->
-        <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
         <!--name-->
         <div class="mb-2">
           <div id="name-display">
@@ -108,7 +126,7 @@
           <!--social input add-->
           <div class="social-input-flex">
             <div class="social-select">
-              <select id="socials-network" class="form-select" name="socials" required disabled>
+              <select class="form-select" name="socials" required disabled>
                 <option value="" selected>Select</option>
                 {{#each ../allSocials}}
                 <option value="{{this.id}}">{{this.name}}</option>
@@ -129,7 +147,7 @@
           <div class="social-input-sample" style="display: none">
             <div class="social-input-flex">
               <div class="social-select">
-                <select id="socials-network" class="form-select" name="socials" required disabled>
+                <select class="form-select" name="socials" required disabled>
                   <option value="" selected>Select</option>
                   {{#each allSocials}}
                   <option value="{{this.id}}">{{this.name}}</option>
@@ -283,8 +301,8 @@
             <!--input end-->
           </div>
         </div>
-      </form>
     </div>
+</form>
 
     <!--projects (right side)-->
     <div class="portfolio-right col-12 col-lg-6">

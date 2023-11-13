@@ -1,5 +1,8 @@
+let defaultCoverPositionY = getCoverPositionY()
+
 document.addEventListener('DOMContentLoaded', () => {
   previewPortfolioCover()
+  coverButtons()
   previewPortfolioAvatar()
   editMode()
   socials()
@@ -16,6 +19,7 @@ function editMode() {
   const editModeDisplay = document.querySelector('#edit-mode-display')
   // input div
   const coverInputDiv = document.querySelector('#cover-input-div')
+  const coverButtonDiv = document.querySelector('#cover-buttons-container')
   const avatarInputDiv = document.querySelector('#avatar-input-div')
   const nameInputDiv = document.querySelector('#name-input-div')
   const titleInputDiv = document.querySelector('#title-input-div')
@@ -37,7 +41,7 @@ function editMode() {
   const projectBlocker = document.querySelector('#project-blocker')
 
   // items list
-  const editModeElements = [coverInputDiv, nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv, skillInputDiv]
+  const editModeElements = [coverInputDiv, coverButtonDiv, nameInputDiv, titleInputDiv, socialInputDiv, avatarInputDiv, projectBlocker, descriptionInputDiv, contactInputDiv, skillInputDiv]
 
   const viewModeElements = [nameDisplay, titleDisplay, socialDisplay, addProjectBtn, descriptionDisplay, contactDisplay, skillDisplay]
 
@@ -108,15 +112,11 @@ function editMode() {
 }
 
 function previewPortfolioCover() {
-  const coverInputDiv = document.querySelector('#cover-input-div')
   const coverInput = document.querySelector('#cover-input')
   const coverImg = document.querySelector('#cover-img')
   const originalCover = coverImg.src
   const cancelEditBtn = document.querySelector('#cancel-edit-btn')
-  // add
-  coverInputDiv.addEventListener('click', (event) => {
-    coverInput.click()
-  })
+
   // change
   coverInput.addEventListener('change', () => {
     if (coverInput.files && coverInput.files[0]) {
@@ -190,4 +190,133 @@ function socials() {
     const removeSocialBtn = newSocialInput.querySelector('.remove-social')
     addRemoveInputEvent(removeSocialBtn)
   })
+}
+
+function coverButtons() {
+  const coverChangeButton = document.querySelector('#cover-change-btn')
+  const coverPositionButton = document.querySelector('#cover-position')
+  const coverInput = document.querySelector('#cover-input')
+  const coverImg = document.querySelector('#cover-img')
+  const originalCover = coverImg.src
+  const cancelEditBtn = document.querySelector('#cancel-edit-btn')
+  const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
+  const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
+  const coverPositionDone = document.querySelector('#cover-done-position')
+  const coverPositionCancel = document.querySelector('#cover-cancel-position')
+  const coverDrag = document.querySelector('.cover-drag')
+  const positionInput = document.querySelector('#cover-position-input')
+  let defaultCoverPositionY = getCoverPositionY()
+  let isDragging = false
+  let initPositionY
+
+  // Change Cover
+  coverChangeButton.addEventListener('click', (event) => {
+    coverInput.click()
+  })
+  // Preview cover on change
+  coverInput.addEventListener('change', () => {
+    if (coverInput.files && coverInput.files[0]) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        coverImg.src = event.target.result
+      }
+      reader.readAsDataURL(coverInput.files[0])
+    }
+  })
+  // cancel cover change
+  cancelEditBtn.addEventListener('click', () => {
+    coverImg.src = originalCover
+  })
+
+  // set cover Position
+  coverPositionButton.addEventListener('click', () => {
+    coverButtonsSetOne.style.display = 'none'
+    coverButtonsSetTwo.style.display = 'flex'
+    coverDrag.style.display = 'flex'
+  })
+
+  // save cover position
+  coverPositionDone.addEventListener('click', () => {
+    coverButtonsSetTwo.style.display = 'none'
+    coverDrag.style.display = 'none'
+    coverButtonsSetOne.style.display = 'flex'
+    // record cover position to input
+    positionInput.value = getCoverPositionY()
+    defaultCoverPositionY = getCoverPositionY()
+  })
+
+  // cancel position
+  coverPositionCancel.addEventListener('click', () => {
+    coverButtonsSetTwo.style.display = 'none'
+    coverDrag.style.display = 'none'
+    coverButtonsSetOne.style.display = 'flex'
+    coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
+  })
+
+  // reposition cover : mouse down
+  coverDrag.addEventListener('mousedown', (event) => {
+    initPositionY = getMousePositionY(event)
+    isDragging = true
+  })
+
+  // drag
+  document.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+      event.stopPropagation()
+      updateCoverPosition(event)
+    }
+  })
+
+  // mouse up
+  document.addEventListener('mouseup', () => {
+    isDragging = false
+  })
+
+  // update cover css object position
+  function updateCoverPosition(event) {
+    const coverPosition = getCoverPositionY()
+    let deltaY = initPositionY - getMousePositionY(event)
+    const dampingFactor = 0.5
+    let newCoverPosition = coverPosition + deltaY * dampingFactor
+    newCoverPosition = Math.min(100, Math.max(0, newCoverPosition))
+    // set cover position Y
+    coverImg.style.objectPosition = `center ${newCoverPosition}%`
+    // record cover position to input
+    positionInput.value = getCoverPositionY()
+    // update initial position (This is really important!)
+    initPositionY = getMousePositionY(event)
+  }
+}
+
+// -------------------- Helper ------------------------ //
+function cancelCoverDrag() {
+  const coverChangeButton = document.querySelector('#cover-change-btn')
+  //const coverPositionButton = document.querySelector('#cover-position')
+  const coverImg = document.querySelector('#cover-img')
+  const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
+  const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
+  const coverDrag = document.querySelector('.cover-drag')
+  coverButtonsSetTwo.style.display = 'none'
+  coverDrag.style.display = 'none'
+  coverButtonsSetOne.style.display = 'flex'
+  coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
+}
+
+// get mouse Y
+function getMousePositionY(event) {
+  return event.clientY + window.scrollY
+}
+// get cover css object position
+function getCoverPositionY() {
+  const coverImg = document.querySelector('#cover-img')
+  const defaultPotion = 50
+
+  if (!coverImg) {
+    console.error('getCoverPosition: Missing coverImg element')
+    return defaultPotion
+  }
+  const objectPosition = coverImg.style.objectPosition
+  const emptySpace = objectPosition.indexOf(' ')
+  const objectPositionArray = [...objectPosition]
+  return Number(objectPositionArray.slice(emptySpace, -1).join('').trim())
 }

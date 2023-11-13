@@ -306,8 +306,7 @@ const projectController = {
       })
       await Promise.all(deletePromises)
 
-      console.log('---------body.coverPosition', body.coverPosition)
-
+      
       // coverPosition
       let coverPosition = currentProject.coverPosition
       if (isFinite(body.coverPosition)) {

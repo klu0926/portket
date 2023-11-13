@@ -233,38 +233,75 @@
 }
 
 /* cover */
-.portfolio-cover-input-div {
+.cover-drag {
+  position: absolute;
   display: none;
-  position: absolute;
-  top: 50;
-  left: 0;
-  width: 100%;
-  height: 300px;
-  cursor: pointer;
-  background-color: rgba(255, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  z-index: 6;
-}
-.portfolio-cover-input-div:hover {
-  background-color: rgba(255, 0, 0, 0.4);
-}
-.portfolio-cover-input-div::after {
-  content: '+';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 4rem;
-  font-weight: bold;
+  justify-self: center;
+  text-align: center;
+  top: 65px;
+  left: 0%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 5px solid red;
+  width: 100%;
+  height: 390px;
+  cursor: move;
   transition: all 0.3s ease-in-out;
-}
-.portfolio-cover-input-div:hover::after {
-  font-size: 5rem;
 }
 
+.cover-drag::after {
+  content: 'Drag image to reposition, and remember to Save Edit';
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-25%);
+  background-color: rgba(233, 10, 10, 0.65);
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px 2px rgba(255, 54, 54, 0.2);
+  font-size: 1rem;
+  color: white;
+  padding: 2px 10px;
+}
+
+.cover-buttons-container {
+  position: absolute;
+  display: block;
+  top: 400px;
+  right: 20px;
+  z-index: 8;
+}
+.cover-buttons-set-one {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.cover-buttons-set-two {
+  display: none;
+  justify-content: end;
+  width: 100%;
+}
+
+.cover-button {
+  color: var(--my-red);
+  background-color: white;
+  border: none;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  padding: 2px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.cover-button:hover {
+  color: white;
+  background-color: var(--my-red);
+}
 /* avatar */
 #avatar-input-div {
   display: none;

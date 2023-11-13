@@ -1,7 +1,6 @@
-<!--my project-->
-
-<!--edit mode from-->
+<!--edit mode form-->
 <form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" style="width: 100%" novalidate>
+<!--cover edit buttons-->
   <div id="cover-buttons-container" class="cover-buttons-container">
     <div class="cover-buttons-set-one">
       <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
@@ -19,6 +18,7 @@
   <input id="cover-position-input" name="coverPosition" type="hidden" value="{{project.coverPosition}}" />
   <!--cover input-->
   <input id="cover-input" class="none" name="cover" type="file" accept="image/png, image/jpeg" />
+  <!--form submit-->
   <button id="project-form-submit" style="display: none" type="submit"></button>
   <!--main container-->
   <div class="container" style="min-height: 600px">

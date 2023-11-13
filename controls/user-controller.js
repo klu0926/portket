@@ -228,8 +228,6 @@ const userController = {
       let newSocialsLinks = []
       let newSkills = []
 
-      console.log('newDescription', newDescription)
-
       // files
       if (files?.cover && files.cover !== currentUser.cover) {
         console.log('cover file uploading...')
@@ -292,19 +290,25 @@ const userController = {
       if (!userModel) throw new Error(`Can not find user ${userId}`)
       const user = userModel.toJSON()
 
+      // coverPosition
+      let coverPosition = user.coverPosition
+      if (isFinite(body.coverPosition)) {
+        coverPosition = Number(body.coverPosition)
+      }
+
       // update
       await userModel.update({
         name: newName || user.name,
         email: newEmail || user.email,
         avatar: newAvatar || user.avatar,
         cover: newCover || user.cover,
+        coverPosition,
         title: newTitle || user.title,
         description: newDescription || user.description,
         country: newCountry || user.country,
         city: newCity || user.city,
         phone: newPhone || user.phone,
         themeId: Number(newThemeId) || Number(user.themeId),
-        // password
       })
       res.redirect(`/users/${userId}`)
     } catch (err) {

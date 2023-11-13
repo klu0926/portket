@@ -12,13 +12,11 @@ function editMode() {
   // form
   const projectForm = document.querySelector('#project-form')
   const projectFormSubmit = document.querySelector('#project-form-submit')
-  const orderInput = document.querySelector('#order-input')
   // edit nav bar
   const editBtn = document.querySelector('#edit-btn')
   const saveEditBtn = document.querySelector('#save-edit-btn')
   const cancelEditBtn = document.querySelector('#cancel-edit-btn')
   const editModeDisplay = document.querySelector('#edit-mode-display')
-
   // display
   const titleDisplay = document.querySelector('#project-title-display')
   const ussrAndDateDisplay = document.querySelector('#project-user-date-display')
@@ -201,6 +199,7 @@ function coverButtons() {
     coverButtonsSetOne.style.display = 'flex'
     // record cover position to input
     positionInput.value = getCoverPositionY()
+    defaultCoverPositionY = getCoverPositionY()
   })
 
   // cancel position
@@ -595,9 +594,10 @@ function getMousePositionY(event) {
 // get cover css object position
 function getCoverPositionY() {
   const coverImg = document.querySelector('#cover-img')
+  const defaultPotion = 50
   if (!coverImg) {
     console.error('getCoverPosition: Missing coverImg element')
-    return
+    return defaultPotion
   }
   const objectPosition = coverImg.style.objectPosition
   const emptySpace = objectPosition.indexOf(' ')
