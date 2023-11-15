@@ -289,18 +289,18 @@ function coverButtons() {
 }
 
 // -------------------- Helper ------------------------ //
-function cancelCoverDrag() {
-  const coverChangeButton = document.querySelector('#cover-change-btn')
-  //const coverPositionButton = document.querySelector('#cover-position')
-  const coverImg = document.querySelector('#cover-img')
-  const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
-  const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
-  const coverDrag = document.querySelector('.cover-drag')
-  coverButtonsSetTwo.style.display = 'none'
-  coverDrag.style.display = 'none'
-  coverButtonsSetOne.style.display = 'flex'
-  coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
-}
+// function cancelCoverDrag() {
+//   const coverChangeButton = document.querySelector('#cover-change-btn')
+//   //const coverPositionButton = document.querySelector('#cover-position')
+//   const coverImg = document.querySelector('#cover-img')
+//   const coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
+//   const coverButtonsSetTwo = document.querySelector('.cover-buttons-set-Two')
+//   const coverDrag = document.querySelector('.cover-drag')
+//   coverButtonsSetTwo.style.display = 'none'
+//   coverDrag.style.display = 'none'
+//   coverButtonsSetOne.style.display = 'flex'
+//   coverImg.style.objectPosition = `center ${defaultCoverPositionY}%`
+// }
 
 // get mouse Y
 function getMousePositionY(event) {
