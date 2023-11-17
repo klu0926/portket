@@ -19,7 +19,7 @@ function editMode() {
   const editModeDisplay = document.querySelector('#edit-mode-display')
   // display
   const titleDisplay = document.querySelector('#project-title-display')
-  const ussrAndDateDisplay = document.querySelector('#project-user-date-display')
+  const userAndDateDisplay = document.querySelector('#project-user-date-display')
   const linksDisplay = document.querySelector('#project-links-display')
   const descriptionDisplay = document.querySelector('#project-description-display')
   const skillsDisplay = document.querySelector('#project-skills-display')
@@ -36,7 +36,7 @@ function editMode() {
   const contentInput = document.querySelector('#project-content-input-div')
 
   // item list
-  const viewModeElements = [titleDisplay, ussrAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay, contentDisplay]
+  const viewModeElements = [titleDisplay, userAndDateDisplay, linksDisplay, descriptionDisplay, skillsDisplay, contentDisplay]
   const editModeElements = [coverInputDiv, coverButtonDiv, titleInput, dateInput, linksInput, descriptionInput, skillsInput, contentInput]
 
   // hide all edit mode elements onload
@@ -591,6 +591,7 @@ function cancelCoverDrag() {
 function getMousePositionY(event) {
   return event.clientY + window.scrollY
 }
+
 // get cover css object position
 function getCoverPositionY() {
   const coverImg = document.querySelector('#cover-img')

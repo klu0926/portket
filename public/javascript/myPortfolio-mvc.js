@@ -230,7 +230,7 @@ class MyPortfolioController {
     this.view.saveEditBtn.addEventListener('click', () => this.view.infoForm.submit())
     this.view.cancelEditBtn.addEventListener('click', (e) => this.cancelEdit(e))
     // form
-    this.view.infoForm.addEventListener('submit', (e) => this.handleFormSubmission(e))
+    this.view.infoForm.addEventListener('submit', (e) => this.handleFormSubmit(e, this.view.infoForm))
     // cover
     this.view.coverChangeButton.addEventListener('click', () => this.view.coverInput.click())
     this.view.coverPositionButton.addEventListener('click', () => this.view.showCoverButtonsSetTwoAndDrag())
@@ -265,8 +265,8 @@ class MyPortfolioController {
     this.view.resetAvatar()
     this.view.exitEditMode()
   }
-  handleFormSubmission(event) {
-    if (!this.view.infoForm.checkValidity()) {
+  handleFormSubmit(event, form) {
+    if (!form.checkValidity()) {
       event.preventDefault()
       event.stopPropagation()
     }
