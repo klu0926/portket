@@ -532,8 +532,6 @@ class MyProjectController {
     // check form validity
     if (form.checkValidity()) {
       // Generate content order list
-      event.preventDefault()
-      event.stopPropagation()
       const contents = this.view.contentInput.querySelectorAll('.content-input-div')
       // filter out undefined content
       const filteredContents = []

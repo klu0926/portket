@@ -227,10 +227,8 @@ class MyPortfolioController {
   init() {
     // navbar
     this.view.editBtn.addEventListener('click', (e) => this.view.enterEditMode(e))
-    this.view.saveEditBtn.addEventListener('click', () => this.view.infoForm.submit())
     this.view.cancelEditBtn.addEventListener('click', (e) => this.cancelEdit(e))
-    // form
-    this.view.infoForm.addEventListener('submit', (e) => this.handleFormSubmit(e, this.view.infoForm))
+    this.view.saveEditBtn.addEventListener('click', (e) => this.handleFormSubmit(e, this.view.infoForm))
     // cover
     this.view.coverChangeButton.addEventListener('click', () => this.view.coverInput.click())
     this.view.coverPositionButton.addEventListener('click', () => this.view.showCoverButtonsSetTwoAndDrag())
@@ -266,11 +264,12 @@ class MyPortfolioController {
     this.view.exitEditMode()
   }
   handleFormSubmit(event, form) {
-    if (!form.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
+    form.classList.add('was-validated')
+    event.preventDefault()
+    event.stopPropagation()
+    if (form.checkValidity()) {
+      form.submit()
     }
-    this.view.infoForm.classList.add('was-validated')
   }
   previewCoverImage() {
     this.view.previewImageOnInputChange(this.view.coverInput, this.view.coverImg)

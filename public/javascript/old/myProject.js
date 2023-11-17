@@ -1,4 +1,4 @@
-import randomId from './helpers/randomId.js'
+import randomId from '../helpers/randomId.js'
 let defaultCoverPositionY = getCoverPositionY()
 
 document.addEventListener('DOMContentLoaded', () => {
