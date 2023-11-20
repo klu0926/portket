@@ -1,9 +1,10 @@
-class IndexView {
+class IndexModel {
   constructor() {
-    this.banner = document.querySelector('#banner')
-    this.bannerImage = document.querySelector('#banner-image')
+    this.landingImageUrl = '/resource/landing'
+    this.landingImageUrlData = null
+    this.number = 1
   }
-  async bannerSlidShow() {
+  async fetchBannerImages() {
     try {
       const landingImageUrl = '/resource/landing'
       const response = await fetch(landingImageUrl)
@@ -11,30 +12,73 @@ class IndexView {
         throw new Error(`HTTP error! Status: ${response.status}`)
       } else {
         const data = await response.json()
-        const randomIndex = Math.floor(Math.random() * data.images.length)
-        this.bannerImage.src = data.images[randomIndex]
-        this.bannerImage.onload = () => {
-          this.banner.style.backgroundColor = 'white'
-          this.bannerImage.style.display = 'block'
-        }
+        this.landingImageUrlData = data.images
       }
     } catch (err) {
       console.error('Fetch error:', err)
     }
   }
+  async getBannerImages() {
+    try {
+      if (!this.landingImageUrlData) {
+        console.log('fetching...')
+        await this.fetchBannerImages()
+      }
+      return this.landingImageUrlData
+    } catch {
+      console.error('Fetch error:', err)
+    }
+    return this.landingImageUrlData
+  }
 }
 
+class IndexView {
+  constructor() {
+    this.banner = document.querySelector('#banner')
+    this.bannerImage = document.querySelector('#banner-image')
+    this.bannerTitle = document.querySelector('.banner-title')
+  }
+  async showRandomBannerImage(images) {
+    if (!images) return
+    this.bannerImage.style.display = 'none'
+    this.bannerTitle.style.display = 'none'
+    const randomIndex = Math.floor(Math.random() * images.length)
+    this.bannerImage.src = images[randomIndex]
+    this.bannerImage.onload = () => {
+      this.banner.style.backgroundColor = 'white'
+      this.bannerImage.style.display = 'block'
+      this.bannerTitle.style.display = 'block'
+      // fade in
+      this.resetElementClass(this.bannerImage, 'fadeIn')
+      this.resetElementClass(this.bannerTitle, 'fadeIn')
+    }
+  }
+  resetElementClass(element, elementClass) {
+    element.classList.remove(elementClass)
+    setTimeout(() => {
+      element.classList.add(elementClass)
+    }, 40)
+  }
+}
 class IndexController {
-  constructor(view) {
+  constructor(view, model) {
     this.view = view
+    this.model = model
+    this.view.banner.addEventListener('click', () => this.showBannerImage())
+
     this.init()
   }
-  init() {
-    this.view.bannerSlidShow()
+  async init() {
+    this.showBannerImage()
+  }
+  async showBannerImage() {
+    const images = await this.model.getBannerImages()
+    this.view.showRandomBannerImage(images)
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const model = new IndexModel()
   const view = new IndexView()
-  const controller = new IndexController(view)
+  const controller = new IndexController(view, model)
 })

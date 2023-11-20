@@ -13,7 +13,9 @@ const resourceController = {
         })
         return
       }
-      const urls = files.map((f) => `/images/landing/${f}`)
+      // filter files
+      const filterFiles = files.filter((f) => f[0] !== '.')
+      const urls = filterFiles.map((f) => `/images/landing/${f}`)
 
       res.json({
         images: urls,

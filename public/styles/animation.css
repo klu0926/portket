@@ -16,3 +16,15 @@
     opacity: 1;
   }
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 1.9s ease-in-out forwards;
+}
