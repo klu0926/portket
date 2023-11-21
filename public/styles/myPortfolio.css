@@ -369,30 +369,24 @@
 
 /* skill input tooltip*/
 .skill-tooltip {
+  position: absolute;
   display: none;
+  flex-direction: column;
   justify-content: start;
+  width: 300px;
+  border: 1px solid var(--my-grey);
+  padding: 5px;
+  color: var(--my-grey);
+  background-color: white;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .skill-tooltip-top {
   display: flex;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
-.skill-input:hover .skill-tooltip {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  background-color: var(--my-grey);
-  opacity: 0.9;
-  color: white;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  text-wrap: wrap;
-  border-radius: 4px;
-  z-index: 10;
-}
 .skill-tooltip-name {
   font-weight: bold;
 }
@@ -405,11 +399,7 @@
 }
 .skill-tooltip-img img {
   width: 100%;
-  filter: invert(100%); /* Invert the colors to turn black to white */
-}
-
-#test {
-  color: white;
+  filter: invert(50%);
 }
 
 @media screen and (max-width: 991px) {

@@ -49,11 +49,11 @@ class IndexView {
       this.bannerImage.style.display = 'block'
       this.bannerTitle.style.display = 'block'
       // fade in
-      this.resetElementClass(this.bannerImage, 'fadeIn')
-      this.resetElementClass(this.bannerTitle, 'fadeIn')
+      this.resetClass(this.bannerImage, 'fadeIn')
+      this.resetClass(this.bannerTitle, 'fadeIn')
     }
   }
-  resetElementClass(element, elementClass) {
+  resetClass(element, elementClass) {
     element.classList.remove(elementClass)
     setTimeout(() => {
       element.classList.add(elementClass)

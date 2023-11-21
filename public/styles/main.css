@@ -566,6 +566,16 @@ body {
   margin-top: 50px;
 }
 
+/* Error message */
+.alert-message {
+  position: fixed;
+  display: none;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+}
+
 @media screen and (max-width: 1200px) {
   .banner {
     height: 500px;

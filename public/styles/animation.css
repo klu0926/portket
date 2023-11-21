@@ -25,6 +25,30 @@
   }
 }
 
+@keyframes marginShake {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    margin-top: -1px;
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    margin-top: 2px;
+  }
+}
+
 .fadeIn {
   animation: fadeIn 1.9s ease-in-out forwards;
+}
+
+.marginShake {
+  animation: marginShake 0.8s ease-in-out;
 }

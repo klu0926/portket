@@ -29,6 +29,9 @@ class MyPortfolioView {
     this.descriptionDisplay = document.querySelector('#description-display')
     this.contactDisplay = document.querySelector('#contact-display')
     this.skillDisplay = document.querySelector('#skill-display')
+    // skill
+    this.skillInputs = document.querySelectorAll('.skill-input')
+    this.skillToolTip = document.querySelector('#skill-tooltip')
     // project
     this.addProjectBtn = document.querySelector('#add-project-btn')
     this.projectBlocker = document.querySelector('#project-blocker')
@@ -56,6 +59,9 @@ class MyPortfolioView {
     this.addSocialBtn = document.querySelector('#add-social')
     this.socialInputContainer = document.querySelector('#social-input-container')
     this.removeSocialBtns = document.querySelectorAll('.remove-social')
+    // alert
+    this.alertMessage = document.querySelector('#alert-message')
+    this.alertCloseBtn = document.querySelector('#alert-message-close-btn')
     // edit mode elements
     this.editModeElements = [
       this.coverInputDiv,
@@ -83,7 +89,6 @@ class MyPortfolioView {
       if (e && e.style) e.style.display = 'none'
     })
   }
-
   enterEditMode() {
     // show
     this.saveEditBtn.style.display = 'flex'
@@ -102,7 +107,6 @@ class MyPortfolioView {
     this.editModeDisplay.classList.remove('hide-animation')
     this.editModeDisplay.style.animationPlayState = 'running'
   }
-
   exitEditMode() {
     // reset form
     this.infoForm.reset()
@@ -129,7 +133,6 @@ class MyPortfolioView {
     this.showCoverButtonsSetOne()
     this.resetCover()
   }
-
   getCoverPositionY() {
     const objectPosition = this.coverImg.style.objectPosition
     const emptySpace = objectPosition.indexOf(' ')
@@ -214,6 +217,48 @@ class MyPortfolioView {
       reader.readAsDataURL(input.files[0])
     }
   }
+  // skill
+  showSkillToolTip(event) {
+    const target = event.target
+    if (target.classList.contains('skill-label')) {
+      const toolTipWidth = parseInt(window.getComputedStyle(this.skillToolTip).width)
+      const rect = event.target.getBoundingClientRect()
+      const right = rect.right
+      const top = rect.top
+      this.skillToolTip.style.top = top + window.scrollY + 'px'
+      this.skillToolTip.style.left = right + window.scrollX - toolTipWidth + 'px'
+      // data
+      const name = target.getAttribute('data-name')
+      const icon = target.getAttribute('data-icon')
+      const description = target.getAttribute('data-des')
+      const toolTipName = this.skillToolTip.querySelector('.skill-tooltip-name')
+      const toolTipImage = this.skillToolTip.querySelector('img')
+      const toolTipDescription = this.skillToolTip.querySelector('.skill-tooltip-description')
+      toolTipName.innerText = name
+      toolTipImage.src = icon
+      toolTipDescription.innerText = description
+      this.skillToolTip.style.display = 'flex'
+    }
+  }
+  hideSkillToolTip() {
+    this.skillToolTip.style.display = 'none'
+  }
+  showAlertMessage(message) {
+    if (!message) message = 'Something went wrong.'
+    this.alertMessage.querySelector('.alert-message-text').innerText = message
+    this.resetClass(this.alertMessage, 'marginShake')
+    this.alertMessage.style.display = 'block'
+  }
+  hideAlertMessage() {
+    this.alertMessage.style.display = 'none'
+  }
+  // helper
+  resetClass(element, elementClass) {
+    element.classList.remove(elementClass)
+    setTimeout(() => {
+      element.classList.add(elementClass)
+    }, 40)
+  }
 }
 
 // CONTROLLER
@@ -254,9 +299,16 @@ class MyPortfolioController {
     this.view.removeSocialBtns.forEach((b) => {
       b.addEventListener('click', () => this.view.removeClosestSocialInput(b))
     })
+    // skill
+    this.view.skillInputs.forEach((i) => {
+      i.addEventListener('mouseover', (e) => this.showSkillToolTip(e))
+      i.addEventListener('mouseout', () => this.view.hideSkillToolTip())
+    })
     // preview image on change
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())
     this.view.avatarInput.addEventListener('change', () => this.previewAvatarImage())
+    // alert message
+    this.view.alertCloseBtn.addEventListener('click', () => this.view.hideAlertMessage())
   }
   cancelEdit() {
     this.view.resetCover()
@@ -269,6 +321,8 @@ class MyPortfolioController {
     event.stopPropagation()
     if (form.checkValidity()) {
       form.submit()
+    } else {
+      this.view.showAlertMessage('Missing form information.')
     }
   }
   previewCoverImage() {
@@ -279,6 +333,9 @@ class MyPortfolioController {
   }
   getUserMouseY(event) {
     return event.clientY + window.scrollY
+  }
+  showSkillToolTip(event) {
+    this.view.showSkillToolTip(event)
   }
 }
 

@@ -1,27 +1,27 @@
 <!--edit mode from-->
 <form id="info-form" action="/users/{{user.id}}?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
-              <!--avatar input-->
-        <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
-              <!--cover edit buttons-->
-        <div id="portfolio-cover-buttons-container" class="portfolio-cover-buttons-container">
-          <div class="cover-buttons-set-one">
-            <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
-            <button type="button" id="cover-position" class="cover-button"><i class="fa-solid fa-arrows-up-down-left-right me-2"></i>Reposition</button>
-          </div>
-          <div class="cover-buttons-set-two">
-            <button type="button" id="cover-done-position" class="cover-button">
-              <i class="fa-solid fa-check me-2"></i>
-              Done
-            </button>
-            <button type="button" id="cover-cancel-position" class="cover-button"><i class="fa-solid fa-xmark me-2"></i>Cancel</button>
-          </div>
-        </div>
-        <!--cover position input-->
-        <input id="cover-position-input" name="coverPosition" type="hidden" value="{{user.coverPosition}}" />
-        <!--cover input-->
-        <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
- <!--cover-->
-     <div id="portfolio-cover-drag" class="portfolio-cover-drag"></div>
+  <!--avatar input-->
+  <input id="avatar-input" name="avatar" type="file" accept="image/png, image/jpeg" style="display: none" />
+  <!--cover edit buttons-->
+  <div id="portfolio-cover-buttons-container" class="portfolio-cover-buttons-container">
+    <div class="cover-buttons-set-one">
+      <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
+      <button type="button" id="cover-position" class="cover-button"><i class="fa-solid fa-arrows-up-down-left-right me-2"></i>Reposition</button>
+    </div>
+    <div class="cover-buttons-set-two">
+      <button type="button" id="cover-done-position" class="cover-button">
+        <i class="fa-solid fa-check me-2"></i>
+        Done
+      </button>
+      <button type="button" id="cover-cancel-position" class="cover-button"><i class="fa-solid fa-xmark me-2"></i>Cancel</button>
+    </div>
+  </div>
+  <!--cover position input-->
+  <input id="cover-position-input" name="coverPosition" type="hidden" value="{{user.coverPosition}}" />
+  <!--cover input-->
+  <input id="cover-input" name="cover" type="file" accept="image/png, image/jpeg" style="display: none" />
+  <!--cover-->
+  <div id="portfolio-cover-drag" class="portfolio-cover-drag"></div>
   {{#if user.cover}}
   <div class="portfolio-cover">
     <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" />
@@ -29,17 +29,17 @@
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement"></div>
   {{/if}}
-<!--main container-->
-<div class="container" style="min-height: 1100px">
-   <!--portfolio container--->
-  <div class="portfolio-container row">
-    <!--Bio (left side) -->
-    <div class="portfolio-left col-12 col-lg-6">
-      <!--avatar-->
-      <div id="avatar-container" class="portfolio-avatar-container">
-        <div id="avatar-input-div"></div>
-        <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" />
-      </div>
+  <!--main container-->
+  <div class="container" style="min-height: 1100px">
+    <!--portfolio container--->
+    <div class="portfolio-container row">
+      <!--Bio (left side) -->
+      <div class="portfolio-left col-12 col-lg-6">
+        <!--avatar-->
+        <div id="avatar-container" class="portfolio-avatar-container">
+          <div id="avatar-input-div"></div>
+          <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" />
+        </div>
         <!--name-->
         <div class="mb-2">
           <div id="name-display">
@@ -280,90 +280,90 @@
                 {{#each allSkills}}
                 <div class="skill-input">
                   <input class="skill-checkbox" type="checkbox" id="{{this.name}}" name="skills" value="{{this.id}}" {{#if (inArray ../user.skillsList this.id)}} checked {{/if}} />
-                  <label class="skill-label" for="{{this.name}}">{{this.name}}</label>
-                  <!--tool tip-->
-                  <div class="skill-tooltip">
-                    <div class="skill-tooltip-top">
-                      <div class="skill-tooltip-img">
-                        <img src="{{this.icon}}" alt="skill icon" />
-                      </div>
-                      <p class="skill-tooltip-name">{{this.name}}</p>
-                    </div>
-                    <p class="skill-tooltip-description">{{this.description}}</p>
-                  </div>
+                  <label class="skill-label" for="{{this.name}}" data-icon="{{this.icon}}" data-name="{{this.name}}" data-des="{{this.description}}">{{this.name}}</label>
                 </div>
                 {{/each}}
-                <div style="height: 50px"></div>
               </div>
             </div>
             <!--input end-->
           </div>
         </div>
-    </div>
-</form>
-
-    <!--projects (right side)-->
-    <div class="portfolio-right col-12 col-lg-6">
-      <div class="project-container">
-        <!--project block-->
-        <div class="position-relative d-flex justify-content-center mb-3">
-          <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
-          <!--project line-->
-          <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
-        </div>
-        <!--Add project btn-->
-        <div id="add-project-btn-container">
-          <div id="project-blocker">
-            <div class="project-blocker-inner">
-              <i class="fa-solid fa-ban me-2"></i>
-              Exit edit mode to add project.
+        <!--skill tool tip-->
+        <div id="skill-tooltip" class="skill-tooltip">
+          <div class="skill-tooltip-top">
+            <div class="skill-tooltip-img">
+              <img src="" alt="skill icon" />
             </div>
+            <p class="skill-tooltip-name"></p>
           </div>
-          <a href="#" style="text-decoration: none">
-            <div id="add-project-btn"></div>
-          </a>
+          <p class="skill-tooltip-description"></p>
         </div>
+      </div>
 
-        <!--projects-->
-        <div class="project-display">
-          {{#if user.projects}} {{#each user.projects}}
-          <div class="project-outer-block mb-3">
-            <a class="project-link" href="/projects/{{this.id}}">
-              <div class="project-block d-flex">
-                <div class="project-image-holder col-4">
-                  <img class="project-image" src="{{this.cover}}" alt="project image" />
-                </div>
-                <div class="project-block-info p-2 col-8">
-                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                  <p class="project-date mb-1">{{simpleDate this.date}}</p>
-                  <div class="project-description-div">
-                    <p class="project-description">{{substring this.description 100}}</p>
-                  </div>
-                  <div class="project-block-skills mt-2">
-                    {{#if this.skills}} {{#each this.skills}}
-                    <span class="skill-pill">{{this.name}}</span>
-                    {{/each}} {{/if}}
-                  </div>
-                </div>
+      <!--projects (right side)-->
+      <div class="portfolio-right col-12 col-lg-6">
+        <div class="project-container">
+          <!--project block-->
+          <div class="position-relative d-flex justify-content-center mb-3">
+            <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
+            <!--project line-->
+            <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+          </div>
+          <!--Add project btn-->
+          <div id="add-project-btn-container">
+            <div id="project-blocker">
+              <div class="project-blocker-inner">
+                <i class="fa-solid fa-ban me-2"></i>
+                Exit edit mode to add project.
               </div>
-            </a>
-            <!--delete project btn-->
-            <div class="project-delete-btn-div">
-              <form action="/projects/{{this.id}}?_method=DELETE" method="post">
-                <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
-              </form>
             </div>
+            <a href="#" style="text-decoration: none">
+              <div id="add-project-btn"></div>
+            </a>
           </div>
-          {{/each}} {{/if}}
+
+          <!--projects-->
+          <div class="project-display">
+            {{#if user.projects}} {{#each user.projects}}
+            <div class="project-outer-block mb-3">
+              <a class="project-link" href="/projects/{{this.id}}">
+                <div class="project-block d-flex">
+                  <div class="project-image-holder col-4">
+                    <img class="project-image" src="{{this.cover}}" alt="project image" />
+                  </div>
+                  <div class="project-block-info p-2 col-8">
+                    <p class="project-title fw-bold mb-1">{{this.title}}</p>
+                    <p class="project-date mb-1">{{simpleDate this.date}}</p>
+                    <div class="project-description-div">
+                      <p class="project-description">{{substring this.description 100}}</p>
+                    </div>
+                    <div class="project-block-skills mt-2">
+                      {{#if this.skills}} {{#each this.skills}}
+                      <span class="skill-pill">{{this.name}}</span>
+                      {{/each}} {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <!--delete project btn-->
+              <div class="project-delete-btn-div">
+                <form action="/projects/{{this.id}}?_method=DELETE" method="post">
+                  <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
+                </form>
+              </div>
+            </div>
+            {{/each}} {{/if}}
+          </div>
+          <!--project block end-->
         </div>
-        <!--project block end-->
       </div>
     </div>
-    <!--form-->
-    {{> form-project}}
   </div>
-</div>
+</form>
 
-    <!--script-->
-    <script type="module" src="/javascript/portfolio.js"></script>
-    <script type="module" src="/javascript/myPortfolio-mvc.js"></script>
+<!--project form-->
+{{> form-project}}
+
+<!--script-->
+<script type="module" src="/javascript/portfolio.js"></script>
+<script type="module" src="/javascript/myPortfolio-mvc.js"></script>
