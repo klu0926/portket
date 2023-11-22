@@ -74,6 +74,7 @@
 }
 
 .form-cover {
+  position: relative;
   height: 300px;
   overflow: hidden;
   margin-bottom: 5px;
@@ -84,7 +85,6 @@
   background-image: none;
   background-position: center;
   background-size: cover;
-  background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -95,12 +95,14 @@
 }
 
 .form-cover::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
   content: '+';
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
   font-weight: bold;
   font-size: 3rem;
   color: var(--my-grey);
@@ -118,6 +120,13 @@
   border: 1px solid var(--my-border);
   border-radius: 4px;
   padding: 10px;
+}
+
+.form-project-cover-image {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* skills */

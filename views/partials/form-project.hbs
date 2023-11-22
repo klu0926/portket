@@ -30,7 +30,9 @@
       <div class="form-div">
         <label class="form-label" for="project-cover" style="width: 100%">
           <p class="mb-2">Cover</p>
-          <div id="form-project-cover-display" class="form-cover"></div>
+          <div id="form-project-cover-display" class="form-cover">
+            <img id="form-project-cover-image" class="form-project-cover-image" src="" alt="cover image" />
+          </div>
         </label>
         <input id="form-project-cover-input" name="cover" type="file" class="form-control" id="project-cover" accept="image/png, image/jpeg" placeholder="image" style="display: none" required />
         <div class="invalid-feedback">Cover image is required.</div>
@@ -123,4 +125,4 @@
 </div>
 
 <!--script-->
-<script src="/javascript/form-add-project.js"></script>
+<script src="/javascript/form-add-project-mvc.js"></script>

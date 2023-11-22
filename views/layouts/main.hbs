@@ -33,15 +33,15 @@
           <!-- edit mode buttons for my portfolio-->
           {{#if (ifOr (isSame page 'myPortfolio') (isSame page 'myProject'))}}
           <div class="edit-buttons-container">
-            <button id="edit-btn" class="btn btn-primary edit-btn">
+            <button id="edit-btn" class="nav-edit-btn">
               <i class="fa-solid fa-pencil edit-mode-icon"></i>
               Edit Mode
             </button>
-            <button id="save-edit-btn" class="btn btn-primary edit-btn">
+            <button id="save-edit-btn" class="nav-edit-btn">
               <i class="fa-solid fa-floppy-disk edit-mode-icon"></i>
               Save Edit
             </button>
-            <button id="cancel-edit-btn" class="btn btn-primary edit-btn">X</button>
+            <button id="cancel-edit-btn" class="nav-edit-btn">X</button>
           </div>
           <!--edit mode display tip-->
           <div id="edit-mode-display" class="edit-mode-display">Edit Mode</div>

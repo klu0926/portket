@@ -402,7 +402,6 @@ class MyProjectView {
   contentKeydownHandler(event) {
     const target = event.target
     const targetParent = target.parentNode
-    console.log(event.key)
     // In textArea
     if (target.classList.contains('content-text-input')) {
       // Remove 'new-input' after enter a character value (eg: 'a' ';')

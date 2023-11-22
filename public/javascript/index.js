@@ -21,7 +21,6 @@ class IndexModel {
   async getBannerImages() {
     try {
       if (!this.landingImageUrlData) {
-        console.log('fetching...')
         await this.fetchBannerImages()
       }
       return this.landingImageUrlData

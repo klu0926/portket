@@ -45,6 +45,28 @@
   }
 }
 
+@keyframes edit-mode-display-show {
+  from {
+    width: 0%;
+    color: rgb(256, 256, 256, 0);
+  }
+  to {
+    width: 100%;
+    color: rgb(256, 256, 256, 1);
+  }
+}
+
+@keyframes edit-mode-display-hide {
+  from {
+    width: 100%;
+    color: rgb(256, 256, 256, 1);
+  }
+  to {
+    width: 0%;
+    color: rgb(256, 256, 256, 0);
+  }
+}
+
 .fadeIn {
   animation: fadeIn 1.9s ease-in-out forwards;
 }
