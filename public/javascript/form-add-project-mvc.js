@@ -1,3 +1,5 @@
+import AlertMessage from './alertMessage.js'
+
 // MODEL
 class AddProjectModel {
   constructor() {}
@@ -26,10 +28,6 @@ class AddProjectView {
     this.coverImage = document.querySelector('#form-project-cover-image')
     this.coverInput = document.querySelector('#form-project-cover-input')
 
-    // alert
-    this.alertMessage = document.querySelector('#alert-message')
-    this.alertCloseBtn = document.querySelector('#alert-message-close-btn')
-
     //loading-indicator
     this.projectLoadingDisplay = document.querySelector('#project-loading-indicator')
     this.projectSubmitText = document.querySelector('#project-submit-text')
@@ -55,7 +53,7 @@ class AddProjectView {
   resetForm() {
     this.projectForm.reset()
     this.projectForm.classList.remove('was-validated')
-    this.previewCover()
+    this.resetCoverImage()
   }
   // link
   addNewLink() {
@@ -76,9 +74,11 @@ class AddProjectView {
     if (linkRow) linkRow.remove()
   }
   // cover
+  resetCoverImage() {
+    this.coverImage.src = ''
+    this.coverImage.style.display = 'none'
+  }
   previewImageOnInputChange(input, image) {
-    console.log('input', input)
-    console.log('image', image)
     if (input.files && input.files[0]) {
       const reader = new FileReader()
       reader.onload = (event) => {
@@ -88,25 +88,7 @@ class AddProjectView {
       reader.readAsDataURL(input.files[0])
     }
   }
-  // alert
-  showAlertMessage(message) {
-    if (!message) message = 'Something went wrong.'
-    this.alertMessage.querySelector('.alert-message-text').innerText = message
-    this.resetClass(this.alertMessage, 'marginShake')
-    this.alertMessage.style.display = 'block'
-  }
-  hideAlertMessage() {
-    this.alertMessage.style.display = 'none'
-  }
-  // helper
-  resetClass(element, elementClass) {
-    element.classList.remove(elementClass)
-    setTimeout(() => {
-      element.classList.add(elementClass)
-    }, 40)
-  }
 }
-
 // CONTROLLER
 class AddProjectController {
   constructor(view, model) {
@@ -115,11 +97,13 @@ class AddProjectController {
     this.init()
   }
   init() {
-    // form show / hide
+    this.alertMessage = new AlertMessage()
+    // submit
     this.view.projectForm.addEventListener('submit', (e) => this.handleFormSubmit(e, this.view.projectForm))
+    // form show / hide
     this.view.projectFormResetBtn.addEventListener('click', () => this.view.resetForm())
-    this.view.addProjectBtn.addEventListener('click', () => this.view.showProjectForm())
-    this.view.projectFormCloseBtn.addEventListener('click', () => this.view.hideProjectForm())
+    this.view.addProjectBtn.addEventListener('click', () => this.openForm())
+    this.view.projectFormCloseBtn.addEventListener('click', () => this.closeForm())
     // link
     this.view.addLinkBtn.addEventListener('click', () => this.view.addNewLink())
     this.view.removeLinkBtns.forEach((b) => {
@@ -128,8 +112,14 @@ class AddProjectController {
     // cover
     this.view.coverDisplay.addEventListener('click', () => this.view.coverInput.click())
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())
-    // alert message
-    this.view.alertCloseBtn.addEventListener('click', () => this.view.hideAlertMessage())
+  }
+  openForm() {
+    this.view.showProjectForm()
+  }
+  closeForm() {
+    this.view.hideProjectForm()
+    this.view.resetForm()
+    this.alertMessage.hideAlertMessage()
   }
   handleFormSubmit(event, form) {
     form.classList.add('was-validated')
@@ -141,7 +131,7 @@ class AddProjectController {
       this.view.projectLoadingDisplay.style.display = 'flex'
       form.submit()
     } else {
-      this.view.showAlertMessage('Missing form information.')
+      this.alertMessage.showAlertMessage('Missing form information.')
     }
   }
   previewCoverImage() {

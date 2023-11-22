@@ -42,7 +42,7 @@ input {
 
 .cover-buttons-container {
   position: absolute;
-  display: block;
+  display: none;
   top: 400px;
   right: 20px;
   z-index: 8;

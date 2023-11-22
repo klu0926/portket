@@ -1,4 +1,5 @@
 import randomId from './helpers/randomId.js'
+import AlertMessage from './alertMessage.js'
 
 class MyProjectModel {
   constructor() {}
@@ -477,9 +478,10 @@ class MyProjectController {
     this.init()
   }
   init() {
+    this.alertMessage = new AlertMessage()
     // navbar
-    this.view.editBtn.addEventListener('click', () => this.onEditBtnClick())
-    this.view.cancelEditBtn.addEventListener('click', () => this.onCancelBtnClick())
+    this.view.editBtn.addEventListener('click', () => this.enterEditMode())
+    this.view.cancelEditBtn.addEventListener('click', () => this.existEditMode())
     // form
     this.view.saveEditBtn.addEventListener('click', (e) => this.handleFormSubmit(e, this.view.projectForm))
     // cover
@@ -513,13 +515,14 @@ class MyProjectController {
     // preview image on change
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())
   }
-  onEditBtnClick() {
+  enterEditMode() {
     this.view.enterEditMode()
     this.view.contentSetup()
   }
-  onCancelBtnClick() {
+  existEditMode() {
     this.view.resetCover()
     this.view.exitEditMode()
+    this.alertMessage.hideAlertMessage()
   }
   previewCoverImage() {
     this.view.previewImageOnInputChange(this.view.coverInput, this.view.coverImg)
@@ -561,6 +564,8 @@ class MyProjectController {
         form.append(uuidInput)
       })
       form.submit()
+    } else {
+      this.alertMessage.showAlertMessage('Missing form information.')
     }
   }
   getMousePositionY(event) {

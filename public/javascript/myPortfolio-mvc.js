@@ -1,3 +1,5 @@
+import AlertMessage from './alertMessage.js'
+
 // Model
 class MyPortfolioModel {
   constructor() {}
@@ -59,9 +61,6 @@ class MyPortfolioView {
     this.addSocialBtn = document.querySelector('#add-social')
     this.socialInputContainer = document.querySelector('#social-input-container')
     this.removeSocialBtns = document.querySelectorAll('.remove-social')
-    // alert
-    this.alertMessage = document.querySelector('#alert-message')
-    this.alertCloseBtn = document.querySelector('#alert-message-close-btn')
     // edit mode elements
     this.editModeElements = [
       this.coverInputDiv,
@@ -243,22 +242,6 @@ class MyPortfolioView {
   hideSkillToolTip() {
     this.skillToolTip.style.display = 'none'
   }
-  showAlertMessage(message) {
-    if (!message) message = 'Something went wrong.'
-    this.alertMessage.querySelector('.alert-message-text').innerText = message
-    this.resetClass(this.alertMessage, 'marginShake')
-    this.alertMessage.style.display = 'block'
-  }
-  hideAlertMessage() {
-    this.alertMessage.style.display = 'none'
-  }
-  // helper
-  resetClass(element, elementClass) {
-    element.classList.remove(elementClass)
-    setTimeout(() => {
-      element.classList.add(elementClass)
-    }, 40)
-  }
 }
 
 // CONTROLLER
@@ -270,9 +253,10 @@ class MyPortfolioController {
     this.init()
   }
   init() {
+    this.alertMessage = new AlertMessage()
     // navbar
-    this.view.editBtn.addEventListener('click', (e) => this.view.enterEditMode(e))
-    this.view.cancelEditBtn.addEventListener('click', (e) => this.cancelEdit(e))
+    this.view.editBtn.addEventListener('click', (e) => this.enterEditMode(e))
+    this.view.cancelEditBtn.addEventListener('click', () => this.existEditMode())
     this.view.saveEditBtn.addEventListener('click', (e) => this.handleFormSubmit(e, this.view.infoForm))
     // cover
     this.view.coverChangeButton.addEventListener('click', () => this.view.coverInput.click())
@@ -307,13 +291,15 @@ class MyPortfolioController {
     // preview image on change
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())
     this.view.avatarInput.addEventListener('change', () => this.previewAvatarImage())
-    // alert message
-    this.view.alertCloseBtn.addEventListener('click', () => this.view.hideAlertMessage())
   }
-  cancelEdit() {
+  enterEditMode(e) {
+    this.view.enterEditMode(e)
+  }
+  existEditMode() {
     this.view.resetCover()
     this.view.resetAvatar()
     this.view.exitEditMode()
+    this.alertMessage.hideAlertMessage()
   }
   handleFormSubmit(event, form) {
     form.classList.add('was-validated')
@@ -322,7 +308,7 @@ class MyPortfolioController {
     if (form.checkValidity()) {
       form.submit()
     } else {
-      this.view.showAlertMessage('Missing form information.')
+      this.alertMessage.showAlertMessage('Missing form information.')
     }
   }
   previewCoverImage() {
