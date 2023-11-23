@@ -537,14 +537,19 @@ class MyProjectController {
       const contents = this.view.contentInput.querySelectorAll('.content-input-div')
       // filter out undefined content
       const filteredContents = []
-      contents.forEach((c) => {
+      for (let i = 0; i < contents.length; i++) {
+        const c = contents[i]
         const textArea = c.querySelector('textarea')
         const image = c.querySelector('.inner-image-input')
-        if (c.classList.contains('new-input')) return
-        if (textArea && textArea.value === 'undefined') return
-        if (image && image.files.length === 0 && !image.dataset.original) return
+        // remove first line if no value
+        if (i === 0 && textArea && textArea.value.trim() === '') continue
+        // remove first-input is no value
+        if (c.classList.contains('first-input') && textArea.value.trim() === '') continue
+        // remove image that has no file
+        if (image && image.files.length === 0 && !image.dataset.original) continue
         filteredContents.push(c)
-      })
+      }
+
       filteredContents.forEach((c) => {
         const orderInput = document.createElement('input')
         const uuidInput = document.createElement('input')

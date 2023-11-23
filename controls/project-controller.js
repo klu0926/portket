@@ -223,15 +223,16 @@ const projectController = {
 
       // text content
       let contentText = []
-      if (body.content && typeof body.content === 'string') {
-        body.content = [body.content]
+      if (body.content) {
+        if (typeof body.content === 'string') {
+          body.content = [body.content]
+        }
+        contentText = [...body.content]
       }
-      contentText = [...body.content]
       // use order
       if (body.order && typeof body.order === 'string') {
         body.order = [body.order]
       }
-
       // use uuid
       if (body.uuid && typeof body.uuid === 'string') {
         body.uuid = [body.uuid]
@@ -306,7 +307,6 @@ const projectController = {
       })
       await Promise.all(deletePromises)
 
-      
       // coverPosition
       let coverPosition = currentProject.coverPosition
       if (isFinite(body.coverPosition)) {
