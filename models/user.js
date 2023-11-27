@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'skills',
         onDelete: 'CASCADE',
       })
+      User.belongsTo(models.Visit, {
+        foreignKey: 'visitId',
+        as: 'visits',
+        onDelete: 'CASCADE',
+      })
     }
   }
   User.init(
@@ -37,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       city: DataTypes.STRING,
       phone: DataTypes.INTEGER,
       themeId: DataTypes.INTEGER,
+      visitId: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -38,6 +38,11 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: 50,
       },
+      visitId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Visits', key: 'id' },
+        onDelete: 'CASCADE',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

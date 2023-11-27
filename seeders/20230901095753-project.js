@@ -1,35 +1,73 @@
 'use strict'
-const { User } = require('../models')
+const { User, Visit } = require('../models')
 const { faker } = require('@faker-js/faker')
 const randomPublicImage = require('../helper/randomPublicImage')
 
 const SEED_AMOUNT = 5
-class RandomProjectGenerator {
-  constructor() {}
-  create(userId) {
-    const newProject = {
-      userId,
-      title: 'Simple Project Title',
-      description: faker.lorem.paragraphs(10),
-      cover: randomPublicImage('projects'),
-      coverPosition: 50,
+const SEED_VISIT_MAX = 1001
+
+class RandomVisitGenerator {
+  constructor(amount) {
+    this.amount = amount
+  }
+  create() {
+    const visits = []
+    for (let i = 0; i < this.amount; i++) {
+      visits.push({
+        count: Math.floor(Math.random() * SEED_VISIT_MAX),
+      })
     }
-    return newProject
+    return visits
+  }
+}
+class RandomProjectGenerator {
+  constructor(users, visits) {
+    this.users = users
+    this.visits = visits
+  }
+  create() {
+    const projects = []
+    let count = 0
+    for (let i = 0; i < this.users.length; i++) {
+      for (let j = 0; j < SEED_AMOUNT; j++) {
+        const project = {
+          userId: this.users[i].id,
+          title: 'Simple Project Title',
+          description: faker.lorem.paragraphs(10),
+          cover: randomPublicImage('projects'),
+          coverPosition: 50,
+          visitId: this.visits[count].id,
+        }
+        projects.push(project)
+        count++
+      }
+    }
+    return projects
   }
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    // get user
     const users = await User.findAll({ raw: true })
-    const projects = []
-    const randomProject = new RandomProjectGenerator()
 
-    users.forEach((user) => {
-      for (let i = 0; i < SEED_AMOUNT; i++) {
-        projects.push(randomProject.create(user.id))
-      }
+    console.log('users len', users.length)
+
+    // create visits (users * 5)
+    const totalVisit = users.length * SEED_AMOUNT
+    const visits = new RandomVisitGenerator(totalVisit).create()
+    await queryInterface.bulkInsert('Visits', visits)
+    const visitsData = await Visit.findAll({
+      offset: users.length,
+      raw: true,
     })
+
+    console.log('visit len', visitsData.length)
+    // create projects
+    const projects = new RandomProjectGenerator(users, visitsData).create()
+    console.log('projects len', projects.length)
+
     return queryInterface.bulkInsert('Projects', projects)
   },
 

@@ -63,6 +63,11 @@ module.exports = {
       themeId: {
         type: Sequelize.INTEGER,
       },
+      visitId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Visits', key: 'id' },
+        onDelete: 'CASCADE',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

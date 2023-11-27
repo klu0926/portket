@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'skills',
         onDelete: 'CASCADE',
       })
+      Project.belongsTo(models.Visit, {
+        foreignKey: 'visitId',
+        as: 'visits',
+        onDelete: 'CASCADE',
+      })
     }
   }
   Project.init(
@@ -33,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       date: DataTypes.DATE,
       cover: DataTypes.STRING,
-      coverPosition: DataTypes.FLOAT
+      coverPosition: DataTypes.FLOAT,
+      visitId: DataTypes.INTEGER,
     },
     {
       sequelize,
