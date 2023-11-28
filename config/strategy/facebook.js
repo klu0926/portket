@@ -1,5 +1,5 @@
 const FacebookStrategy = require('passport-facebook').Strategy
-const { User } = require('../../models')
+const { User, Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
 
 module.exports = (passport) => {
@@ -20,10 +20,13 @@ module.exports = (passport) => {
 
           // Can't find user, create one
           const randomPassword = Math.random().toString(36).slice(-8)
+          // create visit record
+          const newVisit = await Visit.create()
           const newUser = await User.create({
             name,
             email,
             password: bcryptjs.hashSync(randomPassword),
+            visitId: newVisit.id,
             createdDate: new Date(),
             updatedDate: new Date(),
           })

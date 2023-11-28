@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill, Project_Link, Project_Skill, Project_Content } = require('../models')
+const { User, Project, Social, Skill, Project_Link, Project_Skill, Project_Content, Visit } = require('../models')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const imgurImageHandler = require('../helper/imgur')
@@ -39,6 +39,11 @@ const projectController = {
             through: {
               attributes: [],
             },
+          },
+          {
+            model: Visit,
+            attributes: ['count'],
+            as: 'visits',
           },
           {
             model: Project_Content,

@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill, User_Social, User_Skill } = require('../models')
+const { User, Project, Social, Skill, User_Social, User_Skill, Visit } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
@@ -67,13 +67,15 @@ const userController = {
       }
       // random Cover
       const randomCover = randomPublicImage('covers')
-
+      // create visit record
+      const newVisit = await Visit.create()
       // create account
       const newUser = await User.create({
         name,
         email,
         password: bcryptjs.hashSync(password),
         cover: randomCover,
+        visitId: newVisit.id,
         createdAt: new Date(),
         updatedAt: new Date(),
       })
@@ -100,6 +102,11 @@ const userController = {
             model: Project,
             attributes: ['id'],
             as: 'projects',
+          },
+          {
+            model: Visit,
+            attributes: ['count'],
+            as: 'visits',
           },
         ],
         order: [['id', 'DESC']],
@@ -166,6 +173,11 @@ const userController = {
             through: {
               attributes: [],
             },
+          },
+          {
+            model: Visit,
+            attributes: ['count'],
+            as: 'visits',
           },
         ],
         order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],

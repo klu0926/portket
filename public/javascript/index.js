@@ -2,7 +2,6 @@ class IndexModel {
   constructor() {
     this.landingImageUrl = '/resource/landing'
     this.landingImageUrlData = null
-    this.number = 1
   }
   async fetchBannerImages() {
     try {

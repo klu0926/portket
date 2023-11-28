@@ -32,10 +32,12 @@
 }
 
 .portfolio-left {
+  position: relative;
   padding-right: 15px;
 }
 
 .portfolio-right {
+  position: relative;
   border: none;
 }
 
@@ -70,6 +72,85 @@
   object-fit: cover;
   object-position: center;
   user-select: none;
+}
+
+/* statistic */
+.statistic-div {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 135px;
+  left: 230px;
+  color: white;
+  user-select: none;
+}
+
+.statistic-portfolio-visit {
+  position: relative;
+  margin-right: 10px;
+  padding: 0 7px;
+  background-color: var(--my-green);
+  border-radius: 4px;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+}
+
+.statistic-project-count {
+  position: relative;
+  padding: 0 7px;
+  background-color: var(--my-blue);
+  border-radius: 4px;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+}
+
+.statistic-portfolio-visit:hover {
+  border-radius: 0;
+  background-color: var(--my-green-light);
+}
+
+.statistic-project-count:hover {
+  border-radius: 0;
+  background-color: var(--my-blue-light);
+}
+.statistic-portfolio-visit::after {
+  content: 'Visits';
+  display: block;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  background-color: var(--my-green);
+  white-space: nowrap;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0px 4px;
+  transition: all 0.2s ease-in-out;
+  z-index: -1;
+}
+
+.statistic-project-count::after {
+  content: 'Projects';
+  display: block;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  background-color: var(--my-blue);
+  white-space: nowrap;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0px 4px;
+  transition: all 0.2s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+
+.statistic-portfolio-visit:hover::after {
+  bottom: 100%;
+}
+
+.statistic-project-count:hover::after {
+  opacity: 1;
+  bottom: 100%;
 }
 
 /* title */
@@ -338,6 +419,10 @@
     height: 180px;
     width: 180px;
   }
+  .statistic-div {
+    top: 90px;
+    left: 210px;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -350,5 +435,9 @@
   .portfolio-avatar-container {
     height: 140px;
     width: 140px;
+  }
+  .statistic-div {
+    top: 80px;
+    left: 170px;
   }
 }

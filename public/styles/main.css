@@ -489,6 +489,27 @@ body {
   box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.1);
 }
 
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.card-bottom-right {
+  display: flex;
+  color: var(--my-grey);
+}
+
+.card-portfolio-visit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  min-width: 38px;
+  width: auto;
+}
+
 .card-project-count {
   position: relative;
   display: flex;
@@ -497,12 +518,7 @@ body {
   height: 30px;
   min-width: 38px;
   width: auto;
-  color: var(--my-grey);
   padding: 0px 7px;
-}
-
-.card-project-count:hover {
-  color: var(--my-grey);
 }
 
 .card-project-count:hover::after {
@@ -516,9 +532,27 @@ body {
   white-space: nowrap;
   background-color: var(--my-grey);
   color: white;
-  padding: 0px 10px;
-  border-radius: 4px;
+  padding: 0px 6px;
   font-size: 0.9rem;
+}
+
+.card-portfolio-visit:hover::after {
+  content: 'Visits';
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  white-space: nowrap;
+  background-color: var(--my-grey);
+  color: white;
+  padding: 0px 6px;
+  font-size: 0.9rem;
+}
+
+.card-portfolio-visit span {
+  cursor: default;
 }
 
 .card-project-count i {
@@ -528,6 +562,11 @@ body {
 
 .card-project-count span {
   cursor: default;
+}
+
+.card-project-count:hover,
+.card-portfolio-visit:hover {
+  color: var(--my-grey-dark);
 }
 
 /*--Portfolio Page---*/

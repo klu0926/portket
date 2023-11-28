@@ -1,5 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth2').Strategy
-const { User } = require('../../models')
+const { User,Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
 
 module.exports = (passport) => {
@@ -19,11 +19,15 @@ module.exports = (passport) => {
 
           // create user, if not exist
           const randomPassword = Math.random().toString(36).slice(-8)
+          // create visit record
+          const newVisit = await Visit.create()
+          // newUser
           const newUser = await User.create({
             name,
             email,
-            avatar: picture,
             password: bcryptjs.hashSync(randomPassword),
+            avatar: picture,
+            visitId: newVisit.id,
             createdAt: new Date(),
             updatedAt: new Date(),
           })

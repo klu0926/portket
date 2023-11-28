@@ -10,6 +10,17 @@
     <div class="portfolio-container row">
       <!--Bio (left side) -->
       <div class="portfolio-left col-12 col-lg-6">
+        <!--statistic-->
+        <div class="statistic-div">
+          <div class="statistic-portfolio-visit">
+            <i class="fa-regular fa-eye"></i>
+            <span class="px-1">{{user.visits.count}}</span>
+          </div>
+          <div class="statistic-project-count">
+            <i class="fa-regular fa-file"></i>
+            <span>{{user.projects.length}}</span>
+          </div>
+        </div>
         <!--avatar + info -->
         <div class="portfolio-top-container">
           <!--avatar-->
@@ -153,5 +164,7 @@
   </div>
 </div>
 
+<!--user data-->
+<span id="user-data" data-id="{{user.id}}" style="display: none"></span>
 <!--script-->
 <script src="/javascript/portfolio.js"></script>
