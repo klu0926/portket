@@ -14,11 +14,11 @@
         <div class="statistic-div">
           <div class="statistic-portfolio-visit">
             <i class="fa-regular fa-eye"></i>
-            <span class="px-1">{{user.visits.count}}</span>
+            <span id="visit-count-span" class="px-1">{{user.visits.count}}</span>
           </div>
           <div class="statistic-project-count">
             <i class="fa-regular fa-file"></i>
-            <span>{{user.projects.length}}</span>
+            <span id="project-count-span">{{user.projects.length}}</span>
           </div>
         </div>
         <!--avatar + info -->
@@ -163,8 +163,5 @@
     </div>
   </div>
 </div>
-
-<!--user data-->
-<span id="user-data" data-id="{{user.id}}" style="display: none"></span>
 <!--script-->
-<script src="/javascript/portfolio.js"></script>
+<script type="module" src="/javascript/portfolio.js"></script>

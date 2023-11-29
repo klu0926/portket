@@ -1,29 +1,29 @@
+import AlertMessage from './alertMessage.js'
 class PortfolioModel {
   constructor() {
-    this.visitUrl = '/visits/'
+    this.visitUrl = '/visits'
+    this.userData = document.querySelector('#user-data')
+    this.visitId = this.userData.dataset.visit
   }
-  async putVisits(visitId) {
+  async putVisit() {
     try {
-      // this increase visit count
-      const requestData = {
-        visitId,
-      }
+      if (this.visitId === undefined) throw new Error('Cant not find visitId')
+      // increase visit count
       const requestOption = {
         method: 'PUT',
-        header: {
+        headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          visitId,
-        }),
+        body: '',
       }
-      const response = await fetch(this.visitUrl, requestOption)
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-      }
-      console.log('PUT visit all done!')
+      const response = await fetch(`${this.visitUrl}/${this.visitId}`, requestOption)
+      if (!response) throw response
+      const json = await response.json()
+      return json
+      // const json = await response.json()
     } catch (err) {
-      console.error('Fetch error:', err)
+      console.error('put visit error:', err)
+      return err
     }
   }
 }
@@ -32,6 +32,8 @@ class PortfolioView {
   constructor() {
     this.projects = document.querySelectorAll('.project-block')
     this.socials = document.querySelectorAll('.social-box')
+    this.viewCountSpan = document.querySelector('#visit-count-span')
+    this.projectCountSpan = document.querySelector('#project-count-span')
   }
   startFadeIn() {
     this.projects.forEach((element, index) => {
@@ -41,23 +43,30 @@ class PortfolioView {
       element.style.animationDelay = `${index * 0.2}s`
     })
   }
+  updateViewCount(count) {
+    this.viewCountSpan.textContent = count
+  }
 }
 
 class PortfolioController {
   constructor(view, model) {
     this.view = view
     this.model = model
-    this.userData = document.querySelector('#user-data')
-    this.userId = this.userData.dataset.id
     // init
     this.init()
   }
   init() {
+    this.alertMessage = new AlertMessage()
     this.view.startFadeIn()
     this.increaseVisitCount()
   }
-  increaseVisitCount() {
-    console.log(this.userId)
+  async increaseVisitCount() {
+    const response = await this.model.putVisit()
+    if (!response.ok) {
+      this.alertMessage.showAlertMessage(`${response.method}: ${response.message}`)
+    } else {
+      this.view.updateViewCount(response.data.count)
+    }
   }
 }
 

@@ -6,7 +6,7 @@ const visit = require('./modules/visit')
 const { authenticator } = require('../middleware/auth')
 const { errorHandler } = require('../middleware/error-handler')
 
-router.use('/visits', visit)
+router.use('/visits',authenticator,  visit)
 router.use('/resource', resource)
 router.use('/users', user)
 router.use('/projects', project)
