@@ -4,8 +4,14 @@
   <div class="project-page-cover">
     <img class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
   </div>
-
   <div class="project-page-container">
+    <!--statistic-->
+    <div class="project-statistic-div">
+      <div class="statistic-portfolio-visit">
+        <i class="fa-regular fa-eye"></i>
+        <span id="visit-count-span" data-visit="{{project.visitId}}" class="px-1">{{project.visits.count}}</span>
+      </div>
+    </div>
     <!--project info-->
     <div class="project-page-info">
       <!--title-->
@@ -67,3 +73,6 @@
     </div>
   </div>
 </div>
+
+<!--script-->
+<script type="module" src="/javascript/project.js"></script>

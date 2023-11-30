@@ -1,13 +1,12 @@
 import AlertMessage from './alertMessage.js'
-class PortfolioModel {
+
+class ProjectModel {
   constructor() {
     this.visitUrl = '/visits'
-    this.userData = document.querySelector('#user-data')
-    this.visitId = this.userData.dataset.visit
   }
-  async putVisit() {
+  async putVisit(visitId) {
     try {
-      if (this.visitId === undefined) throw new Error('Cant not find visitId')
+      if (visitId === undefined) throw new Error('Cant not find visitId')
       // increase visit count
       const requestOption = {
         method: 'PUT',
@@ -16,7 +15,8 @@ class PortfolioModel {
         },
         body: '',
       }
-      const response = await fetch(`${this.visitUrl}/${this.visitId}`, requestOption)
+      const url = `${this.visitUrl}/${visitId}`
+      const response = await fetch(url, requestOption)
       if (!response) throw response
       const json = await response.json()
       return json
@@ -28,12 +28,11 @@ class PortfolioModel {
   }
 }
 
-class PortfolioView {
+class ProjectView {
   constructor() {
     this.projects = document.querySelectorAll('.project-block')
     this.socials = document.querySelectorAll('.social-box')
     this.viewCountSpan = document.querySelector('#visit-count-span')
-    this.projectCountSpan = document.querySelector('#project-count-span')
   }
   startFadeIn() {
     this.projects.forEach((element, index) => {
@@ -48,7 +47,7 @@ class PortfolioView {
   }
 }
 
-class PortfolioController {
+class ProjectController {
   constructor(view, model) {
     this.view = view
     this.model = model
@@ -61,17 +60,23 @@ class PortfolioController {
     this.increaseVisitCount()
   }
   async increaseVisitCount() {
-    const response = await this.model.putVisit()
-    if (!response.ok) {
-      this.alertMessage.showAlertMessage(`${response.method}: ${response.message}`)
-    } else {
-      this.view.updateViewCount(response.data.count)
+    try {
+      const visitId = this.view.viewCountSpan.dataset.visit
+      if (!visitId) throw new Error('Do not have visit id')
+      const response = await this.model.putVisit(visitId)
+      if (!response.ok) {
+        this.alertMessage.showAlertMessage(`${response.method}: ${response.message}`)
+      } else {
+        this.view.updateViewCount(response.data.count)
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const view = new PortfolioView()
-  const model = new PortfolioModel()
-  const controller = new PortfolioController(view, model)
+  const view = new ProjectView()
+  const model = new ProjectModel()
+  const controller = new ProjectController(view, model)
 })

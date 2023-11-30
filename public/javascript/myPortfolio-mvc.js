@@ -2,7 +2,29 @@ import AlertMessage from './alertMessage.js'
 
 // Model
 class MyPortfolioModel {
-  constructor() {}
+  constructor() {
+    this.projectsUrl = '/projects'
+  }
+  async deleteProject(projectId) {
+    try {
+      if (projectId === undefined) throw new Error('No projectId')
+      // delete project
+      const requestOption = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: '',
+      }
+      const response = await fetch(`${this.projectsUrl}/${projectId}`, requestOption)
+      if (!response) throw response
+      const json = await response.json()
+      return json
+    } catch (err) {
+      console.error('put visit error:', err)
+      return err
+    }
+  }
 }
 // VIEW
 class MyPortfolioView {
@@ -37,6 +59,7 @@ class MyPortfolioView {
     // project
     this.addProjectBtn = document.querySelector('#add-project-btn')
     this.projectBlocker = document.querySelector('#project-blocker')
+    this.deleteProjectBtns = document.querySelectorAll('.delete-project-btn')
     // (no hide show needed)
     // cover
     this.coverImg = document.querySelector('#cover-img')
@@ -82,7 +105,6 @@ class MyPortfolioView {
   init() {
     this.hideAllEditModeElements()
   }
-
   hideAllEditModeElements() {
     this.editModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'none'
@@ -291,6 +313,12 @@ class MyPortfolioController {
     // preview image on change
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())
     this.view.avatarInput.addEventListener('change', () => this.previewAvatarImage())
+    // delete project
+    this.view.deleteProjectBtns.forEach((b) => {
+      b.addEventListener('click', (e) => this.deleteProject(e))
+    })
+    // test
+    console.log(this.view.deleteProjectBtns)
   }
   enterEditMode(e) {
     this.view.enterEditMode(e)
@@ -322,6 +350,18 @@ class MyPortfolioController {
   }
   showSkillToolTip(event) {
     this.view.showSkillToolTip(event)
+  }
+  async deleteProject(event) {
+    const deleteBtn = event.target
+    if (deleteBtn.classList.contains('delete-project-btn')) {
+      const projectId = deleteBtn.dataset.project
+      const response = await this.model.deleteProject(projectId)
+      if (!response.ok) {
+        this.alertMessage.showAlertMessage(`${response.method}: ${response.message}`)
+      } else {
+        location.reload()
+      }
+    }
   }
 }
 

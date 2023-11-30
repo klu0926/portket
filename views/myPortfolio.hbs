@@ -36,7 +36,7 @@
       <!--Bio (left side) -->
       <div class="portfolio-left col-12 col-lg-6">
         <!--statistic-->
-        <div class="statistic-div">
+        <div class="portfolio-statistic-div">
           <div class="statistic-portfolio-visit">
             <i class="fa-regular fa-eye"></i>
             <span id="visit-count-span" class="px-1">{{user.visits.count}}</span>
@@ -358,9 +358,7 @@
               </a>
               <!--delete project btn-->
               <div class="project-delete-btn-div">
-                <form action="/projects/{{this.id}}?_method=DELETE" method="post">
-                  <button type="submit" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
-                </form>
+                <button class="delete-project-btn" data-project="{{this.id}}" type="button" onclick="return confirm('Do you want to delete your < {{this.title}} > project?')">X</button>
               </div>
             </div>
             {{/each}} {{/if}}

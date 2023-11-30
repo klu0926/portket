@@ -1,6 +1,6 @@
 <!--edit mode form-->
 <form id="project-form" action="/projects/{{project.id}}?_method=PUT" method="post" enctype="multipart/form-data" style="width: 100%" novalidate>
-<!--cover edit buttons-->
+  <!--cover edit buttons-->
   <div id="cover-buttons-container" class="cover-buttons-container">
     <div class="cover-buttons-set-one">
       <button type="button" id="cover-change-btn" class="cover-button"><i class="fa-regular fa-image me-2"></i>Change Cover</button>
@@ -31,6 +31,13 @@
     <div class="project-page-container">
       <!--project info-->
       <div class="project-page-info">
+        <!--statistic-->
+        <div class="project-statistic-div">
+          <div class="statistic-portfolio-visit">
+            <i class="fa-regular fa-eye"></i>
+            <span id="visit-count-span" data-visit="{{project.visitId}}" class="px-1">{{project.visits.count}}</span>
+          </div>
+        </div>
         <!--title-->
         <div class="project-page-title-container">
           <div id="project-title-display">
@@ -229,4 +236,5 @@
 <!--input option-->
 {{>input-option}}
 
+<script type="module" src="/javascript/project.js"></script>
 <script type="module" src="/javascript/myProject-mvc.js"></script>

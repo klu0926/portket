@@ -4,7 +4,6 @@ import AlertMessage from './alertMessage.js'
 class MyProjectModel {
   constructor() {}
 }
-
 class MyProjectView {
   constructor() {
     // form
@@ -61,8 +60,10 @@ class MyProjectView {
     this.imageInputs = document.querySelectorAll('.content-image-input-div')
     this.inputOptionContainer = document.querySelector('#input-option-container')
     this.currentToolButton = null
+    // statistic
+    this.statisticDiv = document.querySelector('.project-statistic-div')
     // item list
-    this.viewModeElements = [this.titleDisplay, this.userAndDateDisplay, this.linksDisplay, this.descriptionDisplay, this.skillsDisplay, this.contentDisplay]
+    this.viewModeElements = [this.titleDisplay, this.userAndDateDisplay, this.linksDisplay, this.descriptionDisplay, this.skillsDisplay, this.contentDisplay, this.statisticDiv]
     this.editModeElements = [this.coverInputDiv, this.coverButtonDiv, this.titleInput, this.dateInput, this.linksInput, this.descriptionInput, this.skillsInput, this.contentInput]
     // default cover
     this.defaultCoverPositionY = this.getCoverPositionY()

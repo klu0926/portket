@@ -32,7 +32,7 @@ const visitController = {
     try {
       const visitId = req.params.id
       if (visitId === undefined) {
-        throw new Error('missing body visitId!')
+        throw new Error('missing params visitId!')
       }
       let visit = await Visit.findOne({
         where: { id: visitId },

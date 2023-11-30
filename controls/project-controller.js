@@ -4,6 +4,7 @@ const randomPublicImage = require('../helper/randomPublicImage')
 const imgurImageHandler = require('../helper/imgur')
 const addHttp = require('../helper/addHttp')
 const cleanTempFolder = require('../helper/cleanTempFolder')
+const responseObject = require('../helper/responseObject')
 
 const projectController = {
   getProject: async (req, res, next) => {
@@ -101,6 +102,9 @@ const projectController = {
       if (!files && !files.cover[0]) throw new Error('Missing project cover image')
       const imgurUrl = await imgurImageHandler(files.cover[0])
 
+      // create visit
+      const newVisit = await Visit.create()
+
       // Create project
       const project = await Project.create({
         userId: currentUser.id,
@@ -108,6 +112,7 @@ const projectController = {
         date,
         description,
         cover: imgurUrl,
+        visitId: newVisit.id,
       })
 
       // create project link
@@ -337,26 +342,30 @@ const projectController = {
     }
   },
   deleteProject: async (req, res, next) => {
+    const ACTION = 'DELETE project'
     try {
       const currentUser = req.user
       const projectId = req.params.projectId
-
       if (!currentUser) {
         res.redirect('/users/login')
         return
       }
-
+      // find project
       const project = await Project.findOne({
-        where: { id: projectId },
+        where: {
+          id: projectId,
+          userId: currentUser.id,
+        },
       })
       if (!project) {
-        req.flash('warning_msg', `Can not find project ${projectId}`)
+        throw new Error(`User ${currentUser.id} do not own project ${projectId}!`)
       }
       // delete
       await project.destroy()
-      res.redirect(`/users/${currentUser.id}`)
+      const message = `Successfully deleted project ${projectId}`
+      res.json(responseObject(true, null, message, ACTION))
     } catch (err) {
-      next(err)
+      res.json(responseObject(false, null, err.message, ACTION))
     }
   },
 }
