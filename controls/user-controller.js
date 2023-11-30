@@ -79,6 +79,9 @@ const userController = {
         createdAt: new Date(),
         updatedAt: new Date(),
       })
+      // clean imgur temp folder
+      await cleanTempFolder()
+
       res.redirect('/') // home page
     } catch (err) {
       next(err)
@@ -195,9 +198,6 @@ const userController = {
 
       console.log('user', user)
 
-      // clean imgur temp folder
-      await cleanTempFolder()
-
       // check if user is current user
       if (req.user?.id === user.id) {
         res.render('myPortfolio', {
@@ -216,7 +216,9 @@ const userController = {
   },
   putUser: async (req, res, next) => {
     try {
+      console.log('PUT USER --------------------')
       const userId = req.params.userId
+      if (userId === undefined) throw new Error('PUT user: userId is undefined')
       const currentUser = req.user
       if (userId !== currentUser.id.toString()) {
         req.flash('warning_msg', 'Something went wrong, please try logout and login again.')
@@ -322,6 +324,10 @@ const userController = {
         phone: newPhone || user.phone,
         themeId: Number(newThemeId) || Number(user.themeId),
       })
+
+      //  clean imgur temp folder
+      await cleanTempFolder()
+
       res.redirect(`/users/${userId}`)
     } catch (err) {
       next(err)

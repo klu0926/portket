@@ -65,8 +65,6 @@ const projectController = {
       }
 
       console.log(project)
-      // clean imgur temp folder
-      await cleanTempFolder()
 
       // check if current project own my current user
       if (currentUser?.id === project.userId) {
@@ -149,6 +147,9 @@ const projectController = {
         )
       }
       if (projectSkills.length > 0) await Project_Skill.bulkCreate(projectSkills)
+
+      // clean imgur temp folder
+      await cleanTempFolder()
 
       res.redirect(`/users/${currentUser.id}`)
     } catch (err) {
@@ -326,6 +327,9 @@ const projectController = {
         cover: newCover || currentProject.cover,
         coverPosition,
       })
+
+      // clean imgur temp folder
+      await cleanTempFolder()
 
       res.redirect(`/projects/${currentProject.id}`)
     } catch (err) {

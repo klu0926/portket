@@ -65,6 +65,7 @@ class PortfolioController {
     if (!response.ok) {
       this.alertMessage.showAlertMessage(`${response.method}: ${response.message}`)
     } else {
+      console.log(response)
       this.view.updateViewCount(response.data.count)
     }
   }
