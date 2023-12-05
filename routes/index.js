@@ -1,14 +1,21 @@
 const router = require('express').Router()
+// api
+const resourceAPI = require('./api/resource')
+const visitAPI = require('./api/visit')
+const projectAPI = require('./api/project')
+// modules
 const user = require('./modules/user')
 const project = require('./modules/project')
-const resource = require('./modules/resource')
-const visit = require('./modules/visit')
+// helper
 const { authenticator } = require('../middleware/auth')
 const { errorHandler } = require('../middleware/error-handler')
-
-router.use('/resource', resource)
+// --------------------------------------
+// api
+router.use('/api/visits', visitAPI)
+router.use('/api/resource', resourceAPI)
+router.use('/api/projects', projectAPI)
+// modules
 router.use('/projects', project)
-router.use('/visits', visit)
 router.use('/users', user)
 router.get('/', (req, res) => {
   res.redirect('/users')

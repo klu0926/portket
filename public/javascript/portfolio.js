@@ -1,7 +1,7 @@
 import AlertMessage from './alertMessage.js'
 class PortfolioModel {
   constructor() {
-    this.visitUrl = '/visits'
+    this.visitUrl = '/api/visits'
     this.userData = document.querySelector('#user-data')
     this.visitId = this.userData.dataset.visit
   }

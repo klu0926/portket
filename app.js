@@ -78,7 +78,7 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 usePassport(app)
 app.use(flash())
-// store res.locals
+// store res.locals, use in the view
 app.use((req, res, next) => {
   // passport
   res.locals.isAuthenticated = req.isAuthenticated()

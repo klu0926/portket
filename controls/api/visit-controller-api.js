@@ -1,5 +1,5 @@
-const { Visit } = require('../models')
-const responseObject = require('../helper/responseObject')
+const { Visit } = require('../../models')
+const responseObject = require('../../helper/responseObject')
 
 const visitController = {
   getVisit: async (req, res, next) => {

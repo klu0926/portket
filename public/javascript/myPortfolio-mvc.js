@@ -3,7 +3,7 @@ import AlertMessage from './alertMessage.js'
 // Model
 class MyPortfolioModel {
   constructor() {
-    this.projectsUrl = '/projects'
+    this.projectsUrl = '/api/projects'
   }
   async deleteProject(projectId) {
     try {
@@ -317,8 +317,6 @@ class MyPortfolioController {
     this.view.deleteProjectBtns.forEach((b) => {
       b.addEventListener('click', (e) => this.deleteProject(e))
     })
-    // test
-    console.log(this.view.deleteProjectBtns)
   }
   enterEditMode(e) {
     this.view.enterEditMode(e)

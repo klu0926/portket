@@ -1,32 +1,17 @@
+import AlertMessage from './alertMessage.js'
+
 class IndexModel {
   constructor() {
-    this.landingImageUrl = '/resource/landing'
-    this.landingImageUrlData = null
+    this.landingImageUrl = '/api/resource/landing'
   }
-  async fetchBannerImages() {
+  async getLandingImages() {
     try {
-      const landingImageUrl = '/resource/landing'
-      const response = await fetch(landingImageUrl)
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-      } else {
-        const data = await response.json()
-        this.landingImageUrlData = data.images
-      }
+      const response = await fetch(this.landingImageUrl)
+      if (!response) throw response
+      return await response.json()
     } catch (err) {
       console.error('Fetch error:', err)
     }
-  }
-  async getBannerImages() {
-    try {
-      if (!this.landingImageUrlData) {
-        await this.fetchBannerImages()
-      }
-      return this.landingImageUrlData
-    } catch {
-      console.error('Fetch error:', err)
-    }
-    return this.landingImageUrlData
   }
 }
 
@@ -67,11 +52,16 @@ class IndexController {
     this.init()
   }
   async init() {
+    this.AlertMessage = new AlertMessage()
     this.showBannerImage()
   }
   async showBannerImage() {
-    const images = await this.model.getBannerImages()
-    this.view.showRandomBannerImage(images)
+    const response = await this.model.getLandingImages()
+    if (!response.ok) {
+      this.alertMessage.showAlertMessage(`${response.action}: ${response.message}`)
+    } else {
+      this.view.showRandomBannerImage(response.data.images)
+    }
   }
 }
 

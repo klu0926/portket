@@ -3,19 +3,19 @@ const userController = require('../../controls/user-controller')
 const passport = require('passport')
 const { multiUpload } = require('../../middleware/multer')
 
-// Local 登入
+// Login
 router.get('/login', (req, res) => {
   res.render('login')
 })
 router.post('/login', userController.login)
 
-// 建立帳號
+// Register
 router.get('/register', (req, res) => {
   res.render('register')
 })
 router.post('/register', userController.register)
 
-// Google 登入
+// Google login
 router.get(
   '/auth/google',
   passport.authenticate('google', {
@@ -32,7 +32,7 @@ router.get(
   })
 )
 
-// Facebook 登入
+// Facebook login
 router.get(
   '/auth/facebook',
   passport.authenticate('facebook', {
@@ -49,7 +49,7 @@ router.get(
   })
 )
 
-// 登出
+// logout
 router.get('/logout', (req, res) => {
   req.logout(() => {
     try {
@@ -64,7 +64,7 @@ router.get('/logout', (req, res) => {
 
 // Get ALL user
 router.get('/', userController.getUsers)
-// Get 1 user
+// Get ONE user
 router.get('/:userId', userController.getUser)
 
 // Edit Portfolio
