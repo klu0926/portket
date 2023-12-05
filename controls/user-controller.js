@@ -162,6 +162,11 @@ const userController = {
                   attributes: [],
                 },
               },
+              {
+                model: Visit,
+                attributes: ['count'],
+                as: 'visits',
+              },
             ],
           },
           {

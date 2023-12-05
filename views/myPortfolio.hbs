@@ -344,14 +344,23 @@
                   </div>
                   <div class="project-block-info p-2 col-8">
                     <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                    <p class="project-date mb-1">{{simpleDate this.date}}</p>
+                    <!--date and visit-->
+                    <div class="mb-2">
+                      <div class="project-visit">
+                        <i class="fa-regular fa-eye"></i>
+                        {{this.visits.count}}
+                      </div>
+                      <span class="project-date">{{simpleDate this.date}}</span>
+                    </div>
                     <div class="project-description-div">
                       <p class="project-description">{{substring this.description 100}}</p>
                     </div>
                     <div class="project-block-skills mt-2">
                       {{#if this.skills}} {{#each this.skills}}
                       <span class="skill-pill">{{this.name}}</span>
-                      {{/each}} {{/if}}
+                      {{/each}} {{/if}} {{#if (isMoreThanTarget this.skills.length 3)}}
+                      <button class="skills-show-more-btn" type="button">more</button>
+                      {{/if}}
                     </div>
                   </div>
                 </div>

@@ -56,6 +56,7 @@ class ProjectController {
     this.alertMessage = new AlertMessage()
     this.view.startFadeIn()
     this.increaseVisitCount()
+ 
   }
   async increaseVisitCount() {
     try {

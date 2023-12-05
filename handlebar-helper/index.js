@@ -45,4 +45,7 @@ module.exports = {
     if (!date) return
     return dayjs(date).format('YYYY-MM-DD')
   },
+  isMoreThanTarget: (number, target) => {
+    return number > target
+  },
 }

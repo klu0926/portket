@@ -264,18 +264,31 @@
 .project-block-info {
   display: flex;
   flex-direction: column;
+  transition: all 0.2s ease-in-out;
 }
 
 .project-title {
   color: grey;
-  transition: all ease-in-out 0.2s;
+}
+
+.project-visit {
+  display: inline-block;
+  background-color: var(--my-border);
+  border-radius: 2px;
+  padding: 0px 6px;
+  font-size: smaller;
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
 
 .project-date {
-  padding: 2px;
-  font-size: small;
-  color: var(--my-grey-light);
-  transition: all ease-in-out 0.2s;
+  display: inline-block;
+  background-color: var(--my-border);
+  border-radius: 2px;
+  padding: 0px 6px;
+  font-size: smaller;
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
 
 .project-description-div {
@@ -286,7 +299,7 @@
   color: var(--my-grey-light);
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all ease-in-out 0.2s;
+  transition: all 0.2s ease-in-out;
 }
 
 .project-block:hover .project-block-info .project-title {
@@ -294,11 +307,19 @@
 }
 
 .project-block:hover .project-block-info .project-date {
-  color: var(--my-grey);
+  background-color: var(--my-grey);
 }
 
 .project-block:hover .project-block-info .project-description {
   color: var(--my-grey);
+}
+
+.project-block:hover .project-block-info .project-visit {
+  background-color: var(--my-green);
+}
+
+.project-block:hover .skill-pill {
+  background-color: var(--my-red);
 }
 
 .project-line {
@@ -306,6 +327,37 @@
 }
 
 /* project skill tag */
+.project-block-skills {
+  position: relative;
+
+  height: 55px;
+  overflow: hidden;
+  margin-top: 10px;
+  padding: 6px;
+  padding-bottom: 25px;
+}
+
+.skills-show-more-btn {
+  position: absolute;
+  bottom: -2px;
+  left: 0px;
+  display: block;
+  outline: none;
+  background-color: white;
+  border: none;
+  border-top: 1px solid var(--my-border);
+  color: var(--my-grey);
+  font-size: 0.8rem;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  width: 100%;
+}
+
+.skills-show-more-btn:hover {
+  border-top: 1px solid var(--my-red);
+  color: var(--my-red);
+}
+
 .skill-pill {
   display: inline-block;
   background-color: var(--my-grey-light);

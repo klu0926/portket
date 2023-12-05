@@ -34,6 +34,7 @@ class PortfolioView {
     this.socials = document.querySelectorAll('.social-box')
     this.viewCountSpan = document.querySelector('#visit-count-span')
     this.projectCountSpan = document.querySelector('#project-count-span')
+    this.projectSkillsShowMoreBtn = document.querySelectorAll('.skills-show-more-btn')
   }
   startFadeIn() {
     this.projects.forEach((element, index) => {
@@ -45,6 +46,22 @@ class PortfolioView {
   }
   updateViewCount(count) {
     this.viewCountSpan.textContent = count
+  }
+  toggleMoreProjectSkills(showMoreBtn) {
+    const skillsBlock = showMoreBtn.parentElement
+    if (!skillsBlock || !skillsBlock.classList.contains('project-block-skills')) {
+      console.error('cant not find skillsBlock')
+      return
+    }
+    const HEIGHT = 55
+    const height = skillsBlock.style.height
+    if (height === 'auto') {
+      skillsBlock.style.height = HEIGHT + 'px'
+      showMoreBtn.textContent = 'more'
+    } else {
+      skillsBlock.style.height = 'auto'
+      showMoreBtn.textContent = 'hide'
+    }
   }
 }
 
@@ -59,6 +76,9 @@ class PortfolioController {
     this.alertMessage = new AlertMessage()
     this.view.startFadeIn()
     this.increaseVisitCount()
+    this.view.projectSkillsShowMoreBtn.forEach((b) => {
+      b.addEventListener('click', (e) => this.showMoreProjectSkills(e))
+    })
   }
   async increaseVisitCount() {
     const response = await this.model.putVisit()
@@ -67,6 +87,11 @@ class PortfolioController {
     } else {
       this.view.updateViewCount(response.data.count)
     }
+  }
+  showMoreProjectSkills(event) {
+    event.stopPropagation()
+    event.preventDefault()
+    this.view.toggleMoreProjectSkills(event.target)
   }
 }
 
