@@ -1,33 +1,36 @@
 <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
   <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
-    <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" style="height: 150px" />
-    <div class="card-avatar">
-      <img src="{{this.avatar}}" alt="avatar" />
+    <!--top-->
+    <div class="card-top">
+      <img class="card-cover" src="{{this.cover}}" alt="Card image" />
+      <div class="card-avatar-div">
+        <img class="card-avatar-img" src="{{this.avatar}}" alt="avatar" />
+      </div>
     </div>
-    <div class="card-body">
-      <!--text area-->
-      <div class="d-flex flex-column justify-content-between" style="height: 100%">
-        <div class="card-text">
-          <div class="mb-2">
-            <p class="h5 fw-bold mb-0">{{this.name}}</p>
-            <p class="text-primary fw-border">{{this.title}}</p>
-          </div>
-          <p>{{substring this.description 110}}</p>
+    <!--middle-->
+    <div class="card-middle">
+      <p class="card-middle-name">{{this.name}}</p>
+      <p class="card-middle-title">{{this.title}}</p>
+      <p class="card-middle-description">{{substring this.description 110}}</p>
+      <div class="card-middle-skills">
+        {{#each this.skills}}
+        <span class="card-skill">{{this.name}}</span>
+        {{/each}}
+      </div>
+    </div>
+    <!--bottom-->
+    <div class="card-bottom">
+      <a href="/users/{{this.id}}" class="card-bottom-portfolio-btn btn-move {{#if (isSame currentUser.id this.id)}}black-background{{/if}} ">
+        {{#if (isSame currentUser.id this.id)}}My Portfolio{{else}}Portfolio{{/if}}
+      </a>
+      <div class="card-bottom-right">
+        <div class="card-portfolio-visit">
+          <i class="fa-regular fa-eye"></i>
+          <span class="px-1">{{this.visits.count}}</span>
         </div>
-        <div class="card-bottom">
-          <a href="/users/{{this.id}}" class="btn btn-move {{#if (isSame currentUser.id this.id)}}black{{else}}btn-primary{{/if}} ">
-            {{#if (isSame currentUser.id this.id)}}My Portfolio{{else}}Portfolio{{/if}}
-          </a>
-          <div class="card-bottom-right">
-            <div class="card-portfolio-visit">
-              <i class="fa-regular fa-eye"></i>
-              <span class="px-1">{{this.visits.count}}</span>
-            </div>
-            <div class="card-project-count">
-              <i class="fa-regular fa-file"></i>
-              <span>{{this.projects.length}}</span>
-            </div>
-          </div>
+        <div class="card-project-count">
+          <i class="fa-regular fa-file"></i>
+          <span>{{this.projects.length}}</span>
         </div>
       </div>
     </div>

@@ -303,11 +303,11 @@
 }
 
 .project-block:hover .project-block-info .project-title {
-  color: var(--my-red);
+  color: var(--my-red-light);
 }
 
 .project-block:hover .project-block-info .project-date {
-  background-color: var(--my-grey);
+  background-color: var(--my-grey-light);
 }
 
 .project-block:hover .project-block-info .project-description {
@@ -315,11 +315,11 @@
 }
 
 .project-block:hover .project-block-info .project-visit {
-  background-color: var(--my-green);
+  background-color: var(--my-green-light);
 }
 
 .project-block:hover .skill-pill {
-  background-color: var(--my-red);
+  background-color: var(--my-red-light);
 }
 
 .project-line {

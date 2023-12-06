@@ -111,6 +111,14 @@ const userController = {
             attributes: ['count'],
             as: 'visits',
           },
+          {
+            model: Skill,
+            attributes: ['id', 'name', 'description', 'icon'],
+            as: 'skills',
+            through: {
+              attributes: [],
+            },
+          },
         ],
         order: [['id', 'DESC']],
       })

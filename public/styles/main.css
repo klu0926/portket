@@ -352,7 +352,7 @@ body {
   padding: 0px 6px;
   font-size: 0.85rem;
   opacity: 0;
-  transition: all 0.2s 0.25s ease-in-out;
+  transition: all 0.2s ease-in-out;
   /* 0.2 is speed, 0.4 is delay */
 }
 
@@ -445,21 +445,36 @@ body {
 /*-Index card-*/
 .my-portfolio-card {
   border: 1px solid var(--my-grey-light);
-  border-radius: 10px;
+  border-radius: 0px !important;
 }
 
 .card {
   position: relative;
-  height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 380px;
+  border-radius: 10px;
   overflow: hidden;
+  padding-top: 0px !important;
+  padding-bottom: 10px;
   transition: all 0.15s ease-in-out;
 }
 
-.card-body {
+.card-top {
   position: relative;
+  display: block;
+  height: 150px;
+  transition: all 0.2s ease-in-out;
 }
 
-.card-avatar {
+.card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.card-avatar-div {
   position: absolute;
   top: 55px;
   left: 20px;
@@ -470,29 +485,91 @@ body {
   overflow: hidden;
 }
 
-.card-avatar img {
+.card-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.card-img-top {
-  object-fit: cover;
+.card-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
-.card:hover .card-img-top {
-  filter: brightness(110%);
+.card-middle-skills {
+  overflow: hidden;
+  height: 28px;
+  margin-top: 5px;
 }
-.card:hover {
-  transform: scale(1.02) translateY(-2px);
-  box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.1);
+
+.card-skill {
+  display: inline-block;
+  background-color: var(--my-grey-light);
+  color: white;
+  font-size: small;
+  margin-right: 2px;
+  margin-bottom: 3px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  cursor: default;
+}
+
+.card-middle-name {
+  color: var(--my-grey-dark);
+  font-weight: bold;
+  font-size: large;
+}
+
+.card-middle-title {
+  color: var(--my-red-light);
+  margin-top: 2px;
+}
+
+.card-middle-description {
+  color: var(--my-grey);
+  margin-top: 5px;
 }
 
 .card-bottom {
   display: flex;
   justify-content: space-between;
   align-items: end;
+  margin-top: 10px;
+  padding: 0px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-bottom-portfolio-btn {
+  background-color: var(--my-red);
+  border-radius: 0px;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-bottom-portfolio-btn:hover {
+  border-radius: 5px;
+  background-color: var(--my-red-light);
+}
+
+.black-background {
+  background-color: var(--my-black);
+}
+
+.card:hover .card-top {
+  filter: brightness(110%);
+}
+
+.card:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.1);
 }
 
 .card-bottom-right {
