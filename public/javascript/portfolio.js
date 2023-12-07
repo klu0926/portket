@@ -53,7 +53,7 @@ class PortfolioView {
       console.error('cant not find skillsBlock')
       return
     }
-    const HEIGHT = 55
+    const HEIGHT = 52
     const height = skillsBlock.style.height
     if (height === 'auto') {
       skillsBlock.style.height = HEIGHT + 'px'

@@ -2,106 +2,103 @@
 .project-statistic-div {
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   top: -55px;
   left: 15px;
   color: white;
+  background-color: white;
+  border-radius: 5px;
   user-select: none;
 }
 
 .portfolio-statistic-div {
   position: absolute;
   display: flex;
-  justify-content: center;
-  top: 135px;
+  justify-content: space-between;
+  top: 125px;
   left: 230px;
   color: white;
+  width: fit-content;
+  background-color: white;
+  border-radius: 5px;
   user-select: none;
 }
-
-.statistic-portfolio-visit {
+/*-----*/
+.statistic-tag {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 20px;
-  padding: 0 7px;
-  background-color: var(--my-green);
-  border-radius: 4px;
+  padding: 0 10px;
+  color: var(--my-grey);
+  text-wrap: nowrap;
   cursor: default;
   transition: all 0.2s ease-in-out;
 }
 
-.statistic-project-count {
-  position: relative;
-  padding: 0 7px;
-  background-color: var(--my-blue);
-  border-radius: 4px;
-  cursor: default;
-  transition: all 0.2s ease-in-out;
+.statistic-tag:first-child {
+  border-radius: 2.5px 0px 0px 2.5px;
 }
 
-.statistic-portfolio-visit:hover {
-  border-radius: 0;
-  background-color: var(--my-green-light);
+.statistic-tag:last-child {
+  border-radius: 0px 2.5px 2.5px 0px;
 }
 
-.statistic-project-count:hover {
-  border-radius: 0;
-  background-color: var(--my-blue-light);
+.statistic-tag:hover {
+  color: white;
+  background-color: var(--my-red-light);
 }
-.statistic-portfolio-visit::after {
-  content: 'Page Visits';
+
+.statistic-tag i {
+  margin-right: 5px;
+}
+
+.statistic-tag::after {
   display: block;
   position: absolute;
   bottom: 0%;
   left: 0%;
-  background-color: var(--my-green);
   white-space: nowrap;
   color: white;
+  background-color: var(--my-red);
   font-size: 0.9rem;
   padding: 0px 4px;
   transition: all 0.2s ease-in-out;
   opacity: 0;
   z-index: -1;
+}
+
+.statistic-portfolio-visit::after {
+  content: 'Page Visits';
 }
 
 .statistic-project-count::after {
   content: 'Projects';
-  display: block;
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-  background-color: var(--my-blue);
-  white-space: nowrap;
-  color: white;
-  font-size: 0.9rem;
-  padding: 0px 4px;
-  transition: all 0.2s ease-in-out;
-  z-index: -1;
-  opacity: 0;
 }
 
-.statistic-portfolio-visit:hover::after {
-  opacity: 1;
-  bottom: 100%;
+.statistic-portfolio-update::after {
+  content: 'Updated';
 }
 
-.statistic-project-count:hover::after {
+.statistic-portfolio-create::after {
+  content: 'Created';
+}
+
+.statistic-tag:hover::after {
   opacity: 1;
   bottom: 100%;
 }
 
 @media screen and (max-width: 991px) {
   .portfolio-statistic-div {
-    top: 90px;
+    top: 80px;
     left: 210px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .portfolio-statistic-div {
-    top: 80px;
+    top: 70px;
     left: 170px;
   }
 }

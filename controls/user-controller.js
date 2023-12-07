@@ -99,7 +99,9 @@ const userController = {
 
       const usersData = await User.findAndCountAll({
         where: whereCondition,
-        attributes: ['id', 'name', 'title', 'avatar', 'cover', 'description'],
+        attributes: {
+          exclude: ['password'],
+        },
         include: [
           {
             model: Project,
@@ -152,7 +154,7 @@ const userController = {
       const userData = await User.findOne({
         where: { id: userId },
         attributes: {
-          exclude: ['createdAt', 'updatedAt', 'password'],
+          exclude: ['password'],
         },
         include: [
           {

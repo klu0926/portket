@@ -138,6 +138,37 @@ p {
 }
 
 /* My Code start*/
+/* scroll bar */
+.card-skills-scroll-x {
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: auto;
+  filter: brightness(1.2) saturate(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-skills-scroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+.card-skills-scroll-x::-webkit-scrollbar-track {
+  background-color: var(--my-grey-light);
+  border-radius: 10px;
+  margin: 0px 120px;
+}
+
+.card-skills-scroll-x::-webkit-scrollbar-thumb {
+  background-color: var(--my-red2);
+  border-radius: 10px;
+}
+
+.card-skills-scroll-x:hover {
+  filter: brightness(1) saturate(1);
+}
+
+.card-skills-scroll-x:hover::after {
+  width: 0%;
+}
+
 /* general */
 .none {
   display: none;
@@ -382,7 +413,7 @@ body {
   left: 0px;
   width: 100vw;
   height: 650px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   overflow: hidden;
   z-index: 1;
   cursor: pointer;
@@ -400,7 +431,7 @@ body {
   color: black;
   font-weight: bold;
   padding: 0 20px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   z-index: 5;
   opacity: 0;
   user-select: none;
@@ -502,14 +533,14 @@ body {
 }
 
 .card-middle-skills {
-  overflow: hidden;
-  height: 28px;
+  height: 36px;
   margin-top: 5px;
+  white-space: nowrap;
 }
 
 .card-skill {
   display: inline-block;
-  background-color: var(--my-grey-light);
+  background-color: var(--my-red2);
   color: white;
   font-size: small;
   margin-right: 2px;
@@ -575,6 +606,7 @@ body {
 .card-bottom-right {
   display: flex;
   color: var(--my-grey);
+  padding: 5px;
 }
 
 .card-portfolio-visit {
@@ -582,53 +614,105 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 30px;
-  min-width: 38px;
+  height: 25px;
   width: auto;
+  padding: 0px 3px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
 }
 
 .card-project-count {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 30px;
-  min-width: 38px;
+  justify-content: space-between;
+  height: 25px;
   width: auto;
-  padding: 0px 7px;
+  padding: 0px 3px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-portfolio-date {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+  width: auto;
+  padding: 0px 3px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
 }
 
 .card-project-count:hover::after {
   content: 'Projects';
   display: block;
   position: absolute;
-  bottom: 100%;
+  bottom: 115%;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
   white-space: nowrap;
-  background-color: var(--my-grey);
+  background-color: var(--my-red-light);
+  border-radius: 2px;
   color: white;
   padding: 0px 6px;
   font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 .card-portfolio-visit:hover::after {
   content: 'Visits';
   display: block;
   position: absolute;
-  bottom: 100%;
+  bottom: 115%;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
   white-space: nowrap;
-  background-color: var(--my-grey);
+  background-color: var(--my-red-light);
+  border-radius: 2px;
   color: white;
   padding: 0px 6px;
   font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-portfolio-date:hover::after {
+  content: 'Updated';
+  display: block;
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  white-space: nowrap;
+  background-color: var(--my-red-light);
+  border-radius: 2px;
+  color: white;
+  padding: 0px 6px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
 }
 
 .card-portfolio-visit span {
+  cursor: default;
+}
+
+.card-project-count span {
+  cursor: default;
+}
+
+.card-portfolio-date span {
+  cursor: default;
+}
+
+.card-portfolio-date i {
+  margin-right: 4px;
   cursor: default;
 }
 
@@ -637,13 +721,17 @@ body {
   cursor: default;
 }
 
-.card-project-count span {
-  cursor: default;
+.card-project-count:hover,
+.card-portfolio-visit:hover,
+.card-portfolio-date:hover {
+  color: var(--my-red-light);
+  background-color: var(--my-border-light);
 }
 
-.card-project-count:hover,
-.card-portfolio-visit:hover {
-  color: var(--my-grey-dark);
+.card-project-count:hover::after,
+.card-portfolio-visit:hover::after,
+.card-portfolio-date:hover::after {
+  opacity: 1;
 }
 
 /*--Portfolio Page---*/

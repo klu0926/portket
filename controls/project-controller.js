@@ -19,9 +19,6 @@ const projectController = {
       })
       const projectData = await Project.findOne({
         where: { id: projectId },
-        attributes: {
-          exclude: ['createdAt', 'updateAt'],
-        },
         include: [
           {
             model: User,
