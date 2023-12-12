@@ -47,12 +47,11 @@ if (process.env.NODE_ENV !== 'production') {
   }
 } else {
   // heroku
-  const db = new URL(config.production.use_env_variable)
   storeOption = {
-    host: db.hostname,
-    user: db.username,
-    password: db.password,
-    database: db.pathname.substring(1),
+    host: process.env.JAWDB_HOST,
+    user: process.env.JAWDB_USER,
+    password: process.env.JAWDB_PASSWORD,
+    database: process.env.JAWDB_DATABASE,
   }
 }
 const sessionStore = new MySQLStore(storeOption)
