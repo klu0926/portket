@@ -2,22 +2,13 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy
 const { User, Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
 
-let CALLBACK_URL = ''
-if (process.env.NODE_ENV !== 'production') {
-  CALLBACK_URL = process.env.GOOGLE_CALLBACK
-} else {
-  CALLBACK_URL = process.env.GOOGLE_CALLBACK_DEV
-}
-
-console.log('Using callback URL:', CALLBACK_URL)
-
 module.exports = (passport) => {
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET,
-        callbackURL: CALLBACK_URL,
+        callbackURL: process.env.GOOGLE_CALLBACK,
       },
       async (req, accessToken, refreshToken, profile, done) => {
         try {

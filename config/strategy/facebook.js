@@ -8,7 +8,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.FACEBOOK_ID,
         clientSecret: process.env.FACEBOOK_SECRET,
-        callbackURL: '/users' + process.env.FACEBOOK_CALLBACK,
+        callbackURL: process.env.FACEBOOK_CALLBACK,
         profileFields: ['email', 'displayName'],
       },
       async (accessToken, refreshToken, profile, done) => {
