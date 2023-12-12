@@ -9,6 +9,8 @@ if (process.env !== 'production') {
   CALLBACK_URL = process.env.GOOGLE_CALLBACK_DEV
 }
 
+console.log('Using callback URL:', CALLBACK_URL)
+
 module.exports = (passport) => {
   passport.use(
     new GoogleStrategy(
