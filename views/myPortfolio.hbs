@@ -301,9 +301,9 @@
             <div id="skill-input-div">
               <div class="skill-input-checkbox-window">
                 {{#each allSkills}}
-                <div class="skill-input">
+                <div class="skill-input" data-icon="{{this.icon}}" data-name="{{this.name}}" data-des="{{this.description}}">
                   <input class="skill-checkbox" type="checkbox" id="{{this.name}}" name="skills" value="{{this.id}}" {{#if (inArray ../user.skillsList this.id)}} checked {{/if}} />
-                  <label class="skill-label" for="{{this.name}}" data-icon="{{this.icon}}" data-name="{{this.name}}" data-des="{{this.description}}">{{this.name}}</label>
+                  <label class="skill-label" for="{{this.name}}">{{this.name}}</label>
                 </div>
                 {{/each}}
               </div>

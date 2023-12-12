@@ -240,14 +240,11 @@ class MyPortfolioView {
   }
   // skill
   showSkillToolTip(event) {
-    const target = event.target
-    if (target.classList.contains('skill-label')) {
-      const toolTipWidth = parseInt(window.getComputedStyle(this.skillToolTip).width)
-      const rect = event.target.getBoundingClientRect()
-      const right = rect.right
-      const top = rect.top
-      this.skillToolTip.style.top = top + window.scrollY + 'px'
-      this.skillToolTip.style.left = right + window.scrollX - toolTipWidth + 'px'
+    let target = event.target
+    if (target.classList.contains('skill-label') || target.classList.contains('skill-checkbox')) {
+      target = target.parentElement
+    }
+    if (target.classList.contains('skill-input')) {
       // data
       const name = target.getAttribute('data-name')
       const icon = target.getAttribute('data-icon')
@@ -258,11 +255,30 @@ class MyPortfolioView {
       toolTipName.innerText = name
       toolTipImage.src = icon
       toolTipDescription.innerText = description
-      this.skillToolTip.style.display = 'flex'
+
+      // position
+      const parentHeight = parseInt(window.getComputedStyle(this.skillInputDiv).height)
+      const parentWidth = parseInt(window.getComputedStyle(this.skillInputDiv).width)
+      const toolTipHeight = parseInt(window.getComputedStyle(this.skillToolTip).height)
+      const toolTipWidth = parseInt(window.getComputedStyle(this.skillToolTip).width)
+      const rect = target.getBoundingClientRect()
+      const parentRect = target.getBoundingClientRect()
+
+      let top = rect.top + window.scrollY - toolTipHeight - parentHeight
+      let left = parentRect.right + window.scrollX - toolTipWidth
+      if (window.innerWidth > 1800) {
+        left -= toolTipWidth
+      } else if (window.innerHeight > 1500) {
+        left -= toolTipWidth / 2
+      }
+      this.skillToolTip.style.top = top + 'px'
+      this.skillToolTip.style.left = left + 'px'
+      // show
+      this.skillToolTip.style.opacity = '1'
     }
   }
   hideSkillToolTip() {
-    this.skillToolTip.style.display = 'none'
+    this.skillToolTip.style.opacity = '0'
   }
 }
 

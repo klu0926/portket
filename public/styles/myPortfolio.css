@@ -295,16 +295,19 @@
 /* skill input tooltip*/
 .skill-tooltip {
   position: absolute;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: start;
   width: 300px;
+  min-height: 50px;
   border: 1px solid var(--my-grey);
   padding: 5px;
   color: var(--my-grey);
   background-color: white;
   pointer-events: none;
   z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .skill-tooltip-top {
