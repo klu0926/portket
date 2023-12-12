@@ -3,7 +3,7 @@ const { User, Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
 
 let CALLBACK_URL = ''
-if (process.env !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   CALLBACK_URL = process.env.GOOGLE_CALLBACK
 } else {
   CALLBACK_URL = process.env.GOOGLE_CALLBACK_DEV
