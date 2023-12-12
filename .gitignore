@@ -8,3 +8,7 @@ Icon?
 node_modules
 *.log
 *.gz
+
+# other
+.vscode
+.prettierrc
