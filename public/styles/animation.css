@@ -66,9 +66,9 @@
     color: rgb(256, 256, 256, 0);
   }
 }
-
+/* cover image */
 .fadeIn {
-  animation: fadeIn 1.9s ease-in-out forwards;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
 .marginShake {
