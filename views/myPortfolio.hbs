@@ -24,7 +24,7 @@
   <div id="portfolio-cover-drag" class="portfolio-cover-drag"></div>
   {{#if user.cover}}
   <div class="portfolio-cover">
-    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" />
+    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement"></div>
@@ -61,7 +61,7 @@
         <!--avatar-->
         <div id="avatar-container" class="portfolio-avatar-container">
           <div id="avatar-input-div"></div>
-          <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" />
+          <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="lazy" />
         </div>
         <!--name-->
         <div class="mb-2">
@@ -99,7 +99,7 @@
               <div class="social-box">
                 <div class="social-icon">
                   <a href="{{this.link}}" target="_blank">
-                    <img src="{{this.icon}}" alt="{{this.name}}" />
+                    <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
                   </a>
                 </div>
                 <div class="social-icon-pop">
@@ -280,7 +280,7 @@
               {{#if user.skills}} {{#each user.skills}}
               <div class="skill-block">
                 <div class="skill-icon">
-                  <img src="{{this.icon}}" alt="skill icon" />
+                  <img src="{{this.icon}}" alt="skill icon" loading="lazy" />
                 </div>
                 <div class="skill-info">
                   <div class="skill-block-top d-flex">
@@ -315,7 +315,7 @@
         <div id="skill-tooltip" class="skill-tooltip">
           <div class="skill-tooltip-top">
             <div class="skill-tooltip-img">
-              <img src="" alt="skill icon" />
+              <img src="" alt="skill icon" loading="lazy" />
             </div>
             <p class="skill-tooltip-name"></p>
           </div>
@@ -352,7 +352,7 @@
               <a class="project-link" href="/projects/{{this.id}}">
                 <div class="project-block d-flex">
                   <div class="project-image-holder col-4">
-                    <img class="project-image" src="{{this.cover}}" alt="project image" />
+                    <img class="project-image" src="{{this.cover}}" alt="project image" loading="lazy" />
                   </div>
                   <div class="project-block-info p-2 col-8">
                     <p class="project-title fw-bold mb-1">{{this.title}}</p>

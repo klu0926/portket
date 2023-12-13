@@ -2,7 +2,7 @@
   <!--cover-->
   {{#if user.cover}}
   <div class="portfolio-cover">
-    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" />
+    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement">
@@ -37,7 +37,7 @@
         <div class="portfolio-top-container">
           <!--avatar-->
           <div class="portfolio-avatar-container">
-            <img src="{{user.avatar}}" class="avatar-img" alt="avatar" />
+            <img src="{{user.avatar}}" class="avatar-img" alt="avatar" loading="lazy" />
           </div>
           <!--info-->
           <div class="">
@@ -61,7 +61,7 @@
                 <div class="social-box">
                   <div class="social-icon">
                     <a href="{{this.link}}" target="_blank">
-                      <img src="{{this.icon}}" alt="{{this.name}}" />
+                      <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
                     </a>
                   </div>
                   <div class="social-icon-pop border">
@@ -115,7 +115,7 @@
             {{#each user.skills}}
             <div class="skill-block">
               <div class="skill-icon">
-                <img src="{{this.icon}}" alt="skill icon" />
+                <img src="{{this.icon}}" alt="skill icon" loading="lazy" />
               </div>
               <div class="skill-info">
                 <div class="skill-block-top d-flex">
@@ -149,7 +149,7 @@
             <a class="project-link" href="/projects/{{this.id}}">
               <div class="project-block d-flex">
                 <div class="project-image-holder col-4">
-                  <img src="{{this.cover}}" alt="project image" />
+                  <img src="{{this.cover}}" alt="project image" loading="lazy" />
                 </div>
                 <div class="project-block-info p-2 col-8">
                   <p class="project-title fw-bold mb-1">{{this.title}}</p>

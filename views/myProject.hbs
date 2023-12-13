@@ -26,7 +26,7 @@
     <div id="cover-input-div" class="project-cover-input-div"></div>
     <div id="cover-drag" class="cover-drag"></div>
     <div class="project-page-cover">
-      <img id="cover-img" class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
+      <img id="cover-img" class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" loading="eager" />
     </div>
     <div class="project-page-container">
       <!--project info-->
@@ -68,7 +68,7 @@
           <div class="mb-3 d-flex">
             <div class="project-user-avatar me-2">
               <a class="project-page-a" href="/users/{{project.user.id}}">
-                <img src="{{project.user.avatar}}" alt="avatar" />
+                <img src="{{project.user.avatar}}" alt="avatar" loading="lazy" />
               </a>
             </div>
             <div class="d-flex flex-column justify-content-between py-1">
@@ -181,7 +181,7 @@
         <div class="project-page-content-box">
           {{#if (isSame this.type 'image')}}
           <div class="project-content-image">
-            <img src="{{this.content}}" alt="project image" onerror="this.src='/images/placeholder.png'" data-uuid="{{this.uuid}}" />
+            <img src="{{this.content}}" alt="project image" onerror="this.src='/images/placeholder.png'" data-uuid="{{this.uuid}}" loading="lazy"/>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
           <div class="project-content-text">
@@ -205,7 +205,7 @@
           <div class="content-input-div content-image-input-div data-image" data-uuid="{{this.uuid}}">
             <div class="input-div-tool-btn"></div>
             <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" data-uuid="{{this.uuid}}" data-original="true" multiple />
-            <img loading="lazy" class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" />
+            <img loading="lazy" class="content-image-input-display" src="{{this.content}}" alt="content-image" onerror="this.src='/images/placeholder.png'" loading="lazy" />
             <div class="content-image-delete-btn"></div>
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
@@ -240,7 +240,7 @@
   </div>
   <div class="input-div-tool-btn"></div>
   <input class="inner-image-input none" name="content" type="file" accept="image/png, image/jpeg" disabled multiple />
-  <img class="content-image-input-display none" src="" alt="content-image" />
+  <img class="content-image-input-display none" src="" alt="content-image" loading="lazy" />
   <div class="content-image-delete-btn"></div>
 </div>
 

@@ -2,9 +2,9 @@
   <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
     <!--top-->
     <div class="card-top">
-      <img class="card-cover" src="{{this.cover}}" alt="Card image" />
+      <img class="card-cover" src="{{this.cover}}" alt="Card image" loading="lazy" />
       <div class="card-avatar-div">
-        <img class="card-avatar-img" src="{{this.avatar}}" alt="avatar" />
+        <img class="card-avatar-img" src="{{this.avatar}}" alt="avatar" loading="lazy" />
       </div>
     </div>
     <!--middle-->

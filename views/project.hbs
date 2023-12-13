@@ -2,7 +2,7 @@
 <div class="container" style="min-height: 600px">
   <!--cover-->
   <div class="project-page-cover">
-    <img class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" />
+    <img class="project-cover-img" src="{{project.cover}}" alt="project cover" style="object-position: center {{project.coverPosition}}%;" loading="eager" />
   </div>
   <div class="project-page-container">
     <!--statistic-->
@@ -33,7 +33,7 @@
       <div class="mb-3 d-flex">
         <div class="project-user-avatar me-2">
           <a class="project-page-a" href="/users/{{project.user.id}}">
-            <img src="{{project.user.avatar}}" alt="avatar" />
+            <img src="{{project.user.avatar}}" alt="avatar" loading="lazy" />
           </a>
         </div>
         <div class="d-flex flex-column justify-content-between py-1">
@@ -72,7 +72,7 @@
       <div class="project-page-content-box">
         {{#if (isSame this.type 'image')}}
         <div class="project-content-image">
-          <img src="{{this.content}}" alt="project image" />
+          <img src="{{this.content}}" alt="project image" loading="lazy" />
         </div>
         {{/if}} {{#if (isSame this.type 'text')}}
         <div class="project-content-text">
