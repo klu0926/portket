@@ -422,7 +422,7 @@ body {
 .banner-title {
   position: absolute;
   display: block;
-  top: 70%;
+  top: 55%;
   left: 50%;
   transform: translateX(-50%);
   text-wrap: nowrap;
@@ -464,6 +464,7 @@ body {
   height: 100%;
   z-index: 1;
   opacity: 0;
+  filter: brightness(105%) saturate(102%) contrast(102%);
   user-select: none;
 }
 
