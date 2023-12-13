@@ -1,0 +1,10 @@
+big
+cover image size = 1440 X 930
+portfolio avatar = 200 x 200
+content image = width 520
+
+small
+index cover = 414 x 150
+index avatar = 71 x 71
+
+
