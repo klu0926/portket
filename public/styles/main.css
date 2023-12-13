@@ -399,7 +399,9 @@ body {
 }
 
 /* main content */
+/* this control all the pages, don't change it*/
 .main-body {
+  margin-top: 80px;
   padding-left: 7px;
   padding-right: 7px;
 }
@@ -469,8 +471,9 @@ body {
 }
 
 /* before banner container */
+/* index page, area contain search and cards */
 .below-banner {
-  margin-top: 650px;
+  margin-top: 550px;
 }
 
 /*-Index card-*/
@@ -798,9 +801,6 @@ body {
   .below-banner {
     margin-top: 500px;
   }
-  .main-body {
-    margin-top: 80px;
-  }
   .card-portfolio-visit {
     font-size: 0.9rem;
   }
@@ -822,10 +822,7 @@ body {
     font-size: 2rem;
   }
   .below-banner {
-    margin-top: 350;
-  }
-  .main-body {
-    margin-top: 110px;
+    margin-top: 390px;
   }
 }
 
@@ -854,8 +851,5 @@ body {
   }
   .below-banner {
     margin-top: 0px;
-  }
-  .main-body {
-    margin-top: 70px;
   }
 }
