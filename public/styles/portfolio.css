@@ -161,7 +161,7 @@
   justify-content: start;
   border-bottom: 1px solid rgb(230, 230, 230);
   min-height: 76px;
-  padding-top: 5px;
+  padding: 5px 0px;
 }
 
 .skill-icon {
@@ -423,10 +423,17 @@
     height: 270px;
   }
   .portfolio-container {
-    margin-top: 130px;
+    margin-top: 135px;
   }
   .portfolio-avatar-container {
     height: 120px;
     width: 120px;
+  }
+  .statistic-portfolio-update {
+    display: none !important;
+  }
+  .portfolio-statistic-div {
+    left: auto !important;
+    right: 20px !important;
   }
 }

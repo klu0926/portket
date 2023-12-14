@@ -317,14 +317,18 @@ body {
   gap: 5px;
 }
 
-.navbar-logo {
+.navbar-logo-img {
   display: inline-block;
   width: 25px;
   height: 25px;
 }
 
-.navbar-logo img {
+.navbar-logo-img img {
   max-width: 100%;
+}
+
+.navbar-logo-text {
+  display: inline-block;
 }
 
 /* navbar right (my portfolio , login/out)*/
@@ -787,8 +791,15 @@ body {
   display: none;
   top: 20px;
   left: 50%;
+  min-width: 300px;
   transform: translateX(-50%);
   z-index: 1001;
+}
+
+.alert-message span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 1200px) {
@@ -851,5 +862,11 @@ body {
   }
   .below-banner {
     margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-logo-text {
+    display: none;
   }
 }

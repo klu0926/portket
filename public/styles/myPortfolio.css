@@ -363,4 +363,7 @@
     right: 0;
     width: 100%;
   }
+  .portfolio-cover-drag {
+    height: 275px;
+  }
 }

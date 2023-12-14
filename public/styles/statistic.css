@@ -72,16 +72,24 @@
   content: 'Page Visits';
 }
 
-.statistic-project-count::after {
-  content: 'Projects';
-}
-
 .statistic-portfolio-update::after {
   content: 'Updated';
 }
 
 .statistic-portfolio-create::after {
   content: 'Created';
+}
+
+.statistic-project-count::after {
+  content: 'Projects';
+}
+
+.statistic-project-visit::after {
+  content: 'Page Visits';
+}
+
+.statistic-project-update::after {
+  content: 'Updated';
 }
 
 .statistic-tag:hover::after {

@@ -2,7 +2,7 @@
   {{#if success_msg}}
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     <i class="fa-solid fa-circle-check"></i>
-    {{success_msg}}
+    <span class="alert-message-text"> {{success_msg}} </span>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {{/if}}
@@ -10,7 +10,7 @@
   {{#if warning_msg}}
   <div class="alert alert-primary alert-dismissible fade show" role="alert">
     <i class="fa-solid fa-triangle-exclamation"></i>
-    {{warning_msg}}
+    <span class="alert-message-text">{{warning_msg}}</span>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {{/if}}
@@ -21,6 +21,6 @@
   <div class="alert alert-primary alert-dismissible fade show" role="alert">
     <i class="fa-solid fa-triangle-exclamation"></i>
     <span class="alert-message-text">This is some alert message i want to show</span>
-    <button id='alert-message-close-btn'type="button" class="btn-close alert-message-close-btn"></button>
+    <button id="alert-message-close-btn" type="button" class="btn-close alert-message-close-btn"></button>
   </div>
 </div>

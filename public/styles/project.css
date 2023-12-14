@@ -127,4 +127,17 @@
   .project-page-container {
     margin-top: 280px;
   }
+  .project-page-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .project-page-title {
+    font-size: 1.5rem;
+  }
+  .project-statistic-div {
+    left: auto !important;
+    right: 10px !important;
+  }
 }
