@@ -66,11 +66,25 @@
     color: rgb(256, 256, 256, 0);
   }
 }
-/* cover image */
-.fadeIn {
-  animation: fadeIn 1s ease-in-out forwards;
+
+@keyframes slideUp-top-50 {
+  0% {
+    top: 60%;
+  }
+  75% {
+    top: 49.7%;
+  }
+  100% {
+    top: 50%;
+  }
 }
 
+/* index */
+.ani-banner-title {
+  animation: fadeIn 1s ease-in-out, slideUp-top-50 1.2s ease-in-out;
+}
+
+/* error message */
 .marginShake {
   animation: marginShake 0.8s ease-in-out;
 }

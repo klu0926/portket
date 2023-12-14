@@ -135,7 +135,10 @@ const userController = {
         }
       }
 
-      res.render('index', { users: usersData.rows, count: usersData.count, keyword })
+      // get random landing image
+      const landingImage = randomPublicImage('landing')
+
+      res.render('index', { users: usersData.rows, count: usersData.count, keyword, landingImage})
     } catch (err) {
       next(err)
     }
