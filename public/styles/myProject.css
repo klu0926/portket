@@ -348,3 +348,19 @@ input {
     top: 300px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .cover-buttons-set-one {
+    justify-content: center !important;
+  }
+  .cover-buttons-set-two {
+    justify-content: center !important;
+  }
+  .cover-buttons-container {
+    top: 100px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -23,7 +23,6 @@ class IndexController {
   }
   async init() {
     this.AlertMessage = new AlertMessage()
-    this.showBannerImage()
   }
 }
 

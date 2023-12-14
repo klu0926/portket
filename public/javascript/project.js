@@ -3,10 +3,12 @@ import AlertMessage from './alertMessage.js'
 class ProjectModel {
   constructor() {
     this.visitUrl = '/api/visits'
+    this.projectData = document.querySelector('#project-data')
+    this.visitId = this.projectData.dataset.visit
   }
-  async putVisit(visitId) {
+  async putVisit() {
     try {
-      if (visitId === undefined) throw new Error('Cant not find visitId')
+      if (this.visitId === undefined) throw new Error('Cant not find visitId')
       // increase visit count
       const requestOption = {
         method: 'PUT',
@@ -15,7 +17,7 @@ class ProjectModel {
         },
         body: '',
       }
-      const url = `${this.visitUrl}/${visitId}`
+      const url = `${this.visitUrl}/${this.visitId}`
       const response = await fetch(url, requestOption)
       if (!response) throw response
       return await response.json()
@@ -44,7 +46,6 @@ class ProjectView {
     this.viewCountSpan.textContent = count
   }
 }
-
 class ProjectController {
   constructor(view, model) {
     this.view = view
@@ -56,13 +57,10 @@ class ProjectController {
     this.alertMessage = new AlertMessage()
     this.view.startFadeIn()
     this.increaseVisitCount()
- 
   }
   async increaseVisitCount() {
     try {
-      const visitId = this.view.viewCountSpan.dataset.visit
-      if (!visitId) throw new Error('Do not have visit id')
-      const response = await this.model.putVisit(visitId)
+      const response = await this.model.putVisit()
       if (!response.ok) {
         this.alertMessage.showAlertMessage(`${response.action}: ${response.message}`)
       } else {

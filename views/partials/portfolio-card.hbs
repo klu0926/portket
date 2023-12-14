@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-3">
   <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
     <!--top-->
     <div class="card-top">
@@ -11,7 +11,7 @@
     <div class="card-middle">
       <p class="card-middle-name">{{this.name}}</p>
       <p class="card-middle-title">{{this.title}}</p>
-      <p class="card-middle-description">{{substring this.description 110}}</p>
+      <p class="card-middle-description">{{substring this.description 90}}</p>
       <div class="card-middle-skills card-skills-scroll-x">
         {{#each this.skills}}
         <span class="card-skill">{{this.name}}</span>
@@ -31,10 +31,6 @@
         <div class="card-project-count">
           <i class="fa-regular fa-file"></i>
           <span>{{this.projects.length}}</span>
-        </div>
-        <div class="card-portfolio-date">
-          <i class="fa-solid fa-pencil"></i>
-          <span>{{simpleDate this.updatedAt}}</span>
         </div>
       </div>
     </div>

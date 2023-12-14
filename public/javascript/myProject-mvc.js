@@ -21,6 +21,7 @@ class MyProjectView {
     this.descriptionDisplay = document.querySelector('#project-description-display')
     this.skillsDisplay = document.querySelector('#project-skills-display')
     this.contentDisplay = document.querySelector('#project-content-display')
+    this.statisticDiv = document.querySelector('#statistic')
     // cover buttons
     this.coverChangeButton = document.querySelector('#cover-change-btn')
     this.coverPositionButton = document.querySelector('#cover-position')
@@ -63,7 +64,7 @@ class MyProjectView {
     // statistic
     this.statisticDiv = document.querySelector('.project-statistic-div')
     // item list
-    this.viewModeElements = [this.titleDisplay, this.userAndDateDisplay, this.linksDisplay, this.descriptionDisplay, this.skillsDisplay, this.contentDisplay, this.statisticDiv]
+    this.viewModeElements = [this.titleDisplay, this.userAndDateDisplay, this.linksDisplay, this.descriptionDisplay, this.skillsDisplay, this.contentDisplay, this.statisticDiv, this.statisticDiv]
     this.editModeElements = [this.coverInputDiv, this.coverButtonDiv, this.titleInput, this.dateInput, this.linksInput, this.descriptionInput, this.skillsInput, this.contentInput]
     // default cover
     this.defaultCoverPositionY = this.getCoverPositionY()
@@ -103,10 +104,11 @@ class MyProjectView {
     this.projectForm.reset()
     this.projectForm.classList.remove('was-validated')
     // show
-    this.editBtn.style.display = 'flex'
     this.viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
+    this.statisticDiv.style.display = 'flex'
+    this.editBtn.style.display = 'flex'
     // hide
     this.saveEditBtn.style.display = 'none'
     this.cancelEditBtn.style.display = 'none'

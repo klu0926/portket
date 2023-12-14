@@ -81,7 +81,7 @@
 
 /* index */
 .ani-banner-title {
-  animation: fadeIn 1s ease-in-out, slideUp-top-50 1.2s ease-in-out;
+  animation: fadeIn 1.3s ease-in-out, slideUp-top-50 1.5s ease-in-out;
 }
 
 /* error message */

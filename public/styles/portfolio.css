@@ -160,7 +160,8 @@
   display: flex;
   justify-content: start;
   border-bottom: 1px solid rgb(230, 230, 230);
-  height: 76px;
+  min-height: 76px;
+  padding-top: 5px;
 }
 
 .skill-icon {
@@ -414,5 +415,18 @@
   .portfolio-avatar-container {
     height: 140px;
     width: 140px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio-cover {
+    height: 270px;
+  }
+  .portfolio-container {
+    margin-top: 130px;
+  }
+  .portfolio-avatar-container {
+    height: 120px;
+    width: 120px;
   }
 }

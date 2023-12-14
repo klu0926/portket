@@ -20,7 +20,6 @@ class PortfolioModel {
       if (!response) throw response
       const json = await response.json()
       return json
-      // const json = await response.json()
     } catch (err) {
       console.error('put visit error:', err)
       return err

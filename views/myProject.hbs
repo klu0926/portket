@@ -32,16 +32,11 @@
       <!--project info-->
       <div class="project-page-info">
         <!--statistic-->
-        <div class="project-statistic-div">
+        <div id="statistic" class="project-statistic-div">
           <!--page visit-->
           <div class="statistic-tag statistic-portfolio-visit">
             <i class="fa-regular fa-eye"></i>
             <span id="visit-count-span" class="px-1">{{project.visits.count}}</span>
-          </div>
-          <!--first create-->
-          <div class="statistic-tag statistic-portfolio-create">
-            <i class="fa-regular fa-clock"></i>
-            <span>{{simpleDate project.createdAt}}</span>
           </div>
           <!--last updated-->
           <div class="statistic-tag statistic-portfolio-update">
@@ -181,7 +176,7 @@
         <div class="project-page-content-box">
           {{#if (isSame this.type 'image')}}
           <div class="project-content-image">
-            <img src="{{this.content}}" alt="project image" onerror="this.src='/images/placeholder.png'" data-uuid="{{this.uuid}}" loading="lazy"/>
+            <img src="{{this.content}}" alt="project image" onerror="this.src='/images/placeholder.png'" data-uuid="{{this.uuid}}" loading="lazy" />
           </div>
           {{/if}} {{#if (isSame this.type 'text')}}
           <div class="project-content-text">
@@ -247,5 +242,9 @@
 <!--input option-->
 {{>input-option}}
 
+<!--project data-->
+<span id="project-data" data-id="{{project.id}}" data-visit="{{project.visitId}}" style="display: hidden"></span>
+
+<!--script-->
 <script type="module" src="/javascript/project.js"></script>
 <script type="module" src="/javascript/myProject-mvc.js"></script>

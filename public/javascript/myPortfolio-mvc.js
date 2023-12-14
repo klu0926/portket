@@ -21,7 +21,7 @@ class MyPortfolioModel {
       const json = await response.json()
       return json
     } catch (err) {
-      console.error('put visit error:', err)
+      console.error('Delete Project error:', err)
       return err
     }
   }
@@ -53,6 +53,7 @@ class MyPortfolioView {
     this.descriptionDisplay = document.querySelector('#description-display')
     this.contactDisplay = document.querySelector('#contact-display')
     this.skillDisplay = document.querySelector('#skill-display')
+    this.statisticDiv = document.querySelector('#statistic')
     // skill
     this.skillInputs = document.querySelectorAll('.skill-input')
     this.skillToolTip = document.querySelector('#skill-tooltip')
@@ -98,9 +99,10 @@ class MyPortfolioView {
       this.skillInputDiv,
     ]
     // view mode elements
-    this.viewModeElements = [this.nameDisplay, this.titleDisplay, this.socialDisplay, this.addProjectBtn, this.descriptionDisplay, this.contactDisplay, this.skillDisplay]
+    this.viewModeElements = [this.nameDisplay, this.titleDisplay, this.socialDisplay, this.addProjectBtn, this.descriptionDisplay, this.contactDisplay, this.skillDisplay, this.statisticDiv]
     // init
     this.init()
+    console.log(this.statisticDiv)
   }
   init() {
     this.hideAllEditModeElements()
@@ -133,10 +135,11 @@ class MyPortfolioView {
     this.infoForm.reset()
     this.infoForm.classList.remove('was-validated')
     // show
-    this.editBtn.style.display = 'flex'
     this.viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
+    this.statisticDiv.style.display = 'flex'
+    this.editBtn.style.display = 'flex'
     // hide
     this.saveEditBtn.style.display = 'none'
     this.cancelEditBtn.style.display = 'none'
