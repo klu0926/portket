@@ -358,10 +358,10 @@
     justify-content: center !important;
   }
   .portfolio-cover-buttons-container {
-    top: 100px;
-    left: 0;
-    right: 0;
-    width: 100%;
+    margin: 0 !important;
+    top: 280px;
+    left: auto !important;
+    right: 20px !important;
   }
   .portfolio-cover-drag {
     height: 275px;
