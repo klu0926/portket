@@ -357,10 +357,17 @@ input {
     justify-content: center !important;
   }
   .cover-buttons-container {
-    top: 100px;
+    top: 300px;
     left: 0;
     right: 0;
     width: 100%;
     margin-left: 0;
+  }
+}
+
+/* for touch device */
+@media (hover: none) {
+  #cover-position {
+    display: none !important;
   }
 }

@@ -367,3 +367,10 @@
     height: 275px;
   }
 }
+
+/* for touch device */
+@media (hover: none) {
+  #cover-position {
+    display: none !important;
+  }
+}
