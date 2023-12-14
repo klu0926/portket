@@ -65,7 +65,7 @@
 /* Project */
 #add-project-btn-container {
   position: relative;
-  height: 200px;
+  height: 50px;
 }
 
 #project-blocker {
@@ -91,11 +91,11 @@
   position: relative;
   display: block;
   height: 100%;
-  background-color: white;
-  border: 1px solid var(--my-border);
+  background-color: var(--my-red);
   border-radius: 4px;
   font-size: 1.1em;
-  color: var(--my-grey-light);
+  font-weight: bold;
+  color: white;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
@@ -114,6 +114,7 @@
   color: var(--my-red);
   border-color: var(--my-red);
   background-color: var(--my-red-light2);
+  border: 1px solid var(--my-red);
 }
 
 /* project delete btn */
