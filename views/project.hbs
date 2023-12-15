@@ -69,7 +69,9 @@
       <div class="project-page-content-box">
         {{#if (isSame this.type 'image')}}
         <div class="project-content-image">
-          <img src="{{this.content}}" alt="project image" loading="lazy" />
+          <div class="image-load load-pulse">
+            <img src="{{this.content}}" alt="project image" />
+          </div>
         </div>
         {{/if}} {{#if (isSame this.type 'text')}}
         <div class="project-content-text">
