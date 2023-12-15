@@ -1,5 +1,3 @@
-import AlertMessage from './alertMessage.js'
-
 class IndexModel {}
 
 class IndexView {
@@ -11,11 +9,9 @@ class IndexView {
     this.init()
   }
   init() {
-    console.log('imageload', this.imageLoadDivs)
     this.handleImageLoaded()
   }
   handleImageLoaded() {
-    console.log('handle load')
     this.imageLoadDivs.forEach((d) => {
       const image = d.querySelector('img')
 
@@ -33,10 +29,6 @@ class IndexController {
   constructor(view, model) {
     this.view = view
     this.model = model
-    this.init()
-  }
-  async init() {
-    this.AlertMessage = new AlertMessage()
   }
 }
 
