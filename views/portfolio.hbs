@@ -2,7 +2,9 @@
   <!--cover-->
   {{#if user.cover}}
   <div class="portfolio-cover">
-    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
+    <div class="image-load">
+      <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
+    </div>
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement">
@@ -31,8 +33,8 @@
         <!--avatar + info -->
         <div class="portfolio-top-container">
           <!--avatar-->
-          <div class="portfolio-avatar-container">
-            <img src="{{user.avatar}}" class="avatar-img" alt="avatar" loading="lazy" />
+          <div class="portfolio-avatar-container image-load bigger load-pulse">
+            <img src="{{user.avatar}}" class="avatar-img" alt="avatar" loading="eager" />
           </div>
           <!--info-->
           <div class="">
@@ -109,7 +111,7 @@
           <div class="skill-container">
             {{#each user.skills}}
             <div class="skill-block">
-              <div class="skill-icon">
+              <div class="skill-icon image-load load-plus">
                 <img src="{{this.icon}}" alt="skill icon" loading="lazy" />
               </div>
               <div class="skill-info">
@@ -143,7 +145,7 @@
           <div class="project-outer-block mb-3">
             <a class="project-link" href="/projects/{{this.id}}">
               <div class="project-block d-flex">
-                <div class="project-image-holder col-4">
+                <div class="project-image-holder col-4 image-load load-pulse">
                   <img src="{{this.cover}}" alt="project image" loading="lazy" />
                 </div>
                 <div class="project-block-info p-2 col-8">

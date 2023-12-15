@@ -24,7 +24,9 @@
   <div id="portfolio-cover-drag" class="portfolio-cover-drag"></div>
   {{#if user.cover}}
   <div class="portfolio-cover">
-    <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
+    <div class="image-load">
+      <img id="cover-img" class="portfolio-cover-img" src="{{user.cover}}" alt="cover" style="object-position: center {{user.coverPosition}}%;" loading="eager" />
+    </div>
   </div>
   {{else}}
   <div class="portfolio-cover portfolio-cover-placement"></div>
@@ -54,9 +56,9 @@
           </div>
         </div>
         <!--avatar-->
-        <div id="avatar-container" class="portfolio-avatar-container">
+        <div id="avatar-container" class="portfolio-avatar-container image-load bigger load-pluse">
           <div id="avatar-input-div"></div>
-          <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="lazy" />
+          <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="eager" />
         </div>
         <!--name-->
         <div class="mb-2">
@@ -92,7 +94,7 @@
             <div class="social-container">
               {{#each user.socials}}
               <div class="social-box">
-                <div class="social-icon">
+                <div class="social-icon image-load load-plus">
                   <a href="{{this.link}}" target="_blank">
                     <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
                   </a>
@@ -309,12 +311,12 @@
         <!--skill tool tip-->
         <div id="skill-tooltip" class="skill-tooltip">
           <div class="skill-tooltip-top">
-            <div class="skill-tooltip-img">
-              <img src="" alt="skill icon" />
+            <div id="skill-tooltip-img-div" class="skill-tooltip-img-div image-load load-pulse">
+              <img id="skill-tooltip-img" src="" alt="skill icon" />
             </div>
-            <p class="skill-tooltip-name"></p>
+            <p id="skill-tooltip-name" class="skill-tooltip-name"></p>
           </div>
-          <p class="skill-tooltip-description"></p>
+          <p id="skill-tooltip-description" class="skill-tooltip-description"></p>
         </div>
       </div>
 

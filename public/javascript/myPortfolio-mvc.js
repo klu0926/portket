@@ -54,9 +54,13 @@ class MyPortfolioView {
     this.contactDisplay = document.querySelector('#contact-display')
     this.skillDisplay = document.querySelector('#skill-display')
     this.statisticDiv = document.querySelector('#statistic')
-    // skill
+    // skill & tool tips
     this.skillInputs = document.querySelectorAll('.skill-input')
     this.skillToolTip = document.querySelector('#skill-tooltip')
+    this.skillToolTipName = document.querySelector('#skill-tooltip-name')
+    this.skillToolTipImageDiv = document.querySelector('#skill-tooltip-img-div')
+    this.skillToolTipImage = document.querySelector('#skill-tooltip-img')
+    this.skillToolTipDescription = document.querySelector('#skill-tooltip-description')
     // project
     this.addProjectBtn = document.querySelector('#add-project-btn')
     this.projectBlocker = document.querySelector('#project-blocker')
@@ -85,6 +89,7 @@ class MyPortfolioView {
     this.addSocialBtn = document.querySelector('#add-social')
     this.socialInputContainer = document.querySelector('#social-input-container')
     this.removeSocialBtns = document.querySelectorAll('.remove-social')
+
     // edit mode elements
     this.editModeElements = [
       this.coverInputDiv,
@@ -102,10 +107,13 @@ class MyPortfolioView {
     this.viewModeElements = [this.nameDisplay, this.titleDisplay, this.socialDisplay, this.addProjectBtn, this.descriptionDisplay, this.contactDisplay, this.skillDisplay, this.statisticDiv]
     // init
     this.init()
-    console.log(this.statisticDiv)
   }
   init() {
     this.hideAllEditModeElements()
+    // skill tool tips load
+    this.skillToolTipImage.addEventListener('load', () => {
+      this.skillToolTipImageDiv.classList.toggle('loaded')
+    })
   }
   hideAllEditModeElements() {
     this.editModeElements.forEach((e) => {
@@ -248,16 +256,13 @@ class MyPortfolioView {
       target = target.parentElement
     }
     if (target.classList.contains('skill-input')) {
+      // toggle load
+      this.skillToolTipImageDiv.classList.remove('loaded')
+
       // data
-      const name = target.getAttribute('data-name')
-      const icon = target.getAttribute('data-icon')
-      const description = target.getAttribute('data-des')
-      const toolTipName = this.skillToolTip.querySelector('.skill-tooltip-name')
-      const toolTipImage = this.skillToolTip.querySelector('img')
-      const toolTipDescription = this.skillToolTip.querySelector('.skill-tooltip-description')
-      toolTipName.innerText = name
-      toolTipImage.src = icon
-      toolTipDescription.innerText = description
+      this.skillToolTipName.innerText = target.getAttribute('data-name')
+      this.skillToolTipImage.src = target.getAttribute('data-icon')
+      this.skillToolTipDescription.innerText = target.getAttribute('data-des')
 
       // position
       const parentHeight = parseInt(window.getComputedStyle(this.skillInputDiv).height)

@@ -1,4 +1,3 @@
-
 /* my portfolio ----------------------------------*/
 
 /* name */
@@ -319,13 +318,13 @@
   font-weight: bold;
 }
 
-.skill-tooltip-img {
+.skill-tooltip-img-div {
   display: inline-block;
   align-items: center;
   width: 25px;
   margin-right: 5px;
 }
-.skill-tooltip-img img {
+.skill-tooltip-img-div img {
   width: 100%;
   filter: invert(50%);
 }

@@ -1,52 +1,81 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const loaderContainer = document.querySelector('.loader-container')
-  const loaderBar = document.querySelector('.loader-bar')
-  let loaderPercent = 0
-  let loaderInterval = null
-  const loaderAmount = 0.5
-  const loaderTime = 10
+class LoaderModel {
+  constructor() {}
+}
 
-  // Reset loader on DOM loaded
-  loaderReset()
+class LoaderView {
+  constructor() {
+    // image loader
+    this.imageLoadDivs = document.querySelectorAll('.image-load')
+    // top loader
+    const loaderContainer = document.querySelector('.loader-container')
+    const loaderBar = document.querySelector('.loader-bar')
+    this.init()
+  }
+  init() {
+    this.handleImageLoaded()
+  }
+  handleImageLoaded() {
+    this.imageLoadDivs.forEach((d) => {
+      const image = d.querySelector('img')
+      if (!image) return
+      if (image.complete) {
+        d.classList.add('loaded')
+      } else {
+        image.addEventListener('load', () => {
+          d.classList.add('loaded')
+        })
+      }
+    })
+  }
+}
 
-  // start unload, and before unloading is completed
-  window.addEventListener('beforeunload', () => {
-    loaderStart()
-  })
-
-  // unload completed
-  window.addEventListener('unload', () => {
-    loaderComplete()
-  })
-
-  function loaderStart() {
+class LoaderController {
+  constructor(model, view) {
+    this.view = view
+    this.model = model
+    this.loaderPercent = 0
+    this.loaderInterval = null
+    this.loaderAmount = 0.5
+    this.loaderTime = 10
+  }
+  init() {
+    loaderReset()
+    window.addEventListener('beforeunload', () => this.loaderStart)
+    window.addEventListener('unload', () => loaderComplete)
+  }
+  loaderStart() {
     if (loaderInterval === null) {
-      loaderContainer.style.opacity = '1'
-      loaderInterval = setInterval(() => {
-        if (loaderPercent >= 87) {
-          clearInterval(loaderInterval)
-          loaderInterval = null
+      this.view.loaderContainer.style.opacity = '1'
+      this.loaderInterval = setInterval(() => {
+        if (this.loaderPercent >= 87) {
+          clearInterval(this.loaderInterval)
+          this.loaderInterval = null
         }
-        loaderBar.style.width = (loaderPercent += loaderAmount).toString() + '%'
-      }, loaderTime)
+        this.view.loaderBar.style.width = (this.loaderPercent += this.loaderAmount).toString() + '%'
+      }, this.loaderTime)
+    }
+  }
+  loaderReset() {
+    this.loaderPercent = 0
+    this.view.loaderBar.style.width = '0%'
+    if (this.loaderInterval) {
+      clearInterval(this.loaderInterval)
+      this.loaderInterval = null
     }
   }
 
-  function loaderReset() {
-    loaderPercent = 0
-    loaderBar.style.width = '0%'
-    if (loaderInterval) {
-      clearInterval(loaderInterval)
-      loaderInterval = null
+  loaderComplete() {
+    this.loaderPercent = 100
+    this.view.loaderBar.style.width = loaderPercent + '%'
+    if (this.loaderInterval) {
+      clearInterval(this.loaderInterval)
+      this.loaderInterval = null
     }
   }
+}
 
-  function loaderComplete() {
-    loaderPercent = 100
-    loaderBar.style.width = loaderPercent + '%'
-    if (loaderInterval) {
-      clearInterval(loaderInterval)
-      loaderInterval = null
-    }
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const model = new LoaderModel()
+  const view = new LoaderView()
+  const controller = new LoaderController(model, view)
 })
