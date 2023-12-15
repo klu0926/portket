@@ -79,6 +79,18 @@
   }
 }
 
+@keyframes image-load {
+  0% {
+    background: var(--my-loading-1);
+  }
+  50% {
+    background: var(--my-loading-2);
+  }
+  100% {
+    background: var(--my-loading-1);
+  }
+}
+
 /* index */
 .ani-banner-title {
   animation: fadeIn 1.3s ease-in-out, slideUp-top-50 1.5s ease-in-out;
@@ -87,4 +99,28 @@
 /* error message */
 .marginShake {
   animation: marginShake 0.8s ease-in-out;
+}
+
+/* image loading*/
+.image-load {
+  position: relative;
+}
+
+.image-load::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--my-loading-1);
+  animation: image-load 2s linear infinite;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  z-index: 2;
+}
+
+.image-load.loaded::after {
+  animation: none;
+  opacity: 0;
 }

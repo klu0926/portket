@@ -7,12 +7,26 @@ class IndexView {
     this.banner = document.querySelector('#banner')
     this.bannerImage = document.querySelector('#banner-image')
     this.bannerTitle = document.querySelector('.banner-title')
+    this.imageLoadDivs = document.querySelectorAll('.image-load')
+    this.init()
   }
-  resetClass(element, elementClass) {
-    element.classList.remove(elementClass)
-    setTimeout(() => {
-      element.classList.add(elementClass)
-    }, 40)
+  init() {
+    console.log('imageload', this.imageLoadDivs)
+    this.handleImageLoaded()
+  }
+  handleImageLoaded() {
+    console.log('handle load')
+    this.imageLoadDivs.forEach((d) => {
+      const image = d.querySelector('img')
+
+      if (image.complete) {
+        d.classList.add('loaded')
+      } else {
+        image.addEventListener('load', () => {
+          d.classList.add('loaded')
+        })
+      }
+    })
   }
 }
 class IndexController {

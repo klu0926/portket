@@ -1,6 +1,3 @@
-@import url('/styles/color.css');
-@import url('/styles/animation.css');
-
 .nav-edit-btn {
   display: flex;
   height: 30px;

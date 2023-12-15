@@ -1,6 +1,6 @@
 :root {
   --my-red: rgb(220, 53, 69); /*bootstrap danger*/
-  --my-red2: rgb(217, 129, 138); /*bootstrap danger*/
+  --my-red2: rgb(217, 129, 138);
   --my-red-light: rgb(208, 87, 99);
   --my-red-light2: rgba(224, 74, 89, 0.122);
   --my-red-light3: rgb(218, 169, 174);
@@ -16,4 +16,6 @@
   --my-green-light: rgb(106, 173, 106);
   --my-blue: rgb(59, 137, 173);
   --my-blue-light: rgb(94, 166, 200);
+  --my-loading-1: rgb(195, 195, 195);
+  --my-loading-2: rgb(233, 233, 233);
 }
