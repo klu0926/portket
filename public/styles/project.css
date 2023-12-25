@@ -95,6 +95,8 @@
   object-fit: cover;
   width: 100%;
   height: auto;
+  /* lazy img require a height, auto doesn't work */
+  /* so this element can't be lazy */
 }
 
 /* description */

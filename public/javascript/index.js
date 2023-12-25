@@ -2,9 +2,6 @@ class IndexModel {}
 
 class IndexView {
   constructor() {
-    this.banner = document.querySelector('#banner')
-    this.bannerImage = document.querySelector('#banner-image')
-    this.bannerTitle = document.querySelector('.banner-title')
     this.imageLoadDivs = document.querySelectorAll('.image-load')
     this.init()
   }
@@ -29,9 +26,11 @@ class IndexController {
   constructor(view, model) {
     this.view = view
     this.model = model
+    this.init()
+  }
+  init() {
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   const model = new IndexModel()
   const view = new IndexView()

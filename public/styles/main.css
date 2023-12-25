@@ -352,12 +352,15 @@ body {
 
 /* navbar-avatar */
 .navbar-avatar-div {
+  position: relative;
   display: flex;
   justify-content: center;
   position: relative;
   margin-right: 10px;
+  cursor: pointer;
 }
-.navbar-avatar-a {
+
+.navbar-avatar {
   display: flex;
   width: 40px;
   height: 40px;
@@ -372,31 +375,43 @@ body {
   width: 100%;
 }
 
-.navbar-avatar-a:hover {
-  background-color: var(--my-red);
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2);
+.navbar-avatar-div:hover .navbar-avatar {
+  box-shadow: 0px 0px 0px 3px var(--my-border);
 }
 
-.navbar-avatar-div::after {
-  content: 'Account';
-  display: block;
+.navbar-avatar-div-menu {
   position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  background-color: var(--my-red);
+  inset: 0 auto auto 0;
+  transform: translate3d(-76px, 48px, 0);
+  width: auto;
+  height: auto;
   border-radius: 5px;
-  padding: 0px 6px;
-  font-size: 0.85rem;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-  /* 0.2 is speed, 0.4 is delay */
+  background-color: white;
+  overflow: auto;
+  text-wrap: nowrap;
+  box-shadow: 0px 0px 5px 0px var(--my-border);
+  transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.navbar-avatar-div:hover::after {
-  opacity: 1;
-  top: 130%;
+.navbar-avatar-div-menu.hide {
+  opacity: 0;
+  transform: translate3d(-50px, 48px, 0);
+}
+
+.navbar-avatar-div-menu-list li {
+  padding: 4px 20px;
+}
+.navbar-avatar-div-menu-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--my-border);
+}
+
+.navbar-avatar-div-menu-list li:hover {
+  background-color: var(--my-border-light);
+}
+
+.navbar-avatar-div-menu-list li a {
+  text-decoration: none;
+  color: var(--my-grey-dark);
 }
 
 /*portfolio display*/

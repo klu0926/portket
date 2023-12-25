@@ -45,16 +45,27 @@
           </div>
           <!--edit mode display tip-->
           <div id="edit-mode-display" class="edit-mode-display">Edit Mode</div>
-          {{else}}
-          <!--my portfolio-->
-          <div class="navbar-avatar-div">
-            <a class="navbar-avatar-a" href="/users/{{currentUser.id}}">
-              <img class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
-            </a>
-          </div>
           {{/if}}
-          <!--logout-->
-          <a class="login-btn btn btn-outline-primary" href="/users/logout">Logout</a>
+          <!--my navbar avatar -->
+          <div id="navbar-avatar-div" class="navbar-avatar-div">
+            <div class="navbar-avatar">
+              <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
+              </div>
+            </a>
+            <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu hide">
+              <ul class="navbar-avatar-div-menu-list">
+                <li class="menu-list-portfolio">
+                  <a href="/users/{{currentUser.id}}">
+                  <i class="fa-regular fa-user"></i>
+                  Portfolio
+                  </a>
+                </li>
+                <li class="menu-list-logout">
+                  <a href="/users/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           {{else}}
           <!--login-->
           <a class="login-btn btn btn-primary" href="/users/login">Login</a>
@@ -75,5 +86,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="/javascript/loader.js"></script>
+    <script src="/javascript/main.js"></script>
   </body>
 </html>
