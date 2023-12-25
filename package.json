@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "browser": "BROWSER_SYNC=sync nodemon app.js",
     "lint": "eslint \"**/*.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

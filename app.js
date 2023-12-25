@@ -17,14 +17,14 @@ function useBrowserSync() {
     proxy: `http://localhost:3000`, // my server port
     port: 3001, // browserSync's port (view)
     open: false, // don't reopen a tab
-    files: ['views/**/*.hbs'], // ** any directory, subdirectory, no none
+    notify: false, // disable notifications
+    files: ['public/**/*.*'], // ** any directory, subdirectory, no none
   })
 }
 
 // dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
-  useBrowserSync()
 }
 
 // view engine
@@ -106,4 +106,8 @@ app.use(routes)
 
 app.listen(port, () => {
   console.info(`Server running on port ${port}`)
+  // browserSync
+  if (process.env.BROWSER_SYNC === 'sync') {
+    useBrowserSync()
+  }
 })

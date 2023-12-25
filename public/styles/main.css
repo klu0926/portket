@@ -403,7 +403,6 @@ body {
   transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
-
 /* this is for js, currently using css to trigger show/hide menu*/
 /* .navbar-avatar-div-menu.hide {
   opacity: 0;
@@ -413,7 +412,7 @@ body {
 .navbar-avatar-div-menu-list li {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   padding: 4px 20px;
   overflow-wrap: nowrap;
   white-space: nowrap;
