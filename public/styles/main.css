@@ -400,6 +400,7 @@ body {
 
 .navbar-avatar-div-menu-list li {
   padding: 4px 20px;
+  overflow-wrap: nowrap;
 }
 .navbar-avatar-div-menu-list > *:not(:last-child) {
   border-bottom: 1px solid var(--my-border);

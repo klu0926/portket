@@ -7,8 +7,8 @@ class LoaderView {
     // image loader
     this.imageLoadDivs = document.querySelectorAll('.image-load')
     // top loader
-    const loaderContainer = document.querySelector('.loader-container')
-    const loaderBar = document.querySelector('.loader-bar')
+    this.loaderContainer = document.querySelector('.loader-container')
+    this.loaderBar = document.querySelector('.loader-bar')
     this.init()
   }
   init() {
@@ -37,14 +37,15 @@ class LoaderController {
     this.loaderInterval = null
     this.loaderAmount = 0.5
     this.loaderTime = 10
+    this.init()
   }
   init() {
-    loaderReset()
-    window.addEventListener('beforeunload', () => this.loaderStart)
-    window.addEventListener('unload', () => loaderComplete)
+    this.loaderReset()
+    window.addEventListener('beforeunload', () => this.loaderStart())
+    window.addEventListener('unload', () => this.loaderComplete())
   }
   loaderStart() {
-    if (loaderInterval === null) {
+    if (this.loaderInterval === null) {
       this.view.loaderContainer.style.opacity = '1'
       this.loaderInterval = setInterval(() => {
         if (this.loaderPercent >= 87) {
@@ -63,7 +64,6 @@ class LoaderController {
       this.loaderInterval = null
     }
   }
-
   loaderComplete() {
     this.loaderPercent = 100
     this.view.loaderBar.style.width = loaderPercent + '%'
