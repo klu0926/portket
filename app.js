@@ -10,9 +10,21 @@ const config = require('./config/config.json')
 const flash = require('connect-flash')
 const handlebarHelper = require('./handlebar-helper')
 
+function useBrowserSync() {
+  // browserSync (auto reload on changes)
+  var browserSync = require('browser-sync')
+  browserSync({
+    proxy: `http://localhost:3000`, // my server port
+    port: 3001, // browserSync's port (view)
+    open: false, // don't reopen a tab
+    files: ['views/**/*.hbs'], // ** any directory, subdirectory, no none
+  })
+}
+
 // dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
+  useBrowserSync()
 }
 
 // view engine
