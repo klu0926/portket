@@ -379,10 +379,20 @@ body {
   box-shadow: 0px 0px 0px 3px var(--my-border);
 }
 
+/* this replace main.js menu control*/
+.navbar-avatar-img:focus-within ~ .navbar-avatar-div-menu {
+  user-select: auto;
+  opacity: 1;
+  transform: translate3d(-76px, 48px, 0);
+}
+
 .navbar-avatar-div-menu {
+  display: block;
+  user-select: none;
   position: absolute;
   inset: 0 auto auto 0;
-  transform: translate3d(-76px, 48px, 0);
+  transform: translate3d(-45px, 48px, 0);
+  opacity: 0;
   width: auto;
   height: auto;
   border-radius: 5px;
@@ -393,14 +403,20 @@ body {
   transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.navbar-avatar-div-menu.hide {
+
+/* this is for js, currently using css to trigger show/hide menu*/
+/* .navbar-avatar-div-menu.hide {
   opacity: 0;
   transform: translate3d(-50px, 48px, 0);
-}
+} */
 
 .navbar-avatar-div-menu-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px 20px;
   overflow-wrap: nowrap;
+  white-space: nowrap;
 }
 .navbar-avatar-div-menu-list > *:not(:last-child) {
   border-bottom: 1px solid var(--my-border);

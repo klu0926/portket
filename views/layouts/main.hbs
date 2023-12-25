@@ -49,21 +49,20 @@
           <!--my navbar avatar -->
           <div id="navbar-avatar-div" class="navbar-avatar-div">
             <div class="navbar-avatar">
-              <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
+              <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" tabindex="0" />
+              <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu hide">
+                <ul class="navbar-avatar-div-menu-list">
+                  <li class="menu-list-portfolio">
+                    <a href="/users/{{currentUser.id}}">
+                      <i class="fa-regular fa-user"></i>
+                      Portfolio
+                    </a>
+                  </li>
+                  <li class="menu-list-logout">
+                    <a href="/users/logout">Logout</a>
+                  </li>
+                </ul>
               </div>
-            </a>
-            <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu hide">
-              <ul class="navbar-avatar-div-menu-list">
-                <li class="menu-list-portfolio">
-                  <a href="/users/{{currentUser.id}}">
-                  <i class="fa-regular fa-user"></i>
-                  Portfolio
-                  </a>
-                </li>
-                <li class="menu-list-logout">
-                  <a href="/users/logout">Logout</a>
-                </li>
-              </ul>
             </div>
           </div>
           {{else}}

@@ -37,10 +37,12 @@ class MainController {
     this.init()
   }
   init() {
-    document.addEventListener('click', (e) => {
-      // avatar menu toggle
-      this.view.toggleNavbarAvatarMenu(e.target)
-    })
+    // currently using css to show/hide menu
+    // to use this I will need to 
+    // document.addEventListener('click', (e) => {
+    //   // avatar menu toggle
+    //   this.view.toggleNavbarAvatarMenu(e.target)
+    // })
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
