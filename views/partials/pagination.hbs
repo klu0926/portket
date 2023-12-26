@@ -1,0 +1,11 @@
+{{#if (isMoreThanTarget totalPages 1)}}
+<div class="pagination-container">
+  <ul class="pagination-list">
+    {{#each (numberToArray totalPages)}}
+    <li class="pagination-item">
+      <a href="/users?page={{this}}&limit={{../limit}}">{{this}}</a>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}

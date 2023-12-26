@@ -46,4 +46,15 @@ module.exports = {
   isMoreThanTarget: (number, target) => {
     return number > target
   },
+  numberToArray: (number) => {
+    if (!number || !isFinite(number)) return
+    const integer = parseInt(number)
+    const array = []
+    const BASE = 1
+    for (let i = BASE; i < integer + BASE; i++) {
+      array.push(i)
+    }
+    console.log('numberToArray', array.length)
+    return array
+  },
 }

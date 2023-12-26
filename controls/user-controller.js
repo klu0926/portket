@@ -7,6 +7,7 @@ const sequelize = require('sequelize')
 const imgurFileHandler = require('../helper/imgur')
 const allLocations = require('../data/location.json')
 const cleanTempFolder = require('../helper/cleanTempFolder')
+const getOffset = require('../helper/getPaginationOffset')
 
 const userController = {
   login: (req, res, next) => {
@@ -89,16 +90,34 @@ const userController = {
   },
   getUsers: async (req, res, next) => {
     try {
-      let keyword = req.query.keyword ? req.query.keyword : ''
-      // SQL 'like' search for matching substring, % means can be anything
-      const whereCondition = keyword
-        ? {
-            [Op.or]: [{ name: { [Op.like]: `%${keyword}%` } }, { email: { [Op.like]: `%${keyword}%` } }, { title: { [Op.like]: `%${keyword}%` } }, { description: { [Op.like]: `%${keyword}%` } }],
-          }
-        : {}
+      const keyword = req.query.keyword ? req.query.keyword : ''
+      const page = isFinite(req.query.page) ? Number(req.query.page) : 1
+      const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 9
+      const offset = getOffset(page, limit)
 
+      // SQL search where condition
+      const searchColumns = ['name', 'title']
+      const searchLikeArray = []
+      // [Op.like] is a Symbol for dynamic key
+      // [Op.or] is a Symbol for dynamic key
+      // each Symbol is unique like an object
+      searchColumns.forEach((column) => {
+        searchLikeArray.push({ [column]: { [Op.like]: `%${keyword}%` } })
+      })
+      const whereObject = keyword ? { [Op.or]: searchLikeArray } : {}
+      /* whereObject
+      {
+        [Op.or]: [
+          {name: { [Op.like]: `%${keyword}%`}},
+          {title: { [Op.like]: `%${keyword}%`}}
+        ]
+      }
+      */
+      const totalUsers = await User.count()
       const usersData = await User.findAndCountAll({
-        where: whereCondition,
+        where: whereObject,
+        limit: limit,
+        offset: offset,
         attributes: {
           exclude: ['password'],
         },
@@ -122,23 +141,33 @@ const userController = {
             },
           },
         ],
-        order: [['id', 'DESC']],
+        order: [['id', 'DESC']], // newest
+        distinct: true, // return only unique rows
       })
-      usersData.rows = usersData.rows.map((user) => user.toJSON())
+      const users = usersData.rows.map((user) => user.toJSON())
 
       // current user to the top
       const currentUser = req.user
       if (currentUser) {
-        const userIndex = usersData.rows.findIndex((user) => user.id === currentUser.id)
+        const userIndex = users.findIndex((user) => user.id === currentUser.id)
         if (userIndex !== -1) {
-          usersData.rows.unshift(usersData.rows.splice(userIndex, 1)[0])
+          users.unshift(users.splice(userIndex, 1)[0])
         }
       }
 
       // get random landing image
       const landingImage = randomPublicImage('landing')
-
-      res.render('index', { users: usersData.rows, count: usersData.count, keyword, landingImage})
+      res.render('index', {
+        users,
+        totalCount: totalUsers,
+        currentCount: usersData.count,
+        page,
+        limit,
+        offset,
+        keyword,
+        landingImage,
+        totalPages: Math.ceil(usersData.count / limit),
+      })
     } catch (err) {
       next(err)
     }

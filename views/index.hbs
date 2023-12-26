@@ -1,4 +1,5 @@
 <div class="container">
+  <!--banner (hide if searching)-->
   <div id="banner" class="banner">
     <p id="banner-title" class="banner-title ani-banner-title">BE <span class="banner-title-red">PROFESSIONAL</span> ANYTIME, ANYWHERE</p>
     <div id="banner-image-div" class="banner-image-div image-load">
@@ -8,10 +9,25 @@
   <!--section below the banner-->
   <div class="below-banner">
     <!--search bar-->
-    <div class="mt-3">{{> search-bar}}</div>
+    <div class="mt-3">{{> search-bar totalCount=totalCount}}</div>
     <!--portfolio display-->
+    {{#if (isMoreThanTarget users.length 0)}}
     <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card currentUser=../currentUser}} {{/each}}</div>
   </div>
+  {{else}}
+  <div class="no-result-display">
+    <div>
+      <i class="no-result-i fa-regular fa-face-meh"></i>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <p class="no-result-p">No Results Found</p>
+      <a class="no-result-btn" href="/users">Go Back</a>
+    </div>
+  </div>
+  {{/if}}
+
+  <!--pagination--->
+  {{> pagination totalPages=totalPages page=page limit=limit}}
 </div>
 
 <!--script-->

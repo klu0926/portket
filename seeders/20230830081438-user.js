@@ -8,7 +8,7 @@ const { Visit } = require('../models')
 // eg: email: user1@example.com \ password : 123
 // eg; email: user7@example.com \ password : 123
 const SEED_PASSWORD = '123'
-const SEED_AMOUNT = 20
+const SEED_AMOUNT = 100
 const SEED_AVATAR_SIZE = '400'
 const SEED_VISIT_MAX = 1001
 

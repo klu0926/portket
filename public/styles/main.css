@@ -8,7 +8,7 @@
 @import url('/styles/animation.css');
 @import url('/styles/imageLoad.css');
 @import url('/styles/statistic.css');
-
+@import url('/styles/pagination.css');
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -438,22 +438,20 @@ body {
 /* main content */
 /* this control all the pages, don't change it*/
 .main-body {
-  margin-top: 80px;
-  padding-left: 7px;
-  padding-right: 7px;
+  margin-top: 70px;
 }
 
 /* banner */
 .banner {
   position: absolute;
+  top: 60px;
+  left: 0;
   display: flex;
   justify-content: center;
-  top: 65px;
-  left: 0px;
   width: 100vw;
   height: 600px;
   background-color: rgb(255, 255, 255);
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
   user-select: none;
 }
@@ -523,7 +521,7 @@ body {
 /* before banner container */
 /* index page, area contain search and cards */
 .below-banner {
-  margin-top: 600px;
+  margin-top: 620px;
 }
 
 /*-Index card-*/
@@ -819,6 +817,29 @@ body {
   height: 100%;
 }
 
+/* no result display*/
+.no-result-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-top: 30px;
+  height: 400px;
+  width: 100%;
+}
+
+.no-result-i {
+  font-size: 10rem;
+  color: var(--my-grey-light);
+  margin: 10px;
+}
+
+.no-result-p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--my-grey-light);
+}
+
 /* footer */
 .footer-container {
   width: 100%;
@@ -853,7 +874,7 @@ body {
 
 @media screen and (max-width: 1200px) {
   .banner {
-    height: 500px;
+    height: 480px;
   }
   .banner-title {
     font-size: 2.7rem;
@@ -912,10 +933,16 @@ body {
   .below-banner {
     margin-top: 0px;
   }
+  .no-result-p {
+    font-size: 1.3rem;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .navbar-logo-text {
     display: none;
+  }
+  .no-result-p {
+    font-size: 1.2rem;
   }
 }

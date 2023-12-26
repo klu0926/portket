@@ -52,8 +52,6 @@ module.exports = {
     // get user
     const users = await User.findAll({ raw: true })
 
-    console.log('users len', users.length)
-
     // create visits (users * 5)
     const totalVisit = users.length * SEED_AMOUNT
     const visits = new RandomVisitGenerator(totalVisit).create()
@@ -63,10 +61,8 @@ module.exports = {
       raw: true,
     })
 
-    console.log('visit len', visitsData.length)
     // create projects
     const projects = new RandomProjectGenerator(users, visitsData).create()
-    console.log('projects len', projects.length)
 
     return queryInterface.bulkInsert('Projects', projects)
   },
