@@ -112,9 +112,9 @@ nav,
 section {
   display: block;
 }
-/* body {
+body {
   line-height: 1;
-} */
+}
 ol,
 ul {
   list-style: none;
@@ -271,25 +271,22 @@ body {
 /* header */
 .header {
   position: fixed;
-  height: 65px;
+  left: 0px;
+  top: 0px;
   width: 100%;
-  background-color: white;
   margin: 0;
   box-shadow: 0px 5px 10px 1px rgb(0, 0, 0, 0.2);
   z-index: 100;
   border: none;
-  left: 0;
-  top: 0;
 }
 
 /* loader */
 .loader-container {
   position: fixed;
-  top: 0;
+  top: 0px;
   display: flex;
   width: 100%;
-  height: 5px;
-  background-color: white;
+  height: 10px;
   z-index: 1000;
   opacity: 0%;
 }
@@ -305,11 +302,13 @@ body {
 }
 
 /* navbar */
-.navbar {
-  border: none;
-  height: 100%;
+.my-navbar {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
-  padding: 0 5px;
+  height: 60px;
+  padding: 15 10 10 10;
+  background-color: white;
 }
 
 .navbar-brand {
@@ -438,7 +437,7 @@ body {
 /* main content */
 /* this control all the pages, don't change it*/
 .main-body {
-  margin-top: 70px;
+  margin-top: 65px;
 }
 
 /* banner */
@@ -927,6 +926,9 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+  .loader-container {
+    height: 15px;
+  }
   .banner {
     display: none;
   }

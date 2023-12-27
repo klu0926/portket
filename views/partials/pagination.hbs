@@ -1,11 +1,35 @@
 {{#if (isMoreThanTarget totalPages 1)}}
 <div class="pagination-container">
   <ul class="pagination-list">
-    {{#each (numberToArray totalPages)}}
+    {{#with (paginatorArray totalPages page) as |paginatorPages|}}
+    <!--prev page-->
+    {{#if (isNotSame 1 ../page)}}
     <li class="pagination-item">
-      <a href="/users?page={{this}}&limit={{../limit}}">{{this}}</a>
+      <a href="/users?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}">
+        <i class="fa-solid fa-caret-left"></i>
+      </a>
     </li>
-    {{/each}}
+    {{/if}}
+    <!--all pages-->
+    {{#each paginatorPages}} {{#if (isSame this ../../page)}}
+    <li class="pagination-item disable">
+      <a href="/users?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}">{{this}}</a>
+    </li>
+    {{else}}
+    <li class="pagination-item">
+      <a href="/users?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}">{{this}}</a>
+    </li>
+    {{/if}} {{/each}}
+    <!--next page-->
+    {{#if (isNotSame (lastArrayItem paginatorPages) ../page)}}
+    <li class="pagination-item">
+      <a href="/users?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}">
+        <i class="fa-solid fa-caret-right"></i>
+      </a>
+    </li>
+    {{/if}} {{/with}}
   </ul>
+  <!--total pages-->
+  <p class="totalPageInfo">{{page}}/{{totalPages}}</p>
 </div>
 {{/if}}

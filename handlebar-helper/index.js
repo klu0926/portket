@@ -30,6 +30,13 @@ module.exports = {
     }
     return false
   },
+  isNotSame: (a, b) => {
+    return !module.exports.isSame(a, b)
+  },
+  add: (target, number) => {
+    if (!isFinite(target) && !isFinite(number)) return
+    return target + number
+  },
   isEmptyString: (a) => {
     if (a === '') return true
     return false
@@ -46,15 +53,40 @@ module.exports = {
   isMoreThanTarget: (number, target) => {
     return number > target
   },
-  numberToArray: (number) => {
-    if (!number || !isFinite(number)) return
-    const integer = parseInt(number)
+  paginatorArray: (totalPage, currentPage) => {
+    if (!totalPage || !isFinite(totalPage)) return
+    const PAGE_RANGE = 5
+    let currentPageRange = PAGE_RANGE
     const array = []
-    const BASE = 1
-    for (let i = BASE; i < integer + BASE; i++) {
-      array.push(i)
+    // current Page
+    array.push(currentPage)
+    // get before
+    if (totalPage !== 1) {
+      if (currentPage !== 1) {
+        let i = 1
+        while (currentPage - i > 0 && i <= Math.floor(PAGE_RANGE / 2)) {
+          array.unshift(currentPage - i)
+          i++
+        }
+      }
+      currentPageRange -= array.length
+      // get after
+      if (currentPage !== totalPage) {
+        let i = 1
+        while (currentPage + i <= totalPage && i <= currentPageRange) {
+          array.push(currentPage + i)
+          i++
+        }
+      }
     }
-    console.log('numberToArray', array.length)
     return array
+  },
+  firstArrayItem: (array) => {
+    if (!array && array.length === 0) return
+    return array[0]
+  },
+  lastArrayItem: (array) => {
+    if (!array && array.length === 0) return
+    return array[array.length - 1]
   },
 }
