@@ -9,6 +9,7 @@ const usePassport = require('./config/passport')
 const config = require('./config/config.json')
 const flash = require('connect-flash')
 const handlebarHelper = require('./handlebar-helper')
+const fs = require('fs')
 
 function useBrowserSync() {
   // browserSync (auto reload on changes)
@@ -83,7 +84,21 @@ app.use(
     },
   })
 )
-app.use(express.static('public'))
+app.use(
+  express.static('public', {
+    maxAge: '1d',
+    immutable: true,
+    setHeaders: (res, filePath) => {
+      // Set ETag based on the file's last modified timestamp
+      const stat = fs.statSync(filePath)
+      const lastModified = stat.mtime.toUTCString()
+      const etag = `W/"${lastModified}"`
+
+      res.setHeader('ETag', etag)
+      res.setHeader('Last-Modified', lastModified)
+    },
+  })
+)
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride('_method'))
