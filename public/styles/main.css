@@ -394,7 +394,6 @@ body {
   opacity: 0;
   width: auto;
   height: auto;
-  border-radius: 5px;
   background-color: white;
   overflow: auto;
   text-wrap: nowrap;
@@ -412,7 +411,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: 4px 20px;
+  padding: 5px 20px;
   overflow-wrap: nowrap;
   white-space: nowrap;
 }
