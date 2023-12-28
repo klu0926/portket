@@ -318,14 +318,10 @@ body {
   gap: 5px;
 }
 
-.navbar-logo-img {
+.navbar-logo-div {
   display: inline-block;
   width: 25px;
   height: 25px;
-}
-
-.navbar-logo-img img {
-  max-width: 100%;
 }
 
 .navbar-logo-text {
