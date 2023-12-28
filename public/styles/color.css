@@ -36,7 +36,7 @@
 }
 
 a {
-  color: var(--my-red) !important;
+  color: var(--my-red);
 }
 
 .color-white {

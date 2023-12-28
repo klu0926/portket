@@ -596,7 +596,7 @@ body {
   font-size: small;
   margin-right: 2px;
   margin-bottom: 3px;
-  padding: 2px 4px;
+  padding: 4px;
   border-radius: 2px;
   cursor: default;
 }
@@ -630,12 +630,13 @@ body {
 }
 
 .card-bottom-portfolio-btn {
+  display: inline-block;
   background-color: var(--my-red);
   border-radius: 0px;
   color: white;
-  padding: 5px 10px;
   text-decoration: none;
   text-transform: capitalize;
+  padding: 6px;
   transition: all 0.2s ease-in-out;
 }
 
