@@ -5,7 +5,7 @@
     <!--prev page-->
     {{#if (isNotSame 1 ../page)}}
     <li class="pagination-item">
-      <a href="/users?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}">
+      <a href="/users?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}" aria-label="previous page">
         <i class="fa-solid fa-caret-left"></i>
       </a>
     </li>
@@ -23,7 +23,7 @@
     <!--next page-->
     {{#if (isNotSame (lastArrayItem paginatorPages) ../page)}}
     <li class="pagination-item">
-      <a href="/users?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}">
+      <a href="/users?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}" aria-label="next page">
         <i class="fa-solid fa-caret-right"></i>
       </a>
     </li>
