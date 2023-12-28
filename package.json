@@ -7,7 +7,8 @@
     "dev": "nodemon app.js",
     "browser": "BROWSER_SYNC=sync nodemon app.js",
     "lint": "eslint \"**/*.js\" --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +41,9 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1"
+    "eslint-plugin-promise": "^6.1.1",
+    "glob": "^10.3.10",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
