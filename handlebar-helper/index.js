@@ -89,4 +89,11 @@ module.exports = {
     if (!array && array.length === 0) return
     return array[array.length - 1]
   },
+  replaceWord: (string, targetWord, replaceWord) => {
+    const args = [...arguments]
+    args.forEach((s) => {
+      if (typeof s !== 'string') return
+    })
+    return string.replace(targetWord, replaceWord)
+  },
 }

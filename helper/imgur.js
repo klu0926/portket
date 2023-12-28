@@ -1,28 +1,9 @@
-// const imgur = require('imgur')
-// const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
-// imgur.setClientId(IMGUR_CLIENT_ID)
-
-// const imgurFileHandler = (file) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       if (!file) return resolve(null)
-//       const img = await imgur.uploadFile(file.path)
-//       resolve(img?.link || null)
-//     } catch (err) {
-//       reject(err)
-//     }
-//   })
-// }
-
-// module.exports = imgurFileHandler
-// --------------------------------------------------//
-
 const errorHandler = require('../helper/errorHandler')
+const fs = require('fs')
+const sharp = require('sharp')
 const imgur = require('imgur')
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 imgur.setClientId(IMGUR_CLIENT_ID)
-const fs = require('fs')
-const sharp = require('sharp')
 
 const imgurFileHandler = async (file) => {
   try {
@@ -34,7 +15,7 @@ const imgurFileHandler = async (file) => {
     // Use sharp to resize and optimize the image
     await sharp(file.path)
       .resize({ width: 2048 })
-      .jpeg({ quality: 70 }) // Adjust quality as needed
+      .webp({ quality: 50 }) // Adjust quality as needed
       .toFile(compressedFilePath)
 
     // Upload the compressed file to Imgur
