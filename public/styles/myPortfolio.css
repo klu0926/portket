@@ -187,7 +187,7 @@
   box-shadow: 1px 1px 10px 2px rgba(255, 54, 54, 0.2);
   font-size: 1rem;
   color: white;
-  padding: 2px 10px;
+  padding: 4px 10px;
 }
 
 .portfolio-cover-buttons-container {
@@ -273,6 +273,7 @@
   width: 100%;
   align-items: center;
   border-bottom: 1px solid var(--my-grey-light);
+  padding: 4px;
 }
 .skill-label {
   display: inline-block;

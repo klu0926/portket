@@ -70,26 +70,32 @@
 
 .statistic-portfolio-visit::after {
   content: 'Page Visits';
+  padding: 2px;
 }
 
 .statistic-portfolio-update::after {
   content: 'Updated';
+  padding: 2px;
 }
 
 .statistic-portfolio-create::after {
   content: 'Created';
+  padding: 2px;
 }
 
 .statistic-project-count::after {
   content: 'Projects';
+  padding: 2px;
 }
 
 .statistic-project-visit::after {
   content: 'Page Visits';
+  padding: 2px;
 }
 
 .statistic-project-update::after {
   content: 'Updated';
+  padding: 2px;
 }
 
 .statistic-tag:hover::after {

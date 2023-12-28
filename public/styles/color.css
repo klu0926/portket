@@ -20,3 +20,25 @@
   --my-loading-2: rgb(233, 233, 233);
 }
 
+/*override bootstraps*/
+.text-primary {
+  color: var(--my-red) !important;
+}
+.btn-primary {
+  background-color: var(--my-red) !important;
+  border-color: var(--my-red) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--my-red-light) !important;
+  border-color: var(--my-red-light) !important;
+}
+
+a {
+  color: var(--my-red) !important;
+}
+
+.color-white {
+  color: white !important;
+}

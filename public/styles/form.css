@@ -133,6 +133,7 @@
 .form-check-label {
   display: block;
   cursor: pointer;
+  padding: 4px;
 }
 
 .form-check-label:hover {

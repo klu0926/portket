@@ -714,7 +714,7 @@ body {
   background-color: var(--my-red-light);
   border-radius: 2px;
   color: white;
-  padding: 0px 6px;
+  padding: 2px 6px;
   font-size: 0.9rem;
   opacity: 0;
   transition: all 0.2s ease-in-out;
@@ -732,7 +732,7 @@ body {
   background-color: var(--my-red-light);
   border-radius: 2px;
   color: white;
-  padding: 0px 6px;
+  padding: 2px 6px;
   font-size: 0.9rem;
   opacity: 0;
   transition: all 0.2s ease-in-out;
