@@ -100,8 +100,6 @@ const projectController = {
       if (!files && !files.cover[0]) throw new Error('Missing project cover image')
       const imgurUrls = await imgurCustom(files.cover[0])
 
-      console.log('imgurUrls', imgurUrls)
-
       // create visit
       const newVisit = await Visit.create()
 

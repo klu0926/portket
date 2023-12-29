@@ -13,10 +13,11 @@ const fs = require('fs')
  */
 function randomPublicImage(...dir) {
   try {
-    if (!dir) new Error('RandomPublicImage require ...dir inputs!')
-    
+    if (!dir.length) new Error('RandomPublicImage require ...dir inputs!')
+
     const filePath = path.join('public', 'images', ...dir)
     let files = fs.readdirSync(filePath)
+
     if (!files.length) {
       console.log(`Can not find files in ${filePath}`)
       return
@@ -27,8 +28,7 @@ function randomPublicImage(...dir) {
     const fileName = files[Math.floor(Math.random() * files.length)]
     return '/images/' + path.join(...dir) + '/' + fileName
   } catch (err) {
-    console.log(`Error reading directory ${filePath}`, err)
+    console.error(`RandomPublicImage`, err, err.message)
   }
 }
-
 module.exports = randomPublicImage

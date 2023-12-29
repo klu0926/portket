@@ -1,6 +1,8 @@
 'use strict'
 const { sequelize } = require('../models')
 const randomPublicImage = require('../helper/randomPublicImage')
+const cover = randomPublicImage('covers')
+const smallCover = '/images/covers_small/' + cover.split('/')[3]
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -28,12 +30,22 @@ module.exports = {
       avatar: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: 'https://i.imgur.com/PiJ0HXw.png',
+        defaultValue: '/images/avatar.webp',
+      },
+      avatarSmall: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: '/images/avatar.webp',
       },
       cover: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: randomPublicImage('covers'),
+        defaultValue: cover,
+      },
+      coverSmall: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: smallCover,
       },
       coverPosition: {
         allowNull: false,

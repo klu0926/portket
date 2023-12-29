@@ -1,3 +1,4 @@
-const s = ' /images/covers/default.jpeg'
+const randomPublicImage = require('./helper/randomPublicImage')
 
-console.log(s.split('/')[3])
+
+console.log(randomPublicImage('cover'))

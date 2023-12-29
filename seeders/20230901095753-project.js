@@ -30,13 +30,13 @@ class RandomProjectGenerator {
     let count = 0
     for (let i = 0; i < this.users.length; i++) {
       for (let j = 0; j < SEED_AMOUNT; j++) {
-        const coverImage = randomPublicImage('projects')
+        const image = randomPublicImage('projects')
         const project = {
           userId: this.users[i].id,
           title: 'Simple Project Title',
           description: faker.lorem.paragraphs(10),
-          cover: coverImage,
-          coverSmall: '/images/covers_small/' + coverImage.split('/')[3],
+          cover: image,
+          coverSmall: '/images/projects_small/' + image.split('/')[3],
           coverPosition: 50,
           visitId: this.visits[count].id,
         }

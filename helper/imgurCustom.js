@@ -12,7 +12,7 @@ imgur.setClientId(IMGUR_CLIENT_ID)
  * @param {Integer} smallWidth default to 600
  * @returns {array} return array of 2 imgur urls[], array[0]=big, array[1]=small
  */
-const imgurFileHandler = async (file, bigWidth = 2028, smallWidth = 200) => {
+const imgurFileHandler = async (file, bigWidth = 2028, smallWidth = 400) => {
   try {
     if (!file) return null
 

@@ -10,6 +10,7 @@ const { Visit } = require('../models')
 const SEED_PASSWORD = '123'
 const SEED_AMOUNT = 50
 const SEED_AVATAR_SIZE = '400'
+const SEED_AVATAR_SIZE_SMALL = '100'
 const SEED_VISIT_MAX = 1001
 
 class RandomVisitGenerator {
@@ -30,18 +31,20 @@ class RandomUserGenerator {
   constructor(amount, visits) {
     this.amount = amount
     this.visits = visits
-    this.avatarSize = SEED_AVATAR_SIZE
   }
   create() {
     const users = []
     for (let i = 0; i < this.amount; i++) {
       const randomId = Math.random().toString(36).slice(-8)
+      const cover = randomImage('covers')
       const newUser = {
         name: faker.person.fullName(),
         email: `user${i + 1}@example.com`,
         password: bcrypt.hashSync(SEED_PASSWORD),
-        avatar: 'https://i.pravatar.cc/' + this.avatarSize + '?u=' + randomId,
-        cover: randomImage('covers'),
+        avatar: 'https://i.pravatar.cc/' + SEED_AVATAR_SIZE + '?u=' + randomId,
+        avatarSmall: 'https://i.pravatar.cc/' + SEED_AVATAR_SIZE_SMALL + '?u=' + randomId,
+        cover: cover,
+        coverSmall: '/images/covers_small/' + cover.split('/')[3],
         coverPosition: 50,
         title: faker.person.jobTitle(),
         description: descriptionData[i % descriptionData.length],

@@ -4,7 +4,8 @@ const bcryptjs = require('bcryptjs')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const sequelize = require('sequelize')
-const imgurFileHandler = require('../helper/imgur')
+const imgur = require('../helper/imgur')
+const imgurCustom = require('../helper/imgurCustom')
 const allLocations = require('../data/location.json')
 const cleanTempFolder = require('../helper/cleanTempFolder')
 const getOffset = require('../helper/getPaginationOffset')
@@ -67,7 +68,9 @@ const userController = {
         })
       }
       // random Cover
-      const randomCover = randomPublicImage('covers')
+      const cover = randomPublicImage('covers')
+      const smallCover = '/images/covers_small/' + cover.split('/')[3]
+
       // create visit record
       const newVisit = await Visit.create()
       // create account
@@ -75,7 +78,8 @@ const userController = {
         name,
         email,
         password: bcryptjs.hashSync(password),
-        cover: randomCover,
+        cover: cover,
+        smallCover: smallCover,
         visitId: newVisit.id,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -275,8 +279,8 @@ const userController = {
       const body = req.body
       const files = req.files
 
-      let newAvatar = ''
-      let newCover = ''
+      let newAvatars = []
+      let newCovers = []
       const newName = body.name ? body.name.trim() : ''
       const newTitle = body.title ? body.title.trim() : ''
       const newDescription = body.description ? body.description.trim() : ''
@@ -291,15 +295,10 @@ const userController = {
 
       // files
       if (files?.cover && files.cover !== currentUser.cover) {
-        console.log('cover file uploading...')
-        console.log('files.cover[0]', files.cover[0])
-        newCover = await imgurFileHandler(files.cover[0])
-        console.log('new cover :', newCover)
+        newCovers = await imgurCustom(files.cover[0], 2028, 400)
       }
       if (files?.avatar && files.avatar !== currentUser.avatar) {
-        console.log('avatar file uploading...')
-        newAvatar = await imgurFileHandler(files.avatar[0])
-        console.log('new Avatar :', newAvatar)
+        newAvatars = await imgurCustom(files.avatar[0], 400, 100)
       }
 
       // user skills
@@ -361,8 +360,10 @@ const userController = {
       await userModel.update({
         name: newName || user.name,
         email: newEmail || user.email,
-        avatar: newAvatar || user.avatar,
-        cover: newCover || user.cover,
+        avatar: newAvatars?.[0] || user.avatar,
+        avatarSmall: newAvatars?.[1] || user.avatarSmall,
+        cover: newCovers?.[0] || user.cover,
+        coverSmall: newCovers?.[1] || user.coverSmall,
         coverPosition,
         title: newTitle || user.title,
         description: newDescription || user.description,

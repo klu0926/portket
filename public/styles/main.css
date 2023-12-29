@@ -388,7 +388,7 @@ body {
   inset: 0 auto auto 0;
   transform: translate3d(-45px, 48px, 0);
   opacity: 0;
-  width: auto;
+  min-width: 100px;
   height: auto;
   background-color: white;
   overflow: auto;
