@@ -42,7 +42,6 @@ class LoaderController {
   init() {
     this.loaderReset()
     window.addEventListener('beforeunload', () => this.loaderStart())
-    //window.addEventListener('unload', () => this.loaderComplete())
   }
   loaderStart() {
     if (this.loaderInterval === null) {
@@ -64,14 +63,6 @@ class LoaderController {
       this.loaderInterval = null
     }
   }
-  // loaderComplete() {
-  //   this.loaderPercent = 100
-  //   this.view.loaderBar.style.width = loaderPercent + '%'
-  //   if (this.loaderInterval) {
-  //     clearInterval(this.loaderInterval)
-  //     this.loaderInterval = null
-  //   }
-  // }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
