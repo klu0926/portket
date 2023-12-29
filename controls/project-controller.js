@@ -1,7 +1,8 @@
 const { User, Project, Social, Skill, Project_Link, Project_Skill, Project_Content, Visit } = require('../models')
 const { Op } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
-const imgurImageHandler = require('../helper/imgur')
+const imgur = require('../helper/imgur')
+const imgurCustom = require('../helper/imgurCustom')
 const addHttp = require('../helper/addHttp')
 const cleanTempFolder = require('../helper/cleanTempFolder')
 const responseObject = require('../helper/responseObject')
@@ -97,7 +98,9 @@ const projectController = {
 
       // upload file to imgur
       if (!files && !files.cover[0]) throw new Error('Missing project cover image')
-      const imgurUrl = await imgurImageHandler(files.cover[0])
+      const imgurUrls = await imgurCustom(files.cover[0])
+
+      console.log('imgurUrls', imgurUrls)
 
       // create visit
       const newVisit = await Visit.create()
@@ -108,7 +111,8 @@ const projectController = {
         title,
         date,
         description,
-        cover: imgurUrl,
+        cover: imgurUrls?.[0],
+        coverSmall: imgurUrls?.[1],
         visitId: newVisit.id,
       })
 
@@ -175,11 +179,11 @@ const projectController = {
 
       const body = req.body
       const files = req.files
-      let newCover = ''
+      let imgurUrls = null
 
       // files : cover
       if (files?.cover && files.cover !== currentProject.cover) {
-        newCover = await imgurImageHandler(files.cover[0])
+        imgurUrls = await imgurCustom(files.cover[0])
       }
 
       // update project_links
@@ -294,7 +298,7 @@ const projectController = {
           // create content
           if (contents[i].type === 'image') {
             if (files.content && files.content.length > 0) {
-              contents[i].content = await imgurImageHandler(files.content.shift())
+              contents[i].content = await imgur(files.content.shift())
             }
           }
           await Project_Content.create({
@@ -326,7 +330,8 @@ const projectController = {
         date: body.date || currentProject.date,
         title: body.title || currentProject.title,
         description: body.description || currentProject.description,
-        cover: newCover || currentProject.cover,
+        cover: imgurUrls?.[0] || currentProject.cover,
+        coverSmall: imgurUrls?.[1] || currentProject.coverSmall,
         coverPosition,
       })
 

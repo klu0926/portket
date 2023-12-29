@@ -1,6 +1,7 @@
 .nav-edit-btn {
   display: flex;
   height: 30px;
+  min-width: 30px;
   margin-right: 5px;
   align-items: center;
   color: white;
@@ -133,4 +134,21 @@
   border: none;
   color: white;
   border-radius: 3px;
+}
+
+/* loading edit btn */
+#loading-btn {
+  cursor: auto;
+  border-radius: 2px;
+  animation: fadeInOut 1s linear infinite;
+}
+
+#loading-btn:hover {
+  background-color: var(--my-red);
+  border-radius: 2px;
+}
+
+.spinner {
+  margin-left: 2px;
+  animation: spinner 1s linear infinite;
 }

@@ -36,6 +36,7 @@ class MyPortfolioView {
     this.saveEditBtn = document.querySelector('#save-edit-btn')
     this.cancelEditBtn = document.querySelector('#cancel-edit-btn')
     this.editModeDisplay = document.querySelector('#edit-mode-display')
+    this.loadingBtn = document.querySelector('#loading-btn')
     // input Div
     this.coverInputDiv = document.querySelector('#cover-input-div')
     this.coverButtonDiv = document.querySelector('#portfolio-cover-buttons-container')
@@ -104,7 +105,16 @@ class MyPortfolioView {
       this.skillInputDiv,
     ]
     // view mode elements
-    this.viewModeElements = [this.nameDisplay, this.titleDisplay, this.socialDisplay, this.addProjectBtn, this.descriptionDisplay, this.contactDisplay, this.skillDisplay, this.statisticDiv]
+    this.viewModeElements = [
+      this.nameDisplay,
+      this.titleDisplay,
+      this.socialDisplay,
+      this.addProjectBtn,
+      this.descriptionDisplay,
+      this.contactDisplay,
+      this.skillDisplay,
+      this.statisticDiv,
+    ]
     // init
     this.init()
   }
@@ -288,6 +298,11 @@ class MyPortfolioView {
   hideSkillToolTip() {
     this.skillToolTip.style.opacity = '0'
   }
+  showLoadingBtn() {
+    this.saveEditBtn.classList.add('hide')
+    this.cancelEditBtn.classList.add('hide')
+    this.loadingBtn.classList.remove('hide')
+  }
 }
 
 // CONTROLLER
@@ -356,6 +371,9 @@ class MyPortfolioController {
     event.preventDefault()
     event.stopPropagation()
     if (form.checkValidity()) {
+      // show loading btn
+      this.view.showLoadingBtn()
+      // submit
       form.submit()
     } else {
       this.alertMessage.showAlertMessage('Missing form information.')

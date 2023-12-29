@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       date: DataTypes.DATE,
       cover: DataTypes.STRING,
+      coverSmall: DataTypes.STRING,
       coverPosition: DataTypes.FLOAT,
       visitId: DataTypes.INTEGER,
     },

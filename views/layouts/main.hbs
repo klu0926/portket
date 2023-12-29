@@ -49,13 +49,17 @@
           <div class="edit-buttons-container">
             <button id="edit-btn" class="nav-edit-btn">
               <i class="fa-solid fa-pencil edit-mode-icon"></i>
-              Edit Mode
+              EDIT
             </button>
             <button id="save-edit-btn" class="nav-edit-btn">
               <i class="fa-solid fa-floppy-disk edit-mode-icon"></i>
-              Save Edit
+              SAVE
             </button>
             <button id="cancel-edit-btn" class="nav-edit-btn">X</button>
+            <button id="loading-btn" class="nav-edit-btn hide">
+              SAVING...
+              <i class="fa-solid fa-spinner spinner"></i>
+            </button>
           </div>
           <!--edit mode display tip-->
           <div id="edit-mode-display" class="edit-mode-display">Edit Mode</div>
@@ -64,7 +68,7 @@
           <div id="navbar-avatar-div" class="navbar-avatar-div">
             <div class="navbar-avatar">
               <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" tabindex="0" />
-              <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu hide">
+              <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu">
                 <ul class="navbar-avatar-div-menu-list">
                   <li class="menu-list-portfolio">
                     <a href="/users/{{currentUser.id}}">
@@ -95,7 +99,6 @@
     <div class="main-body">{{{body}}}</div>
     <!--footer-->
     <div class="footer-container">{{> footer}}</div>
-
     <!--script-->
     <script src="/dist/loader.bundle.js"></script>
     <script src="/dist/main.bundle.js"></script>

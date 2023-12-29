@@ -31,7 +31,12 @@ module.exports = {
       cover: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: 'https://placehold.co/600x400',
+        defaultValue: 'https://placehold.co/300x200?text=IMAGE',
+      },
+      coverSmall: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'https://placehold.co/150x100?text=IMAGE',
       },
       coverPosition: {
         allowNull: false,

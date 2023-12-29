@@ -398,12 +398,6 @@ body {
   transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* this is for js, currently using css to trigger show/hide menu*/
-/* .navbar-avatar-div-menu.hide {
-  opacity: 0;
-  transform: translate3d(-50px, 48px, 0);
-} */
-
 .navbar-avatar-div-menu-list li {
   display: flex;
   align-items: center;
@@ -864,6 +858,10 @@ body {
   object-position: center;
 }
 
+.hide {
+  display: none !important;
+}
+
 /* Error message */
 .alert-message {
   position: fixed;
@@ -951,9 +949,6 @@ body {
 }
 
 @media screen and (max-width: 500px) {
-  .navbar-logo-text {
-    display: none;
-  }
   .no-result-p {
     font-size: 1.2rem;
   }

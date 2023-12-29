@@ -1,9 +1,3 @@
-function replaceWord(string, targetWord, replaceWord) {
-  const args = [...arguments]
-  args.forEach((s) => {
-    if (typeof s !== 'string') return
-  })
-  return string.replace(targetWord, replaceWord)
-}
+const s = ' /images/covers/default.jpeg'
 
-console.log(replaceString('i am lulu', 'lulu', 'charlulu'))
+console.log(s.split('/')[3])

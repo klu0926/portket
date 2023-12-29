@@ -14,6 +14,7 @@ class MyProjectView {
     this.saveEditBtn = document.querySelector('#save-edit-btn')
     this.cancelEditBtn = document.querySelector('#cancel-edit-btn')
     this.editModeDisplay = document.querySelector('#edit-mode-display')
+    this.loadingBtn = document.querySelector('#loading-btn')
     // display
     this.titleDisplay = document.querySelector('#project-title-display')
     this.userAndDateDisplay = document.querySelector('#project-user-date-display')
@@ -64,8 +65,26 @@ class MyProjectView {
     // statistic
     this.statisticDiv = document.querySelector('.project-statistic-div')
     // item list
-    this.viewModeElements = [this.titleDisplay, this.userAndDateDisplay, this.linksDisplay, this.descriptionDisplay, this.skillsDisplay, this.contentDisplay, this.statisticDiv, this.statisticDiv]
-    this.editModeElements = [this.coverInputDiv, this.coverButtonDiv, this.titleInput, this.dateInput, this.linksInput, this.descriptionInput, this.skillsInput, this.contentInput]
+    this.viewModeElements = [
+      this.titleDisplay,
+      this.userAndDateDisplay,
+      this.linksDisplay,
+      this.descriptionDisplay,
+      this.skillsDisplay,
+      this.contentDisplay,
+      this.statisticDiv,
+      this.statisticDiv,
+    ]
+    this.editModeElements = [
+      this.coverInputDiv,
+      this.coverButtonDiv,
+      this.titleInput,
+      this.dateInput,
+      this.linksInput,
+      this.descriptionInput,
+      this.skillsInput,
+      this.contentInput,
+    ]
     // default cover
     this.defaultCoverPositionY = this.getCoverPositionY()
     // init
@@ -472,6 +491,11 @@ class MyProjectView {
       reader.readAsDataURL(input.files[0])
     }
   }
+  showLoadingBtn() {
+    this.saveEditBtn.classList.add('hide')
+    this.cancelEditBtn.classList.add('hide')
+    this.loadingBtn.classList.remove('hide')
+  }
 }
 // CONTROLLER
 class MyProjectController {
@@ -536,6 +560,8 @@ class MyProjectController {
     event.stopPropagation()
     // check form validity
     if (form.checkValidity()) {
+      // show loading btn
+      this.view.showLoadingBtn()
       // Generate content order list
       const contents = this.view.contentInput.querySelectorAll('.content-input-div')
       // filter out undefined content

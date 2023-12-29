@@ -235,7 +235,7 @@ const userController = {
       const user = userData.toJSON()
 
       user.socials.forEach((social) => {
-        social.icon = allSocials[social.socialId - 1].icon
+        social['icon'] = allSocials[social.socialId - 1].icon
       })
 
       user.skillsList = []
