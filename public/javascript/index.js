@@ -28,8 +28,7 @@ class IndexController {
     this.model = model
     this.init()
   }
-  init() {
-  }
+  init() {}
 }
 document.addEventListener('DOMContentLoaded', () => {
   const model = new IndexModel()

@@ -9,7 +9,7 @@ class AlertMessage {
       this.hideAlertMessage()
     })
   }
-  showAlertMessage(message) {
+  showAlertMessage(message, error) {
     if (!message) message = 'Something went wrong.'
     this.alertMessage.querySelector('.alert-message-text').innerText = message
     this.resetClass(this.alertMessage, 'marginShake')
