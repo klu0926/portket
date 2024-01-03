@@ -671,7 +671,7 @@ body {
 .project-card-middle-description {
   color: var(--my-grey);
   margin-top: 5px;
-  height: 50px;
+  height: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
