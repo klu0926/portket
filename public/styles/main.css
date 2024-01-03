@@ -399,6 +399,8 @@ body {
 }
 
 .navbar-avatar-img {
+  object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
