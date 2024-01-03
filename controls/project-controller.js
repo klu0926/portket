@@ -1,11 +1,10 @@
 const { User, Project, Social, Skill, Project_Link, Project_Skill, Project_Content, Visit } = require('../models')
 const { Op } = require('sequelize')
-const randomPublicImage = require('../helper/randomPublicImage')
 const imgur = require('../helper/imgur')
 const imgurCustom = require('../helper/imgurCustom')
 const addHttp = require('../helper/addHttp')
 const cleanTempFolder = require('../helper/cleanTempFolder')
-const responseObject = require('../helper/responseObject')
+const getOffset = require('../helper/getPaginationOffset')
 
 const projectController = {
   getProject: async (req, res, next) => {
@@ -71,6 +70,91 @@ const projectController = {
       } else {
         res.render('project', { project })
       }
+    } catch (err) {
+      next(err)
+    }
+  },
+  getProjects: async (req, res, next) => {
+    try {
+      const column = req.query.column ? req.query.column : 'title'
+      const keyword = req.query.keyword ? req.query.keyword : ''
+      const page = isFinite(req.query.page) ? Number(req.query.page) : 1
+      const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
+      const offset = getOffset(page, limit)
+
+      // search option
+      // project title, project description, user name, skill name
+      // SQL query condition
+      // projects / user / skill
+      const projectsWhere = {}
+      const userWhere = {}
+      const skillWhere = {}
+      if (column === 'user') {
+        userWhere['name'] = { [Op.like]: `%${keyword}%` }
+      } else if (column === 'skill') {
+        skillWhere['name'] = { [Op.like]: `%${keyword}%` }
+      } else {
+        projectsWhere[column] = { [Op.like]: `%${keyword}%` }
+      }
+      // search
+      const totalProjects = await Project.count()
+      const projectsData = await Project.findAndCountAll({
+        where: projectsWhere,
+        limit: limit,
+        offset: offset,
+        attributes: {},
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'name', 'avatar', 'avatarSmall'],
+            as: 'user',
+            where: userWhere,
+          },
+          {
+            model: Project_Link,
+            attributes: ['id', 'name', 'link'],
+            as: 'links',
+          },
+          {
+            model: Skill,
+            attributes: ['id', 'name', 'icon'],
+            as: 'skills',
+            through: {
+              attributes: [],
+            },
+            where: skillWhere,
+          },
+          {
+            model: Visit,
+            attributes: ['count'],
+            as: 'visits',
+          },
+          {
+            model: Project_Content,
+            attributes: ['id', 'order', 'type', 'content', 'uuid'],
+            as: 'contents',
+          },
+        ],
+        order: [
+          ['id', 'DESC'],
+          [{ model: Project_Content, as: 'contents' }, 'order', 'ASC'],
+        ],
+        distinct: true, // return only unique rows
+      })
+      const projects = projectsData.rows.map((project) => project.toJSON())
+
+      res.render('projects', {
+        projects,
+        totalCount: totalProjects,
+        currentCount: projectsData.count,
+        page,
+        limit,
+        offset,
+        keyword,
+        column,
+        totalPages: Math.ceil(projectsData.count / limit),
+        currentPage: 'projects'
+      })
     } catch (err) {
       next(err)
     }

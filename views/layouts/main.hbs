@@ -34,14 +34,34 @@
     {{> message}}
     <!--top-->
     <header class="header">
-      <!--nab bar-->
+      <!--navbar-->
       <nav class="my-navbar">
-        <a class="navbar-brand fw-bold" href="/users">
-          <div class="navbar-logo-div">
-            <img class="full" src="/favicon_io/512x512.png" alt="logo" />
+        <!--navbar left-->
+        <div class="navbar-left">
+          <!--logo-->
+          <a class="navbar-brand fw-bold" href="/users">
+            <div class="navbar-logo-div">
+              <img class="full" src="/favicon_io/512x512.png" alt="logo" />
+            </div>
+            <p class="navbar-logo-text"><span class="text-primary">PORT</span><span>KET</span></p>
+          </a>
+          <!--page href-->
+          <div class="navbar-links">
+            <ul class="navbar-links-ul">
+              <li class="navbar-links-li">
+                <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}}">
+                  <i class="fa-regular fa-user navbar-links-icon"></i> <span class="navbar-links-title">USERS</span></a
+                >
+              </li>
+              <li class="navbar-links-li">
+                <a href="/projects" class="navbar-links-href {{#if (isSame currentPage 'projects')}}red underline-red{{/if}}"
+                  ><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">PROJECTS</span></a
+                >
+              </li>
+            </ul>
           </div>
-          <p class="navbar-logo-text"><span class="text-primary">PORT</span><span>KET</span></p>
-        </a>
+        </div>
+
         {{#if isAuthenticated}}
         <div class="navbar-right">
           <!-- edit mode buttons for my portfolio-->
@@ -68,18 +88,15 @@
           <div id="navbar-avatar-div" class="navbar-avatar-div">
             <div class="navbar-avatar">
               <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" tabindex="0" />
-              <div id="navbar-avatar-div-menu" class="navbar-avatar-div-menu">
-                <ul class="navbar-avatar-div-menu-list">
-                  <li class="menu-list-portfolio">
-                    <a href="/users/{{currentUser.id}}">
-                      <i class="fa-regular fa-user"></i>
-                      Portfolio
-                    </a>
-                  </li>
-                  <li class="menu-list-logout">
-                    <a href="/users/logout">Logout</a>
-                  </li>
-                </ul>
+              <!--menu-->
+              <div id="navbar-avatar-menu" class="navbar-avatar-menu">
+                <div class="navbar-avatar-menu-item">
+                  <a class="navbar-avatar-menu-href" href="/users/{{currentUser.id}}">
+                    <i class="fa-regular fa-user me-2"></i>
+                    Portfolio
+                  </a>
+                </div>
+                <div class="navbar-avatar-menu-item"><a class="navbar-avatar-menu-href" href="/users/logout">Logout</a></div>
               </div>
             </div>
           </div>

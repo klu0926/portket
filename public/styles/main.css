@@ -142,6 +142,9 @@ p {
 /* My Code start*/
 /* scroll bar */
 .card-skills-scroll-x {
+  display: flex;
+  justify-content: start;
+  align-items: center;
   position: relative;
   overflow-y: hidden;
   overflow-x: auto;
@@ -176,10 +179,6 @@ p {
   display: none;
 }
 
-.red {
-  color: var(--my-red) !important;
-}
-
 .my-icon {
   display: inline;
   width: 20px;
@@ -205,6 +204,7 @@ body {
   height: 100vh;
   flex-direction: column;
   justify-content: space-between;
+  overflow-x: hidden;
 }
 
 .body-container {
@@ -318,6 +318,38 @@ body {
   gap: 5px;
 }
 
+.navbar-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  margin-left: 25px;
+}
+
+.navbar-links-ul {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-links-href {
+  color: var(--my-grey);
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: normal;
+  transition: color 0.1s ease-in-out;
+  padding: 5px;
+}
+
+.navbar-links-href:hover {
+  color: var(--my-red2);
+}
+
+.navbar-links-icon {
+  font-size: 1rem;
+}
+
 .navbar-logo-div {
   display: inline-block;
   width: 25px;
@@ -375,47 +407,54 @@ body {
 }
 
 /* this replace main.js menu control*/
-.navbar-avatar-img:focus-within ~ .navbar-avatar-div-menu {
-  user-select: auto;
+.navbar-avatar-img:focus-within ~ .navbar-avatar-menu {
+  visibility: visible;
   opacity: 1;
-  transform: translate3d(-76px, 48px, 0);
+  transform: translate3d(-76px, 45px, 0);
 }
 
-.navbar-avatar-div-menu {
+.navbar-avatar-menu {
   display: block;
-  user-select: none;
+  visibility: hidden;
   position: absolute;
   inset: 0 auto auto 0;
-  transform: translate3d(-45px, 48px, 0);
+  transform: translate3d(-45px, 45px, 0);
   opacity: 0;
-  min-width: 100px;
+  min-width: 120px;
   height: auto;
   background-color: white;
   overflow: auto;
   text-wrap: nowrap;
   box-shadow: 0px 0px 5px 0px var(--my-border);
-  transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.navbar-avatar-div-menu-list li {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding: 5px 20px;
-  overflow-wrap: nowrap;
-  white-space: nowrap;
-}
-.navbar-avatar-div-menu-list > *:not(:last-child) {
+.navbar-avatar-menu > *:not(:last-child) {
   border-bottom: 1px solid var(--my-border);
 }
 
-.navbar-avatar-div-menu-list li:hover {
-  background-color: var(--my-border-light);
+.navbar-avatar-menu .navbar-avatar-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  overflow-wrap: nowrap;
+  white-space: nowrap;
+  height: 30px;
+  background-color: white;
 }
 
-.navbar-avatar-div-menu-list li a {
+.navbar-avatar-menu-item:hover {
+  background-color: var(--my-border);
+}
+
+.navbar-avatar-menu-item .navbar-avatar-menu-href {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  color: var(--my-grey-dark);
+  color: var(--my-black);
 }
 
 /*portfolio display*/
@@ -426,26 +465,29 @@ body {
 /* main content */
 /* this control all the pages, don't change it*/
 .main-body {
-  margin-top: 65px;
+  margin-top: 60px;
+}
+
+/* index-container*/
+.index-container {
+  overflow: visible;
+  max-width: 100vw;
 }
 
 /* banner */
 .banner {
-  position: absolute;
-  top: 60px;
-  left: 0;
+  position: relative;
   display: flex;
   justify-content: center;
   width: 100vw;
   height: 600px;
   background-color: rgb(255, 255, 255);
-  overflow: visible;
   z-index: 1;
   user-select: none;
+  transform: translateX(-12px);
 }
 
 .banner-image-div {
-  position: relative;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -509,7 +551,14 @@ body {
 /* before banner container */
 /* index page, area contain search and cards */
 .below-banner {
-  margin-top: 620px;
+  max-width: 1321px;
+  margin: 0 auto 0 auto;
+}
+
+.page-heading {
+  color: var(--my-grey);
+  margin-top: 20px;
+  text-transform: uppercase;
 }
 
 /*-Index card-*/
@@ -529,6 +578,10 @@ body {
   padding-top: 0px !important;
   padding-bottom: 15px;
   transition: all 0.15s ease-in-out;
+}
+
+.project-card {
+  height: 380px;
 }
 
 .card-top {
@@ -577,7 +630,7 @@ body {
 }
 
 .card-middle-skills {
-  height: 36px;
+  height: 30px;
   margin-top: 5px;
   white-space: nowrap;
 }
@@ -613,6 +666,13 @@ body {
   text-overflow: ellipsis;
 }
 
+.project-card-middle-description {
+  color: var(--my-grey);
+  margin-top: 5px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .card-bottom {
   display: flex;
   justify-content: space-between;
@@ -640,6 +700,10 @@ body {
 
 .black-background {
   background-color: var(--my-black);
+}
+
+.black-background:hover {
+  background-color: var(--my-grey-dark);
 }
 
 .card:hover .card-top {
@@ -788,6 +852,57 @@ body {
   opacity: 1;
 }
 
+/* project card*/
+.project-card-title {
+  color: var(--my-black);
+  font-weight: bold;
+  margin-bottom: 2px;
+  margin-top: 5px;
+}
+
+.project-card-name {
+  color: var(--my-red);
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+.project-card-name-href {
+  text-decoration: none;
+}
+
+.project-card-date {
+  color: var(--my-grey);
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+.project-card-user-container {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+.project-card-user-div {
+  display: flex;
+  gap: 5px;
+  padding: 6px;
+  background-color: white;
+  width: 200px;
+}
+
+.project-card-name-date-div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-card-avatar-div {
+  position: static;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 /*--Portfolio Page---*/
 .portfolio-profile {
   height: 400px;
@@ -809,6 +924,14 @@ body {
 
 .home-search-bar button {
   height: 100%;
+}
+
+.home-search-bar-input::placeholder {
+  color: var(--my-red);
+}
+
+.home-search-bar-input:focus::placeholder {
+  color: var(--my-grey);
 }
 
 /* no result display*/
@@ -877,6 +1000,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 @media screen and (max-width: 1200px) {
   .banner {
@@ -884,9 +1012,6 @@ body {
   }
   .banner-title {
     font-size: 2.7rem;
-  }
-  .below-banner {
-    margin-top: 500px;
   }
   .card-portfolio-visit {
     font-size: 0.9rem;
@@ -907,9 +1032,6 @@ body {
   }
   .banner-title {
     font-size: 2rem;
-  }
-  .below-banner {
-    margin-top: 390px;
   }
 }
 
@@ -939,9 +1061,6 @@ body {
   .banner {
     display: none;
   }
-  .below-banner {
-    margin-top: 0px;
-  }
   .no-result-p {
     font-size: 1.3rem;
   }
@@ -953,5 +1072,14 @@ body {
   }
   .my-navbar {
     padding: 10px 10px 10px 10px;
+  }
+  .navbar-links {
+    margin-left: 5px;
+  }
+  .navbar-links-ul {
+    gap: 5px;
+  }
+  .navbar-links-title {
+    display: none;
   }
 }

@@ -1,15 +1,9 @@
 <div class="container index-container">
-  <!--banner (hide if searching)-->
-  <div id="banner" class="banner">
-    <p id="banner-title" class="banner-title ani-banner-title">BE <span class="banner-title-red">PROFESSIONAL</span> ANYTIME, ANYWHERE</p>
-    <div id="banner-image-div" class="banner-image-div image-load">
-      <img class="banner-image" src="{{landingImage}}" alt="banner image" loading="eager" />
-    </div>
-  </div>
   <!--section below the banner-->
   <div class="below-banner">
+    <h1 class="page-heading">{{currentPage}}</h1>
     <!--search bar-->
-    <div class="mt-3">{{> search-bar totalCount=totalCount}}</div>
+    <div class="mt-3">{{> search-bar totalCount=totalCount model='users'}}</div>
     <!--portfolio display-->
     {{#if (isMoreThanTarget users.length 0)}}
     <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card currentUser=../currentUser}} {{/each}}</div>
@@ -27,7 +21,7 @@
   {{/if}}
 
   <!--pagination--->
-  {{> pagination totalPages=totalPages page=page limit=limit keyword=keyword}}
+  {{> pagination totalPages=totalPages page=page limit=limit keyword=keyword model='users'}}
 </div>
 
 <!--script-->

@@ -96,7 +96,7 @@ const userController = {
     try {
       const keyword = req.query.keyword ? req.query.keyword : ''
       const page = isFinite(req.query.page) ? Number(req.query.page) : 1
-      const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 9
+      const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
       const offset = getOffset(page, limit)
 
       // SQL search where condition
@@ -161,7 +161,7 @@ const userController = {
 
       // get random landing image
       const landingImage = randomPublicImage('landing')
-      res.render('index', {
+      res.render('users', {
         users,
         totalCount: totalUsers,
         currentCount: usersData.count,
@@ -171,6 +171,7 @@ const userController = {
         keyword,
         landingImage,
         totalPages: Math.ceil(usersData.count / limit),
+        currentPage: 'users',
       })
     } catch (err) {
       next(err)

@@ -86,8 +86,8 @@ app.use(
 )
 app.use(
   express.static('public', {
-    maxAge: '1d',
-    immutable: true,
+    maxAge: 0,
+
     setHeaders: (res, filePath) => {
       // Set ETag based on the file's last modified timestamp
       const stat = fs.statSync(filePath)
@@ -106,10 +106,10 @@ usePassport(app)
 app.use(flash())
 // store res.locals, use in the view
 app.use((req, res, next) => {
-  // passport
+  // passport (.locals pass to handlebars)
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.currentUser = req.user
-  res.locals.test = 'test message'
+  res.locals.test = 'my test message'
   // flash
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
