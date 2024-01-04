@@ -50,7 +50,7 @@
             <ul class="navbar-links-ul">
               <li class="navbar-links-li">
                 <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}}">
-                  <i class="fa-regular fa-user navbar-links-icon"></i> <span class="navbar-links-title">USERS</span></a
+                  <i class="fa-solid fa-user-group navbar-links-icon"></i> <span class="navbar-links-title">USERS</span></a
                 >
               </li>
               <li class="navbar-links-li">
@@ -113,7 +113,10 @@
     </header>
 
     <!--main content-->
-    <div class="main-body">{{{body}}}</div>
+    <div id="top-anchor" style="visibility: hidden"></div>
+    <div id="main-body" class="main-body">{{{body}}}</div>
+    <!--scroll top-->
+    <a id="scroll-top" class="scroll-top" href="#top-anchor"><i class="fa-solid fa-square-caret-up scroll-top-icon"></i></a>
     <!--footer-->
     <div class="footer-container">{{> footer}}</div>
     <!--script-->

@@ -94,32 +94,27 @@ const userController = {
   },
   getUsers: async (req, res, next) => {
     try {
+      const column = req.query.column ? req.query.column : 'user'
       const keyword = req.query.keyword ? req.query.keyword : ''
       const page = isFinite(req.query.page) ? Number(req.query.page) : 1
       const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
       const offset = getOffset(page, limit)
 
-      // SQL search where condition
-      const searchColumns = ['name', 'title']
-      const searchLikeArray = []
-      // [Op.like] is a Symbol for dynamic key
-      // [Op.or] is a Symbol for dynamic key
-      // each Symbol is unique like an object
-      searchColumns.forEach((column) => {
-        searchLikeArray.push({ [column]: { [Op.like]: `%${keyword}%` } })
-      })
-      const whereObject = keyword ? { [Op.or]: searchLikeArray } : {}
-      /* whereObject
-      {
-        [Op.or]: [
-          {name: { [Op.like]: `%${keyword}%`}},
-          {title: { [Op.like]: `%${keyword}%`}}
-        ]
+      // search option
+      const KeywordObject = { [Op.like]: `%${keyword}%` }
+      const usersWhere = {}
+      const skillWhere = {}
+      if (column === 'user') {
+        usersWhere['name'] = KeywordObject
+      } else if (column === 'title') {
+        usersWhere['title'] = KeywordObject
+      } else if (column === 'skill') {
+        skillWhere['name'] = KeywordObject
       }
-      */
+
       const totalUsers = await User.count()
       const usersData = await User.findAndCountAll({
-        where: whereObject,
+        where: usersWhere,
         limit: limit,
         offset: offset,
         attributes: {
@@ -143,6 +138,7 @@ const userController = {
             through: {
               attributes: [],
             },
+            where: skillWhere,
           },
         ],
         order: [['id', 'DESC']], // newest
@@ -169,6 +165,7 @@ const userController = {
         limit,
         offset,
         keyword,
+        column,
         landingImage,
         totalPages: Math.ceil(usersData.count / limit),
         currentPage: 'users',

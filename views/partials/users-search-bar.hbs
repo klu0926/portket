@@ -1,0 +1,14 @@
+<form action="/{{model}}">
+  <div class="input-group mb-3 home-search-bar-container">
+    <select name="column" class="home-search-bar-select">
+      <option value="user" {{#if (isSame column 'user') }}selected{{/if}}>User</option>
+      <option value="title" {{#if (isSame column 'title') }}selected{{/if}}>Title</option>
+      <option value="skill" {{#if (isSame column 'skill') }}selected{{/if}}>Skill</option>
+    </select>
+    <input name="keyword" type="text" class="home-search-bar-input" {{#if keyword }}value="{{keyword}}" {{/if}}placeholder="{{totalCount}} {{model}}..." aria-label="search"
+    autocomplete="off"/>
+    <div class="input-group-append">
+      <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass search-button-icon"></i></button>
+    </div>
+  </div>
+</form>

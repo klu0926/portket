@@ -76,7 +76,7 @@ const projectController = {
   },
   getProjects: async (req, res, next) => {
     try {
-      const column = req.query.column ? req.query.column : 'title'
+      const column = req.query.column ? req.query.column : 'project'
       const keyword = req.query.keyword ? req.query.keyword : ''
       const page = isFinite(req.query.page) ? Number(req.query.page) : 1
       const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
@@ -86,15 +86,16 @@ const projectController = {
       // project title, project description, user name, skill name
       // SQL query condition
       // projects / user / skill
+      const KeywordObject = { [Op.like]: `%${keyword}%` }
       const projectsWhere = {}
       const userWhere = {}
       const skillWhere = {}
-      if (column === 'user') {
-        userWhere['name'] = { [Op.like]: `%${keyword}%` }
+      if (column === 'project') {
+        projectsWhere['title'] = KeywordObject
+      } else if (column === 'user') {
+        userWhere['name'] = KeywordObject
       } else if (column === 'skill') {
-        skillWhere['name'] = { [Op.like]: `%${keyword}%` }
-      } else {
-        projectsWhere[column] = { [Op.like]: `%${keyword}%` }
+        skillWhere['name'] = KeywordObject
       }
       // search
       const totalProjects = await Project.count()
@@ -153,7 +154,7 @@ const projectController = {
         keyword,
         column,
         totalPages: Math.ceil(projectsData.count / limit),
-        currentPage: 'projects'
+        currentPage: 'projects',
       })
     } catch (err) {
       next(err)

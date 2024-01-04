@@ -9,7 +9,8 @@
     {
       "files": "*.hbs",
       "options": {
-        "parser": "html"
+        "parser": "glimmer",
+        "singleQuote": false
       }
     },
     {
