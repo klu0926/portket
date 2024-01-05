@@ -1,20 +1,20 @@
 /*--Search bar--*/
 .home-search-bar-outer-container {
   display: grid;
-  grid-template-columns: auto 85px 50px;
-  gap: 10px;
-  height: 46px;
-  margin: 5px 0px 5px 0px;
+  grid-template-columns: auto 77px 40px;
+  gap: 6px;
+  height: 40px;
+  margin-top: 5px;
 }
 
 .home-search-bar-container {
   display: grid;
-  grid-template-columns: 80px auto 50px;
+  grid-template-columns: 80px auto 40px;
   height: 100%;
 }
 
 .home-search-bar-select {
-  padding-left: 10px;
+  padding-left: 5px;
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
