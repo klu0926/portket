@@ -49,12 +49,12 @@
           <div class="navbar-links">
             <ul class="navbar-links-ul">
               <li class="navbar-links-li">
-                <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}}">
+                <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}} aria-label='users page'">
                   <i class="fa-solid fa-user-group navbar-links-icon"></i> <span class="navbar-links-title">USERS</span></a
                 >
               </li>
               <li class="navbar-links-li">
-                <a href="/projects" class="navbar-links-href {{#if (isSame currentPage 'projects')}}red underline-red{{/if}}"
+                <a href="/projects" class="navbar-links-href {{#if (isSame currentPage 'projects')}}red underline-red{{/if}} aria-label='projects page'"
                   ><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">PROJECTS</span></a
                 >
               </li>
@@ -116,7 +116,7 @@
     <div id="top-anchor" style="visibility: hidden"></div>
     <div id="main-body" class="main-body">{{{body}}}</div>
     <!--scroll top-->
-    <a id="scroll-top" class="scroll-top" href="#top-anchor"><i class="fa-solid fa-square-caret-up scroll-top-icon"></i></a>
+    <a id="scroll-top" class="scroll-top" href="#top-anchor"><i class="fa-solid fa-square-caret-up scroll-top-icon" aria-label="scroll top"></i></a>
     <!--footer-->
     <div class="footer-container">{{> footer}}</div>
     <!--script-->
