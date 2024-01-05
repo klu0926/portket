@@ -17,7 +17,6 @@ function randomPublicImage(...dir) {
 
     const filePath = path.join('public', 'images', ...dir)
     let files = fs.readdirSync(filePath)
-
     if (!files.length) {
       console.log(`Can not find files in ${filePath}`)
       return

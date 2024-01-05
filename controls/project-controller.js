@@ -139,6 +139,11 @@ const projectController = {
               attributes: [],
             },
             where: skillWhere,
+            required: Object.keys(skillWhere).length !== 0,
+            // using 'where' will cause table be come a Inner Join
+            // user with no skill will not be included
+            // Include users even if they don't have skills
+            // if skillWhere has key, require = true else false
           },
           {
             model: Visit,

@@ -4,16 +4,11 @@ const passport = require('passport')
 const { multiUpload } = require('../../middleware/multer')
 
 // Login
-router.get('/login', (req, res) => {
-  res.render('login')
-})
-router.post('/login', userController.login)
-
+router.get('/login', userController.getLogin)
+router.post('/login', userController.postLogin)
 // Register
-router.get('/register', (req, res) => {
-  res.render('register')
-})
-router.post('/register', userController.register)
+router.get('/register', userController.getRegister)
+router.post('/register', userController.postRegister)
 
 // Google login
 router.get(
@@ -22,7 +17,6 @@ router.get(
     scope: ['email', 'profile'],
   })
 )
-
 // Google callback
 router.get(
   '/auth/google/callback',
@@ -31,7 +25,6 @@ router.get(
     failureRedirect: '/users/login',
   })
 )
-
 // Facebook login
 router.get(
   '/auth/facebook',
@@ -39,7 +32,6 @@ router.get(
     scope: ['email', 'public_profile'],
   })
 )
-
 // Facebook callback
 router.get(
   '/auth/facebook/callback',
@@ -48,25 +40,9 @@ router.get(
     failureRedirect: '/users/login',
   })
 )
-
-// logout
-router.get('/logout', (req, res) => {
-  req.logout(() => {
-    try {
-      req.flash('success_msg', 'You have successfully logged out!')
-      res.redirect('/users/login')
-    } catch (err) {
-      console.log('Logout Error')
-      res.end()
-    }
-  })
-})
-
-// Get ALL user
+router.get('/logout', userController.getLogout)
 router.get('/', userController.getUsers)
-// Get ONE user
 router.get('/:userId', userController.getUser)
-
 // Edit Portfolio
 router.put('/:userId', multiUpload, userController.putUser)
 

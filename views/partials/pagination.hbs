@@ -5,7 +5,10 @@
     <!--prev page-->
     {{#if (isNotSame 1 ../page)}}
     <li class="pagination-item">
-      <a href="/{{../model}}?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}" aria-label="previous page">
+      <a
+        href="/{{../model}}?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}"
+        aria-label="previous page"
+      >
         <i class="fa-solid fa-caret-left"></i>
       </a>
     </li>
@@ -13,17 +16,17 @@
     <!--all pages-->
     {{#each paginatorPages}} {{#if (isSame this ../../page)}}
     <li class="pagination-item disable">
-      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}">{{this}}</a>
+      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}&column={{../../column}}{{#if (isSame ../../sortDirection 'ASC')}}&ascending=on{{/if}}">{{this}}</a>
     </li>
     {{else}}
     <li class="pagination-item">
-      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}">{{this}}</a>
+      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}&column={{../../column}}{{#if (isSame ../../sortDirection 'ASC')}}&ascending=on{{/if}}">{{this}}</a>
     </li>
     {{/if}} {{/each}}
     <!--next page-->
     {{#if (isNotSame (lastArrayItem paginatorPages) ../page)}}
     <li class="pagination-item">
-      <a href="/{{../model}}?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}" aria-label="next page">
+      <a href="/{{../model}}?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}" aria-label="next page">
         <i class="fa-solid fa-caret-right"></i>
       </a>
     </li>

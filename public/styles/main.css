@@ -475,13 +475,7 @@ body {
 /* index page, area contain search and cards */
 .below-banner {
   max-width: 1321px;
-  margin: 0 auto 0 auto;
-}
-
-.page-heading {
-  color: var(--my-grey);
-  margin-top: 20px;
-  text-transform: uppercase;
+  margin: 40px auto 20px auto;
 }
 
 /*-Index card-*/

@@ -1,7 +1,6 @@
 <div class="container index-container">
   <!--section below the banner-->
   <div class="below-banner">
-    <h1 class="page-heading">{{currentPage}}</h1>
     <!--search bar-->
     {{> users-search-bar sort=sort sortDirection=sortDirection column=column totalCount=totalCount model='users'}}
     <!--portfolio display-->
@@ -21,7 +20,7 @@
   {{/if}}
 
   <!--pagination--->
-  {{> pagination totalPages=totalPages page=page limit=limit keyword=keyword model='users'}}
+  {{> pagination totalPages=totalPages page=page column=column sort=sort limit=limit keyword=keyword sortDirection=sortDirection model='users'}}
 </div>
 
 <!--script-->

@@ -113,6 +113,9 @@ app.use((req, res, next) => {
   // flash
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
+  console.log('success:', res.locals.success_msg)
+  console.log('warning:', res.locals.warning_msg)
+
   next()
 })
 

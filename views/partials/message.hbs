@@ -1,6 +1,6 @@
-<div class="position-fixed top-0 start-50 translate-middle mt-5 col-md-6 m-auto" style="z-index: 1000">
+<div class="position-fixed top-0 start-50 translate-middle mt-5 col-md-6" style="z-index: 1000">
   {{#if success_msg}}
-  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <div class="alert alert-primary alert-dismissible fade show marginShake" role="alert">
     <i class="fa-solid fa-circle-check"></i>
     <span class="alert-message-text"> {{success_msg}} </span>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -8,7 +8,7 @@
   {{/if}}
   <!---->
   {{#if warning_msg}}
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <div class="alert alert-danger alert-dismissible fade show marginShake" role="alert">
     <i class="fa-solid fa-triangle-exclamation"></i>
     <span class="alert-message-text">{{warning_msg}}</span>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

@@ -1,7 +1,7 @@
 /*--Search bar--*/
 .home-search-bar-outer-container {
   display: grid;
-  grid-template-columns: auto 77px 40px;
+  grid-template-columns: auto 90px 40px;
   gap: 6px;
   height: 40px;
   margin-top: 5px;
@@ -91,7 +91,6 @@
   background-color: var(--my-light);
   color: var(--my-grey-dark);
   cursor: pointer;
-  font-weight: bold;
   font-size: 0.9rem;
 }
 

@@ -1,5 +1,3 @@
-const sort = []
+const randomPublicImage = require('./helper/randomPublicImage')
 
-sort.push('visit', 'count', 'DESC')
-
-console.log(sort)
+console.log(randomPublicImage('covers'))

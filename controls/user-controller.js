@@ -1,7 +1,7 @@
 const { User, Project, Social, Skill, User_Social, User_Skill, Visit } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
-const { Op } = require('sequelize')
+const { Op, literal } = require('sequelize')
 const randomPublicImage = require('../helper/randomPublicImage')
 const sequelize = require('sequelize')
 const imgur = require('../helper/imgur')
@@ -11,65 +11,88 @@ const cleanTempFolder = require('../helper/cleanTempFolder')
 const getOffset = require('../helper/getPaginationOffset')
 
 const userController = {
-  login: (req, res, next) => {
+  getLogin: (req, res, next) => {
+    const email = req.query.email || ''
+    res.render('login', {
+      email,
+    })
+  },
+  postLogin: (req, res, next) => {
+    const email = req.body.email.trim()
+    const password = req.body.password.trim()
+    if (email === '' || password === '') {
+      req.flash('warning_msg', 'Email or Password missing.')
+      return res.redirect(`/users/login?email=${email}`)
+    }
     try {
       passport.authenticate('local', (err, user, info) => {
         if (err) {
           return next(err)
         }
         if (!user) {
-          return res.redirect('/users/login')
+          const email = req.body.email || ''
+          return res.redirect(`/users/login?email=${email}`)
         }
         // login
         req.login(user, (loginErr) => {
           if (loginErr) return next(loginErr)
           req.flash('success_msg', 'Logged in.')
-          return res.redirect('/')
+          return res.redirect(`/users/${user.id}`)
         })
       })(req, res, next)
+      // IIFE
+      // passport.authenticated() is a function expression, it return a function
+      // we immediately invoke that returned function, this is call a IIFE
+      // Immediately Invoked Function Expression (IIFE)
     } catch (err) {
       next(err)
     }
   },
-  register: async (req, res, next) => {
+  getLogout: (req, res, next) => {
+    req.logout(() => {
+      try {
+        req.flash('success_msg', 'You have successfully logged out!')
+        res.redirect('/users/login')
+      } catch (err) {
+        console.log('Logout Error')
+        res.end()
+      }
+    })
+  },
+  getRegister: (req, res, next) => {
+    const name = req.query.name || ''
+    const email = req.query.email || ''
+    res.render(`register`, {
+      name,
+      email,
+    })
+  },
+  postRegister: async (req, res, next) => {
     try {
       const { name, email, password, confirmPassword } = req.body
       //check for error
-      const errors = []
+      const redirect = `/users/register?name=${name}&email=${email}`
       if (!name || !email || !password || !confirmPassword) {
-        errors.push({ message: 'All inputs required!' })
+        req.flash('warning_msg', 'All inputs required!')
+        return res.redirect(redirect)
       }
       if (password !== confirmPassword) {
-        errors.push({ message: 'Passwords do not match!' })
-      }
-      if (errors.length) {
-        return res.render('register', {
-          errors,
-          name,
-          email,
-          password,
-          confirmPassword,
-        })
+        req.flash('warning_msg', 'passwords do not match!')
+        return res.redirect(redirect)
       }
 
-      // no error, find it user exist
+      // find if email is already taken
       const user = await User.findOne({
         where: { email },
       })
 
       if (user) {
-        errors.push({ message: 'This email is already registered!' })
-        return res.render('register', {
-          errors,
-          name,
-          email,
-          password,
-          confirmPassword,
-        })
+        req.flash('warning_msg', 'Email already registered.')
+        return res.redirect(redirect)
       }
       // random Cover
       const cover = randomPublicImage('covers')
-      const smallCover = '/images/covers_small/' + cover.split('/')[3]
+      const coverSmall = '/images/covers_small/' + cover.split('/')[3]
 
       // create visit record
       const newVisit = await Visit.create()
@@ -79,15 +102,15 @@ const userController = {
         email,
         password: bcryptjs.hashSync(password),
         cover: cover,
-        smallCover: smallCover,
+        coverSmall: coverSmall,
         visitId: newVisit.id,
         createdAt: new Date(),
         updatedAt: new Date(),
       })
       // clean imgur temp folder
       await cleanTempFolder()
-
-      res.redirect('/') // home page
+      req.flash('success_msg', `Portfolio successfully created, Welcome!`)
+      res.redirect(`/users/${newUser.id}`) // home page
     } catch (err) {
       next(err)
     }
@@ -124,6 +147,9 @@ const userController = {
         sortOrder.push('visits', 'count', sortDirection)
       } else if (sort === 'name') {
         sortOrder.push('name', sortDirection)
+      } else if (sort === 'project') {
+        const sortLiteral = literal('(SELECT COUNT(*) FROM projects)')
+        sortOrder.push(sortLiteral, sortDirection)
       }
 
       const totalUsers = await User.count()
@@ -153,6 +179,11 @@ const userController = {
               attributes: [],
             },
             where: skillWhere,
+            required: Object.keys(skillWhere).length !== 0,
+            // using 'where' will cause table be come a Inner Join
+            // user with no skill will not be included
+            // Include users even if they don't have skills
+            // if skillWhere has key, require = true else false
           },
         ],
         order: [sortOrder],
@@ -166,6 +197,7 @@ const userController = {
         const userIndex = users.findIndex((user) => user.id === currentUser.id)
         if (userIndex !== -1) {
           users.unshift(users.splice(userIndex, 1)[0])
+          // splice return array so even 1 item will require [0] to take it out
         }
       }
 
