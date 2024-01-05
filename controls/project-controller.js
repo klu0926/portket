@@ -78,6 +78,8 @@ const projectController = {
     try {
       const column = req.query.column ? req.query.column : 'project'
       const keyword = req.query.keyword ? req.query.keyword : ''
+      const sort = req.query.sort ? req.query.sort : 'time'
+      const sortDirection = req.query.ascending ? 'ASC' : 'DESC'
       const page = isFinite(req.query.page) ? Number(req.query.page) : 1
       const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
       const offset = getOffset(page, limit)
@@ -97,6 +99,19 @@ const projectController = {
       } else if (column === 'skill') {
         skillWhere['name'] = KeywordObject
       }
+
+      // sort option
+      // sort : time, visit, name
+      // sort-direction: query 'ascending' check 'on', or null
+      const sortOrder = []
+      if (sort === 'time') {
+        sortOrder.push('id', sortDirection)
+      } else if (sort === 'visit') {
+        sortOrder.push('visits', 'count', sortDirection)
+      } else if (sort === 'title') {
+        sortOrder.push('title', sortDirection)
+      }
+
       // search
       const totalProjects = await Project.count()
       const projectsData = await Project.findAndCountAll({
@@ -136,10 +151,7 @@ const projectController = {
             as: 'contents',
           },
         ],
-        order: [
-          ['id', 'DESC'],
-          [{ model: Project_Content, as: 'contents' }, 'order', 'ASC'],
-        ],
+        order: [sortOrder],
         distinct: true, // return only unique rows
       })
       const projects = projectsData.rows.map((project) => project.toJSON())
@@ -153,6 +165,8 @@ const projectController = {
         offset,
         keyword,
         column,
+        sort,
+        sortDirection,
         totalPages: Math.ceil(projectsData.count / limit),
         currentPage: 'projects',
       })

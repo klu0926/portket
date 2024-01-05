@@ -1,20 +1,25 @@
 /*--Search bar--*/
-.home-search-bar-container {
+.home-search-bar-outer-container {
   display: grid;
-  grid-template-columns: 85px auto 50px;
-  width: 100%;
-  height: 50px;
+  grid-template-columns: auto 85px 50px;
+  gap: 10px;
+  height: 46px;
   margin: 5px 0px 5px 0px;
 }
 
+.home-search-bar-container {
+  display: grid;
+  grid-template-columns: 80px auto 50px;
+  height: 100%;
+}
+
 .home-search-bar-select {
-  width: 100%;
   padding-left: 10px;
-  border: 1px solid var(--my-grey);
+  border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  background-color: var(--my-light);
-  color: var(--my-grey-dark);
+  background-color: var(--my-red);
+  color: white;
 }
 
 .home-search-bar-select:focus {
@@ -26,12 +31,10 @@
 }
 
 .home-search-bar-input {
-  width: 100%;
   padding: 2px 1px 2px 10px;
   border: 1px solid var(--my-grey);
   border-left: none;
   border-right: none;
-  border-left: 1px solid var(--my-grey);
 }
 
 .home-search-bar-input::placeholder {
@@ -70,4 +73,132 @@
 
 .search-button:hover .search-button-icon {
   transform: rotate(-15deg);
+}
+
+/*--sort--*/
+.sort-select-div {
+  position: relative;
+  transition: all 0.1s ease-in-out;
+}
+
+.sort-select {
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid var(--my-grey);
+  border-radius: 5px;
+  background-color: var(--my-light);
+  color: var(--my-grey-dark);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.sort-select:hover {
+  padding-top: 2px;
+  background-color: var(--my-border-light);
+}
+
+.sort-select-div::before {
+  content: 'sort';
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+  opacity: 1;
+  background-color: var(--my-grey);
+  color: white;
+  padding: 5px;
+  padding-inline: 10px;
+  border-radius: 4px;
+  visibility: hidden;
+}
+.sort-select-div:hover:before {
+  visibility: visible;
+}
+
+/*--sort direction--*/
+.sort-direction-div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--my-grey);
+  border-radius: 5px;
+  background-color: var(--my-light);
+  transition: all 0.1s ease-in-out;
+}
+
+.sort-direction-check {
+  position: absolute;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* sort direction arrow icon */
+.sort-direction-check::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: '\f078'; /* Unicode for the Font Awesome up arrow icon */
+  font-family: 'Font Awesome 5 Free'; /* Specify the Font Awesome font family */
+  font-weight: 900; /* Specify the Font Awesome font weight */
+  color: black;
+  font-weight: 900;
+  font-size: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.sort-direction-check:checked::after {
+  content: '\f077';
+}
+
+.sort-direction-check:hover::after {
+  padding-top: 2px;
+}
+
+.sort-direction-div:hover {
+  background-color: var(--my-border-light);
+}
+
+/* sort direction tip */
+.sort-direction-check::before {
+  content: 'ascending';
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+  opacity: 1;
+  background-color: var(--my-grey);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  visibility: hidden;
+}
+
+.sort-direction-check:hover::before {
+  content: 'descending';
+  visibility: visible;
+}
+
+.sort-direction-check:checked:hover::before {
+  content: 'ascending';
+  visibility: visible;
 }

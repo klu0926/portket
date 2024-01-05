@@ -85,3 +85,9 @@
   margin: 0 15px;
   text-align: center;
 }
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

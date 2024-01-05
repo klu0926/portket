@@ -96,6 +96,8 @@ const userController = {
     try {
       const column = req.query.column ? req.query.column : 'user'
       const keyword = req.query.keyword ? req.query.keyword : ''
+      const sort = req.query.sort ? req.query.sort : 'time'
+      const sortDirection = req.query.ascending ? 'ASC' : 'DESC'
       const page = isFinite(req.query.page) ? Number(req.query.page) : 1
       const limit = isFinite(req.query.limit) ? Number(req.query.limit) : 12
       const offset = getOffset(page, limit)
@@ -110,6 +112,18 @@ const userController = {
         usersWhere['title'] = KeywordObject
       } else if (column === 'skill') {
         skillWhere['name'] = KeywordObject
+      }
+
+      // sort option
+      // sort : time, visit, name
+      // sort-direction: query 'ascending' check 'on', or null
+      const sortOrder = []
+      if (sort === 'time') {
+        sortOrder.push('id', sortDirection)
+      } else if (sort === 'visit') {
+        sortOrder.push('visits', 'count', sortDirection)
+      } else if (sort === 'name') {
+        sortOrder.push('name', sortDirection)
       }
 
       const totalUsers = await User.count()
@@ -141,7 +155,7 @@ const userController = {
             where: skillWhere,
           },
         ],
-        order: [['id', 'DESC']], // newest
+        order: [sortOrder],
         distinct: true, // return only unique rows
       })
       const users = usersData.rows.map((user) => user.toJSON())
@@ -166,6 +180,8 @@ const userController = {
         offset,
         keyword,
         column,
+        sort,
+        sortDirection,
         landingImage,
         totalPages: Math.ceil(usersData.count / limit),
         currentPage: 'users',

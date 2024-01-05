@@ -3,7 +3,7 @@
   <div class="below-banner">
     <h1 class="page-heading">{{currentPage}}</h1>
     <!--search bar-->
-    {{> users-search-bar column=column totalCount=totalCount model='users'}}
+    {{> users-search-bar sort=sort sortDirection=sortDirection column=column totalCount=totalCount model='users'}}
     <!--portfolio display-->
     {{#if (isMoreThanTarget users.length 0)}}
     <div class="portfolio-display row justify-content-start">{{#each users}} {{> portfolio-card currentUser=../currentUser}} {{/each}}</div>

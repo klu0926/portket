@@ -1,5 +1,6 @@
-<form action="/{{model}}">
-  <div class="input-group mb-3 home-search-bar-container">
+<form action="/{{model}}" class="home-search-bar-outer-container">
+<!--search bar-->
+  <div class="input-group home-search-bar-container">
     <select name="column" class="home-search-bar-select">
       <option value="user" {{#if (isSame column 'user') }}selected{{/if}}>User</option>
       <option value="title" {{#if (isSame column 'title') }}selected{{/if}}>Title</option>
@@ -11,4 +12,17 @@
       <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass search-button-icon"></i></button>
     </div>
   </div>
+  <!--sort-->
+  <div class="sort-select-div">
+    <select class="sort-select" name="sort" id='sort-select'>
+      <option value="time" {{#if (isSame sort 'time')}}selected{{/if}}>Time</option>
+      <option value="visit" {{#if (isSame sort 'visit')}}selected{{/if}}>Visit</option>
+      <option value="name" {{#if (isSame sort 'name')}}selected{{/if}}>Name</option>
+    </select>
+  </div>
+  <div class="sort-direction-div">
+    <input name="ascending" class="sort-direction-check" type="checkbox" {{#if (isSame sortDirection 'ASC')}}checked{{/if}}>
+  </div>
 </form>
+
+
