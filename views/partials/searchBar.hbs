@@ -19,7 +19,7 @@
   <div class="search-option-container">
 
    <!--search by column-->
-   <div class="home-search-bar-select-div">
+   <div class="home-search-bar-select-div" title="search by">
     <select name="column" class="home-search-bar-select cap" aria-label="search by">
       {{#each columnOptions}}
       <option value={{this}} {{#if (isSame ../column this)}}selected{{/if}}>By 
@@ -29,7 +29,7 @@
    </div>
 
   <!--sort-->
-  <div class="sort-select-div">
+  <div class="sort-select-div" title="sort by">
     <select class="sort-select cap" name="sort" id='sort-select' aria-label="search sort">
       {{#each sortOptions}}
        <option value={{this}} {{#if (isSame ../sort this)}}selected{{/if}}>{{this}}
