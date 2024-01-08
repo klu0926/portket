@@ -2,7 +2,7 @@
   <!--section below the banner-->
   <div class="below-banner">
     <!--search bar-->
-    {{> projects-search-bar sort=sort sortDirection=sortDirection column=column totalCount=totalCount model='projects'}}
+    {{> searchBar sort=sort sortDirection=sortDirection column=column totalCount=totalCount currentCount=currentCount columnOptions=columnOptions sortOptions=sortOptions model='projects'}}
     <!--portfolio display-->
     {{#if (isMoreThanTarget currentCount 0)}}
     <div class="cards-display row justify-content-start">{{#each projects}} {{> project-card currentUser=../currentUser}} {{/each}}</div>

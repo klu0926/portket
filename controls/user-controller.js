@@ -136,6 +136,8 @@ const userController = {
       } else if (column === 'skill') {
         skillWhere['name'] = KeywordObject
       }
+      // (front end) send to front for select option
+      const columnOptions = ['user', 'title', 'skill']
 
       // sort option
       // sort : time, visit, name
@@ -145,12 +147,14 @@ const userController = {
         sortOrder.push('id', sortDirection)
       } else if (sort === 'visit') {
         sortOrder.push('visits', 'count', sortDirection)
-      } else if (sort === 'name') {
-        sortOrder.push('name', sortDirection)
       } else if (sort === 'project') {
         const sortLiteral = literal('(SELECT COUNT(*) FROM projects)')
         sortOrder.push(sortLiteral, sortDirection)
+      } else if (sort === 'name') {
+        sortOrder.push('name', sortDirection)
       }
+      // (front end )send to front for select option
+      const sortOptions = ['time', 'visit', 'project', 'name']
 
       const totalUsers = await User.count()
       const usersData = await User.findAndCountAll({
@@ -215,6 +219,8 @@ const userController = {
         sort,
         sortDirection,
         landingImage,
+        columnOptions,
+        sortOptions,
         totalPages: Math.ceil(usersData.count / limit),
         currentPage: 'users',
       })

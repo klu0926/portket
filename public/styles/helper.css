@@ -91,3 +91,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.cap {
+  text-transform: capitalize;
+}

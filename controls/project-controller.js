@@ -99,6 +99,8 @@ const projectController = {
       } else if (column === 'skill') {
         skillWhere['name'] = KeywordObject
       }
+      // (front end) send to front for select option
+      const columnOptions = ['project', 'user', 'skill']
 
       // sort option
       // sort : time, visit, name
@@ -111,6 +113,8 @@ const projectController = {
       } else if (sort === 'title') {
         sortOrder.push('title', sortDirection)
       }
+      // (front end )send to front for select option
+      const sortOptions = ['time', 'visit', 'title']
 
       // search
       const totalProjects = await Project.count()
@@ -172,6 +176,8 @@ const projectController = {
         column,
         sort,
         sortDirection,
+        columnOptions,
+        sortOptions,
         totalPages: Math.ceil(projectsData.count / limit),
         currentPage: 'projects',
       })

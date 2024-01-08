@@ -1,0 +1,46 @@
+<form action="/{{model}}" class="home-search-from-container">
+  <!--search bar-->
+  <div class="input-group home-search-bar-container">
+    <!--search input-->
+    <input name="keyword" type="text" class="home-search-bar-input" {{#if keyword }}value="{{keyword}}" {{/if}}placeholder="search {{model}}..." aria-label="search"
+    autocomplete="off"/>
+    <div class="input-group-append">
+      <button class="search-button" type="submit" aria-label="search button"><i class="fa-solid fa-magnifying-glass search-button-icon"></i></button>
+    </div>
+  </div>
+  <!--options-->
+  <div class="search-option-container-outer">
+    <!--result count-->
+    <div class="result-count">
+      <span class="ellipsis">
+      Found <span class="result-count-current">{{currentCount}}</span>  over {{totalCount}} {{model}}
+      </span>
+    </div>
+  <div class="search-option-container">
+
+   <!--search by column-->
+   <div class="home-search-bar-select-div">
+    <select name="column" class="home-search-bar-select cap" aria-label="search by">
+      {{#each columnOptions}}
+      <option value={{this}} {{#if (isSame ../column this)}}selected{{/if}}>By 
+      {{this}}</option>
+      {{/each}}
+    </select>
+   </div>
+
+  <!--sort-->
+  <div class="sort-select-div">
+    <select class="sort-select cap" name="sort" id='sort-select' aria-label="search sort">
+      {{#each sortOptions}}
+       <option value={{this}} {{#if (isSame ../sort this)}}selected{{/if}}>{{this}}
+      </option>
+      {{/each}}
+    </select>
+   </div>
+  <!--direction-->
+    <div class="sort-direction-div">
+    <input name="ascending" class="sort-direction-check" type="checkbox" {{#if (isSame sortDirection 'ASC')}}checked{{/if}}  aria-checked="false">
+    </div>
+    </div>
+  </div>
+</form>
