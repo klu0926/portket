@@ -604,6 +604,7 @@ body {
 /* before banner container */
 /* index page, area contain search and cards */
 .below-banner {
+  width: 100%;
   max-width: 1321px;
   margin: 30px auto 20px auto;
 }
