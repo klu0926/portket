@@ -15,6 +15,19 @@
       <div class="project-page-title-container">
         <p class="project-page-title">{{project.title}}</p>
       </div>
+      <!--links-->
+      <div class="project-links mb-2">
+        {{#each project.links}}
+        <span class="project-page-link">
+          <a class="project-page-a" href="{{this.link}}" target="_blank">{{this.name}}</a>
+          <span>|</span>
+        </span>
+        {{/each}}
+      </div>
+      <!--description-->
+      <div class="mb-2">
+        <p>{{project.description}}</p>
+      </div>
       <!--User & date-->
       <div class="mb-3 d-flex">
         <div class="project-user-avatar me-2">
@@ -28,19 +41,6 @@
           </a>
           <span class="text-secondary">{{simpleDate project.date}}</span>
         </div>
-      </div>
-      <!--links-->
-      <div class="project-links mb-2">
-        {{#each project.links}}
-        <span class="project-page-link">
-          <a class="project-page-a" href="{{this.link}}" target="_blank">{{this.name}}</a>
-          <span>|</span>
-        </span>
-        {{/each}}
-      </div>
-      <!--description-->
-      <div class="mb-2">
-        <p>{{project.description}}</p>
       </div>
       <!--skills-->
       <div class="project-skills">

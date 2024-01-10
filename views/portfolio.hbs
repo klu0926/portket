@@ -14,18 +14,16 @@
   <div class="portfolio-container row">
     <!--top-->
     <!--avatar-->
-    <div class="ps-2">
-      <div id="avatar-container" class="portfolio-avatar-container image-load load-pluse">
-        <div id="avatar-input-div"></div>
-        <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="eager" />
-      </div>
+    <div id="avatar-container" class="portfolio-avatar-container image-load load-pluse">
+      <div id="avatar-input-div"></div>
+      <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="eager" />
     </div>
-    <!--statistic-->
-    <div class="statistic-container">{{>statistic data=user model='user'}}</div>
     <!--Bio (left side) -->
     <div class="portfolio-left col-12 col-lg-6">
       <!--info-->
-      <div class="">
+      <div>
+        <!--statistic-->
+        <div class="statistic-container">{{>statistic data=user model='user'}}</div>
         <!--name-->
         <div class="mb-2">
           <h1 class="h3 fw-bold">{{user.name}}</h1>
