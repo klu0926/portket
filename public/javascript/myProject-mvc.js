@@ -22,7 +22,7 @@ class MyProjectView {
     this.descriptionDisplay = document.querySelector('#project-description-display')
     this.skillsDisplay = document.querySelector('#project-skills-display')
     this.contentDisplay = document.querySelector('#project-content-display')
-    this.statisticDiv = document.querySelector('#statistic')
+    this.statisticDivContainer = document.querySelector('#statistic')
     // cover buttons
     this.coverChangeButton = document.querySelector('#cover-change-btn')
     this.coverPositionButton = document.querySelector('#cover-position')
@@ -63,7 +63,7 @@ class MyProjectView {
     this.inputOptionContainer = document.querySelector('#input-option-container')
     this.currentToolButton = null
     // statistic
-    this.statisticDiv = document.querySelector('.project-statistic-div')
+    this.statisticDivContainer = document.querySelector('#statistic-container')
     // item list
     this.viewModeElements = [
       this.titleDisplay,
@@ -72,8 +72,8 @@ class MyProjectView {
       this.descriptionDisplay,
       this.skillsDisplay,
       this.contentDisplay,
-      this.statisticDiv,
-      this.statisticDiv,
+      this.statisticDivContainer,
+      this.statisticDivContainer,
     ]
     this.editModeElements = [
       this.coverInputDiv,
@@ -126,7 +126,7 @@ class MyProjectView {
     this.viewModeElements.forEach((e) => {
       if (e && e.style) e.style.display = 'block'
     })
-    this.statisticDiv.style.display = 'flex'
+    this.statisticDivContainer.style.display = 'flex'
     this.editBtn.style.display = 'flex'
     // hide
     this.saveEditBtn.style.display = 'none'

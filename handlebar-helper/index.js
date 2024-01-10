@@ -96,4 +96,8 @@ module.exports = {
     })
     return string.replace(targetWord, replaceWord)
   },
+  createArray: (size) => {
+    if (!size && !isFinite(size)) return []
+    return Array.from({ length: size }, (value, index) => index)
+  },
 }

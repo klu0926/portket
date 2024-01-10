@@ -1,6 +1,15 @@
 <form action="/{{model}}" class="home-search-from-container">
   <!--search bar-->
   <div class="input-group home-search-bar-container">
+    <!--search by column-->
+   <div class="home-search-bar-select-div" title="search by">
+    <select name="column" class="home-search-bar-select cap" aria-label="search by">
+      {{#each columnOptions}}
+      <option value={{this}} {{#if (isSame ../column this)}}selected{{/if}}>By 
+      {{this}}</option>
+      {{/each}}
+    </select>
+   </div>
     <!--search input-->
     <input name="keyword" type="text" class="home-search-bar-input" {{#if keyword }}value="{{keyword}}" {{/if}}placeholder="search {{model}}..." aria-label="search"
     autocomplete="off"/>
@@ -17,17 +26,6 @@
       </span>
     </div>
   <div class="search-option-container">
-
-   <!--search by column-->
-   <div class="home-search-bar-select-div" title="search by">
-    <select name="column" class="home-search-bar-select cap" aria-label="search by">
-      {{#each columnOptions}}
-      <option value={{this}} {{#if (isSame ../column this)}}selected{{/if}}>By 
-      {{this}}</option>
-      {{/each}}
-    </select>
-   </div>
-
   <!--sort-->
   <div class="sort-select-div" title="sort by">
     <select class="sort-select cap" name="sort" id='sort-select' aria-label="search sort">

@@ -1,0 +1,69 @@
+<div id="hamburger-menu" class="hamburger-menu">
+  <div class="hamburger-menu-container">
+    <div class="hamburger-menu-top">
+      <!--hamburger-->
+      <div id="hamburger-in-menu" class="hamburger">
+        <i id="hamburger-in-menu-i" class="fa-solid fa-bars"></i>
+      </div>
+      <!--logo-->
+      <a class="navbar-brand fw-bold" href="/users">
+        <div class="navbar-logo-div">
+          <img class="full" src="/favicon_io/192x192.png" alt="logo" />
+        </div>
+        <p class="navbar-logo-text"><span class="text-primary">PORT</span><span>KET</span></p>
+      </a>
+    </div>
+    <div class="hamburger-menu-middle">
+      <!--menu links-->
+      <a href="/" class="hamburger-menu-link" aria-label="skills page" disabled>
+        <div class="hamburger-menu-link-content">
+          <i class="fa-solid fa-house"></i>
+          <span class="navbar-links-title">Home</span>
+        </div>
+      </a>
+      <a href="/users" class="hamburger-menu-link" aria-label="users page">
+        <div class="hamburger-menu-link-content">
+          <i class="fa-solid fa-user-group"> </i>
+          <span>Users</span>
+        </div>
+      </a>
+      <a href="/projects" class="hamburger-menu-link" aria-label="projects page">
+        <div class="hamburger-menu-link-content"><i class="fa-solid fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">Projects</span></div>
+      </a>
+      <!--line break-->
+      <div class="hamburger-menu-line-break"></div>
+      <!--menu title : My -->
+      <div class="hamburger-menu-title">My</div>
+      <a href="/users/{{currentUser.id}}" class="hamburger-menu-link" aria-label="my portfolio">
+        <div class="hamburger-menu-link-content">
+          <i class="fa-regular fa-user"></i>
+          <span class="navbar-links-title">Portfolio</span>
+        </div>
+      </a>
+      <!--My project container-->
+      <div id="hamburger-menu-my-projects-container" style="width: 100%">
+        <a href="#" class="hamburger-menu-link" aria-label="project">
+          <div class="hamburger-menu-link-content"><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">My Project</span></div>
+        </a>
+        <a href="#" class="hamburger-menu-link" aria-label="project">
+          <div class="hamburger-menu-link-content"><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">My Project</span></div>
+        </a>
+      </div>
+      <!--line break-->
+      <div class="hamburger-menu-line-break"></div>
+      <!--menu title : Explore -->
+      <div class="hamburger-menu-title">Explore</div>
+      <div id="hamburger-menu-skill-container" style="width: 100%">
+        {{#each (createArray 20)}}
+        <!--explore link-->
+        <a href="#" class="hamburger-menu-link" aria-label="explore">
+          <div class="hamburger-menu-link-content"><i class="fa-solid fa-compass-drafting"></i> <span class="navbar-links-title">Explore Search</span></div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--body disable cover-->
+<div id="body-disable-cover" class="body-disable-cover"></div>

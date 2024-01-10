@@ -5,7 +5,7 @@
 /*--Search bar--*/
 .home-search-bar-container {
   display: grid;
-  grid-template-columns: auto 40px;
+  grid-template-columns: 105px auto 40px;
   height: 40px;
 }
 
@@ -17,7 +17,8 @@
 .home-search-bar-select {
   padding-left: 5px;
   border: none;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   background-color: var(--my-red);
   color: white;
   height: 100%;
@@ -92,7 +93,7 @@
 .search-option-container {
   --search-option-container-height: 35px;
   display: grid;
-  grid-template-columns: 100px 90px var(--search-option-container-height);
+  grid-template-columns: 90px var(--search-option-container-height);
   gap: 5px;
   height: var(--search-option-container-height);
 }
@@ -216,7 +217,6 @@
 @media screen and (max-width: 500px) {
   .search-option-container {
     --search-option-container-height: 30px;
-    grid-template-columns: 80px 72px var(--search-option-container-height);
     font-size: 0.8rem;
     gap: 4px;
   }

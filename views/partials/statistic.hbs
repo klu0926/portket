@@ -1,0 +1,19 @@
+<div id="statistic" class="statistic-div">
+  <!--page visit-->
+  <div class="statistic-tag statistic-portfolio-visit" title="visits">
+    <i class="fa-regular fa-eye"></i>
+    <span id="visit-count-span" class="px-1">{{data.visits.count}}</span>
+  </div>
+  {{#if (isSame model 'user')}}
+  <!--project count-->
+  <div class="statistic-tag statistic-project-count" title="projects">
+    <i class="fa-regular fa-file-lines"></i>
+    <span id="project-count-span">{{data.projects.length}}</span>
+  </div>
+  {{/if}}
+  <!--last updated-->
+  <div class="statistic-tag statistic-portfolio-update" title="updated">
+    <i class="fa-solid fa-pencil"></i>
+    <span>{{simpleDate data.updatedAt}}</span>
+  </div>
+</div>

@@ -35,31 +35,17 @@
   <div class="container" style="min-height: 1100px">
     <!--portfolio container--->
     <div class="portfolio-container row">
-      <!--Bio (left side) -->
-      <div class="portfolio-left col-12 col-lg-6">
-        <!--statistic-->
-        <div id="statistic" class="portfolio-statistic-div">
-          <!--page visit-->
-          <div class="statistic-tag statistic-portfolio-visit">
-            <i class="fa-regular fa-eye"></i>
-            <span id="visit-count-span" class="px-1">{{user.visits.count}}</span>
-          </div>
-          <!--project count-->
-          <div class="statistic-tag statistic-project-count">
-            <i class="fa-regular fa-file-lines"></i>
-            <span id="project-count-span">{{user.projects.length}}</span>
-          </div>
-          <!--last updated-->
-          <div class="statistic-tag statistic-portfolio-update">
-            <i class="fa-solid fa-pencil"></i>
-            <span>{{simpleDate user.updatedAt}}</span>
-          </div>
-        </div>
-        <!--avatar-->
+      <!--avatar-->
+      <div class="ps-2">
         <div id="avatar-container" class="portfolio-avatar-container image-load bigger load-pluse">
           <div id="avatar-input-div"></div>
           <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="eager" />
         </div>
+      </div>
+      <!--Bio (left side) -->
+      <div class="portfolio-left col-12 col-lg-6">
+        <!--statistic-->
+        <div class="statistic-container">{{>statistic data=user model='user'}}</div>
         <!--name-->
         <div class="mb-2">
           <div id="name-display">

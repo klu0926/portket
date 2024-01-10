@@ -1,38 +1,38 @@
-<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-3">
-  <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
-    <!--top-->
-    <div class="card-top">
-      <div class="card-cover-div image-load load-pulse"><img class="card-cover" src="{{this.coverSmall}}" alt="Card image" loading="lazy" /></div>
-      <div class="card-avatar-div">
-        <img class="card-avatar-img" src="{{this.avatarSmall}}" alt="avatar" loading="lazy" />
-      </div>
-    </div>
-    <!--middle-->
-    <div class="card-middle">
-      <p class="card-middle-name">{{this.name}}</p>
-      <p class="card-middle-title">{{this.title}}</p>
-      <p class="card-middle-description">{{substring this.description 90}}</p>
-      <div class="card-middle-skills card-skills-scroll-x">
-        {{#each this.skills}}
-        <span class="card-skill">{{this.name}}</span>
-        {{/each}}
-      </div>
-    </div>
-    <!--bottom-->
-    <div class="card-bottom">
-      <a href="/users/{{this.id}}" class="color-white card-bottom-portfolio-btn btn-move {{#if (isSame currentUser.id this.id)}}black-background{{/if}} ">
-        {{#if (isSame currentUser.id this.id)}}My Portfolio{{else}}Portfolio{{/if}}
-      </a>
-      <div class="card-bottom-right">
-        <div class="card-portfolio-visit">
-          <i class="fa-regular fa-eye"></i>
-          <span class="px-1">{{this.visits.count}}</span>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-3">
+    <div class="card {{#if (isSame currentUser.id this.id)}}my-portfolio-card{{else}}border{{/if}}">
+      <!--top-->
+      <div class="card-top">
+        <div class="card-cover-div image-load load-pulse"><img class="card-cover" src="{{this.coverSmall}}" alt="Card image" loading="lazy" /></div>
+        <div class="card-avatar-div">
+          <img class="card-avatar-img" src="{{this.avatarSmall}}" alt="avatar" loading="lazy" />
         </div>
-        <div class="card-project-count">
-          <i class="fa-regular fa-file"></i>
-          <span>{{this.projects.length}}</span>
+      </div>
+      <!--middle-->
+      <div class="card-middle">
+        <p class="card-middle-name">{{this.name}}</p>
+        <p class="card-middle-title">{{this.title}}</p>
+        <p class="card-middle-description">{{substring this.description 90}}</p>
+        <div class="card-middle-skills card-skills-scroll-x">
+          {{#each this.skills}}
+          <span class="card-skill">{{this.name}}</span>
+          {{/each}}
+        </div>
+      </div>
+      <!--bottom-->
+      <div class="card-bottom">
+        <a href="/users/{{this.id}}" class="color-white card-bottom-portfolio-btn btn-move {{#if (isSame currentUser.id this.id)}}black-background{{/if}} ">
+          {{#if (isSame currentUser.id this.id)}}My Portfolio{{else}}Portfolio{{/if}}
+        </a>
+        <div class="card-bottom-right">
+          <div class="card-portfolio-visit">
+            <i class="fa-regular fa-eye"></i>
+            <span class="px-1">{{this.visits.count}}</span>
+          </div>
+          <div class="card-project-count">
+            <i class="fa-regular fa-file"></i>
+            <span>{{this.projects.length}}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

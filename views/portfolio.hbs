@@ -7,189 +7,177 @@
     </div>
   </div>
   {{else}}
-  <div class="portfolio-cover portfolio-cover-placement">
-    {{/if}}
-    <div class="portfolio-container row">
-      <!--Bio (left side) -->
-      <div class="portfolio-left col-12 col-lg-6">
-        <!--statistic-->
-        <div id="statistic" class="portfolio-statistic-div">
-          <!--page visit-->
-          <div class="statistic-tag statistic-portfolio-visit">
-            <i class="fa-regular fa-eye"></i>
-            <span id="visit-count-span" class="px-1">{{user.visits.count}}</span>
-          </div>
-          <!--project count-->
-          <div class="statistic-tag statistic-project-count">
-            <i class="fa-regular fa-file-lines"></i>
-            <span id="project-count-span">{{user.projects.length}}</span>
-          </div>
-          <!--last updated-->
-          <div class="statistic-tag statistic-portfolio-update">
-            <i class="fa-solid fa-pencil"></i>
-            <span>{{simpleDate user.updatedAt}}</span>
+  <!--no cover-->
+  <div class="portfolio-cover portfolio-cover-placement"></div>
+  {{/if}}
+  <!-- portfolio container-->
+  <div class="portfolio-container row">
+    <!--top-->
+    <!--avatar-->
+    <div class="ps-2">
+      <div id="avatar-container" class="portfolio-avatar-container image-load load-pluse">
+        <div id="avatar-input-div"></div>
+        <img id="avatar-img" class="avatar-img" src="{{user.avatar}}" alt="avatar" loading="eager" />
+      </div>
+    </div>
+    <!--statistic-->
+    <div class="statistic-container">{{>statistic data=user model='user'}}</div>
+    <!--Bio (left side) -->
+    <div class="portfolio-left col-12 col-lg-6">
+      <!--info-->
+      <div class="">
+        <!--name-->
+        <div class="mb-2">
+          <h1 class="h3 fw-bold">{{user.name}}</h1>
+        </div>
+        <!--title-->
+        <div class="my-3">
+          <p class="fw-bold my-2 text-primary">TITLE</p>
+          <div id="title-display">
+            <p class="portfolio-title ps-2">{{user.title}}</p>
           </div>
         </div>
-        <!--avatar + info -->
-        <div class="portfolio-top-container">
-          <!--avatar-->
-          <div class="portfolio-avatar-container image-load bigger load-pulse">
-            <img src="{{user.avatar}}" class="avatar-img" alt="avatar" loading="eager" />
-          </div>
-          <!--info-->
-          <div class="">
-            <!--name-->
-            <div class="mb-2">
-              <h1 class="h3 fw-bold">{{user.name}}</h1>
-            </div>
-            <!--title-->
-            <div class="my-3">
-              <p class="fw-bold my-2 text-primary">TITLE</p>
-              <div id="title-display">
-                <p class="portfolio-title ps-2">{{user.title}}</p>
-              </div>
-            </div>
-            <!--social links-->
-            <div class="my-4">
-              <p class="fw-bold my-2 text-primary">SOCIAL</p>
-              {{#if user.socials}}
-              <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
-                {{#each user.socials}}
-                <div class="social-box">
-                  <div class="social-icon">
-                    <a href="{{this.link}}" target="_blank">
-                      <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
-                    </a>
-                  </div>
-                  <div class="social-icon-pop border">
-                    <p class="text-primary">{{this.link}}</p>
-                  </div>
-                </div>
-                {{/each}}
-              </div>
-              {{else}}
-              <p class="ps-2">No social listed</p>
-              {{/if}}
-            </div>
-            <!--BIO-->
-            <div class="my-4">
-              <p class="fw-bold mb-2 text-primary">BIO</p>
-              <div class="p-2">
-                <p class="portfolio-description">{{user.description}}</p>
-              </div>
-            </div>
-            <!--contact-->
-            <div class="my-2">
-              <p class="fw-bold mb-2 text-primary">CONTACT</p>
-              <div class="p-2">
-                <!--contact-email-->
-                {{#if user.email}}
-                <p class="mb-2">
-                  <i class="fa-regular fa-envelope" style="width: 20px"></i>
-                  {{user.email}}
-                </p>
-                {{/if}}
-                <!--contact-location-->
-                {{#if (ifOr user.country user.city)}}
-                <p class="mb-2">
-                  <i class="fa-solid fa-location-dot" style="width: 20px"></i>
-                  {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
-                </p>
-                {{/if}}
-                <!--contact-phone-->
-                {{#if user.phone}}
-                <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
-                {{/if}}
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--skills-->
+        <!--social links-->
         <div class="my-4">
-          <p class="fw-bold my-2 text-primary">SKILLS</p>
-          {{#if user.skills}}
-          <div class="skill-container">
-            {{#each user.skills}}
-            <div class="skill-block">
-              <div class="skill-icon image-load load-plus">
-                <img src="{{this.icon}}" alt="skill icon" loading="lazy" />
+          <p class="fw-bold my-2 text-primary">SOCIAL</p>
+          {{#if user.socials}}
+          <div class="social-container d-flex justify-content-start align-items-center mt-0 mb-4">
+            {{#each user.socials}}
+            <div class="social-box">
+              <div class="social-icon">
+                <a href="{{this.link}}" target="_blank">
+                  <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
+                </a>
               </div>
-              <div class="skill-info">
-                <div class="skill-block-top d-flex">
-                  <div class="d-flex align-items-center">
-                    <p class="skill-name">{{this.name}}</p>
-                  </div>
-                </div>
-                <div class="skill-block-bottom">
-                  <p class="skill-description">{{this.description}}</p>
-                </div>
+              <div class="social-icon-pop border">
+                <p class="text-primary">{{this.link}}</p>
               </div>
             </div>
             {{/each}}
           </div>
           {{else}}
-          <p class="ps-2">No skills listed</p>
+          <p class="ps-2">No social listed</p>
           {{/if}}
         </div>
-      </div>
-      <!--projects (right side)-->
-      <div class="portfolio-right col-12 col-lg-6">
-        <div class="project-container">
-          <!--project block-->
-          <div class="position-relative d-flex justify-content-center mb-3">
-            <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
-            <!--project line-->
-            <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+        <!--BIO-->
+        <div class="my-4">
+          <p class="fw-bold mb-2 text-primary">BIO</p>
+          <div class="p-2">
+            <p class="portfolio-description">{{user.description}}</p>
           </div>
-          {{#if user.projects}} {{#each user.projects}}
-          <div class="project-outer-block mb-3">
-            <a class="project-link" href="/projects/{{this.id}}">
-              <div class="project-block d-flex">
-                <div class="project-image-holder col-4 image-load load-pulse">
-                  <img src="{{this.coverSmall}}" alt="project image" loading="lazy" />
-                </div>
-                <div class="project-block-info p-2 col-8">
-                  <p class="project-title fw-bold mb-1">{{this.title}}</p>
-                  <!--date and visit-->
-                  <div class="mb-2">
-                    <div class="project-meta-tag">
-                      <div class="project-meta-tag-inner">
-                        <i class="fa-regular fa-eye"></i>
-                        {{this.visits.count}}
-                      </div>
-                    </div>
-                    <div class="project-meta-tag">
-                      <div class="project-meta-tag-inner">
-                        <i class="fa-solid fa-pencil"></i>
-                        <span class="project-date">{{simpleDate this.date}}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="project-description">{{substring this.description 100}}</p>
-                  <div class="project-block-skills">
-                    {{#if this.skills}} {{#each this.skills}}
-                    <span class="skill-pill">{{this.name}}</span>
-                    {{/each}} {{/if}} {{#if (isMoreThanTarget this.skills.length 3)}}
-                    <button class="skills-show-more-btn" type="button">more</button>
-                    {{/if}}
-                  </div>
+        </div>
+        <!--contact-->
+        <div class="my-2">
+          <p class="fw-bold mb-2 text-primary">CONTACT</p>
+          <div class="p-2">
+            <!--contact-email-->
+            {{#if user.email}}
+            <p class="mb-2">
+              <i class="fa-regular fa-envelope" style="width: 20px"></i>
+              {{user.email}}
+            </p>
+            {{/if}}
+            <!--contact-location-->
+            {{#if (ifOr user.country user.city)}}
+            <p class="mb-2">
+              <i class="fa-solid fa-location-dot" style="width: 20px"></i>
+              {{#if user.country}}<span class="me-2">{{user.country}}{{/if}}</span>{{#if user.city}}<span>{{user.city}}</span>{{/if}}
+            </p>
+            {{/if}}
+            <!--contact-phone-->
+            {{#if user.phone}}
+            <p class="mb-2"><i class="fas fa-mobile-alt" style="width: 20px"></i> {{user.phone}}</p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <!--skills-->
+      <div class="my-4">
+        <p class="fw-bold my-2 text-primary">SKILLS</p>
+        {{#if user.skills}}
+        <div class="skill-container">
+          {{#each user.skills}}
+          <div class="skill-block">
+            <div class="skill-icon image-load load-plus">
+              <img src="{{this.icon}}" alt="skill icon" loading="lazy" />
+            </div>
+            <div class="skill-info">
+              <div class="skill-block-top d-flex">
+                <div class="d-flex align-items-center">
+                  <p class="skill-name">{{this.name}}</p>
                 </div>
               </div>
-            </a>
+              <div class="skill-block-bottom">
+                <p class="skill-description">{{this.description}}</p>
+              </div>
+            </div>
           </div>
-          {{/each}} {{else}}
-          <!--no project-->
-          <div class="project-block-empty">No project listed</div>
-          {{/if}}
-
-          <!--project block end-->
+          {{/each}}
         </div>
+        {{else}}
+        <p class="ps-2">No skills listed</p>
+        {{/if}}
       </div>
     </div>
+    <!--end of left-->
+    <!--projects (right side)-->
+    <div class="portfolio-right col-12 col-lg-6">
+      <div class="project-container">
+        <!--project block-->
+        <div class="position-relative d-flex justify-content-center mb-3">
+          <p class="fw-bold text-primary px-2" style="text-align: center; background: white">PROJECT</p>
+          <!--project line-->
+          <div class="project-line position-absolute border-bottom" style="height: 10px; width: 100%; z-index: -1"></div>
+        </div>
+        {{#if user.projects}} {{#each user.projects}}
+        <div class="project-outer-block mb-3">
+          <a class="project-link" href="/projects/{{this.id}}">
+            <div class="project-block row">
+              <div class="project-image-holder col-4 image-load load-pulse">
+                <img src="{{this.coverSmall}}" alt="project image" loading="lazy" />
+              </div>
+              <div class="project-block-info p-2 col-8">
+                <p class="project-title fw-bold mb-1">{{this.title}}</p>
+                <!--date and visit-->
+                <div class="mb-2">
+                  <div class="project-meta-tag">
+                    <div class="project-meta-tag-inner">
+                      <i class="fa-regular fa-eye"></i>
+                      {{this.visits.count}}
+                    </div>
+                  </div>
+                  <div class="project-meta-tag">
+                    <div class="project-meta-tag-inner">
+                      <i class="fa-solid fa-pencil"></i>
+                      <span class="project-date">{{simpleDate this.date}}</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="project-description">{{substring this.description 100}}</p>
+                <div class="project-block-skills">
+                  {{#if this.skills}} {{#each this.skills}}
+                  <span class="skill-pill">{{this.name}}</span>
+                  {{/each}} {{/if}} {{#if (isMoreThanTarget this.skills.length 3)}}
+                  <button class="skills-show-more-btn" type="button">more</button>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {{/each}} {{else}}
+        <!--no project-->
+        <div class="project-block-empty">No project listed</div>
+        {{/if}}
+        <!--project block end-->
+      </div>
+    </div>
+    <!--end of right-->
   </div>
-</div>
+  <!--end of portfolio container-->
 
-<!--portfolio user data-->
-<span id="user-data" data-id="{{user.id}}" data-visit="{{user.visitId}}" style="display: hidden"></span>
-<!--script-->
-<script type="module" src="/dist/portfolio.bundle.js"></script>
+  <!--portfolio user data-->
+  <span id="user-data" data-id="{{user.id}}" data-visit="{{user.visitId}}" style="display: hidden"></span>
+  <!--script-->
+  <script type="module" src="/dist/portfolio.bundle.js"></script>
+</div>

@@ -34,18 +34,7 @@
       <!--project info-->
       <div class="project-page-info">
         <!--statistic-->
-        <div id="statistic" class="project-statistic-div">
-          <!--page visit-->
-          <div class="statistic-tag statistic-project-visit">
-            <i class="fa-regular fa-eye"></i>
-            <span id="visit-count-span" class="px-1">{{project.visits.count}}</span>
-          </div>
-          <!--last updated-->
-          <div class="statistic-tag statistic-project-update">
-            <i class="fa-solid fa-pencil"></i>
-            <span>{{simpleDate project.updatedAt}}</span>
-          </div>
-        </div>
+        <div id="statistic-container" class="statistic-container">{{>statistic data=project}}</div>
         <!--title-->
         <div class="project-page-title-container">
           <div id="project-title-display">
@@ -251,4 +240,4 @@
 
 <!--script-->
 <script type="module" src="/dist/project.bundle.js"></script>
-<script type="module" src="/dist/myProject-mvc.bundle.js"></script>
+<script type="module" src="/javascript/myProject-mvc.js"></script>

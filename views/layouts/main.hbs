@@ -30,6 +30,8 @@
     <title>Showcase your talent. Grow your skills. | PORTKET</title>
   </head>
   <body>
+    <!--hamburger-menu-->
+    {{> hamburger-menu currentUser=currentUser isAuthenticated=isAuthenticated}}
     <!--message-->
     {{> message}}
     <!--top-->
@@ -38,10 +40,14 @@
       <nav class="my-navbar">
         <!--navbar left-->
         <div class="navbar-left">
+          <!--hamburger-->
+          <div id="hamburger" class="hamburger">
+            <i id="hamburger-i" class="fa-solid fa-bars"></i>
+          </div>
           <!--logo-->
           <a class="navbar-brand fw-bold" href="/users">
             <div class="navbar-logo-div">
-              <img class="full" src="/favicon_io/512x512.png" alt="logo" />
+              <img class="full" src="/favicon_io/192x192.png" alt="logo" />
             </div>
             <p class="navbar-logo-text"><span class="text-primary">PORT</span><span>KET</span></p>
           </a>
@@ -49,13 +55,13 @@
           <div class="navbar-links">
             <ul class="navbar-links-ul">
               <li class="navbar-links-li">
-                <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}} " aria-label="users page">
-                  <i class="fa-solid fa-user-group navbar-links-icon"></i> <span class="navbar-links-title">USERS</span></a
+                <a href="/users" class="navbar-links-href  {{#if (isSame currentPage 'users')}}red underline-red{{/if}} " aria-label="users page" title="Users">
+                  <span class="navbar-links-title">Users</span></a
                 >
               </li>
               <li class="navbar-links-li">
-                <a href="/projects" class="navbar-links-href {{#if (isSame currentPage 'projects')}}red underline-red{{/if}}" aria-label="projects page"
-                  ><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">PROJECTS</span></a
+                <a href="/projects" class="navbar-links-href {{#if (isSame currentPage 'projects')}}red underline-red{{/if}}" aria-label="projects page" title="Projects">
+                  <span class="navbar-links-title">Projects</span></a
                 >
               </li>
             </ul>

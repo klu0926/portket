@@ -1,118 +1,49 @@
 /* statistic */
-.project-statistic-div {
-  position: absolute;
+.statistic-div {
   display: flex;
-  justify-content: space-between;
-  top: -55px;
-  left: 15px;
-  color: white;
-  background-color: white;
-  border-radius: 2px;
-  user-select: none;
-}
-
-.portfolio-statistic-div {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
   top: 125px;
   left: 230px;
   color: white;
-  width: fit-content;
-  background-color: white;
   border-radius: 2px;
   user-select: none;
+  width: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-/*-----*/
+
 .statistic-tag {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
-  padding: 4px 10px;
-  color: var(--my-grey);
+  padding: 2px 7px;
+  color: white;
+  border: 1px solid white;
+  background-color: var(--my-grey-light);
   text-wrap: nowrap;
   cursor: default;
   transition: all 0.2s ease-in-out;
 }
 
 .statistic-tag:first-child {
-  border-radius: 2.5px 0px 0px 2.5px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.statistic-tag:not(:first-child):not(:last-child) {
+  border-left: 0;
+  border-right: 0;
 }
 
 .statistic-tag:last-child {
-  border-radius: 0px 2.5px 2.5px 0px;
-}
-
-.statistic-tag:hover {
-  color: white;
-  background-color: var(--my-red-light);
+  border-radius: 0px 4px 4px 0px;
 }
 
 .statistic-tag i {
   margin-right: 5px;
 }
 
-.statistic-tag::after {
-  display: block;
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-  white-space: nowrap;
-  color: white;
-  background-color: var(--my-red);
-  font-size: 0.9rem;
-  padding: 0px 4px;
-  transition: all 0.2s ease-in-out;
-  opacity: 0;
-  z-index: -1;
-}
-
-.statistic-portfolio-visit::after {
-  content: 'Page Visits';
-  padding: 2px;
-}
-
-.statistic-portfolio-update::after {
-  content: 'Updated';
-  padding: 2px;
-}
-
-.statistic-portfolio-create::after {
-  content: 'Created';
-  padding: 2px;
-}
-
-.statistic-project-count::after {
-  content: 'Projects';
-  padding: 2px;
-}
-
-.statistic-project-visit::after {
-  content: 'Page Visits';
-  padding: 2px;
-}
-
-.statistic-project-update::after {
-  content: 'Updated';
-  padding: 2px;
-}
-
-.statistic-tag:hover::after {
-  opacity: 1;
-  bottom: 100%;
-}
-
-@media screen and (max-width: 991px) {
-  .portfolio-statistic-div {
-    top: 80px;
-    left: 210px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .portfolio-statistic-div {
-    top: 70px;
-    left: 170px;
+@media screen and (max-width: 400px) {
+  .statistic-portfolio-update {
+    display: none;
   }
 }
