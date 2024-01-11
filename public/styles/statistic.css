@@ -8,7 +8,7 @@
   user-select: none;
   width: auto;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 .statistic-tag {
@@ -16,26 +16,21 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 2px 7px;
-  color: white;
-  border: 1px solid white;
-  background-color: var(--my-grey-light);
+  padding: 2px 10px;
+  color: var(--my-grey);
   text-wrap: nowrap;
   cursor: default;
   transition: all 0.2s ease-in-out;
 }
 
-.statistic-tag:first-child {
-  border-radius: 4px 0px 0px 4px;
-}
-
-.statistic-tag:not(:first-child):not(:last-child) {
-  border-left: 0;
-  border-right: 0;
-}
-
-.statistic-tag:last-child {
-  border-radius: 0px 4px 4px 0px;
+.statistic-tag:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  height: 50%;
+  border-right: 1px solid var(--my-border);
 }
 
 .statistic-tag i {

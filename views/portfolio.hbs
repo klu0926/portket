@@ -23,19 +23,16 @@
       <div class="portfolio-left col-12 col-lg-6">
         <!--info-->
         <div>
-          <!--statistic-->
-          <div class="statistic-container">{{>statistic data=user model='user'}}</div>
           <!--name-->
-          <div class="mb-2">
-            <h1 class="h3 fw-bold">{{user.name}}</h1>
+          <div class="portfolio-name-display">
+            <h1 class="portfolio-name">{{user.name}}</h1>
           </div>
           <!--title-->
-          <div class="my-3">
-            <p class="fw-bold my-2 text-primary">TITLE</p>
-            <div id="title-display">
-              <p class="portfolio-title ps-2">{{user.title}}</p>
-            </div>
+          <div id="title-display" class="portfolio-title-display">
+            <p class="portfolio-title">{{user.title}}</p>
           </div>
+          <!--statistic-->
+          <div class="statistic-container">{{>statistic data=user model='user'}}</div>
           <!--social links-->
           <div class="my-4">
             <p class="fw-bold my-2 text-primary">SOCIAL</p>

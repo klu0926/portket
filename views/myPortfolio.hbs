@@ -34,7 +34,7 @@
   <!--main container-->
   <div class="container" style="min-height: 1100px">
     <!--portfolio container--->
-    <div class="portfolio-container row">
+    <div class="portfolio-container">
       <!--avatar-->
       <div id="avatar-container" class="portfolio-avatar-container image-load bigger load-pluse">
         <div id="avatar-input-div"></div>
@@ -44,12 +44,10 @@
       <div class="portfolio-mid-container row">
         <!--Bio (left side) -->
         <div class="portfolio-left col-12 col-lg-6">
-          <!--statistic-->
-          <div class="statistic-container">{{>statistic data=user model='user'}}</div>
           <!--name-->
           <div class="mb-2">
-            <div id="name-display">
-              <h1 class="h3 fw-bold">{{user.name}}</h1>
+            <div id="name-display" class="portfolio-name-display">
+              <h1 class="portfolio-name">{{user.name}}</h1>
             </div>
             <div id="name-input-div">
               <p class="fw-bold my-2 text-primary">NAME</p>
@@ -60,18 +58,18 @@
             </div>
           </div>
           <!--title-->
-          <div class="my-3">
-            <p class="fw-bold my-2 text-primary">TITLE</p>
-            <div id="title-display">
-              <p class="portfolio-title ps-2">{{user.title}}</p>
-            </div>
-            <div id="title-input-div" class="ps-2">
-              <div>
-                <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" maxlength="30" required />
-                <div class="invalid-feedback">Require 2 - 30 characters.</div>
-              </div>
+          <div id="title-display" class="portfolio-title-display">
+            <p class="portfolio-title">{{user.title}}</p>
+          </div>
+          <div id="title-input-div" class="ps-2">
+            <div>
+              <p class="fw-bold my-2 text-primary">TITLE</p>
+              <input class="form-control" name="title" type="text" value="{{user.title}}" placeholder="title" minlength="6" maxlength="30" required />
+              <div class="invalid-feedback">Require 2 - 30 characters.</div>
             </div>
           </div>
+          <!--statistic-->
+          <div class="statistic-container">{{>statistic data=user model='user'}}</div>
           <!--social links-->
           <div class="my-2">
             <p class="fw-bold my-2 text-primary">SOCIAL</p>
