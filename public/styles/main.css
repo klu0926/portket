@@ -209,7 +209,7 @@ body {
   top: 0px;
   display: flex;
   width: 100%;
-  height: 10px;
+  height: 5px;
   z-index: 1000;
   opacity: 0%;
 }
@@ -376,6 +376,22 @@ body {
   background-color: var(--my-border-light);
 }
 
+.hamburger-menu-login-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  width: 95%;
+  padding: 0px 15px 0px 15px;
+  background-color: white;
+}
+
+.hamburger-menu-login-div p {
+  font-size: 0.9rem;
+  color: var(--my-grey);
+}
+
 .hamburger-menu-line-break {
   position: relative;
   width: 100%;
@@ -428,12 +444,37 @@ body {
 
 /* login/out */
 .login-btn {
-  height: 30px;
+  display: inline-block;
+  display: flex;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 0px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 100px;
+  background-color: white;
+  border: 1px solid var(--my-red-light2);
+  color: var(--my-red);
+  text-decoration: none;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.login-btn:hover {
+  background-color: var(--my-red-light2);
+}
+
+.login-btn-i-div {
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  justify-content: center;
+  border: 1px solid var(--my-red);
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  margin-right: 4px;
   font-size: 0.9rem;
-  transform: skew(-7deg);
+  overflow: hidden;
 }
 
 /* navbar-avatar */

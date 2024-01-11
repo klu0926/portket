@@ -21,17 +21,6 @@
   background-position: center;
 }
 
-/* portfolio-top-container (top avatar statistic)*/
-.portfolio-top-container {
-  position: absolute;
-  top: 270px;
-  left: 0px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 20px;
-}
-
 .statistic-container {
   display: block;
 }
@@ -70,23 +59,25 @@
   user-select: none;
 }
 
-/* portfolio-container (middle) */
+/* portfolio-container */
 .portfolio-container {
   position: relative;
-  top: -140px;
+  width: 100%;
+  top: -160px;
   padding: 15px;
+}
+
+/* everything beside avatar*/
+.portfolio-mid-container {
+  margin-top: 10px;
 }
 
 .portfolio-left {
   position: relative;
-  padding: 0;
-  padding-right: 15px;
 }
 
 .portfolio-right {
   position: relative;
-  border: none;
-  padding: 0;
 }
 
 /* title */
@@ -110,6 +101,9 @@
 }
 
 .project-link {
+  display: block;
+  height: 100%;
+  width: 100%;
   text-decoration: none;
   color: inherit;
 }
@@ -216,9 +210,13 @@
   padding: 0px;
 }
 
+/* each project */
 .project-outer-block {
   position: relative;
   transition: all 0.1s ease-in-out;
+  min-height: 180px;
+  margin-bottom: 10px;
+  padding: 4px;
 }
 
 .project-outer-block:hover {
@@ -226,8 +224,9 @@
 }
 
 .project-block {
-  display: flex;
-  height: 180px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 150px 1fr;
   background-color: white;
   border: 1px solid rgb(233, 233, 233);
   border-radius: 4px;
@@ -236,6 +235,7 @@
   transform: scale(0);
   opacity: 0;
   width: 100%;
+  height: 100%;
   animation-delay: infinite; /* use js to control*/
   animation: popAndFadeIn 0.5s ease-in-out forwards;
   /*forward means stay in the end condition when done*/
@@ -246,16 +246,20 @@
   border: 1px solid var(--my-red);
 }
 
-.project-image-holder {
+.project-block-image {
   display: block;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 10px;
   overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 5px;
 }
 
-.project-image-holder img {
-  width: 100%;
-  height: 100%;
+.project-block-image img {
+  width: 110%;
+  height: 110%;
   object-fit: cover;
   object-position: center;
   transition: all 0.2s ease-in-out;
@@ -280,13 +284,23 @@
 
 /* project-block-info */
 .project-block-info {
-  display: flex;
-  flex-direction: column;
+  grid-column: 2 / span 99;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 6px;
   transition: all 0.2s ease-in-out;
 }
 
 .project-title {
+  display: block;
+  width: 82%;
+  font-weight: bold;
   color: grey;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .project-visit {
@@ -346,38 +360,22 @@
 }
 
 .project-line {
+  position: absolute;
   display: none;
+  height: 10px;
+  width: 100%;
+  border-bottom: 2px solid var(--my-border);
+  z-index: -1;
 }
 
 /* project skill tag */
 .project-block-skills {
   position: relative;
-  height: 52px;
   overflow: hidden;
-  margin-top: 10px;
   padding: 6px;
-  padding-bottom: 25px;
-}
-
-.skills-show-more-btn {
-  position: absolute;
-  bottom: -2px;
-  left: 0px;
-  display: block;
-  outline: none;
-  background-color: white;
-  border: none;
-  border-top: 1px solid var(--my-border);
-  color: var(--my-grey);
-  font-size: 0.8rem;
-  text-align: center;
-  transition: all 0.4s ease-in-out;
-  width: 100%;
-}
-
-.skills-show-more-btn:hover {
-  border-top: 1px solid var(--my-red);
-  color: var(--my-red);
+  margin-top: 4px;
+  grid-column: 1 / span 99;
+  grid-row: 2 / span 99;
 }
 
 .skill-pill {
@@ -393,6 +391,9 @@
 }
 
 @media screen and (max-width: 991px) {
+  .portfolio-left {
+    padding: 0;
+  }
   .portfolio-right {
     padding: 0;
   }

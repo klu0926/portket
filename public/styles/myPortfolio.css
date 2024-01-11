@@ -142,7 +142,9 @@
 
 .project-delete-btn-div:hover::before {
   content: 'delete';
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   height: 24px;
   top: -28px;
@@ -152,7 +154,6 @@
   border: 1px solid var(--my-red);
   border-radius: 4px;
   padding: 0px 5px;
-  font-weight: 100;
 }
 
 /* cover */
@@ -372,5 +373,11 @@
 @media (hover: none) {
   #cover-position {
     display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .project-meta-tag:not(:first-child) {
+    display: none;
   }
 }

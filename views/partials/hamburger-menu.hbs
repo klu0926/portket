@@ -34,6 +34,7 @@
       <div class="hamburger-menu-line-break"></div>
       <!--menu title : My -->
       <div class="hamburger-menu-title">My</div>
+      {{#if isAuthenticated}}
       <a href="/users/{{currentUser.id}}" class="hamburger-menu-link" aria-label="my portfolio">
         <div class="hamburger-menu-link-content">
           <i class="fa-regular fa-user"></i>
@@ -49,6 +50,19 @@
           <div class="hamburger-menu-link-content"><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">My Project</span></div>
         </a>
       </div>
+      {{else}}
+      <!--tell user to login-->
+      <div class="hamburger-menu-login-div">
+        <p>Login to create your own portfolio, and start sharing projects with the world!</p>
+        <!--login-->
+        <a class="login-btn" href="/users/login" aria-label="login">
+          <div class="login-btn-i-div">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          LOGIN</a
+        >
+      </div>
+      {{/if}}
       <!--line break-->
       <div class="hamburger-menu-line-break"></div>
       <!--menu title : Explore -->

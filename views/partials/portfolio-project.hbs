@@ -1,0 +1,47 @@
+<div class="project-outer-block">
+  <a class="project-link" href="/projects/{{project.id}}">
+    <!--use for display grid-->
+    <div class="project-block">
+      <!--image div-->
+      <div class="project-block-image">
+        <img src="{{project.cover}}" alt="project image" loading="lazy" />
+      </div>
+      <!--info div-->
+      <div class="project-block-info">
+        <p class="project-title">{{project.title}}</p>
+        <!--date and visit-->
+        <div class="project-meta-tags mb-2">
+          <div class="project-meta-tag">
+            <div class="project-meta-tag-inner">
+              <i class="fa-regular fa-eye"></i>
+              {{project.visits.count}}
+            </div>
+          </div>
+          <!--meta-->
+          <div class="project-meta-tag">
+            <div class="project-meta-tag-inner">
+              <i class="fa-solid fa-pencil"></i>
+              <span class="project-date">{{simpleDate project.date}}</span>
+            </div>
+          </div>
+        </div>
+        <!--des-->
+        <div class="project-description-div">
+          <p class="project-description">{{substring project.description 125}}</p>
+        </div>
+      </div>
+      <!--skills-->
+      <div class="project-block-skills">
+        {{#if project.skills}} {{#each project.skills}}
+        <span class="skill-pill">{{this.name}}</span>
+        {{/each}} {{/if}}
+      </div>
+    </div>
+  </a>
+  <!--delete btn (absolute)-->
+  {{#if (isSame currentUser.id project.userId)}}
+  <div class="project-delete-btn-div">
+    <button class="delete-project-btn" data-project="{{project.id}}" type="button" onclick="return confirm('Do you want to delete your < {{project.title}} > project?')">X</button>
+  </div>
+  {{/if}}
+</div>
