@@ -443,3 +443,9 @@
     width: 120px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .project-description {
+    font-size: 0.9rem;
+  }
+}
