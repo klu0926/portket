@@ -375,9 +375,3 @@
     display: none !important;
   }
 }
-
-@media screen and (max-width: 500px) {
-  .project-meta-tag:not(:first-child) {
-    display: none;
-  }
-}

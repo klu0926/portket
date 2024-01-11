@@ -1129,9 +1129,6 @@ body {
 }
 
 @media screen and (max-width: 767px) {
-  .loader-container {
-    height: 15px;
-  }
   .banner {
     display: none;
   }

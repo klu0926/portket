@@ -449,3 +449,23 @@
     font-size: 0.9rem;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .project-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 150px auto auto;
+  }
+  .project-block-image {
+    grid-column: 1 / span 99;
+    grid-row: 1/2;
+  }
+  .project-block-info {
+    grid-column: 1 / span 99;
+    grid-row: 2/3;
+  }
+  .project-block-skills {
+    grid-column: 1 / span 99;
+    grid-row: 3/4;
+  }
+}
