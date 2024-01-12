@@ -9,6 +9,7 @@ const imgurCustom = require('../helper/imgurCustom')
 const allLocations = require('../data/location.json')
 const cleanTempFolder = require('../helper/cleanTempFolder')
 const getOffset = require('../helper/getPaginationOffset')
+const charAvatar = require('../helper/charAvatar')
 
 const userController = {
   getLogin: (req, res, next) => {
@@ -96,6 +97,10 @@ const userController = {
 
       // create visit record
       const newVisit = await Visit.create()
+
+      // create name avatar ([0] = size 128, [1] = size 400)
+      const charAvatars = charAvatar(name)
+
       // create account
       const newUser = await User.create({
         name,
@@ -104,6 +109,8 @@ const userController = {
         cover: cover,
         coverSmall: coverSmall,
         visitId: newVisit.id,
+        avatar: charAvatars[0],
+        avatarSmall: charAvatars[1],
         createdAt: new Date(),
         updatedAt: new Date(),
       })

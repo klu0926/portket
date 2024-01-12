@@ -2,6 +2,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy
 const { User, Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
 const imgurCustom = require('../../helper/imgurCustom')
+const charAvatar = require('../../helper/charAvatar.js')
 
 module.exports = (passport) => {
   passport.use(
@@ -23,16 +24,17 @@ module.exports = (passport) => {
           // create visit record
           const newVisit = await Visit.create()
 
-          // create avatarSmall
-          const imgurUrls = await imgurCustom(picture, 400, 100)
+          // create avatar
+          // picture provide from google is too small, let user upload picture instead
+          const charAvatars = charAvatar(name)
 
           // newUser
           const newUser = await User.create({
             name,
             email,
             password: bcryptjs.hashSync(randomPassword),
-            avatar: imgurUrls?.[0] || picture,
-            avatarSmall: imgurUrls?.[1] || picture,
+            avatar: charAvatars[0],
+            avatarSmall: charAvatars[1],
             visitId: newVisit.id,
             createdAt: new Date(),
             updatedAt: new Date(),

@@ -1,0 +1,54 @@
+<!-- avatar | login | edit mode -->
+{{#if isAuthenticated}}
+<div class="navbar-right">
+  <!-- edit mode buttons for my portfolio-->
+  {{#if (ifOr (isSame page 'myPortfolio') (isSame page 'myProject'))}}
+  <div class="edit-buttons-container">
+    <button id="edit-btn" class="nav-edit-btn">
+      <i class="fa-solid fa-pencil edit-mode-icon"></i>
+      EDIT
+    </button>
+    <button id="save-edit-btn" class="nav-edit-btn">
+      <i class="fa-solid fa-floppy-disk edit-mode-icon"></i>
+      SAVE
+    </button>
+    <button id="cancel-edit-btn" class="nav-edit-btn">X</button>
+    <button id="loading-btn" class="nav-edit-btn hide">
+      SAVING...
+      <i class="fa-solid fa-spinner spinner"></i>
+    </button>
+  </div>
+  <!--edit mode display tip-->
+  <div id="edit-mode-display" class="edit-mode-display">Edit Mode</div>
+  {{/if}}
+  <!--my navbar avatar -->
+  <div id="navbar-avatar-div" class="navbar-avatar-div">
+    <div class="navbar-avatar">
+      <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" tabindex="0" />
+      <!--avatar menu-->
+      <div id="navbar-avatar-menu" class="navbar-avatar-menu">
+        <div class="navbar-avatar-menu-item">
+          <a class="navbar-avatar-menu-href" href="/users/{{currentUser.id}}">
+            <i class="fa-regular fa-user navbar-links-icon"></i>
+            <span class="navbar-links-title">Portfolio</span>
+          </a>
+        </div>
+        <div class="navbar-avatar-menu-item">
+          <a class="navbar-avatar-menu-href" href="/users/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket navbar-links-icon"></i>
+            <span class="navbar-links-title">Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <!--login-->
+  <a class="login-btn" href="/users/login">
+    <div class="login-btn-i-div">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    LOGIN</a
+  >
+  {{/if}}
+</div>

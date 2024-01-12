@@ -1,6 +1,7 @@
 const FacebookStrategy = require('passport-facebook').Strategy
 const { User, Visit } = require('../../models')
 const bcryptjs = require('bcryptjs')
+const charAvatar = require('../../helper/charAvatar.js')
 
 module.exports = (passport) => {
   passport.use(
@@ -20,6 +21,11 @@ module.exports = (passport) => {
 
           // Can't find user, create one
           const randomPassword = Math.random().toString(36).slice(-8)
+
+          // create avatar
+          // picture provide from google is too small, let user upload picture instead
+          const charAvatars = charAvatar(name)
+
           // create visit record
           const newVisit = await Visit.create()
           const newUser = await User.create({
@@ -27,6 +33,8 @@ module.exports = (passport) => {
             email,
             password: bcryptjs.hashSync(randomPassword),
             visitId: newVisit.id,
+            avatar: charAvatars[0],
+            avatarSmall: charAvatars[1],
             createdDate: new Date(),
             updatedDate: new Date(),
           })

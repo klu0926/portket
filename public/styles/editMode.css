@@ -30,6 +30,7 @@
 .edit-buttons-container {
   display: flex;
   justify-content: center;
+  margin-right: 5px;
 }
 
 .edit-mode-icon {

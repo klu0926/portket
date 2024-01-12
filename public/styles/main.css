@@ -511,7 +511,7 @@ body {
 .navbar-avatar-img:focus-within ~ .navbar-avatar-menu {
   visibility: visible;
   opacity: 1;
-  transform: translate3d(-90px, 52px, 0);
+  transform: translate3d(-115px, 47px, 0);
 }
 
 .navbar-avatar-menu {
@@ -519,42 +519,46 @@ body {
   visibility: hidden;
   position: absolute;
   inset: 0 auto auto 0;
-  transform: translate3d(-40px, 52px, 0);
+  transform: translate3d(-80px, 47px, 0);
   opacity: 0;
-  min-width: 120px;
+  min-width: 140px;
   height: auto;
   background-color: white;
   border: none;
   box-shadow: 0px 0px 5px 0px var(--my-grey);
+  padding: 7px 15px 7px 15px;
+  border-radius: 4px;
   transition: all 0.2s ease-in-out;
 }
 
-/* .navbar-avatar-menu > *:not(:last-child) {
-  border-bottom: 1px solid var(--my-border);
-} */
-
-.navbar-avatar-menu .navbar-avatar-menu-item {
+.navbar-avatar-menu-item {
   display: flex;
   align-items: center;
   justify-content: start;
   overflow-wrap: nowrap;
   white-space: nowrap;
-  height: 30px;
-  background-color: var(--my-light);
+  background-color: white;
 }
 
-.navbar-avatar-menu-item:hover {
-  background-color: var(--my-border);
+.navbar-avatar-menu-href:hover {
+  background-color: var(--my-border-light);
 }
 
-.navbar-avatar-menu-item .navbar-avatar-menu-href {
+.navbar-avatar-menu-href {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  gap: 10px;
   width: 100%;
   height: 100%;
+  padding: 8px 15px 8px 15px;
+  border-radius: 3px;
   text-decoration: none;
-  color: var(--my-black);
+  color: var(--my-grey-dark);
+}
+
+.navbar-avatar-menu-href i {
+  margin-right: 7px;
 }
 
 /*cards display*/
