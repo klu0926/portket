@@ -93,9 +93,17 @@
 .search-option-container {
   --search-option-container-height: 35px;
   display: grid;
-  grid-template-columns: 90px var(--search-option-container-height);
+  grid-template-columns: auto 90px var(--search-option-container-height);
   gap: 5px;
   height: var(--search-option-container-height);
+}
+
+.sort-by-title {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  color: var(--my-grey);
+  font-weight: bold;
 }
 
 /* result count */
@@ -223,5 +231,13 @@
 
   .result-count {
     font-size: 0.9rem;
+  }
+
+  .search-option-container {
+    grid-template-columns: 90px var(--search-option-container-height);
+  }
+
+  .sort-by-title {
+    display: none;
   }
 }

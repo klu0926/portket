@@ -26,6 +26,8 @@
       </span>
     </div>
   <div class="search-option-container">
+    <!--title-->
+    <div class="sort-by-title">SORT BY</div>
   <!--sort-->
   <div class="sort-select-div" title="sort by">
     <select class="sort-select cap" name="sort" id='sort-select' aria-label="search sort">
@@ -35,7 +37,7 @@
       {{/each}}
     </select>
    </div>
-  <!--direction-->
+  <!--sort direction-->
     <div class="sort-direction-div">
     <input name="ascending" class="sort-direction-check" type="checkbox" {{#if (isSame sortDirection 'ASC')}}checked{{/if}}  aria-checked="false">
     </div>

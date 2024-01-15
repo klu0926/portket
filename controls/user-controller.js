@@ -12,6 +12,46 @@ const getOffset = require('../helper/getPaginationOffset')
 const charAvatar = require('../helper/charAvatar')
 
 const userController = {
+  showDeletePage: (req, res, next) => {
+    res.render('deleteAccount')
+  },
+  deleteUser: async (req, res, next) => {
+    const ACTION = 'DELETE user'
+    try {
+      const currentUser = req.user
+      const userId = req.params.userId
+
+      if (!currentUser) {
+        throw new Error('You are not logged in.')
+      }
+      if (!userId) {
+        throw new Error('missing user id in params.')
+      }
+      if (Number(currentUser.id) !== Number(userId)) {
+        throw new Error('You are no allow to delete other user.')
+      }
+
+      // find user
+      const user = await User.findOne({
+        where: {
+          id: userId,
+        },
+      })
+      if (!user) {
+        throw new Error(`Can not find user with id: ${userId}.`)
+      }
+      await user.destroy()
+      const message = `Successfully delete user account with id ${userId}`
+      // logout
+      req.logout(() => {
+        // redirect
+        req.flash('success_msg', 'Successfully deleted your account.')
+        return res.redirect('/')
+      })
+    } catch (err) {
+      res.json(responseObject(false, null, err.message, ACTION))
+    }
+  },
   getLogin: (req, res, next) => {
     const email = req.query.email || ''
     res.render('login', {

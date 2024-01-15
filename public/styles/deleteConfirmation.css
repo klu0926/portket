@@ -1,0 +1,44 @@
+.delete-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  max-width: 500px;
+  min-height: 500px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 10px;
+  padding: 25px;
+}
+.delete-face {
+  display: flex;
+  justify-content: center;
+  font-size: 10rem;
+  color: var(--my-border);
+  width: 100%;
+}
+
+.delete-title {
+  color: var(--my-red);
+  font-weight: bold;
+}
+
+.delete-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.delete-form input {
+  width: 100%;
+}
+
+.delete-tip {
+  color: var(--my-red);
+  background-color: var(--my-border);
+  padding: 4px;
+  border-radius: 4px;
+}

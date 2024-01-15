@@ -1,0 +1,19 @@
+<div class="delete-confirmation">
+  <div class="delete-face">
+    <i class="fa-regular fa-face-frown"></i>
+  </div>
+  <h1 class="delete-title">Delete Your Account</h1>
+  <p class="delete-info">Deleting your account will remove all of your information from our database. This cannot be undone.</p>
+
+  {{#if currentUser}}
+  <form id="delete-form" class="delete-form" action="/users/{{currentUser.id}}?_method=DELETE" method="POST">
+    <input class="form-control" type="text" placeholder="Confirm by typing DELETE" pattern="DELETE" required />
+    <div class="invalid-feedback">Confirm by typing DELETE.</div>
+    <button type="submit" class="btn btn-primary">Delete</button>
+  </form>
+</div>
+{{else}}
+<p class="delete-tip">You are not currently logged in, please login and try again.</p>
+{{/if}}
+
+<script type="module" src="/javascript/deleteAccount.js"></script>

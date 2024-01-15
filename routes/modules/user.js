@@ -40,10 +40,11 @@ router.get(
     failureRedirect: '/users/login',
   })
 )
+router.get('/delete', userController.showDeletePage)
 router.get('/logout', userController.getLogout)
 router.get('/', userController.getUsers)
 router.get('/:userId', userController.getUser)
 // Edit Portfolio
 router.put('/:userId', multiUpload, userController.putUser)
-
+router.delete('/:userId', userController.deleteUser)
 module.exports = router

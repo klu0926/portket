@@ -7,10 +7,8 @@ const projectController = {
     try {
       const currentUser = req.user
       const projectId = req.params.projectId
-      console.log('projectId delete', projectId)
       if (!currentUser) {
-        res.redirect('/users/login')
-        return
+        throw new Error('You are not login.')
       }
       // find project
       const project = await Project.findOne({

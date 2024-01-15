@@ -26,7 +26,7 @@
     <div class="navbar-avatar">
       <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" tabindex="0" />
       <!--avatar menu-->
-      <div id="navbar-avatar-menu" class="navbar-avatar-menu">
+      <div id="" class="navbar-avatar-menu">
         <div class="navbar-avatar-menu-item">
           <a class="navbar-avatar-menu-href" href="/users/{{currentUser.id}}">
             <i class="fa-regular fa-user navbar-links-icon"></i>
@@ -38,6 +38,10 @@
             <i class="fa-solid fa-arrow-right-from-bracket navbar-links-icon"></i>
             <span class="navbar-links-title">Logout</span>
           </a>
+        </div>
+        <div class="navbar-avatar-menu-break"></div>
+        <div class="navbar-avatar-menu-item">
+          <a class="navbar-avatar-menu-href" href="/users/delete"> <i class="fa-solid fa-user-xmark navbar-links-icon"></i> <span class="navbar-links-title">Delete Account</span> </a>
         </div>
       </div>
     </div>

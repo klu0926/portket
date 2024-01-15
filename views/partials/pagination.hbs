@@ -6,7 +6,7 @@
     {{#if (isNotSame 1 ../page)}}
     <li class="pagination-item">
       <a
-        href="/{{../model}}?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}"
+        href="/{{../model}}?page={{add ../page -1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}&sort={{../sort}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}"
         aria-label="previous page"
       >
         <i class="fa-solid fa-caret-left"></i>
@@ -15,18 +15,25 @@
     {{/if}}
     <!--all pages-->
     {{#each paginatorPages}} {{#if (isSame this ../../page)}}
+    <!--current page-->
     <li class="pagination-item disable">
-      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}&column={{../../column}}{{#if (isSame ../../sortDirection 'ASC')}}&ascending=on{{/if}}">{{this}}</a>
+      <a href="#">{{this}}</a>
     </li>
     {{else}}
+    <!--other pages-->
     <li class="pagination-item">
-      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}&column={{../../column}}{{#if (isSame ../../sortDirection 'ASC')}}&ascending=on{{/if}}">{{this}}</a>
+      <a href="/{{../../model}}?page={{this}}&limit={{../../limit}}&keyword={{../../keyword}}&column={{../../column}}&sort={{../../sort}}{{#if (isSame ../../sortDirection 'ASC')}}&ascending=on{{/if}}"
+        >{{this}}</a
+      >
     </li>
     {{/if}} {{/each}}
     <!--next page-->
     {{#if (isNotSame (lastArrayItem paginatorPages) ../page)}}
     <li class="pagination-item">
-      <a href="/{{../model}}?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}" aria-label="next page">
+      <a
+        href="/{{../model}}?page={{add ../page 1}}&limit={{../limit}}&keyword={{../keyword}}&column={{../column}}&sort={{../sort}}{{#if (isSame ../sortDirection 'ASC')}}&ascending=on{{/if}}"
+        aria-label="next page"
+      >
         <i class="fa-solid fa-caret-right"></i>
       </a>
     </li>

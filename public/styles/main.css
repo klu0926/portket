@@ -11,6 +11,7 @@
 @import url('/styles/pagination.css');
 @import url('/styles/helper.css');
 @import url('/styles/searchBar.css');
+@import url('/styles/deleteConfirmation.css');
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -511,7 +512,7 @@ body {
 .navbar-avatar-img:focus-within ~ .navbar-avatar-menu {
   visibility: visible;
   opacity: 1;
-  transform: translate3d(-115px, 47px, 0);
+  transform: translate3d(-80%, 47px, 0);
 }
 
 .navbar-avatar-menu {
@@ -519,7 +520,7 @@ body {
   visibility: hidden;
   position: absolute;
   inset: 0 auto auto 0;
-  transform: translate3d(-80px, 47px, 0);
+  transform: translate3d(-40%, 47px, 0);
   opacity: 0;
   min-width: 140px;
   height: auto;
@@ -538,6 +539,14 @@ body {
   overflow-wrap: nowrap;
   white-space: nowrap;
   background-color: white;
+}
+
+.navbar-avatar-menu-break {
+  width: 80%;
+  height: 1.5px;
+  background-color: var(--my-border-light);
+  margin: 12px auto 12px auto;
+  border-radius: 20%;
 }
 
 .navbar-avatar-menu-href:hover {
