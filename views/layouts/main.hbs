@@ -83,8 +83,12 @@
     <a id="scroll-top" class="scroll-top" href="#top-anchor"><i class="fa-solid fa-square-caret-up scroll-top-icon" aria-label="scroll top"></i></a>
     <!--footer-->
     <div class="footer-container">{{> footer}}</div>
+
+    <!--current user data-->
+    <div id="current-user-data" data-id="{{currentUser.id}}"></div>
+
     <!--script-->
     <script src="/dist/loader.bundle.js"></script>
-    <script src="/dist/main.bundle.js"></script>
+    <script type="module" src="/javascript/main.js"></script>
   </body>
 </html>

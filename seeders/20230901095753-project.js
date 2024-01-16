@@ -2,6 +2,7 @@
 const { User, Visit } = require('../models')
 const { faker } = require('@faker-js/faker')
 const randomPublicImage = require('../helper/randomPublicImage')
+const projectTitles = require('../data/projectTitle.json')
 
 const SEED_AMOUNT = 5
 const SEED_VISIT_MAX = 1001
@@ -33,7 +34,7 @@ class RandomProjectGenerator {
         const image = randomPublicImage('projects')
         const project = {
           userId: this.users[i].id,
-          title: 'Simple Project Title',
+          title: projectTitles[Math.floor(Math.random() * projectTitles.length)],
           description: faker.lorem.paragraphs(10),
           cover: image,
           coverSmall: '/images/projects_small/' + image.split('/')[3],

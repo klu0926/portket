@@ -1,4 +1,23 @@
-class MainModel {}
+import AlertMessage from './alertMessage.js'
+
+class MainModel {
+  constructor() {
+    this.getProjectsUrl = '/api/projects'
+    this.currentUserData = document.querySelector('#current-user-data')
+    this.currentUserId = this.currentUserData.dataset.id
+  }
+  async getProjects(currentUserId = this.currentUserId) {
+    try {
+      const url = `${this.getProjectsUrl}?userId=${currentUserId}`
+      console.log('url', url)
+      const response = await fetch(url)
+      return await response.json()
+    } catch (err) {
+      console.log('err', err)
+      return err
+    }
+  }
+}
 class MainView {
   constructor() {
     this.navbarAvatarImg = document.querySelector('#navbar-avatar-img')
@@ -6,6 +25,7 @@ class MainView {
     // hamburger menu related
     this.body = document.querySelector('body')
     this.hamburgerMenu = document.querySelector('#hamburger-menu')
+    this.hamburgerMenuProjectsContainer = document.querySelector('#hamburger-menu-my-projects-container')
     this.bodyDisableCover = document.querySelector('#body-disable-cover')
   }
   showHamburgerMenu() {
@@ -43,21 +63,56 @@ class MainView {
       toggle(target)
     }
   }
+  renderHamburgerMenuProjects(projects) {
+    console.log('project:', projects)
+    const container = this.hamburgerMenuProjectsContainer
+    if (container) {
+      container.innerHTML = ''
+      let content = ''
+      for (let i = 0; i < projects.length; i++) {
+        const projectLink = `
+      <a href="/projects/${projects[i].id}" class="hamburger-menu-link" aria-label="project">
+          <div class="hamburger-menu-link-content">
+            <i class="fa-regular fa-file-lines navbar-links-icon"></i>
+            <span class="hamburger-menu-text">${projects[i].title}</span>
+          </div>
+          </a>`
+        content += projectLink
+      }
+      container.innerHTML = content
+    }
+  }
 }
 class MainController {
   constructor(view, model) {
     this.view = view
     this.model = model
+    this.alertMessage = new AlertMessage()
     this.init()
   }
   init() {
     document.addEventListener('click', (e) => this.hamburgerMenuToggle(e))
   }
-  hamburgerMenuToggle(event) {
+  async hamburgerMenuToggle(event) {
     if (!event.target) return
     const id = event.target.id
     if (id === 'hamburger' || id === 'hamburger-i') {
       this.view.showHamburgerMenu()
+
+      // fetch user project
+      if (this.model.currentUserId) {
+        try {
+          const response = await this.model.getProjects()
+          if (!response.ok) {
+            this.alertMessage.showAlertMessage(`${response.action}: ${response.message}`)
+          } else {
+            // render project to menu
+            this.view.renderHamburgerMenuProjects(response.data.projects)
+          }
+        } catch (err) {
+          this.alertMessage.showAlertMessage(`${err.name}: ${err.message}`)
+        }
+      }
     } else if (id === 'hamburger-in-menu' || id === 'hamburger-in-menu-i' || id === 'body-disable-cover') {
       this.view.hideHamburgerMenu()
     }

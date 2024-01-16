@@ -108,14 +108,18 @@ app.use(flash())
 app.use((req, res, next) => {
   // passport (.locals pass to handlebars)
   res.locals.isAuthenticated = req.isAuthenticated()
-  res.locals.currentUser = req.user
+  if (req.user) {
+    const currentUser = req.user
+    delete currentUser.password
+    res.locals.currentUser = currentUser
+  }
   res.locals.test = 'my test message'
   // flash
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
   console.log('success:', res.locals.success_msg)
   console.log('warning:', res.locals.warning_msg)
-
+  console.log('current user', res.locals.currentUser)
   next()
 })
 

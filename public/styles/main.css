@@ -359,18 +359,26 @@ body {
   font-size: 1rem;
   padding: 0px 15px 0px 15px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.hamburger-menu-text {
+  color: var(--my-grey);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .hamburger-menu-link-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
   gap: 10px;
-  padding: 10px 15px 10px 15px;
+  padding: 5px 15px 5px 15px;
   background-color: white;
   border-radius: 3px;
+  height: 40px;
   width: 95%;
-  overflow: hidden;
 }
 
 .hamburger-menu-link-content:hover {
@@ -406,6 +414,13 @@ body {
   inset: 0 15%;
   height: 100%;
   border: 1px solid var(--my-border-light);
+}
+
+.hamburger-menu-avatar-div {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 /* navbar links*/

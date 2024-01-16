@@ -32,22 +32,27 @@
       </a>
       <!--line break-->
       <div class="hamburger-menu-line-break"></div>
-      <!--menu title : My -->
-      <div class="hamburger-menu-title">My</div>
+      <!--menu title : Portfolio -->
+      <div class="hamburger-menu-title">Portfolio</div>
       {{#if isAuthenticated}}
       <a href="/users/{{currentUser.id}}" class="hamburger-menu-link" aria-label="my portfolio">
         <div class="hamburger-menu-link-content">
-          <i class="fa-regular fa-user"></i>
-          <span class="navbar-links-title">Portfolio</span>
+          <div class="hamburger-menu-avatar-div">
+            <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
+          </div>
+          <span class="hamburger-menu-text">{{currentUser.name}}</span>
         </div>
       </a>
+      <!--menu title : Projects -->
+      <div class="hamburger-menu-title">Projects</div>
       <!--My project container-->
       <div id="hamburger-menu-my-projects-container" style="width: 100%">
+        <!--placeholder, this will be replace by js-->
         <a href="#" class="hamburger-menu-link" aria-label="project">
-          <div class="hamburger-menu-link-content"><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">My Project</span></div>
-        </a>
-        <a href="#" class="hamburger-menu-link" aria-label="project">
-          <div class="hamburger-menu-link-content"><i class="fa-regular fa-file-lines navbar-links-icon"></i> <span class="navbar-links-title">My Project</span></div>
+          <div class="hamburger-menu-link-content">
+            <i class="fa-regular fa-file-lines navbar-links-icon"></i>
+            <span class="hamburger-menu-text">My Project</span>
+          </div>
         </a>
       </div>
       {{else}}
@@ -71,7 +76,7 @@
         {{#each (createArray 20)}}
         <!--explore link-->
         <a href="#" class="hamburger-menu-link" aria-label="explore">
-          <div class="hamburger-menu-link-content"><i class="fa-solid fa-compass-drafting"></i> <span class="navbar-links-title">Explore Search</span></div>
+          <div class="hamburger-menu-link-content"><i class="fa-solid fa-compass-drafting"></i> <span class="hamburger-menu-text">Explore Search</span></div>
         </a>
         {{/each}}
       </div>
