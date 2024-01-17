@@ -306,6 +306,7 @@ body {
   height: 100vh;
   height: 100dvh;
   background-color: white;
+  padding: 4px;
   z-index: 200;
   border: 0;
   border-top: 1px solid lightgray;
@@ -340,6 +341,10 @@ body {
   overflow-y: scroll;
 }
 
+.hamburger-menu-box {
+  width: 100%;
+}
+
 .hamburger-menu-link {
   text-decoration: none;
   width: 100%;
@@ -352,14 +357,26 @@ body {
   text-align: center;
 }
 
-.hamburger-menu-title {
+.hamburger-menu-section {
   width: 100%;
   color: var(--my-grey);
   font-weight: 700;
   font-size: 1rem;
   padding: 0px 15px 0px 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--my-red);
+}
+
+.hamburger-menu-title {
+  width: 100%;
+  color: var(--my-grey);
+  font-size: 1rem;
+  padding: 0px 15px 0px 15px;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .hamburger-menu-text {
@@ -413,7 +430,7 @@ body {
   position: absolute;
   inset: 0 15%;
   height: 100%;
-  border: 1px solid var(--my-border-light);
+  border-top: 1px solid var(--my-border);
 }
 
 .hamburger-menu-avatar-div {
@@ -421,6 +438,12 @@ body {
   width: 30px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+.hamburger-menu-footer {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
 }
 
 /* navbar links*/

@@ -92,7 +92,7 @@ const userController = {
   getLogout: (req, res, next) => {
     req.logout(() => {
       try {
-        req.flash('success_msg', 'You have successfully logged out!')
+        //req.flash('success_msg', 'You have successfully logged out!')
         res.redirect('/users/login')
       } catch (err) {
         console.log('Logout Error')

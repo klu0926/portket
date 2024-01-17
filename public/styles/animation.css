@@ -114,7 +114,7 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.4;
   }
   100% {
     opacity: 1;
@@ -157,4 +157,23 @@
 .image-load.loaded::after {
   animation: none;
   opacity: 0;
+}
+
+/* auto loading icon*/
+/* this will animated loading icon until replace by js*/
+
+.loading-circle {
+  display: block;
+  text-align: center;
+  margin: 2px;
+}
+
+.loading-circle::after {
+  display: inline-block;
+  content: '\f110';
+  font: var(--fa-font-solid);
+  text-rendering: auto;
+  font-size: 1.2rem;
+  -webkit-font-smoothing: antialiased;
+  animation: spinner 2s linear infinite, fadeInOut 1s ease-in-out infinite;
 }

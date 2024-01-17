@@ -49,8 +49,6 @@ const projectController = {
         limit,
       }
 
-      console.log('get projects api:', searchOption)
-
       // search option
       // project title, project description, user name, skill name
       // SQL query condition
@@ -79,8 +77,6 @@ const projectController = {
       } else if (sort === 'title') {
         sortOrder.push('title', sortDirection)
       }
-      // (front end )send to front for select option
-      const sortOptions = ['time', 'visit', 'title']
 
       // search
       const totalProjects = await Project.count()
@@ -139,8 +135,6 @@ const projectController = {
         totalCount: totalProjects,
         currentCount: projects.length,
       }
-
-      console.log('api get projects data:', data)
 
       const message = `Successfully get projects`
       res.json(responseObject(true, data, message, ACTION))

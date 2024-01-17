@@ -32,28 +32,22 @@
       </a>
       <!--line break-->
       <div class="hamburger-menu-line-break"></div>
-      <!--menu title : Portfolio -->
-      <div class="hamburger-menu-title">Portfolio</div>
       {{#if isAuthenticated}}
+      <!--Section : My -->
+      <div class="hamburger-menu-section">MY</div>
+      <!-- my portfolio-->
       <a href="/users/{{currentUser.id}}" class="hamburger-menu-link" aria-label="my portfolio">
         <div class="hamburger-menu-link-content">
           <div class="hamburger-menu-avatar-div">
-            <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatar}}" alt="avatar" />
+            <img id="navbar-avatar-img" class="navbar-avatar-img" src="{{currentUser.avatarSmall}}" alt="avatar" />
           </div>
           <span class="hamburger-menu-text">{{currentUser.name}}</span>
         </div>
       </a>
-      <!--menu title : Projects -->
-      <div class="hamburger-menu-title">Projects</div>
-      <!--My project container-->
-      <div id="hamburger-menu-my-projects-container" style="width: 100%">
-        <!--placeholder, this will be replace by js-->
-        <a href="#" class="hamburger-menu-link" aria-label="project">
-          <div class="hamburger-menu-link-content">
-            <i class="fa-regular fa-file-lines navbar-links-icon"></i>
-            <span class="hamburger-menu-text">My Project</span>
-          </div>
-        </a>
+      <!--my projects -->
+      <div id="hamburger-menu-my-projects-container" class="hamburger-menu-box">
+        <!--loading circle, this will be replace by js-->
+        <div class="loading-circle"></div>
       </div>
       {{else}}
       <!--tell user to login-->
@@ -70,16 +64,15 @@
       {{/if}}
       <!--line break-->
       <div class="hamburger-menu-line-break"></div>
-      <!--menu title : Explore -->
-      <div class="hamburger-menu-title">Explore</div>
-      <div id="hamburger-menu-skill-container" style="width: 100%">
-        {{#each (createArray 20)}}
-        <!--explore link-->
-        <a href="#" class="hamburger-menu-link" aria-label="explore">
-          <div class="hamburger-menu-link-content"><i class="fa-solid fa-compass-drafting"></i> <span class="hamburger-menu-text">Explore Search</span></div>
-        </a>
-        {{/each}}
+      <!--Section : Explore -->
+      <div class="hamburger-menu-section">EXPLORE</div>
+      <div class="hamburger-menu-title">Top Portfolio 👑</div>
+      <div id="hamburger-menu-top-user-container" class="hamburger-menu-box">
+        <!--loading circle, this will be replace by js-->
+        <div class="loading-circle"></div>
       </div>
+      <!--menu footer-->
+      <div class="hamburger-menu-footer"></div>
     </div>
   </div>
 </div>
