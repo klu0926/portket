@@ -6,21 +6,14 @@ input {
 }
 
 /* cover */
-.cover-drag {
-  position: absolute;
-  display: none;
-  align-items: center;
-  justify-self: center;
-  text-align: center;
-  top: 65px;
-  left: 0%;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 5px solid red;
-  width: 100%;
-  height: 390px;
-  cursor: move;
+.project-cover-buttons-inner {
+  display: flex;
+  justify-content: center;
 }
-.cover-drag::after {
+
+/* cover drag use myPortfolio.css portfolio-cover-drag*/
+
+.project-cover-drag::after {
   content: 'Drag image to reposition, and remember to Save Edit';
   position: absolute;
   display: flex;
@@ -330,7 +323,7 @@ input {
 }
 
 @media screen and (max-width: 991px) {
-  .cover-drag {
+  .project-cover-drag {
     height: 340px;
   }
   .cover-buttons-container {
@@ -339,7 +332,7 @@ input {
 }
 
 @media screen and (max-width: 767px) {
-  .cover-drag {
+  .project-cover-drag {
     height: 290px;
   }
   .cover-buttons-container {

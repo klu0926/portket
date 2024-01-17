@@ -1,4 +1,6 @@
 /* my portfolio ----------------------------------*/
+/* currently have duplicate css same as myProject.css */
+/* use this css as main, and create another editMode css */
 
 /* name */
 #name-input-div {
@@ -164,7 +166,7 @@
   background-color: rgba(255, 255, 255, 0.2);
   border: 5px solid red;
   width: 100%;
-  height: 390px;
+  height: 400px;
   cursor: move;
   z-index: 7;
 }
@@ -176,7 +178,7 @@
   align-items: center;
   justify-self: center;
   text-align: center;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%) translateY(-25%);
   background-color: rgba(233, 10, 10, 0.65);
@@ -190,20 +192,25 @@
 .portfolio-cover-buttons-container {
   position: absolute;
   display: none;
-  top: 400px;
-  right: 20px;
+  top: 100px;
+  right: 50%;
+  transform: translateX(50%);
+  min-width: 500px;
   z-index: 8;
 }
-.cover-buttons-set-one {
+.portfolio-cover-buttons-inner {
   display: flex;
-  justify-content: end;
-  width: 100%;
+  justify-content: center;
 }
 
-.cover-buttons-set-two {
+.portfolio-cover-buttons-set-one {
+  display: flex;
+  justify-content: end;
+}
+
+.portfolio-cover-buttons-set-two {
   display: none;
   justify-content: end;
-  width: 100%;
 }
 
 .cover-button {
@@ -213,6 +220,7 @@
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   font-size: 1rem;
   padding: 2px 20px;
+  height: 100%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   user-select: none;
@@ -329,37 +337,20 @@
 
 @media screen and (max-width: 991px) {
   .portfolio-cover-drag {
-    top: 50px;
-    height: 350px;
+    height: 340px;
   }
-  .portfolio-cover-buttons-container {
-    top: 350px;
+  .portfolio-cover-drag::after {
+    font-size: 0.8rem;
   }
 }
 
 @media screen and (max-width: 767px) {
   .portfolio-cover-drag {
-    top: 50px;
     height: 300px;
-  }
-  .portfolio-cover-buttons-container {
-    top: 300px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .cover-buttons-set-one {
-    justify-content: center !important;
-  }
-  .cover-buttons-set-two {
-    justify-content: center !important;
-  }
-  .portfolio-cover-buttons-container {
-    margin: 0 !important;
-    top: 280px;
-    left: auto !important;
-    right: 20px !important;
-  }
   .portfolio-cover-drag {
     height: 275px;
   }

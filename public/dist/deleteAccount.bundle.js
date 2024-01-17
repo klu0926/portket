@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector("#delete-form");e.querySelector("button").addEventListener("click",(t=>{return a=t,(r=e).classList.add("was-validated"),a.preventDefault(),a.stopPropagation(),void(r.checkValidity()&&r.submit());var a,r}))})();

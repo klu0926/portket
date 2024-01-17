@@ -73,8 +73,8 @@ class MyPortfolioView {
     this.originalCover = this.coverImg.src
     this.coverChangeButton = document.querySelector('#cover-change-btn')
     this.coverPositionButton = document.querySelector('#cover-position')
-    this.coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
-    this.coverButtonsSetTwo = document.querySelector('.cover-buttons-set-two')
+    this.coverButtonsSetOne = document.querySelector('.portfolio-cover-buttons-set-one')
+    this.coverButtonsSetTwo = document.querySelector('.portfolio-cover-buttons-set-two')
     this.coverPositionDone = document.querySelector('#cover-done-position')
     this.coverPositionCancel = document.querySelector('#cover-cancel-position')
     this.coverDrag = document.querySelector('#portfolio-cover-drag')

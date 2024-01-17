@@ -9,7 +9,6 @@ class MainModel {
   async getProjects(currentUserId = this.currentUserId) {
     try {
       const url = `${this.getProjectsUrl}?userId=${currentUserId}`
-      console.log('url', url)
       const response = await fetch(url)
       return await response.json()
     } catch (err) {
@@ -64,7 +63,6 @@ class MainView {
     }
   }
   renderHamburgerMenuProjects(projects) {
-    console.log('project:', projects)
     const container = this.hamburgerMenuProjectsContainer
     if (container) {
       container.innerHTML = ''

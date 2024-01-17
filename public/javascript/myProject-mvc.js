@@ -29,11 +29,11 @@ class MyProjectView {
     this.coverInput = document.querySelector('#cover-input')
     this.coverImg = document.querySelector('#cover-img')
     this.originalCover = this.coverImg.src
-    this.coverButtonsSetOne = document.querySelector('.cover-buttons-set-one')
-    this.coverButtonsSetTwo = document.querySelector('.cover-buttons-set-two')
+    this.coverButtonsSetOne = document.querySelector('#cover-buttons-set-one')
+    this.coverButtonsSetTwo = document.querySelector('#cover-buttons-set-two')
     this.coverPositionDone = document.querySelector('#cover-done-position')
     this.coverPositionCancel = document.querySelector('#cover-cancel-position')
-    this.coverDrag = document.querySelector('.cover-drag')
+    this.coverDrag = document.querySelector('#cover-drag')
     this.positionInput = document.querySelector('#cover-position-input')
     this.isDragging = false
     this.initPositionY

@@ -1160,6 +1160,9 @@ body {
   .banner {
     display: none;
   }
+  .navbar-links {
+    display: none;
+  }
   .no-result-p {
     font-size: 1.3rem;
   }
@@ -1171,8 +1174,5 @@ body {
   }
   .my-navbar {
     padding: 10px 10px 10px 10px;
-  }
-  .navbar-links {
-    display: none;
   }
 }

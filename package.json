@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "nodemon app.js",
     "browser": "BROWSER_SYNC=sync nodemon app.js",
-    "lint": "eslint \"**/*.js\" --fix",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "keywords": [],
   "author": "",

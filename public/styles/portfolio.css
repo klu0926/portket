@@ -432,11 +432,11 @@
   .project-outer-block:hover {
     transform: translateX(0px);
   }
+  .portfolio-container {
+    top: -120px;
+  }
   .portfolio-cover {
     height: 340px;
-  }
-  .portfolio-container {
-    margin-top: 30px;
   }
   .portfolio-avatar-container {
     margin-left: auto;
@@ -459,23 +459,24 @@
   .portfolio-cover {
     height: 300px;
   }
-  .portfolio-container {
-    margin-top: 30px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .portfolio-cover {
-    height: 270px;
-  }
-  .portfolio-container {
-    margin-top: 40px;
-  }
 }
 
 @media screen and (max-width: 500px) {
+  .portfolio-cover {
+    height: 275px;
+  }
+  .portfolio-container {
+    top: -90px;
+  }
   .project-description {
     font-size: 0.9rem;
+  }
+  .portfolio-name {
+    font-size: 1.7rem;
+  }
+  .portfolio-avatar-container {
+    width: 150px;
+    height: 150px;
   }
 }
 
@@ -496,5 +497,8 @@
   .project-block-skills {
     grid-column: 1 / span 99;
     grid-row: 3/4;
+  }
+  .portfolio-name {
+    font-size: 1.5rem;
   }
 }

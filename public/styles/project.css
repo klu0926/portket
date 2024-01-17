@@ -111,7 +111,7 @@
 
 @media screen and (max-width: 991px) {
   .project-page-cover {
-    height: 350px;
+    height: 340px;
   }
 }
 
@@ -132,7 +132,7 @@
 
 @media screen and (max-width: 500px) {
   .project-page-cover {
-    height: 270px;
+    height: 275px;
   }
   .project-page-title {
     font-size: 1.5rem;
