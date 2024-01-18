@@ -46,7 +46,7 @@ class MyPortfolioView {
     this.socialInputDiv = document.querySelector('#social-input-div')
     this.descriptionInputDiv = document.querySelector('#description-input-div')
     this.contactInputDiv = document.querySelector('#contact-input-div')
-    this.skillInputDiv = document.querySelector('#skill-input-div')
+    this.skillInputContainer = document.querySelector('#skill-input-container')
     // display
     this.nameDisplay = document.querySelector('#name-display')
     this.titleDisplay = document.querySelector('#title-display')
@@ -102,7 +102,7 @@ class MyPortfolioView {
       this.projectBlocker,
       this.descriptionInputDiv,
       this.contactInputDiv,
-      this.skillInputDiv,
+      this.skillInputContainer,
     ]
     // view mode elements
     this.viewModeElements = [
@@ -273,27 +273,8 @@ class MyPortfolioView {
       this.skillToolTipName.innerText = target.getAttribute('data-name')
       this.skillToolTipImage.src = target.getAttribute('data-icon')
       this.skillToolTipDescription.innerText = target.getAttribute('data-des')
-
-      // position
-      const parentHeight = parseInt(window.getComputedStyle(this.skillInputDiv).height)
-      const parentWidth = parseInt(window.getComputedStyle(this.skillInputDiv).width)
-      const toolTipHeight = parseInt(window.getComputedStyle(this.skillToolTip).height)
-      const toolTipWidth = parseInt(window.getComputedStyle(this.skillToolTip).width)
-      const rect = target.getBoundingClientRect()
-      const parentRect = target.getBoundingClientRect()
-
-      let top = rect.top + window.scrollY - toolTipHeight - parentHeight
-      let left = parentRect.right + window.scrollX - toolTipWidth
-      if (window.innerWidth > 1800) {
-        left -= toolTipWidth
-      } else if (window.innerHeight > 1500) {
-        left -= toolTipWidth / 2
-      }
-      this.skillToolTip.style.top = top + 'px'
-      this.skillToolTip.style.left = left + 'px'
-      // show
-      this.skillToolTip.style.opacity = '1'
     }
+    this.skillToolTip.style.opacity = '1'
   }
   hideSkillToolTip() {
     this.skillToolTip.style.opacity = '0'
@@ -347,7 +328,6 @@ class MyPortfolioController {
     // skill
     this.view.skillInputs.forEach((i) => {
       i.addEventListener('mouseover', (e) => this.showSkillToolTip(e))
-      i.addEventListener('mouseout', () => this.view.hideSkillToolTip())
     })
     // preview image on change
     this.view.coverInput.addEventListener('change', () => this.previewCoverImage())

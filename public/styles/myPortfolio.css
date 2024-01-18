@@ -265,17 +265,28 @@
 }
 
 /* skill input */
-.skill-input-checkbox-window {
-  position: relative;
+.skill-input-container {
   border: 1px solid var(--my-border);
-  height: 200px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-input-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 190px;
+  gap: 0;
+}
+
+.skill-input-checkbox-window {
+  box-sizing: border-box;
+  border-left: 1px solid var(--my-border);
+  height: 100%;
   overflow: auto;
   padding: 4px;
 }
 .skill-input {
-  position: relative;
   display: flex;
-  width: 100%;
   align-items: center;
   border-bottom: 1px solid var(--my-grey-light);
   padding: 4px;
@@ -299,20 +310,16 @@
 
 /* skill input tooltip*/
 .skill-tooltip {
-  position: absolute;
+  position: relative;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 300px;
-  min-height: 50px;
-  border: 1px solid var(--my-grey);
-  padding: 5px;
+  height: 100%;
+  padding: 10px;
   color: var(--my-grey);
   background-color: white;
-  pointer-events: none;
-  z-index: 10;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
 }
 
 .skill-tooltip-top {
@@ -353,6 +360,12 @@
 @media screen and (max-width: 500px) {
   .portfolio-cover-drag {
     height: 275px;
+  }
+  .skill-input-grid {
+    grid-template-columns: 0px auto;
+  }
+  .skill-tooltip {
+    visibility: hidden;
   }
 }
 

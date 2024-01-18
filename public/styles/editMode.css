@@ -100,6 +100,7 @@
   font-size: 1.4rem;
   transition: all 0.2s ease-in-out;
 }
+
 .add-button::after {
   content: '+';
 }
@@ -108,6 +109,24 @@
   background-color: var(--my-grey);
   border: none;
   color: white;
+  border-radius: 3px;
+}
+
+.add-button-full-width {
+  width: 100%;
+  background-color: var(--my-light);
+  border: 1px solid var(--my-red);
+  color: var(--my-red);
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-button-full-width:hover {
+  background-color: var(--my-red-light);
+  color: white;
+  padding-bottom: 4px;
   border-radius: 3px;
 }
 

@@ -128,24 +128,7 @@
               {{/each}} {{/if}}
             </div>
             <!--social input add-->
-            <div class="social-input-flex">
-              <div class="social-select">
-                <select class="form-select" name="socials" required disabled>
-                  <option value="" selected>Select</option>
-                  {{#each ../allSocials}}
-                  <option value="{{this.id}}">{{this.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-              <div class="social-input-right">
-                <div class="social-input-right-inner">
-                  <input id="socials-link" name="socialsLinks" class="form-control" type="url" placeholder="http://www.example.com" pattern="https?://.+" value="" disabled />
-                </div>
-                <div class="social-input-button-div">
-                  <button id="add-social" class="add-button" type="button"></button>
-                </div>
-              </div>
-            </div>
+            <button id="add-social" class="add-button-full-width" type="button" aria-label="add social">Add Social</button>
 
             <!--social input example-->
             <div class="social-input-sample" style="display: none">
@@ -281,28 +264,31 @@
                 {{/if}}
               </div>
               <!--skill input-->
-              <div id="skill-input-div">
-                <div class="skill-input-checkbox-window">
-                  {{#each allSkills}}
-                  <div class="skill-input" data-icon="{{this.icon}}" data-name="{{this.name}}" data-des="{{this.description}}">
-                    <input class="skill-checkbox" type="checkbox" id="{{this.name}}" name="skills" value="{{this.id}}" {{#if (inArray ../user.skillsList this.id)}} checked {{/if}} />
-                    <label class="skill-label" for="{{this.name}}">{{this.name}}</label>
+              <div id="skill-input-container" class="skill-input-container">
+                <div class="skill-input-grid">
+                  <!--skill tool tip-->
+                  <div id="skill-tooltip" class="skill-tooltip">
+                    <div class="skill-tooltip-top">
+                      <div id="skill-tooltip-img-div" class="skill-tooltip-img-div image-load load-pulse">
+                        <img id="skill-tooltip-img" src="" alt="skill icon" />
+                      </div>
+                      <p id="skill-tooltip-name" class="skill-tooltip-name"></p>
+                    </div>
+                    <p id="skill-tooltip-description" class="skill-tooltip-description"></p>
                   </div>
-                  {{/each}}
+                  <!--skill checker--->
+                  <div class="skill-input-checkbox-window">
+                    {{#each allSkills}}
+                    <div class="skill-input" data-icon="{{this.icon}}" data-name="{{this.name}}" data-des="{{this.description}}">
+                      <input class="skill-checkbox" type="checkbox" id="{{this.name}}" name="skills" value="{{this.id}}" {{#if (inArray ../user.skillsList this.id)}} checked {{/if}} />
+                      <label class="skill-label" for="{{this.name}}">{{this.name}}</label>
+                    </div>
+                    {{/each}}
+                  </div>
                 </div>
               </div>
               <!--input end-->
             </div>
-          </div>
-          <!--skill tool tip-->
-          <div id="skill-tooltip" class="skill-tooltip">
-            <div class="skill-tooltip-top">
-              <div id="skill-tooltip-img-div" class="skill-tooltip-img-div image-load load-pulse">
-                <img id="skill-tooltip-img" src="" alt="skill icon" />
-              </div>
-              <p id="skill-tooltip-name" class="skill-tooltip-name"></p>
-            </div>
-            <p id="skill-tooltip-description" class="skill-tooltip-description"></p>
           </div>
         </div>
 
