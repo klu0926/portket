@@ -4,9 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "NODE_ENV=development node app.js",
     "dev": "nodemon app.js",
+    "lint": "eslint \"**/*.js\" --fix",
+    "test": "mocha test --exit --recursive --timeout 5000",
     "browser": "BROWSER_SYNC=sync nodemon app.js",
-    "build": "webpack",
+    "webpack build": "webpack",
     "watch": "webpack --watch"
   },
   "keywords": [],
