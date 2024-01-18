@@ -134,7 +134,7 @@
   color: inherit;
 }
 
-.social-box {
+.social-link {
   position: relative;
   margin-right: 10px;
   transition: all ease-in-out 0.2s;
@@ -157,6 +157,7 @@
   display: none;
   left: 15;
   top: 32px;
+  max-width: 200px;
   transform: translateX(-10%);
   background-color: white;
   color: var(--my-red);
@@ -168,11 +169,17 @@
   border-radius: 5px;
 }
 
-.social-box:hover img {
+.social-icon-pop p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.social-link:hover img {
   filter: invert(27%) sepia(60%) saturate(2832%) hue-rotate(335deg) brightness(91%) contrast(89%);
 }
 
-.social-box:hover .social-icon-pop {
+.social-link:hover .social-icon-pop {
   display: inline-block;
 }
 

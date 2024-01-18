@@ -79,16 +79,14 @@
               {{#if user.socials}}
               <div class="social-container">
                 {{#each user.socials}}
-                <div class="social-box">
+                <a href="{{this.link}}" class="social-link" target="_blank">
                   <div class="social-icon image-load load-plus">
-                    <a href="{{this.link}}" target="_blank">
-                      <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
-                    </a>
+                    <img src="{{this.icon}}" alt="{{this.name}}" loading="lazy" />
                   </div>
                   <div class="social-icon-pop">
                     <p class="text-primary">{{this.link}}</p>
                   </div>
-                </div>
+                </a>
                 {{/each}}
               </div>
               {{else}}

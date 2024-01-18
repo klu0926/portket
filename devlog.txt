@@ -1,0 +1,7 @@
+1/18 Heroku Push Timeout
+npm run 'build' (to use webpack build)
+will cause heroku push error, so I change 'build' to 'webpack build'
+
+
+
+
