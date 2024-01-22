@@ -1,5 +1,5 @@
 'use strict'
-const { User, Visit } = require('../models')
+const { User } = require('../models')
 const { faker } = require('@faker-js/faker')
 const startAndEndDate = require('../helper/startAndEndDate')
 

@@ -1,6 +1,7 @@
-const startAndEnd = require('./helper/startAndEndDate')
+const dayjs = require('dayjs')
+const startAndEndDate = require('./helper/startAndEndDate')
 
-const dates = startAndEnd(2)
 
-console.log(dates)
-console.log(typeof dates[0][0].getFullYear())
+const set = startAndEndDate(1, 60, 60, false)
+
+console.log(set)
