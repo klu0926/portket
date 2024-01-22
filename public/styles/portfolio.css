@@ -423,6 +423,69 @@
   color: white;
 }
 
+/* work */
+.portfolio-work-outer {
+  margin-top: 20px;
+}
+
+.portfolio-work-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+}
+.work-div {
+  padding: 6px;
+}
+.work-job-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.work-time {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: var(--my-grey);
+  gap: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.work-time span {
+  color: var(--my-grey);
+  font-size: 0.9rem;
+}
+
+.work-company-name {
+  color: var(--my-red);
+  font-weight: bold;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.work-responsibility-list {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px;
+  padding-left: 20px;
+}
+
+.work-responsibility-li {
+  margin-bottom: 9px;
+}
+
+/* for touch device */
+@media (hover: none) {
+  .social-icon-pop {
+    visibility: hidden;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .portfolio-left {
     padding: 0;

@@ -1,0 +1,32 @@
+<div class="portfolio-work-outer">
+  <p class="fw-bold my-2 text-primary">WORKS</p>
+  {{#if works}}
+  <div class="portfolio-work-container">
+    {{#each works}}
+    <div class="work-div">
+      <!--title-->
+      <p class="work-job-title">{{this.title}}</p>
+      <!--time-->
+      <div class="work-time">
+        <i class="fa-regular fa-calendar-days"></i>
+        <span class="work-start">{{simpleDate this.startDate}}</span>
+        <span> - </span>
+        <span class="work-end">{{simpleDate this.endDate}}</span>
+      </div>
+      <!--company-->
+      <p class="work-company-name">{{this.companyName}}</p>
+      <!--job description-->
+      <p class="work-job-description">{{this.jobDescription}}</p>
+      <!--responsibility-->
+      <ul class="work-responsibility-list">
+        {{#each (stringToArray this.responsibility ',')}}
+        <li class="work-responsibility-li">{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <p class="ps-2">No work listed</p>
+  {{/if}}
+</div>

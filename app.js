@@ -40,19 +40,32 @@ app.engine(
 )
 app.set('view engine', 'hbs')
 
-// Session store
+// Create Session Store to SQL database
 const sessionMinutes = 600 // 10hrs
+const expirationDuration = 1000 * 60 * sessionMinutes
+
 let storeOption = {
-  expiration: 1000 * 60 * sessionMinutes,
   createDatabaseTable: true,
+  clearExpired: true,
+  checkExpirationInterval: 900000, //15mins
+  expiration: expirationDuration,
   schema: {
     tableName: 'Sessions',
+    columnNames: {
+      session_id: 'session_id',
+      expires: 'expires',
+      data: 'data',
+    },
   },
+  // 代表在每次與使用者互動後，不會強制把 session 儲存，除非 session 有變動
+  resave: false,
+  saveUninitialized: false,
 }
 if (process.env.NODE_ENV !== 'production') {
   // local
   const db = config.development
   storeOption = {
+    ...storeOption,
     host: db.host,
     user: db.username,
     password: db.password,
@@ -61,6 +74,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // heroku
   storeOption = {
+    ...storeOption,
     host: process.env.JAWDB_HOST,
     user: process.env.JAWDB_USER,
     password: process.env.JAWDB_PASSWORD,
@@ -69,7 +83,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const sessionStore = new MySQLStore(storeOption)
 
-// Middleware
+// Session cookie option
 const COOKIE_HOUR = 24
 app.use(
   session({
@@ -84,6 +98,7 @@ app.use(
     },
   })
 )
+// Other middleware
 app.use(
   express.static('public', {
     maxAge: 0,
@@ -117,9 +132,6 @@ app.use((req, res, next) => {
   // flash
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
-  console.log('success:', res.locals.success_msg)
-  console.log('warning:', res.locals.warning_msg)
-  console.log('current user', res.locals.currentUser)
   next()
 })
 

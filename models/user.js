@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'socials',
         onDelete: 'CASCADE',
       })
+      User.hasMany(models.Work, {
+        foreignKey: 'userId',
+        as: 'works',
+        onDelete: 'CASCADE',
+      })
       User.belongsToMany(models.Skill, {
         through: models.User_Skill,
         foreignKey: 'userId',

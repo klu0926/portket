@@ -48,7 +48,12 @@ module.exports = {
   },
   simpleDate: (date) => {
     if (!date) return
-    return dayjs(date).format('YYYY-MM-DD')
+    // all endDate is set to year 9999, means user is still working there
+    if (date.getFullYear() === 9999) {
+      return 'present'
+    } else {
+      return dayjs(date).format('YYYY-MM-DD')
+    }
   },
   isMoreThanTarget: (number, target) => {
     return number > target
@@ -99,5 +104,15 @@ module.exports = {
   createArray: (size) => {
     if (!size && !isFinite(size)) return []
     return Array.from({ length: size }, (value, index) => index)
+  },
+  // handle bar helper does not support default parameters
+  stringToArray: (string, separatorString) => {
+    const separator = separatorString || ','
+    let array = string.split(separator)
+    array = array.map((i) => {
+      return i.trim()
+    })
+    console.log('array:', array)
+    return array
   },
 }

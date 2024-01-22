@@ -1,6 +1,6 @@
-const projectTitles = require('./data/projectTitle.json')
-console.log(projectTitles[1])
+const startAndEnd = require('./helper/startAndEndDate')
 
-const title = projectTitles[Math.floor(Math.random() * projectTitles.length)]
+const dates = startAndEnd(2)
 
-console.log('title:', title)
+console.log(dates)
+console.log(typeof dates[0][0].getFullYear())

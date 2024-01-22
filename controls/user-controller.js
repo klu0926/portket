@@ -1,4 +1,4 @@
-const { User, Project, Social, Skill, User_Social, User_Skill, Visit } = require('../models')
+const { User, Project, Social, Skill, User_Social, User_Skill, Visit, Work } = require('../models')
 const passport = require('passport')
 const bcryptjs = require('bcryptjs')
 const { Op, literal } = require('sequelize')
@@ -65,6 +65,7 @@ const userController = {
       req.flash('warning_msg', 'Email or Password missing.')
       return res.redirect(`/users/login?email=${email}`)
     }
+
     try {
       passport.authenticate('local', (err, user, info) => {
         if (err) {
@@ -328,16 +329,27 @@ const userController = {
             },
           },
           {
+            model: Work,
+            as: 'works',
+            attributes: {
+              exclude: ['updatedAt', 'createdAt'],
+            },
+          },
+          {
             model: Visit,
             attributes: ['count'],
             as: 'visits',
           },
         ],
-        order: [[{ model: Project, as: 'projects' }, 'id', 'DESC']],
+        order: [
+          [{ model: Project, as: 'projects' }, 'id', 'DESC'],
+          [{ model: Work, as: 'works' }, 'endDate', 'DESC'],
+        ],
       })
       const user = userData.toJSON()
 
       user.socials.forEach((social) => {
+        // convert socialId to 0 based index
         social['icon'] = allSocials[social.socialId - 1].icon
       })
 
@@ -346,7 +358,7 @@ const userController = {
         user.skillsList.push(skill.id.toString())
       })
 
-      console.log('user', user)
+      console.log('user:', user)
 
       // check if user is current user
       if (req.user?.id === user.id) {
@@ -366,7 +378,6 @@ const userController = {
   },
   putUser: async (req, res, next) => {
     try {
-      console.log('PUT USER --------------------')
       const userId = req.params.userId
       if (userId === undefined) throw new Error('PUT user: userId is undefined')
       const currentUser = req.user
