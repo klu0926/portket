@@ -320,14 +320,15 @@ body {
 .hamburger-menu-container {
   position: relative;
   height: 100%;
-  padding: 10px;
+  padding: 5px;
 }
 
 .hamburger-menu-top {
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: 15px;
+  padding: 5px;
+  padding-left: 10px;
   height: 40px;
 }
 
