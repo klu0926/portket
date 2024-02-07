@@ -158,6 +158,7 @@ class MyPortfolioView {
     })
     this.statisticDiv.style.display = 'flex'
     this.editBtn.style.display = 'flex'
+    this.nameDisplay.display = 'flex'
     // hide
     this.saveEditBtn.style.display = 'none'
     this.cancelEditBtn.style.display = 'none'
