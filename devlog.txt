@@ -1,7 +1,13 @@
+BS danger RGB rgb(220, 54, 69)
+
+
 1/18 Heroku Push Timeout
 npm run 'build' (to use webpack build)
 will cause heroku push error, so I change 'build' to 'webpack build'
 
 
+2/7 
+Came back after 2 weeks of dad's hospital deal
+change my portfolio's edit avatar css
 
 

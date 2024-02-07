@@ -243,25 +243,28 @@
   transition: all 0.3s ease-in-out;
   z-index: 5;
 }
-#avatar-input-div:hover {
-  background-color: rgba(255, 0, 0, 0.4);
-}
 
 #avatar-input-div::after {
-  content: '+';
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  content: '\f044';
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: var(--my-red);
+  font: var(--fa-font-solid);
   font-size: 2rem;
   font-weight: bold;
   transition: all 0.2s ease-in-out;
+  text-align: center;
+  line-height: 100%;
 }
 #avatar-input-div:hover::after {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+  background-color: rgba(220, 54, 69, 0.6);
+  color: white;
 }
 
 /* skill input */
@@ -374,5 +377,4 @@
   #cover-position {
     display: none !important;
   }
-  
 }
