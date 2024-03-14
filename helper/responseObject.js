@@ -1,5 +1,3 @@
-const { Model } = require('sequelize')
-
 /**
  * Creates a standard response object for API responses
  * @param {boolean} ok - status

@@ -12,3 +12,4 @@ node_modules
 # other
 .vscode
 .prettierrc
+.devlog.txt

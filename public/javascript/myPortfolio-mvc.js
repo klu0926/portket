@@ -262,6 +262,8 @@ class MyPortfolioView {
   }
   // skill
   showSkillToolTip(event) {
+    event.stopPropagation()
+
     let target = event.target
     if (target.classList.contains('skill-label') || target.classList.contains('skill-checkbox')) {
       target = target.parentElement
@@ -275,6 +277,7 @@ class MyPortfolioView {
       this.skillToolTipImage.src = target.getAttribute('data-icon')
       this.skillToolTipDescription.innerText = target.getAttribute('data-des')
     }
+
     this.skillToolTip.style.opacity = '1'
   }
   hideSkillToolTip() {

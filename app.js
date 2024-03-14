@@ -57,7 +57,6 @@ let storeOption = {
       data: 'data',
     },
   },
-  // 代表在每次與使用者互動後，不會強制把 session 儲存，除非 session 有變動
   resave: false,
   saveUninitialized: false,
 }
@@ -102,7 +101,6 @@ app.use(
 app.use(
   express.static('public', {
     maxAge: 0,
-
     setHeaders: (res, filePath) => {
       // Set ETag based on the file's last modified timestamp
       const stat = fs.statSync(filePath)
