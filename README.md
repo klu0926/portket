@@ -2,10 +2,10 @@
 
 Portket is a web application designed to provide a platform for users to share and discover creative content. Whether you're an artist, photographer, designer, or any other type of creative individual, Portket aims to connect you with a community of like-minded people and showcase your work to the world.
 
-🌐 website : [https://www.portket.uk/users](https://www.portket.uk)
+🌐 website : <a href="https://www.portket.uk/" target="_blank">https://www.portket.uk/</a>
 
 
-![home page](https://portket-ed8f173e9326.herokuapp.com/images/readme/web-users.webp)
+![home page](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-users.png)
 
 ## ⭐️ Features
 
