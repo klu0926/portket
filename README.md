@@ -2,9 +2,12 @@
 
 Portket is a web application designed to provide a platform for users to share and discover creative content. Whether you're an artist, photographer, designer, or any other type of creative individual, Portket aims to connect you with a community of like-minded people and showcase your work to the world.
 
+🌐 website : [https://www.portket.uk/users](https://www.portket.uk)
+
+
 ![home page](https://portket-ed8f173e9326.herokuapp.com/images/readme/web-users.webp)
 
-## Features
+## ⭐️ Features
 
 - **User Authentication:** Users can create accounts, log in, and log out securely.
 - **Social Authentication:** Users can log in using their Facebook or Google accounts.
@@ -14,7 +17,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **Google Authentication:** Users can log in using their Google accounts for streamlined access and security.
 - **Responsive Design:** Portket is designed to be responsive and accessible across various devices, including desktops, tablets, and smartphones.
 
-## Technologies Used
+## 🤓 Technologies Used
 
 - **Backend:** Express.js, Sequelize (with MySQL database), Passport.js for authentication, dotenv for environment variables
 - **Frontend:** HTML, CSS, JavaScript, Handlebars.js for template
@@ -23,7 +26,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **Development Tools:** Nodemon for automatic server restart, ESLint for code linting, Prettier for code formatting, Webpack for bundling assets
 - **Testing:** Mocha for unit testing
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -85,3 +88,8 @@ npx sequelize db:seed:all
 npm run dev
 ```
 
+## 👋 Contact Me
+If you have any questions, feedback, or suggestions, feel free to reach out:
+
+- **Email:** [lukuoyu@gmail.com](mailto:your.email@example.com)
+- **GitHub:** [klu0926](https://github.com/klu0926)
