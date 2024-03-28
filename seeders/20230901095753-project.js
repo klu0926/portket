@@ -35,7 +35,7 @@ class RandomProjectGenerator {
         const project = {
           userId: this.users[i].id,
           title: projectTitles[Math.floor(Math.random() * projectTitles.length)],
-          description: faker.lorem.paragraphs(10),
+          description: faker.lorem.paragraphs(2, '\n\n'),
           cover: image,
           coverSmall: '/images/projects_small/' + image.split('/')[3],
           coverPosition: 50,

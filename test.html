@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p">sentence1
+      nsentence2</p>
+    <button id="b" type="button">log text</button>
+
+    <script>
+      const button = document.querySelector('#b')
+      const p = document.querySelector('#p')
+
+      console.log('p:', p)
+
+      button.onclick = () => {
+        console.log('value: ', p.textContent)
+      }
+    </script>
+  </body>
+</html>

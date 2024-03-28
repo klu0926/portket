@@ -27,7 +27,7 @@ module.exports = {
             content = RandomPublicImage('project_images')
           } else {
             type = 'text'
-            content = faker.lorem.paragraphs(5)
+            content = faker.lorem.paragraphs(3, '\n\n')
           }
           projectContents.push({
             projectId: projects[i].id,
