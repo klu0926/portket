@@ -9,7 +9,6 @@ Portket is a web application designed to provide a platform for users to share a
 ## 📖 Table of Contents
 
 1. [Screenshots](#1-screenshots-)
-2. [Features](#2-features-⭐️)
 3. [Technologies](#3-technologies-)
 4. [Getting Started](#4-getting-started-)
 5. [Contact Me](#5-contact-me-)
