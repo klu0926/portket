@@ -4,19 +4,17 @@ Portket is a web application designed to provide a platform for users to share a
 
 ![cover](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-cover.png)
 
-
 🌐 website : <a href="https://www.portket.uk/" target="_blank">https://www.portket.uk/</a>
-
 
 ## 📖 Table of Contents
 
-1. [Screenshots](#-screenshots)
-2. [Features](#-features)
-3. [Technologies](#-technologies)
-4. [Getting Started](#-getting-started)
-5. [Contact Me](#-contact-me)
+1. [Screenshots](#1-screenshots-)
+2. [Features](#2-features-)
+3. [Technologies](#3-technologies-)
+4. [Getting Started](#4-getting-started=)
+5. [Contact Me](#5-contact-me-)
 
-## 📸 Screenshots
+## 1. Screenshots 📸
 
 ![users](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-users.png)
 
@@ -26,8 +24,7 @@ Portket is a web application designed to provide a platform for users to share a
 
 ![put project](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-put-project.png)
 
-
-## ⭐️ Features
+## 2. Features ⭐️
 
 - **User Authentication:** Users can create accounts, log in, and log out securely.
 - **Social Authentication:** Users can log in using their Facebook or Google accounts.
@@ -37,7 +34,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **Google Authentication:** Users can log in using their Google accounts for streamlined access and security.
 - **Responsive Design:** Portket is designed to be responsive and accessible across various devices, including desktops, tablets, and smartphones.
 
-## 🤓 Technologies
+## 3. Technologies 🤓
 
 - **Backend:** Express.js, Sequelize (with MySQL database), Passport.js for authentication, dotenv for environment variables
 - **Frontend:** HTML, CSS, JavaScript, Handlebars.js for template
@@ -45,7 +42,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **API Integration:** Imgur API for image uploading
 - **Development Tools:** Nodemon for automatic server restart, ESLint for code linting, Prettier for code formatting, Webpack for bundling assets
 
-## 🚀 Getting Started
+## 5. Getting Started 🚀
 
 ### Prerequisites
 
@@ -94,20 +91,25 @@ JAWDB_DATABASE=
 
 1. Create SQL database portket
 2. Migrate database
+
 ```
 npx sequelize db:migrate:all
 ```
+
 3. Seeding database
+
 ```
 npx sequelize db:seed:all
 ```
 
 ### Start App
+
 ```
 npm run dev
 ```
 
-## 👋 Contact Me
+## 6. Contact Me 👋
+
 If you have any questions, feedback, or suggestions, feel free to reach out:
 
 - **Email:** [lukuoyu@gmail.com](mailto:your.email@example.com)
