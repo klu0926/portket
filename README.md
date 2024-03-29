@@ -5,7 +5,24 @@ Portket is a web application designed to provide a platform for users to share a
 🌐 website : <a href="https://www.portket.uk/" target="_blank">https://www.portket.uk/</a>
 
 
-![home page](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-users.png)
+## 📖 Table of Contents
+
+1. [Screenshots](#-screenshots)
+2. [Features](#-features)
+3. [Technologies](#-technologies)
+4. [Getting Started](#-getting-started)
+5. [Contact Me](#-contact-me)
+
+## 📸 Screenshots
+
+![users](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-users.png)
+
+![user](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-user.png)
+
+![put user](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-put-user.png)
+
+![put project](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-put-project.png)
+
 
 ## ⭐️ Features
 
@@ -17,7 +34,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **Google Authentication:** Users can log in using their Google accounts for streamlined access and security.
 - **Responsive Design:** Portket is designed to be responsive and accessible across various devices, including desktops, tablets, and smartphones.
 
-## 🤓 Technologies Used
+## 🤓 Technologies
 
 - **Backend:** Express.js, Sequelize (with MySQL database), Passport.js for authentication, dotenv for environment variables
 - **Frontend:** HTML, CSS, JavaScript, Handlebars.js for template
