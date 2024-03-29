@@ -42,7 +42,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **API Integration:** Imgur API for image uploading
 - **Development Tools:** Nodemon for automatic server restart, ESLint for code linting, Prettier for code formatting, Webpack for bundling assets
 
-## 5. Getting Started 🚀
+## 4. Getting Started 🚀
 
 ### Prerequisites
 
@@ -108,7 +108,7 @@ npx sequelize db:seed:all
 npm run dev
 ```
 
-## 6. Contact Me 👋
+## 5. Contact Me 👋
 
 If you have any questions, feedback, or suggestions, feel free to reach out:
 
