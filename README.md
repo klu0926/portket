@@ -2,29 +2,21 @@
 
 Portket is a web application designed to provide a platform for users to share and discover creative content. Whether you're an artist, photographer, designer, or any other type of creative individual, Portket aims to connect you with a community of like-minded people and showcase your work to the world.
 
-![cover](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-cover.png)
+
+[![cover](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-cover.png)](https://www.portket.uk/)
+
 
 🌐 website : <a href="https://www.portket.uk/" target="_blank">https://www.portket.uk/</a>
 
 ## 📖 Table of Contents
 
-1. [Screenshots](#1-screenshots-)
-2. [Features](#2-features-%EF%B8%8F)
-3. [Technologies](#3-technologies-)
-4. [Getting Started](#4-getting-started-)
-5. [Contact Me](#5-contact-me-)
+1. [Features](#1-features-%EF%B8%8F)
+2. [Technologies](#2-technologies-)
+3. [Getting Started](#3-getting-started-)
+4. [Contact Me](#4-contact-me-)
 
-## 1. Screenshots 📸
 
-![users](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-users.png)
-
-![user](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-user.png)
-
-![put user](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-put-user.png)
-
-![put project](https://portket-ed8f173e9326.herokuapp.com/images/readme/readme-put-project.png)
-
-## 2. Features ⭐️
+## 1. Features ⭐️
 
 - **User Authentication:** Users can create accounts, log in, and log out securely.
 - **Social Authentication:** Users can log in using their Facebook or Google accounts.
@@ -34,7 +26,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **Google Authentication:** Users can log in using their Google accounts for streamlined access and security.
 - **Responsive Design:** Portket is designed to be responsive and accessible across various devices, including desktops, tablets, and smartphones.
 
-## 3. Technologies 🤓
+## 2. Technologies 🤓
 
 - **Backend:** Express.js, Sequelize (with MySQL database), Passport.js for authentication, dotenv for environment variables
 - **Frontend:** HTML, CSS, JavaScript, Handlebars.js for template
@@ -42,7 +34,7 @@ Portket is a web application designed to provide a platform for users to share a
 - **API Integration:** Imgur API for image uploading
 - **Development Tools:** Nodemon for automatic server restart, ESLint for code linting, Prettier for code formatting, Webpack for bundling assets
 
-## 4. Getting Started 🚀
+## 3. Getting Started 🚀
 
 ### Prerequisites
 
@@ -108,7 +100,7 @@ npx sequelize db:seed:all
 npm run dev
 ```
 
-## 5. Contact Me 👋
+## 4. Contact Me 👋
 
 If you have any questions, feedback, or suggestions, feel free to reach out:
 
